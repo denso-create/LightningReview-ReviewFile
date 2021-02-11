@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>LightningReview.RevxReader.Tests</AssemblyName>
+    <AssemblyName>LightningReview.RevxFile.Tests</AssemblyName>
 
-    <RootNamespace>LightningReview.RevxReader.Tests</RootNamespace>
+    <RootNamespace>LightningReview.RevxFile.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,11 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestData\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\RevxReader\RevxReader.csproj" />
+    <ProjectReference Include="..\RevxFile\RevxFile.csproj" />
   </ItemGroup>
 
   <ItemGroup>

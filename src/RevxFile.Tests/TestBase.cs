@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace LightningReview.RevxReader.Tests
+namespace LightningReview.RevxFile.Tests
 {
     public class TestBase
     {

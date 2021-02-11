@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO.Compression;
-using LightningReview.RevxReader.Models;
+using LightningReview.RevxFile.Models;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxReader
+namespace LightningReview.RevxFile
 {
     public class RevxReader : IRevxReader
     {

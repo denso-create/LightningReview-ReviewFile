@@ -1,9 +1,9 @@
-﻿using LightningReview.RevxReader.Models;
+﻿using LightningReview.RevxFile.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LightningReview.RevxReader
+namespace LightningReview.RevxFile
 {
     interface IRevxReader
     {

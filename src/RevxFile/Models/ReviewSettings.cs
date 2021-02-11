@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LightningReview.RevxReader.Models
+namespace LightningReview.RevxFile.Models
 {
     class ReviewSettings
     {

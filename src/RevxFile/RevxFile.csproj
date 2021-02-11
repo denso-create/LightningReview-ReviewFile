@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>LightningReview.RevxReader</AssemblyName>
-    <RootNamespace>LightningReview.RevxReader</RootNamespace>
+    <AssemblyName>LightningReview.RevxFile</AssemblyName>
+    <RootNamespace>LightningReview.RevxFile</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

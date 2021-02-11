@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxReader.Models
+namespace LightningReview.RevxFile.Models
 {
     [XmlRoot]
     public class Review

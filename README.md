@@ -1,0 +1,2 @@
+# LightningReview-RevxReader
+Lightning ReviewのRevxファイルを読み込みできるライブラリです。

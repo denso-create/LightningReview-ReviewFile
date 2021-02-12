@@ -4,12 +4,21 @@ using System.Text;
 using System.IO.Compression;
 using LightningReview.RevxFile.Models;
 using System.Xml.Serialization;
+using System.Threading.Tasks;
 
 namespace LightningReview.RevxFile
 {
+    /// <summary>
+    /// レビューファイルのリーダー
+    /// </summary>
     public class RevxReader : IRevxReader
     {
-        public Review Load(string filePath)
+        /// <summary>
+        /// ファイルからロードします。
+        /// </summary>
+        /// <param name="filePath">レビューファイルのパス</param>
+        /// <returns>ロードしたレビューモデル</returns>
+        public Review Read(string filePath)
         {
             using ( var archive = ZipFile.OpenRead(filePath))
             {
@@ -23,5 +32,6 @@ namespace LightningReview.RevxFile
                 }
             }
         }
+
     }
 }

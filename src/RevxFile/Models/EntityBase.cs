@@ -9,7 +9,7 @@ namespace LightningReview.RevxFile.Models
     {
         public EntityBase()
         {
-            GID = Guid.NewGuid();
+            GID = Guid.NewGuid().ToString();
         }
 
         [XmlElement]

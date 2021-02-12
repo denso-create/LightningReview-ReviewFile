@@ -8,6 +8,7 @@ namespace LightningReview.RevxFile.Models
     [XmlRoot]
     public class Review : EntityBase
     {
+        #region プロパティ
         [XmlElement]
         public string Name { get; set; }
 
@@ -18,13 +19,36 @@ namespace LightningReview.RevxFile.Models
         public string Domain { get; set; }
 
         [XmlElement]
+        public string Place { get; set; }
+
+        [XmlElement]
+        public string PlannedDate { get; set; }
+
+        [XmlElement]
+        public string ActualDate { get; set; }
+
+        [XmlElement]
         public Documents Documents { get; set; }
 
-        public IEnumerable<Issue> AllIssues() 
+        #endregion
+
+        /// <summary>
+        /// すべての指摘
+        /// </summary>
+        public IEnumerable<Issue> AllIssues
         {
-            throw new NotImplementedException();
+            get
+            {
+                var issues = new List<Issue>();
+
+                // 各ドキュメントの指摘
+                foreach (var doc in Documents.List)
+                {
+                    issues.AddRange(doc.AllIssues);
+                }
+
+                return issues;
+            }
         }
     }
-
-
 }

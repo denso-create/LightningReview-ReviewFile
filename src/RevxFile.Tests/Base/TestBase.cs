@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using LightningReview.RevxFile.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,8 +31,21 @@ namespace LightningReview.RevxFile.Tests
             }
 
             var path = Path.Combine(dir, fileName);
-            Assert.IsTrue(File.Exists(path));
+            Assert.IsTrue(File.Exists(path), $"テストデータのファイル{fileName}が存在しません");
             return path;
+        }
+
+        /// <summary>
+        /// レビューファイルのロード
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        protected Review LoadRevx(string filePath)
+        {
+            var filepath = GetTestDataPath(filePath);
+            var reader = new RevxReader();
+            var review = reader.Read(filepath);
+            return review;
         }
 
     }

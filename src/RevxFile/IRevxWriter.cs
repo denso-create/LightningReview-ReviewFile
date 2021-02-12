@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LightningReview.RevxFile
 {
-    interface IRevxReader
+    public interface IRevxWriter
     {
-        Review Read(string filepath);
+        void Write(string filePath, Review review);
+       
     }
 }

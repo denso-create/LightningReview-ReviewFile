@@ -10,6 +10,5 @@ namespace LightningReview.RevxFile.Models
     {
         [XmlElement]
         public OutlineNode VirtualRoot { get; set; } = new OutlineNode();
-        
     }
 }

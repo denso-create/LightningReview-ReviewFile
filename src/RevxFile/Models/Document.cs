@@ -14,5 +14,15 @@ namespace LightningReview.RevxFile.Models
         [XmlElement]
         public OutlineTree OutlineTree { get; set; } = new OutlineTree();
 
+        /// <summary>
+        /// アウトラインノード
+        /// </summary>
+        public IList<OutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children;
+
+        /// <summary>
+        /// 全ての指摘
+        /// </summary>
+        public IEnumerable<Issue> AllIssues => OutlineTree.VirtualRoot.AllIssues;
+
     }
 }

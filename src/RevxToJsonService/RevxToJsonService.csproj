@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>LightningReview.RevxToJsonService</AssemblyName>
+    <RootNamespace>LightningReview.RevxToJsonService</RootNamespace>
+    <Authors>DENSO CREATE CO., LTD</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>* Export Lightning Review file(revx)  to simple Json file</Description>
+    <Copyright>DENSO CREATE CO., LTD</Copyright>
+    <Company>DENSO CREATE CO., LTD</Company>
+    <RepositoryUrl>https://github.com/denso-create/LightningReview-RevxFile</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>https://github.com/denso-create/LightningReview-RevxFile</PackageProjectUrl>
+    <Version>0.8.1</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RevxFile\RevxFile.csproj" />
+  </ItemGroup>
+
+</Project>

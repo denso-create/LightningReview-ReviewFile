@@ -4,7 +4,7 @@
 * .NET Standard/.NET Coreで開発をしているのでWindows/Linux/Macで動作可能です。
 
 ### LightningReview.RevxFile
-* revxファイルを高速に読み書き可能なライブラリです。
+* Lightning Reviewのrevxファイルを高速に読み書き可能なライブラリです。
 * コンパクトで他への依存関係がない軽量な設計になっています。
 * 現在は読み込みのみサポートしています。
 
@@ -33,9 +33,28 @@ using LightningReview.RevxFile.Models;
         Console.WriteLine(review.AllIssues.Count());
     }
 ```
+## LightnigReview.RevxToJsonService
+* フォルダ内のLightning Reviewのrevxファイルの内容を読み込んでJSONファイルに出力するライブラリです。
+* レビューの指摘件数、メトリクスの計算などで利用して下さい。
+
+```cs
+using LightnigReview.RevxToJsonService;
+
+//...
+
+// エクスポート処理
+var exporter = new RevxToJsonExporter();
+
+// ロガーを設定しておく
+exporter.Logger = (message) => Console.WriteLine(message);
+
+// 実行
+exporter.Export(folderPath, outputPath);
+```
 
 
-## RevxToJson
+## RevxToJsonCLI
+
 フォルダ内のrevxファイルの内容をJSONファイルに出力するコマンドラインプログラムです。
 
 | revxToJson.exe -f revxFolder
@@ -45,6 +64,7 @@ using LightningReview.RevxFile.Models;
 | revxToJson.exe -f revxFolder -o myJsonFile.json
 
 のように `o`で出力ファイル（パス）を指定できます。
+
 
 ## 性能について
 性能については、1000ファイルのレビューファイル(revx)の集計に1-2秒程度で処理可能と非常に高速になっています。

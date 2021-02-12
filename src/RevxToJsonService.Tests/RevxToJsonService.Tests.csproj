@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RevxToJson\RevxToJsonService.csproj" />
+    <ProjectReference Include="..\RevxToJsonService\RevxToJsonService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

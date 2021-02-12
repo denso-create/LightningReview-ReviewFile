@@ -6,11 +6,16 @@
     <RootNamespace>LightningReview.RevxFile</RootNamespace>
     <Description>Enalbes you to read LightningReview revx files.
 </Description>
-    <Copyright>DENSO CREATE CO., LTD.</Copyright>
+    <Copyright>DENSO CREATE CO., LTD</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.8.0</Version>
+    <Version>0.8.1</Version>
+    <Authors>DENSO CREATE CO., LTD</Authors>
+    <Company>DENSO CREATE CO., LTD</Company>
+    <RepositoryUrl>https://github.com/denso-create/LightningReview-RevxFile</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>https://github.com/denso-create/LightningReview-RevxFile</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

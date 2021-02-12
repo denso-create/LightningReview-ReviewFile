@@ -1,7 +1,5 @@
 ﻿using CommandLine;
-using LightningReview.RevxFile;
-using RevxToJsonService;
-using RevxToJsonService.Models;
+using LightningReview.RevxToJsonService;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

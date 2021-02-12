@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace RevxToJsonService
+namespace LightningReview.RevxToJsonService
 {
     /// <summary>
     /// 

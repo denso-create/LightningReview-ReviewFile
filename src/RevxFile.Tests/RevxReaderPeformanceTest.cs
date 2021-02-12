@@ -10,19 +10,22 @@ namespace LightningReview.RevxFile.Tests
     public class RevxReaderPeformanceTest : TestBase
     {
         [TestMethod]
-        public void Load1000_PeformanceTest()
+        public void Load1000Times_PeformanceTest()
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            // 1000回ファイルを読みこむ
             for ( var i=0;i<1000;i++)
             {
                 var review = LoadRevx("RevFilePeformance30.revx");
-                var issues = review.AllIssues;
 
+                // 指摘を取得してみる
+                var issues = review.AllIssues;
                 Assert.AreEqual(30, issues.Count());
             }
 
+            // 実行時間は5000ms以内であること
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < 5000);
         }
     }

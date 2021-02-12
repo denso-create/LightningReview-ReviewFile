@@ -28,6 +28,12 @@ namespace LightningReview.RevxFile.Models
         public string ActualDate { get; set; }
 
         [XmlElement]
+        public string Unit { get; set; }
+
+        [XmlElement]
+        public string PlannedScale { get; set; }
+
+        [XmlElement]
         public Documents Documents { get; set; }
 
         #endregion

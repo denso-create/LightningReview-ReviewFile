@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevxFile", "RevxFile\RevxFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevxFile.Tests", "RevxFile.Tests\RevxFile.Tests.csproj", "{3CF0776C-F723-4EA3-ACB8-E2F68B00CCCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevxToJsonExporter", "RevxToJsonExporter\RevxToJsonExporter.csproj", "{0E3B7329-6611-4F11-970E-06B049D3AC72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{8DE6205D-2AB3-4E84-86FA-66A13E4E8A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{F87C37DC-5143-49F6-B2C9-1A67C1222DC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,18 @@ Global
 		{3CF0776C-F723-4EA3-ACB8-E2F68B00CCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CF0776C-F723-4EA3-ACB8-E2F68B00CCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CF0776C-F723-4EA3-ACB8-E2F68B00CCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3B7329-6611-4F11-970E-06B049D3AC72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3B7329-6611-4F11-970E-06B049D3AC72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3B7329-6611-4F11-970E-06B049D3AC72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3B7329-6611-4F11-970E-06B049D3AC72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F4FE211-8B7E-450C-B3AC-A99CF27E9D5D} = {8DE6205D-2AB3-4E84-86FA-66A13E4E8A4A}
+		{3CF0776C-F723-4EA3-ACB8-E2F68B00CCCB} = {8DE6205D-2AB3-4E84-86FA-66A13E4E8A4A}
+		{0E3B7329-6611-4F11-970E-06B049D3AC72} = {F87C37DC-5143-49F6-B2C9-1A67C1222DC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEE52B90-C735-41C3-AFDF-B2B7F6C5A3C2}

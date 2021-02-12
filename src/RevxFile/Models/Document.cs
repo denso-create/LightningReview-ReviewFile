@@ -9,7 +9,19 @@ namespace LightningReview.RevxFile.Models
     public class Document : EntityBase
     {
         [XmlElement]
+        public string LID { get; set; }
+
+        [XmlElement]
         public string Name { get; set; }
+
+        [XmlElement]
+        public string AbsolutePath { get; set; }
+
+        [XmlElement]
+        public string RelativePath { get; set; }
+
+        [XmlElement]
+        public string ApplicationType { get; set; }
 
         [XmlElement]
         public OutlineTree OutlineTree { get; set; } = new OutlineTree();

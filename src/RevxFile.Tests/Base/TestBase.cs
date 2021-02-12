@@ -14,7 +14,6 @@ namespace LightningReview.RevxFile.Tests
         /// </summary>
         protected virtual string TestDataFolderName => @"TestData";
 
-
         /// <summary>
         /// テストデータのファイルパスを取得する
         /// </summary>

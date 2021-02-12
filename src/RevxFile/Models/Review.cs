@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace LightningReview.RevxFile.Models
 {
     [XmlRoot]
-    public class Review
+    public class Review : EntityBase
     {
         [XmlElement]
         public string Name { get; set; }
@@ -14,9 +14,16 @@ namespace LightningReview.RevxFile.Models
         [XmlElement]
         public string Goal { get; set; }
 
-        //[XmlArray]
-        //public List<Issue> Issues { get; set; } = new List<Issue>();
+        [XmlElement]
+        public string Domain { get; set; }
 
+        [XmlElement]
+        public Documents Documents { get; set; }
+
+        public IEnumerable<Issue> AllIssues() 
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

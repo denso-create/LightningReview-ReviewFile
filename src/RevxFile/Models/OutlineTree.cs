@@ -6,9 +6,10 @@ using System.Xml.Serialization;
 namespace LightningReview.RevxFile.Models
 {
     [XmlRoot]
-    public class Issue : EntityBase
+    public class OutlineTree : EntityBase
     {
         [XmlElement]
-        public string Description { get; set; }
+        public OutlineNode VirtualRoot { get; set; } = new OutlineNode();
+        
     }
 }

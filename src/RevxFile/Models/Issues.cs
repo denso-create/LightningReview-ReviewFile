@@ -6,9 +6,10 @@ using System.Xml.Serialization;
 namespace LightningReview.RevxFile.Models
 {
     [XmlRoot]
-    public class Issue : EntityBase
+    public class Issues : EntityBase
     {
-        [XmlElement]
-        public string Description { get; set; }
+        [XmlArray("List")]
+        [XmlArrayItem("Issue")]
+        public List<Issue> List { get; set; }  = new List<Issue>();
     }
 }

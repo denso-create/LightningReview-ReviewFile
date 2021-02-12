@@ -11,23 +11,29 @@
 ```cs
 using LightningReview.RevxFile;
 using LightningReview.RevxFile.Models;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        // revxファイルを読み込むクラスです
-        var reader = new RevxReader();
-
-        // 単一のレビューファイルを指定する場合
-        var review = reader.Read(filepath);
-        Console.WriteLine(review.AllIssues.Count());
-
-        // フォルダから複数のレビューファイルを
-
-    }
-}
 ```
+
+単一のレビューファイルを指定する場合
+```cs
+    // revxファイルを読み込むクラスです
+    var reader = new RevxReader();
+
+    // 単一のレビューファイルを指定する場合
+    var review = reader.Read(revxFilePath);
+    Console.WriteLine(review.AllIssues.Count());
+```
+
+
+フォルダにある複数のレビューファイルを指定する場合
+```cs
+    // フォルダにある複数のレビューファイルを指定する場合
+    var reviews = reader.ReadFolder(revxFolder);
+    foreach ( var review in reviews)
+    {
+        Console.WriteLine(review.AllIssues.Count());
+    }
+```
+
 
 ## RevxToJson
 フォルダ内のrevxファイルの内容をJSONファイルに出力するコマンドラインプログラムです。

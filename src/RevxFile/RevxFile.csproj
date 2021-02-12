@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.RevxFile</AssemblyName>
     <RootNamespace>LightningReview.RevxFile</RootNamespace>
+    <Description>Enalbes you to read LightningReview revx files.
+</Description>
+    <Copyright>DENSO CREATE CO., LTD.</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>0.8.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

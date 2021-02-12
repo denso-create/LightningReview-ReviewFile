@@ -69,6 +69,7 @@ namespace RevxToJsonService.Tests
 
         }
 
+        [TestCategory("SkipWhenLiveUnitTesting")]
         [TestMethod]
         public void PerfomanceTest()
         {

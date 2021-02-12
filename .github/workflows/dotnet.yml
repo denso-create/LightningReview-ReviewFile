@@ -20,6 +20,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build src/RevxFile.sln --no-restore
+      run: dotnet build ./src/RevxFile.sln --no-restore
     - name: Test
-      run: dotnet test src/RevxFile.sln --no-build --verbosity normal
+      run: dotnet test ./src/RevxFile.sln --no-build --verbosity normal

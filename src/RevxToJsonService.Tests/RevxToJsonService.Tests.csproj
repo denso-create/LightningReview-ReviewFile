@@ -19,6 +19,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestData\ExportParamTest\RevFile1.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ExportParamTest\RevFile2.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ExportParamTest\RevFile3.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ExportParamTest\SubFolder\RevFile1.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ExportParamTest\SubFolder\RevFile2.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ExportParamTest\SubFolder\RevFile3.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\RevFile1.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -26,6 +44,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="TestData\RevFile3.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\SubFolder\RevFile1.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\SubFolder\RevFile2.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\SubFolder\RevFile3.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

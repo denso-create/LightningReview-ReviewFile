@@ -10,7 +10,7 @@ using System.Text.Json;
 namespace LightningReview.RevxToJsonService
 {
     /// <summary>
-    /// 
+    /// RevxのJsonエクスポート
     /// </summary>
     public class RevxToJsonExporter
     {
@@ -21,10 +21,11 @@ namespace LightningReview.RevxToJsonService
         /// </summary>
         /// <param name="revxFolder"></param>
         /// <param name="outputFilePath"></param>
-        public void Export(string revxFolder,string outputFilePath)
+        /// <param name="includeSubFolders"></param>
+        public void Export(string revxFolder,string outputFilePath,bool includeSubFolders=false)
         {
 			var reader = new RevxReader();
-			var readReviews = reader.ReadFolder(revxFolder);
+			var readReviews = reader.ReadFolder(revxFolder, includeSubFolders);
             // Jsonモデル
             var jsonModel = new JsonModel(readReviews);
 

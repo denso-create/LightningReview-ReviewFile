@@ -39,7 +39,13 @@ namespace LightningReview.RevxFile
             }
         }
 
-        public IEnumerable<Review> ReadFolder(string folderPath, bool readSubFodler = false)
+        /// <summary>
+        /// フォルダからロードします
+        /// </summary>
+        /// <param name="folderPath">対象フォルダ</param>
+        /// <param name="includeSubFodler">サブフォルダも対象にする</param>
+        /// <returns></returns>
+        public IEnumerable<Review> ReadFolder(string folderPath, bool includeSubFodler = false)
         {
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
             if (Directory.Exists(folderPath) == false)
@@ -48,7 +54,9 @@ namespace LightningReview.RevxFile
             }
 
             // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する
-            var revxFilePaths = Directory.GetFiles(folderPath, "*.revx", SearchOption.AllDirectories);
+            var searchOption = includeSubFodler ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+
+            var revxFilePaths = Directory.GetFiles(folderPath, "*.revx", searchOption);
             var reviews = new List<Review>();
             foreach (var revxFilePath in revxFilePaths)
             {

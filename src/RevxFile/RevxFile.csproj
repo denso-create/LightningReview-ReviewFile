@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.RevxFile</AssemblyName>
     <RootNamespace>LightningReview.RevxFile</RootNamespace>
-    <Description>Enalbes you to read LightningReview revx files.
+    <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のrevxファイルを読み込み可能な軽量ライブラリです。
 </Description>
     <Copyright>DENSO CREATE CO., LTD</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.8.1</Version>
+    <Version>0.8.2</Version>
     <Authors>DENSO CREATE CO., LTD</Authors>
     <Company>DENSO CREATE CO., LTD</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-RevxFile</RepositoryUrl>

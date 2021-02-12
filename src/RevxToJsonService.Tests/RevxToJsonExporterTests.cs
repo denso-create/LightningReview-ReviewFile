@@ -36,6 +36,25 @@ namespace RevxToJsonService.Tests
             return path;
         }
 
+        [TestMethod]
+        public void ExportParamTest()
+        {
+            var revxFolder = GetTestDataPath("ExportParamTest");
+            var outputPath = GetTestDataPath("output.json");
+            var exporter = new RevxToJsonExporter();
+
+            // 直下のファイル
+            exporter.Export(revxFolder, outputPath);
+            var json = File.ReadAllText(outputPath);
+            dynamic jsonModel = JsonConvert.DeserializeObject(json);
+            Assert.AreEqual(3, (int)jsonModel.TotalReviewCount);
+
+            // サブフォルダも含む
+            exporter.Export(revxFolder, outputPath,true);
+            json = File.ReadAllText(outputPath);
+            jsonModel = JsonConvert.DeserializeObject(json);
+            Assert.AreEqual(6, (int)jsonModel.TotalReviewCount);
+        }
 
         [TestMethod]
         public void ExportTest()
@@ -77,7 +96,7 @@ namespace RevxToJsonService.Tests
             var revxFolder = GetTestDataPath();
 
             // テスト用のフォルダを作成する
-            var peformanceTestFolder = Path.Combine(revxFolder, "PeformanceTestData.");
+            var peformanceTestFolder = Path.Combine(revxFolder, "PeformanceTestData");
             RecreateDirectory(peformanceTestFolder);
 
             #region テストデータの作成

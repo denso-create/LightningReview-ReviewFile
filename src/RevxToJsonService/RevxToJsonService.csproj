@@ -6,13 +6,13 @@
     <RootNamespace>LightningReview.RevxToJsonService</RootNamespace>
     <Authors>DENSO CREATE CO., LTD</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>* Export Lightning Review file(revx)  to simple Json file</Description>
+    <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のrevxファイルを検索してjsonファイルにデータを出力可能なライブラリです。</Description>
     <Copyright>DENSO CREATE CO., LTD</Copyright>
     <Company>DENSO CREATE CO., LTD</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-RevxFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-RevxFile</PackageProjectUrl>
-    <Version>0.8.1</Version>
+    <Version>0.8.2</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>

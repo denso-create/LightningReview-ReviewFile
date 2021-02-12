@@ -20,9 +20,15 @@ namespace RevxToJson
 
 			[Option('o', "output", Required = false, HelpText = "JSONファイルの出力先のパスを指定します。")]
 			public string OutputPath { get; set; }
+
+			[Option('r', "recursive", Required = false,  HelpText = "サブフォルダも含めてファイルを検索します。" , Default =false)]
+			public bool Recursive { get; set; }
 		}
 
-
+		/// <summary>
+		/// メイン
+		/// </summary>
+		/// <param name="args"></param>
 		static void Main(string[] args)
         {
 
@@ -50,6 +56,10 @@ namespace RevxToJson
 			if ( string.IsNullOrEmpty(outputPath) ) {
 				outputPath = "output.json";
 			}
+
+			// サブフォルダを含む
+			var recursive = parsed.Value.Recursive;
+
             #endregion
 
             #region 処理の実行
@@ -66,7 +76,7 @@ namespace RevxToJson
 			Console.WriteLine($"フォルダ{folderPath}のレビューファイルを検索しています。");
 
 			// 実行
-			exporter.Export(folderPath, outputPath);
+			exporter.Export(folderPath, outputPath, recursive);
 			stopWatch.Stop();
 
             // 完了メッセージ

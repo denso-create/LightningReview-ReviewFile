@@ -11,18 +11,36 @@ namespace LightningReview.RevxFile.Tests
         private string RevFileName = "RevFile1.revx";
 
         [TestMethod]
-        public void LoadTest()
+        public void ReadFileTest()
         {
-            var review = LoadRevx(RevFileName);
+            var review = ReadRevx(RevFileName);
 
             Assert.IsNotNull(review);
             Assert.AreEqual(GetTestDataPath(RevFileName), review.FilePath);
         }
 
         [TestMethod]
+        public void ReadFolderTest()
+        {
+            var folder = GetTestDataPath();
+
+            var reader = new RevxReader();
+            var reviews = reader.ReadFolder(folder);
+
+            // 直下のフォルダ
+            Assert.IsNotNull(reviews);
+            Assert.AreEqual(2, reviews.Count());
+
+            // サブフォルダも対象
+            reviews = reader.ReadFolder(folder, true);
+            Assert.AreEqual(4, reviews.Count());
+        }
+
+
+        [TestMethod]
         public void EntityBaseTests()
         {
-            var review = LoadRevx(RevFileName);
+            var review = ReadRevx(RevFileName);
 
             Assert.IsNotNull(review.CreatedBy);
             Assert.IsTrue(review.CreatedDateTime < DateTime.Now);
@@ -31,7 +49,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void ReviewTest()
         {
-            var review = LoadRevx(RevFileName);
+            var review = ReadRevx(RevFileName);
 
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
@@ -40,7 +58,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void DocumentTest()
         {
-            var review = LoadRevx(RevFileName);
+            var review = ReadRevx(RevFileName);
             Assert.IsNotNull(review.Documents.List);
 
             // ドキュメントは2つ
@@ -78,7 +96,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void IssueTest()
         {
-            var review = LoadRevx(RevFileName);
+            var review = ReadRevx(RevFileName);
             var allIssues = review.AllIssues;
 
             // 指摘のフィールド

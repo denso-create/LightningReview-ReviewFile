@@ -9,6 +9,7 @@ namespace LightningReview.RevxFile.Tests
     [TestClass]
     public class RevxReaderPeformanceTest : TestBase
     {
+        [TestCategory("SkipWhenLiveUnitTesting")]
         [TestMethod]
         public void Load1000Times_PeformanceTest()
         {
@@ -18,7 +19,7 @@ namespace LightningReview.RevxFile.Tests
             // 1000回ファイルを読みこむ
             for ( var i=0;i<1000;i++)
             {
-                var review = LoadRevx("RevFilePeformance30.revx");
+                var review = ReadRevx("RevFilePeformance30.revx");
 
                 // 指摘を取得してみる
                 var issues = review.AllIssues;

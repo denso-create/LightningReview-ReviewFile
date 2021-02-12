@@ -40,7 +40,7 @@ namespace LightningReview.RevxFile.Tests
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        protected Review LoadRevx(string filePath)
+        protected Review ReadRevx(string filePath)
         {
             var filepath = GetTestDataPath(filePath);
             var reader = new RevxReader();

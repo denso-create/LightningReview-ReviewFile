@@ -8,17 +8,21 @@ namespace LightningReview.RevxFile.Tests
     [TestClass]
     public class RevxReaderTests : TestBase
     {
+        private string RevFileName = "RevFile1.revx";
+
         [TestMethod]
         public void LoadTest()
         {
-            var review = LoadRevx("RevFile1.revx");
+            var review = LoadRevx(RevFileName);
+
             Assert.IsNotNull(review);
+            Assert.AreEqual(GetTestDataPath(RevFileName), review.FilePath);
         }
 
         [TestMethod]
         public void EntityBaseTests()
         {
-            var review = LoadRevx("RevFile1.revx");
+            var review = LoadRevx(RevFileName);
 
             Assert.IsNotNull(review.CreatedBy);
             Assert.IsTrue(review.CreatedDateTime < DateTime.Now);
@@ -27,7 +31,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void ReviewTest()
         {
-            var review = LoadRevx("RevFile1.revx");
+            var review = LoadRevx(RevFileName);
 
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
@@ -36,7 +40,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void DocumentTest()
         {
-            var review = LoadRevx("RevFile1.revx");
+            var review = LoadRevx(RevFileName);
             Assert.IsNotNull(review.Documents.List);
 
             // ドキュメントは2つ
@@ -74,7 +78,7 @@ namespace LightningReview.RevxFile.Tests
         [TestMethod]
         public void IssueTest()
         {
-            var review = LoadRevx("RevFile1.revx");
+            var review = LoadRevx(RevFileName);
             var allIssues = review.AllIssues;
 
             // 指摘のフィールド

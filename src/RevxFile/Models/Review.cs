@@ -8,7 +8,9 @@ namespace LightningReview.RevxFile.Models
     [XmlRoot]
     public class Review : EntityBase
     {
-        #region プロパティ
+        #region 永続化プロパティ
+
+
         [XmlElement]
         public string Name { get; set; }
 
@@ -38,6 +40,13 @@ namespace LightningReview.RevxFile.Models
 
         #endregion
 
+        #region 非永続化プロパティ
+
+        /// <summary>
+        /// ファイルパス
+        /// </summary>
+        public string FilePath { get; set; }
+
         /// <summary>
         /// すべての指摘
         /// </summary>
@@ -56,5 +65,7 @@ namespace LightningReview.RevxFile.Models
                 return issues;
             }
         }
+
+        #endregion
     }
 }

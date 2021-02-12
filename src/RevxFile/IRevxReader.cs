@@ -8,6 +8,19 @@ namespace LightningReview.RevxFile
 {
     interface IRevxReader
     {
+        /// <summary>
+        /// 指定ファイルのレビューファイルを読み込みます。
+        /// </summary>
+        /// <param name="filepath">対象のrevxファイル</param>
+        /// <returns></returns>
         Review Read(string filepath);
+
+        /// <summary>
+        /// 指定フォルダのレビューファイルを読み込みます。
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <param name="readSubFodler"></param>
+        /// <returns></returns>
+        IEnumerable<Review> ReadFolder(string folderPath,bool readSubFodler=false);
     }
 }

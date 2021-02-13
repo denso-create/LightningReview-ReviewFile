@@ -3,6 +3,9 @@
 * デンソークリエイトのレビュー支援ツール Lightning Review（https://www.lightning-review.com/) のrevxファイルに関するライブラリ・ツールです。
 * .NET Standard/.NET Coreで開発をしているのでWindows/Linux/Macで動作可能です。
 
+https://github.com/denso-create/LightningReview-RevxFile/workflows/build.yml/badge.svg
+
+
 ### LightningReview.RevxFile
 Lightning Reviewのrevxファイルを高速に読み書き可能なライブラリです。
 

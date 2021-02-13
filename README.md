@@ -1,21 +1,27 @@
 # LightningReview-RevxFile
 
-  ![](https://img.shields.io/github/workflow/status/denso-create/LightningReview-RevxFile/Build)
+![Build](https://img.shields.io/github/workflow/status/denso-create/LightningReview-RevxFile/Build)
 
 
+デンソークリエイトのレビュー支援ツール Lightning Review（https://www.lightning-review.com/) のrevxファイルに関するライブラリ・ツールです。.NET Standard/.NET Coreで開発をしているのでWindows/Linux/Macで動作可能です。
 
-* デンソークリエイトのレビュー支援ツール Lightning Review（https://www.lightning-review.com/) のrevxファイルに関するライブラリ・ツールです。
-* .NET Standard/.NET Coreで開発をしているのでWindows/Linux/Macで動作可能です。
-   |
+## LightningReview.RevxFile
+
+[![NuGet](https://img.shields.io/nuget/v/LightningReview.RevxFile.svg)](http://nuget.org/packages/LightningReview.RevxFile)
 
 
-### LightningReview.RevxFile
 Lightning Reviewのrevxファイルを高速に読み書き可能なライブラリです。
 
 * コンパクトで他への依存関係がない軽量な設計になっています。
 * 1000ファイルのレビューファイル(revx)の読み込みに数秒程度で処理可能と非常に高速になっています。
 * 現在は読み込みのみサポートしています。
 
+### Install
+```
+C:\Project> NuGet Install LightningReview.RevxFile
+```
+
+### 例
 単一のレビューファイルを指定する場合
 
 ```cs
@@ -45,8 +51,20 @@ Console.WriteLine(review.AllIssues.Count());
 
 
 ## LightnigReview.RevxToJsonService
+
+[![NuGet](https://img.shields.io/nuget/v/LightningReview.RevxToJsonService.svg)](http://nuget.org/packages/LightningReview.RevxToJsonService)
+
 フォルダ内のLightning Reviewのrevxファイルの内容を読み込んでJSONファイルに出力するライブラリです。
 レビューの指摘件数、メトリクスの計算などで利用して下さい。
+
+
+### Install
+```
+C:\Project> NuGet Install LightnigReview.RevxToJsonService
+```
+
+
+### 例
 
 ```cs
 using LightnigReview.RevxToJsonService;

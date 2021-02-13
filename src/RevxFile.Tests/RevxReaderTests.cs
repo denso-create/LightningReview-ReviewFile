@@ -27,11 +27,11 @@ namespace LightningReview.RevxFile.Tests
             var reader = new RevxReader();
             var reviews = reader.ReadFolder(folder);
 
-            // ’¼‰º‚ÌƒtƒHƒ‹ƒ_
+            // ç›´ä¸‹ã®ãƒ•ã‚©ãƒ«ãƒ€
             Assert.IsNotNull(reviews);
             Assert.AreEqual(2, reviews.Count());
 
-            // ƒTƒuƒtƒHƒ‹ƒ_‚à‘ÎÛ
+            // ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€ã‚‚å¯¾è±¡
             reviews = reader.ReadFolder(folder, true);
             Assert.AreEqual(4, reviews.Count());
         }
@@ -61,19 +61,19 @@ namespace LightningReview.RevxFile.Tests
             var review = ReadRevx(RevFileName);
             Assert.IsNotNull(review.Documents.List);
 
-            // ƒhƒLƒ…ƒƒ“ƒg‚Í2‚Â
+            // ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¯2ã¤
             Assert.AreEqual(2, review.Documents.List.Count);
 
-            // 1‚Â‚ß‚ÌƒhƒLƒ…ƒƒ“ƒg
+            // 1ã¤ã‚ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
             var doc1 = review.Documents.List[0];
             Assert.AreEqual("Doc1X", doc1.Name);
 
-            #region ƒAƒEƒgƒ‰ƒCƒ“ƒcƒŠ[
-            // ƒAƒEƒgƒ‰ƒCƒ“ƒcƒŠ[
+            #region ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ãƒ„ãƒªãƒ¼
+            // ã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ãƒ„ãƒªãƒ¼
             Assert.IsNotNull(doc1.OutlineTree);
             Assert.AreEqual(2, doc1.OutlineTree.VirtualRoot.Children.Count);
 
-            // ‚±‚¿‚ç‚ÌƒAƒNƒZƒX‚à‰Â”\
+            // ã“ã¡ã‚‰ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚‚å¯èƒ½
             Assert.AreEqual(2, doc1.OutlineNodes.Count());
             var node1 = doc1.OutlineNodes[0];
             Assert.AreEqual("outline1", node1.Name);
@@ -85,7 +85,7 @@ namespace LightningReview.RevxFile.Tests
             Assert.AreEqual("outline2-1", node2.Children[0].Name);
             #endregion
 
-            #region w“EŒ”
+            #region æŒ‡æ‘˜ä»¶æ•°
             Assert.AreEqual(3, review.AllIssues.Count());
             Assert.AreEqual(2, doc1.AllIssues.Count());
             Assert.AreEqual(1, node1.AllIssues.Count());
@@ -99,13 +99,13 @@ namespace LightningReview.RevxFile.Tests
             var review = ReadRevx(RevFileName);
             var allIssues = review.AllIssues;
 
-            // w“E‚ÌƒtƒB[ƒ‹ƒh
+            // æŒ‡æ‘˜ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
             var issue1 = allIssues.First(i => i.LID == "1");
             Assert.AreEqual("Issue1 Description", issue1.Description);
-            Assert.AreEqual("•s‹ï‡", issue1.Type);
-            Assert.AreEqual("–¢C³", issue1.Status);
-            Assert.AreEqual("‚", issue1.Priority);
-            Assert.AreEqual("’†", issue1.Importance);
+            Assert.AreEqual("ä¸å…·åˆ", issue1.Type);
+            Assert.AreEqual("æœªä¿®æ­£", issue1.Status);
+            Assert.AreEqual("é«˜", issue1.Priority);
+            Assert.AreEqual("ä¸­", issue1.Importance);
             Assert.AreEqual("Member1", issue1.ReportedBy);
             Assert.AreEqual("Member2", issue1.AssignedTo);
             Assert.AreEqual("Member3", issue1.ConfirmedBy);

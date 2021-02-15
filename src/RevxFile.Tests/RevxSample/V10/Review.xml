@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ReviewFile [<!ENTITY % BlockVersion1_1_5OrLess "">]>
+<ReviewFile>
+  <Review GlobalID="33e5b2e9-e7df-4299-9bb3-5263f50434e3" ID="0">
+    <Name>RevTitle</Name>
+    <ReviewType Name="" />
+    <Domain Name="" />
+    <Place></Place>
+    <Goal>RevPurpose</Goal>
+    <EndCondition></EndCondition>
+    <CreatedBy>新美</CreatedBy>
+    <CreatedDateTime>2021/02/15 16:17:20</CreatedDateTime>
+    <UseCorrectionPolicyStatus>False</UseCorrectionPolicyStatus>
+    <UseCorrectionPolicy>False</UseCorrectionPolicy>
+    <UseReason>False</UseReason>
+    <MaxUsedDocumentID>2</MaxUsedDocumentID>
+    <MaxUsedIssueID>3</MaxUsedIssueID>
+    <PlannedDate></PlannedDate>
+    <ActualDate></ActualDate>
+    <PlannedTime></PlannedTime>
+    <ActualTime></ActualTime>
+    <Unit></Unit>
+    <PlannedScale></PlannedScale>
+    <ActualScale></ActualScale>
+    <IssueCountOfGoal></IssueCountOfGoal>
+    <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+    <LastUpdatedDateTime>2021/02/15 16:19:42</LastUpdatedDateTime>
+    <Project>
+      <Code></Code>
+      <Name></Name>
+    </Project>
+    <Members>
+      <Member Name="Member1" Reviewer="True" Reviewee="True" Moderator="True" />
+      <Member Name="Member2" Reviewer="True" Reviewee="True" Moderator="True" />
+      <Member Name="Member3" Reviewer="True" Reviewee="True" Moderator="True" />
+    </Members>
+    <Documents>
+      <Document Name="Doc1X" IssueCount="2" GlobalID="6bf5bdc1-f32f-499c-afd2-486225560994" ID="1">
+        <AbsolutePath></AbsolutePath>
+        <RelativePath></RelativePath>
+        <ApplicationType></ApplicationType>
+        <DisplayStatus>未修正</DisplayStatus>
+        <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+        <LastUpdatedDateTime>2021/02/15 16:17:52</LastUpdatedDateTime>
+        <OutlineTree>
+          <OutlineNode Name="outline1" IssueCount="1" GlobalID="de0e82b8-9145-48e0-a48d-2d5d50800b40">
+            <DisplayStatus>未修正</DisplayStatus>
+            <OutlineNode Name="outline1-1" IssueCount="1" GlobalID="943d9ed4-11f1-4f2f-ab60-e3d5817fc155">
+              <DisplayStatus>未修正</DisplayStatus>
+            </OutlineNode>
+            <OutlineNode Name="outline1-2" IssueCount="0" GlobalID="489b0552-1568-497e-8d53-c4dc8712764b">
+              <DisplayStatus></DisplayStatus>
+            </OutlineNode>
+          </OutlineNode>
+          <OutlineNode Name="outline2" IssueCount="1" GlobalID="c1fc204b-4a31-4325-bdf3-077c1778d3df">
+            <DisplayStatus>修正済み</DisplayStatus>
+            <OutlineNode Name="outline2-1" IssueCount="0" GlobalID="7b97fa3d-c3d7-479b-a5e0-130266b1f02e">
+              <DisplayStatus></DisplayStatus>
+            </OutlineNode>
+            <OutlineNode Name="outline2-2" IssueCount="1" GlobalID="46a9d71d-a637-49be-93cc-de22f3716215">
+              <DisplayStatus>修正済み</DisplayStatus>
+            </OutlineNode>
+          </OutlineNode>
+        </OutlineTree>
+      </Document>
+      <Document Name="Doc2" ID="2" IssueCount="1" GlobalID="7a12378b-614c-4710-8f5f-c9518ee4dd1b">
+        <LastUpdatedDateTime>2021/02/15 16:18:39</LastUpdatedDateTime>
+        <AbsolutePath></AbsolutePath>
+        <RelativePath></RelativePath>
+        <ApplicationType></ApplicationType>
+        <DisplayStatus>確認済み</DisplayStatus>
+        <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+        <OutlineTree>
+          <OutlineNode Name="outline1" IssueCount="0" GlobalID="6cefefab-72f8-44af-87df-4c375aa6366d">
+            <DisplayStatus></DisplayStatus>
+          </OutlineNode>
+          <OutlineNode Name="outline2" IssueCount="0" GlobalID="1625c8cd-d315-4d01-af55-f1bb2f0d3817">
+            <DisplayStatus></DisplayStatus>
+          </OutlineNode>
+          <OutlineNode Name="outline3" IssueCount="1" GlobalID="7510d988-3b5b-4293-b651-5c3363b4838d">
+            <DisplayStatus>確認済み</DisplayStatus>
+            <OutlineNode Name="outline3-1" IssueCount="1" GlobalID="155cf0f2-2c23-4384-81d3-745b80bf762c">
+              <DisplayStatus>確認済み</DisplayStatus>
+            </OutlineNode>
+          </OutlineNode>
+        </OutlineTree>
+      </Document>
+    </Documents>
+    <Issues>
+      <Issue GlobalID="1d162b44-9ac9-43da-9137-aa93b6e132ac" ID="1">
+        <Type>不具合</Type>
+        <Status>未修正</Status>
+        <Priority>高</Priority>
+        <NeedToFix>はい</NeedToFix>
+        <CorrectionPolicy></CorrectionPolicy>
+        <Category></Category>
+        <Description>Issue1 Description</Description>
+        <Reason></Reason>
+        <SendingBackReason></SendingBackReason>
+        <IsSendingBack>False</IsSendingBack>
+        <HasBeenSentBack>False</HasBeenSentBack>
+        <DetectionActivity></DetectionActivity>
+        <InjectionActivity></InjectionActivity>
+        <Importance>中</Importance>
+        <OutlinePath>/Doc1X/outline1/outline1-1</OutlinePath>
+        <Images>
+          <ImageReportedLastUpdated>2021/02/15 16:20:10</ImageReportedLastUpdated>
+          <ImageFixedLastUpdated>2021/02/15 16:20:10</ImageFixedLastUpdated>
+          <ImagePathReported>Location_1.png</ImagePathReported>
+          <ImagePathFixed></ImagePathFixed>
+          <Reported>
+            <FileName GlobalID="43ba0cc7-c64c-4735-8d71-9f4405e4ef08">Location_1.png</FileName>
+          </Reported>
+          <Fixed />
+        </Images>
+        <ReportedBy>Member1</ReportedBy>
+        <DateReported>2021/02/15 0:00:00</DateReported>
+        <AssignedTo>Member2</AssignedTo>
+        <DueDate>2021/02/12 0:00:00</DueDate>
+        <DateFixed></DateFixed>
+        <Resolution></Resolution>
+        <ConfirmedBy>Member3</ConfirmedBy>
+        <DateConfirmed></DateConfirmed>
+        <Comment></Comment>
+        <CreatedBy>ReviewUser1</CreatedBy>
+        <CreatedDateTime>2021/02/15 16:19:50</CreatedDateTime>
+        <CustomText1></CustomText1>
+        <CustomText2></CustomText2>
+        <CustomText3></CustomText3>
+        <CustomText4></CustomText4>
+        <CustomText5></CustomText5>
+        <CustomText6></CustomText6>
+        <CustomText7></CustomText7>
+        <CustomText8></CustomText8>
+        <CustomText9></CustomText9>
+        <CustomText10></CustomText10>
+        <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+        <LastUpdatedDateTime>2021/02/15 16:20:17</LastUpdatedDateTime>
+      </Issue>
+      <Issue GlobalID="8b24b895-7792-42a3-a401-19c1a6b54558" ID="2">
+        <Type>指摘</Type>
+        <Status>修正済み</Status>
+        <Priority>高</Priority>
+        <NeedToFix>はい</NeedToFix>
+        <CorrectionPolicy></CorrectionPolicy>
+        <Category></Category>
+        <Description>Issue2 Description</Description>
+        <Reason></Reason>
+        <SendingBackReason></SendingBackReason>
+        <IsSendingBack>False</IsSendingBack>
+        <HasBeenSentBack>False</HasBeenSentBack>
+        <DetectionActivity></DetectionActivity>
+        <InjectionActivity></InjectionActivity>
+        <Importance></Importance>
+        <OutlinePath>/Doc1X/outline2/outline2-2</OutlinePath>
+        <Images>
+          <ImageReportedLastUpdated>2021/02/15 16:20:43</ImageReportedLastUpdated>
+          <ImageFixedLastUpdated>2021/02/15 16:20:43</ImageFixedLastUpdated>
+          <ImagePathReported>Location_2.png</ImagePathReported>
+          <ImagePathFixed></ImagePathFixed>
+          <Reported>
+            <FileName GlobalID="af1f418c-0069-4028-b81f-86fcd22311c3">Location_2.png</FileName>
+          </Reported>
+          <Fixed />
+        </Images>
+        <ReportedBy>Member2</ReportedBy>
+        <DateReported>2021/02/15 0:00:00</DateReported>
+        <AssignedTo>Member2</AssignedTo>
+        <DueDate></DueDate>
+        <DateFixed>2021/02/15 0:00:00</DateFixed>
+        <Resolution></Resolution>
+        <ConfirmedBy>Member2</ConfirmedBy>
+        <DateConfirmed></DateConfirmed>
+        <Comment></Comment>
+        <CreatedBy>ReviewUser1</CreatedBy>
+        <CreatedDateTime>2021/02/15 16:20:24</CreatedDateTime>
+        <CustomText1></CustomText1>
+        <CustomText2></CustomText2>
+        <CustomText3></CustomText3>
+        <CustomText4></CustomText4>
+        <CustomText5></CustomText5>
+        <CustomText6></CustomText6>
+        <CustomText7></CustomText7>
+        <CustomText8></CustomText8>
+        <CustomText9></CustomText9>
+        <CustomText10></CustomText10>
+        <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+        <LastUpdatedDateTime>2021/02/15 16:20:45</LastUpdatedDateTime>
+      </Issue>
+      <Issue GlobalID="3b2394c9-bbc4-458e-9b49-8e2098b469ad" ID="3">
+        <Type>不具合</Type>
+        <Status>確認済み</Status>
+        <Priority>中</Priority>
+        <NeedToFix>はい</NeedToFix>
+        <CorrectionPolicy></CorrectionPolicy>
+        <Category></Category>
+        <Description>Issue3</Description>
+        <Reason></Reason>
+        <SendingBackReason></SendingBackReason>
+        <IsSendingBack>False</IsSendingBack>
+        <HasBeenSentBack>False</HasBeenSentBack>
+        <DetectionActivity></DetectionActivity>
+        <InjectionActivity></InjectionActivity>
+        <Importance></Importance>
+        <OutlinePath>/Doc2/outline3/outline3-1</OutlinePath>
+        <Images>
+          <ImageReportedLastUpdated>2021/02/15 16:21:08</ImageReportedLastUpdated>
+          <ImageFixedLastUpdated>2021/02/15 16:21:08</ImageFixedLastUpdated>
+          <ImagePathReported>Location_3.png</ImagePathReported>
+          <ImagePathFixed></ImagePathFixed>
+          <Reported>
+            <FileName GlobalID="1c6b4e76-5d22-4404-ba00-effc120fb39b">Location_3.png</FileName>
+          </Reported>
+          <Fixed />
+        </Images>
+        <ReportedBy>Member1</ReportedBy>
+        <DateReported>2021/02/15 0:00:00</DateReported>
+        <AssignedTo>Member1</AssignedTo>
+        <DueDate></DueDate>
+        <DateFixed>2021/02/15 0:00:00</DateFixed>
+        <Resolution></Resolution>
+        <ConfirmedBy>Member1</ConfirmedBy>
+        <DateConfirmed>2021/02/15 0:00:00</DateConfirmed>
+        <Comment></Comment>
+        <CreatedBy>ReviewUser1</CreatedBy>
+        <CreatedDateTime>2021/02/15 16:20:52</CreatedDateTime>
+        <CustomText1></CustomText1>
+        <CustomText2></CustomText2>
+        <CustomText3></CustomText3>
+        <CustomText4></CustomText4>
+        <CustomText5></CustomText5>
+        <CustomText6></CustomText6>
+        <CustomText7></CustomText7>
+        <CustomText8></CustomText8>
+        <CustomText9></CustomText9>
+        <CustomText10></CustomText10>
+        <LastUpdatedBy>ReviewUser1</LastUpdatedBy>
+        <LastUpdatedDateTime>2021/02/15 16:21:11</LastUpdatedDateTime>
+      </Issue>
+    </Issues>
+  </Review>
+  <Definition>
+    <ReviewDefinition>
+      <Members>
+        <Member Name="Member1" Reviewer="True" Reviewee="True" Moderator="True" />
+        <Member Name="Member2" Reviewer="True" Reviewee="True" Moderator="True" />
+        <Member Name="Member3" Reviewer="True" Reviewee="True" Moderator="True" />
+      </Members>
+      <Status>
+        <Status Name="RevStatus" Default="true" />
+      </Status>
+    </ReviewDefinition>
+    <DocumentDefinition />
+    <IssueDefinition>
+      <Fields>
+        <Field Name="Type">
+          <DisplayName>タイプ</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description>指摘の種類</Description>
+          <ListItems>
+            <ListItem Name="不具合" Default="True" />
+            <ListItem Name="指摘" />
+            <ListItem Name="グッドポイント" />
+          </ListItems>
+        </Field>
+        <Field Name="Status">
+          <DisplayName>ステータス</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description>指摘の状態</Description>
+          <ListItems>
+            <ListItem Name="未修正" Default="True" />
+            <ListItem Name="修正済み" />
+            <ListItem Name="確認済み" />
+          </ListItems>
+        </Field>
+        <Field Name="Importance">
+          <DisplayName>重大度</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description>指摘の問題の重大性</Description>
+          <ListItems>
+            <ListItem Name="低" />
+            <ListItem Name="中" />
+            <ListItem Name="高" />
+          </ListItems>
+        </Field>
+        <Field Name="Priority">
+          <DisplayName>優先度</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description>指摘の対策の優先度</Description>
+          <ListItems>
+            <ListItem Name="低" />
+            <ListItem Name="中" Default="True" />
+            <ListItem Name="高" />
+          </ListItems>
+        </Field>
+        <Field Name="NeedToFix">
+          <DisplayName>対策要否</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description>対策要否</Description>
+          <ListItems>
+            <ListItem Name="はい" Default="True" />
+            <ListItem Name="いいえ" />
+            <ListItem Name="保留" />
+          </ListItems>
+        </Field>
+        <Field Name="Category">
+          <DisplayName>分類</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="DetectionActivity">
+          <DisplayName>検出工程</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="InjectionActivity">
+          <DisplayName>原因工程</DisplayName>
+          <UseThisField>True</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText1">
+          <DisplayName>カスタムテキスト1</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText2">
+          <DisplayName>カスタムテキスト2</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText3">
+          <DisplayName>カスタムテキスト3</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText4">
+          <DisplayName>カスタムテキスト4</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText5">
+          <DisplayName>カスタムテキスト5</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText6">
+          <DisplayName>カスタムテキスト6</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText7">
+          <DisplayName>カスタムテキスト7</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText8">
+          <DisplayName>カスタムテキスト8</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText9">
+          <DisplayName>カスタムテキスト9</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+        <Field Name="CustomText10">
+          <DisplayName>カスタムテキスト10</DisplayName>
+          <UseThisField>False</UseThisField>
+          <Description></Description>
+          <ListItems />
+        </Field>
+      </Fields>
+    </IssueDefinition>
+  </Definition>
+  <SchemaVersion>1.5</SchemaVersion>
+</ReviewFile>

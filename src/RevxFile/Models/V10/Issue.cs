@@ -13,8 +13,10 @@ namespace LightningReview.RevxFile.Models.V10
         [XmlAttribute]
         public string GlobalId { get; set; }
 
-        [XmlElement]
-        public string LID{ get; set; }
+        [XmlAttribute]
+        public string ID { get; set; }
+
+        public string LID { get=>ID; set=>ID=value; }
 
         [XmlElement]
         public string Type { get; set; }

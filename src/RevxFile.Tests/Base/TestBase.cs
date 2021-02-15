@@ -48,5 +48,38 @@ namespace LightningReview.RevxFile.Tests
             return review;
         }
 
+        /// <summary>
+        /// フォルダを作成する。すでにあればファイルを削除して再作成する
+        /// </summary>
+        /// <param name="directory"></param>
+        protected void RecreateDirectory(string directory)
+        {
+            if (Directory.Exists(directory))
+            {
+                var files = Directory.GetFiles(directory);
+                foreach (var file in files)
+                {
+                    File.Delete(file);
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(directory);
+            }
+        }
+
+        protected void RemoveDirectory(string directory)
+        {
+            if (Directory.Exists(directory))
+            {
+                var files = Directory.GetFiles(directory);
+                foreach (var file in files)
+                {
+                    File.Delete(file);
+                }
+                Directory.Delete(directory);
+            }
+
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace LightningReview.RevxFile.Models
         string LID { get; set; }
         string Name { get; set; }
 
-        IEnumerable<IIssue> AllIssues { get; }
+        //IEnumerable<IIssue> AllIssues { get; }
 
         IEnumerable<IOutlineNode> OutlineNodes { get; }
     }

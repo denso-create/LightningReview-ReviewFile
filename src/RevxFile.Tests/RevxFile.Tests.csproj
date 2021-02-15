@@ -25,7 +25,13 @@
     <None Update="TestData\V10\RevFile1.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestData\V10\RevFile2.revx">
+    <None Update="TestData\V10\RevFilePerformance30.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V10\SubFolder\RevFile2.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V10\SubFolder\RevFile3.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="TestData\V18\RevFile1.revx">
@@ -40,11 +46,6 @@
     <None Update="TestData\V18\SubFolder\RevFile3.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestData\RevxSample\V10\" />
-    <Folder Include="TestData\V10\" />
   </ItemGroup>
 
 </Project>

@@ -42,10 +42,12 @@ namespace LightningReview.RevxFile.Models.V10
         [XmlElement]
         public string PlannedScale { get; set; }
 
-        [XmlElement]
+        [XmlArray("Documents")]
+        [XmlArrayItem("Document")]
         public List<Document> Documents { get; set; }
 
-        [XmlElement]
+        [XmlArray("Issues")]
+        [XmlArrayItem("Issue")]
         public List<Issue> Issues { get; set; }
 
         [XmlElement]

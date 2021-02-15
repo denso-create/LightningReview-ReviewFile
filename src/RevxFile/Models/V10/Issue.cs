@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxFile.Models.V18
+namespace LightningReview.RevxFile.Models.V10
 {
     [XmlRoot]
-    public class Issue : EntityBase,IIssue
+    public class Issue : IIssue
     {
+        public string GID { get => GlobalId; set => GlobalId = value; }
+
+        [XmlAttribute]
+        public string GlobalId { get; set; }
+
         [XmlElement]
         public string LID{ get; set; }
 

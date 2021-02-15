@@ -4,9 +4,12 @@ using System.Text;
 using System.IO.Compression;
 using LightningReview.RevxFile.Models;
 using System.Xml.Serialization;
+using System.Xml;
 using System.Threading.Tasks;
 using System.IO;
-using LightningReview.RevxFile.Models.V18;
+using System.Xml.Linq;
+using System.Linq;
+using LightningReview.RevxFile.Exceptions;
 
 namespace LightningReview.RevxFile
 {
@@ -26,17 +29,31 @@ namespace LightningReview.RevxFile
             {
                 // revxから"Review.xml"を抜き出す
                 var reviewXmlEntry = archive.GetEntry("Review.xml");
-                using ( var zipEntryStream = reviewXmlEntry.Open() )
+                using (var zipEntryStream = reviewXmlEntry.Open())
                 {
-                    // デシリアライズする
-                    // TODO V1.8/V1.7で両対応させる
-                    var serializer = new XmlSerializer(typeof(ReviewFile));
-                    var reviewFile = (IReviewFile)serializer.Deserialize(zipEntryStream);
+                    try {
 
-                    // フィールドを追加設定する
-                    reviewFile.Review.FilePath = filePath;
+                        // スキーマバージョン値を取得
+                        var xDoc = XDocument.Load(zipEntryStream);
+                        var xElement = xDoc.Element("ReviewFile");
+                        if (xElement == null) throw new RevxFormatException("ReviewFile Element Missing");
+                        var schemeVersion = double.Parse(xElement.Element("SchemaVersion").Value);
 
-                    return reviewFile.Review;
+                        // デシリアライズする
+                        // スキーマが1.7以降はV1.8のモデルになる
+                        var serializer = schemeVersion >= 1.7 ? new XmlSerializer(typeof(Models.V18.ReviewFile)) : new XmlSerializer(typeof(Models.V10.ReviewFile));
+                        var reviewFile = (IReviewFile)serializer.Deserialize(xDoc.CreateReader());
+
+                        // フィールドを追加設定する
+                        reviewFile.Review.FilePath = filePath;
+
+                        return reviewFile.Review;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new RevxFormatException(ex.Message, ex);
+                    }
                 }
             }
         }

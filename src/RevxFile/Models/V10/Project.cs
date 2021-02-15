@@ -6,14 +6,12 @@ using System.Xml.Serialization;
 namespace LightningReview.RevxFile.Models.V10
 {
     [XmlRoot]
-    public class ReviewFile : IReviewFile
+    public class Project
     {
         [XmlElement]
-        public string SchemaVersion { get; set; }
+        public string Code { get; set; }
 
         [XmlElement]
-        public Review Review { get; set; }
-
-        IReview IReviewFile.Review => Review;
+        public string Name { get; set; }
     }
 }

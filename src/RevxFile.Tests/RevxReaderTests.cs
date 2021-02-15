@@ -10,19 +10,22 @@ namespace LightningReview.RevxFile.Tests
     {
         private string RevFileName = "RevFile1.revx";
 
-        [TestMethod]
-        public void ReadFileTest()
+        [DataRow("V18")]
+        [DataRow("V10")]
+        [DataTestMethod]
+        public void ReadFileTest(string version)
         {
-            var review = ReadRevx(RevFileName);
+            var review = ReadRevx(version,RevFileName);
 
             Assert.IsNotNull(review);
-            Assert.AreEqual(GetTestDataPath(RevFileName), review.FilePath);
+            Assert.AreEqual(GetTestDataPath(version,RevFileName), review.FilePath);
         }
 
-        [TestMethod]
-        public void ReadFolderTest()
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void ReadFolderTest(string version)
         {
-            var folder = GetTestDataPath();
+            var folder = GetTestDataPath(version);
 
             var reader = new RevxReader();
             var reviews = reader.ReadFolder(folder);
@@ -37,28 +40,31 @@ namespace LightningReview.RevxFile.Tests
         }
 
 
-        [TestMethod]
-        public void EntityBaseTests()
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void EntityBaseTests(string version)
         {
-            var review = ReadRevx(RevFileName);
+            var review = ReadRevx(version,RevFileName);
 
             Assert.IsNotNull(review.CreatedBy);
             Assert.IsTrue(review.CreatedDateTime < DateTime.Now);
         }
 
-        [TestMethod]
-        public void ReviewTest()
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void ReviewTest(string version)
         {
-            var review = ReadRevx(RevFileName);
+            var review = ReadRevx(version,RevFileName);
 
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
         }
 
-        [TestMethod]
-        public void DocumentTest()
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void DocumentTest(string version)
         {
-            var review = ReadRevx(RevFileName);
+            var review = ReadRevx(version,RevFileName);
             Assert.IsNotNull(review.Documents);
 
             // ドキュメントは2つ
@@ -66,7 +72,7 @@ namespace LightningReview.RevxFile.Tests
 
             // 1つめのドキュメント
             var doc1 = review.Documents.ToList()[0];
-            Assert.AreEqual("Doc1X", doc1.Name);
+            Assert.AreEqual("Doc1", doc1.Name);
 
             #region アウトラインツリー
             // アウトラインツリー
@@ -87,10 +93,11 @@ namespace LightningReview.RevxFile.Tests
             #endregion
         }
 
-        [TestMethod]
-        public void IssueTest()
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void IssueTest(string version)
         {
-            var review = ReadRevx(RevFileName);
+            var review = ReadRevx(version,RevFileName);
             var allIssues = review.AllIssues;
             Assert.IsNotNull(allIssues);
 

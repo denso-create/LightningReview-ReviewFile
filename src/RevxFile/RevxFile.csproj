@@ -18,8 +18,4 @@
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-RevxFile</PackageProjectUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
 </Project>

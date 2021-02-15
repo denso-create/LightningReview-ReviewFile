@@ -33,9 +33,11 @@ namespace LightningReview.RevxFile.Models
         IEnumerable<IDocument> Documents { get; }
 
         string CreatedBy { get; }
+        
         DateTime CreatedDateTime { get; }
 
         string LastUpdatedBy { get; set; }
+
         DateTime LastUpdatedDateTime { get; }
 
     }

@@ -20,10 +20,10 @@ namespace LightningReview.RevxFile.Tests
         /// </summary>
         /// <param name="fileName">テストデータのファイル名</param>
         /// <returns>テストデータのファイルパス</returns>
-        protected string GetTestDataPath(string fileName = null)
+        protected string GetTestDataPath(string version,string fileName = null)
         {
             var exePath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-            var dir = Path.Combine(exePath, TestDataFolderName);
+            var dir = Path.Combine(exePath, TestDataFolderName, version);
 
             if (string.IsNullOrEmpty(fileName))
             {
@@ -31,7 +31,7 @@ namespace LightningReview.RevxFile.Tests
             }
 
             var path = Path.Combine(dir, fileName);
-            Assert.IsTrue(File.Exists(path), $"テストデータのファイル{fileName}が存在しません");
+            Assert.IsTrue(File.Exists(path), $"テストデータのファイル{path}が存在しません");
             return path;
         }
 
@@ -40,9 +40,9 @@ namespace LightningReview.RevxFile.Tests
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        protected IReview ReadRevx(string filePath)
+        protected IReview ReadRevx(string version,string filePath)
         {
-            var filepath = GetTestDataPath(filePath);
+            var filepath = GetTestDataPath(version, filePath);
             var reader = new RevxReader();
             var review = reader.Read(filepath);
             return review;

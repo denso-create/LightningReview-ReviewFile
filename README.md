@@ -18,11 +18,14 @@ Lightning Reviewのrevxファイルのレビューや指摘のデータを高速
 * すべての要素に対応しているわけではありません。主にレビュー、ドキュメントとアウトライン、指摘に関する情報が参照できます。
 
 
+
 ### Install
+
+Nuget: [LightningReview.RevxFile](https://www.nuget.org/packages/LightningReview.RevxFile/)
+
 ```
 C:\Project> NuGet Install LightningReview.RevxFile
 ```
-
 ### 例
 単一のレビューファイルを指定する場合
 
@@ -61,6 +64,9 @@ Console.WriteLine(review.AllIssues.Count());
 
 
 ### Install
+
+Nuget: [LightningReview.RevxToJsonService](https://www.nuget.org/packages/LightningReview.RevxToJsonService/)
+
 ```
 C:\Project> NuGet Install LightnigReview.RevxToJsonService
 ```

@@ -20,7 +20,7 @@ namespace LightningReview.RevxFile.Tests
         /// </summary>
         /// <param name="fileName">テストデータのファイル名</param>
         /// <returns>テストデータのファイルパス</returns>
-        protected string GetTestDataPath(string version,string fileName = null)
+        protected string GetTestDataPath(string version="",string fileName = null)
         {
             var exePath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
             var dir = Path.Combine(exePath, TestDataFolderName, version);

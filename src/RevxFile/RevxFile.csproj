@@ -10,12 +10,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.8.2</Version>
+    <Version>0.8.3</Version>
     <Authors>DENSO CREATE CO., LTD</Authors>
     <Company>DENSO CREATE CO., LTD</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-RevxFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-RevxFile</PackageProjectUrl>
+    <PackageReleaseNotes>Lightning Review V1.0-V1.8までのデータのフォーマットに対応</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

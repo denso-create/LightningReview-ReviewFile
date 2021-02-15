@@ -11,15 +11,15 @@ namespace LightningReview.RevxFile.Tests
     public class RevxReaderPeformanceTest : TestBase
     {
         //[TestCategory("SkipWhenLiveUnitTesting")]
-        [DataRow("V10", 1000)]
-        [DataRow("V18",1000)]
+        [DataRow("V10",500)]
+        [DataRow("V18",500)]
         [DataTestMethod]
         public void LoadXTimes_PeformanceTest(string version,int dataCount)
         {
             var revxFolder = GetTestDataPath(version);
 
             // テスト用のフォルダを作成する
-            var peformanceTestFolder = Path.Combine(revxFolder, "_PeformanceTestData");
+            var peformanceTestFolder = Path.Combine(GetTestDataPath(), "PeformanceTestData");
             RecreateDirectory(peformanceTestFolder);
 
             #region テストデータの作成
@@ -34,7 +34,6 @@ namespace LightningReview.RevxFile.Tests
                 var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceRevxFile{i}.revx");
                 File.Copy(revxFile, destFilePath);
             }
-
 
             #endregion
 
@@ -56,9 +55,10 @@ namespace LightningReview.RevxFile.Tests
                 Assert.AreEqual(30,issues.Count());
             }
 
+            stopwatch.Stop();
             // 実行時間は1ファイルあたり5ms以内であること
             // 例： 1000ファイル = 5秒
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < dataCount * 5);
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < dataCount * 10);
 
             //RemoveDirectory(peformanceTestFolder);
         }

@@ -58,6 +58,11 @@ namespace LightningReview.RevxFile
             }
         }
 
+        public async Task<IReview> ReadAsync(string filepath)
+        {
+            return await Task.Run(() => Read(filepath));
+        }
+
         /// <summary>
         /// フォルダからロードします
         /// </summary>
@@ -84,6 +89,11 @@ namespace LightningReview.RevxFile
             }
 
             return reviews;
+        }
+
+        public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false)
+        {
+            return await Task.Run(() => ReadFolderAsync(folderPath, readSubFodler));
         }
     }
 }

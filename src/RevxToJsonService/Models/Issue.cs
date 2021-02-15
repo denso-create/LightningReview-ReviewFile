@@ -6,7 +6,7 @@ using RevxToJsonService.Extensions;
 
 namespace RevxToJsonService.Models
 {
-    public class Issue
+    public class Issue 
     {
         public Issue() { }
 
@@ -37,5 +37,14 @@ namespace RevxToJsonService.Models
         public string CustomText8 { get; set; }
         public string CustomText9 { get; set; }
         public string CustomText10 { get; set; }
+        public string GID { get; set; }
+        public string Comment { get; set; }
+        public string Category { get; set; }
+        public string IsSendingBack { get; set; }
+        public string HasBeenSentBack { get; set; }
+        public string DetectionActivity { get; set; }
+        public string InjectionActivity { get; set; }
+        public string OutlinePath { get; set; }
+        public string NeedToFix { get; set; }
     }
 }

@@ -8,15 +8,21 @@ namespace LightningReview.RevxFile.Models.V10
     [XmlRoot]
     public class Document : IDocument
     {
+        [XmlAttribute]
+        public string GlobalId { get; set; }
         public string GID { get => GlobalId; set => GlobalId = value; }
 
         [XmlAttribute]
-        public string GlobalId { get; set; }
+        public string Name { get; set; }
 
-        public string LID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [XmlAttribute]
+        public string ID { get; set; }
 
-        public IEnumerable<IIssue> AllIssues => throw new NotImplementedException();
+        public string LID { get => ID; set => ID = value; }
+
+        //[XmlArray]
+        //[XmlArrayItem("OutlineTree")]
+        //public List<OutlineNode> OutlineTree { get; set; }
 
         public IEnumerable<IOutlineNode> OutlineNodes => throw new NotImplementedException();
     }

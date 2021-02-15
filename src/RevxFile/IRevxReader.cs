@@ -15,6 +15,8 @@ namespace LightningReview.RevxFile
         /// <returns></returns>
         IReview Read(string filepath);
 
+        Task<IReview> ReadAsync(string filepath);
+
         /// <summary>
         /// 指定フォルダのレビューファイルを読み込みます。
         /// </summary>
@@ -22,5 +24,7 @@ namespace LightningReview.RevxFile
         /// <param name="readSubFodler"></param>
         /// <returns></returns>
         IEnumerable<IReview> ReadFolder(string folderPath,bool readSubFodler=false);
+        
+        Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false);
     }
 }

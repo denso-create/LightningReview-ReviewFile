@@ -40,6 +40,9 @@
     <None Update="TestData\V18\RevFilePeformance30.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\V18\RevFilePerformance30.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\V18\SubFolder\RevFile2.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

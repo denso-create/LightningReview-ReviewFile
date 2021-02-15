@@ -10,7 +10,7 @@ namespace RevxToJsonService.Models
 	/// <summary>
 	/// レビュー
 	/// </summary>
-    public class Review
+    public class Review 
     {
         #region コンストラクタ
         /// <summary>
@@ -60,6 +60,10 @@ namespace RevxToJsonService.Models
 		/// 指摘一覧
 		/// </summary>
 		public IList<Issue> Issues { get; } = new List<Issue>();
+
+        public string GID { get; set; }
+        public string PlannedTime { get; set; }
+        public string ActualTime { get; set; }
 
         #endregion
     }

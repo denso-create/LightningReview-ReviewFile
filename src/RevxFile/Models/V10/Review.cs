@@ -8,9 +8,10 @@ namespace LightningReview.RevxFile.Models.V10
     [XmlRoot]
     public class Review : IReview
     {
-        #region 永続化プロパティ
         [XmlAttribute]
         public string GlobalId { get; set; }
+
+        public string GID { get => GlobalId; set => GlobalId = value; }
 
         [XmlElement]
         public string Name { get; set; }
@@ -44,7 +45,7 @@ namespace LightningReview.RevxFile.Models.V10
 
         [XmlArray("Documents")]
         [XmlArrayItem("Document")]
-        public List<Document> Documents { get; set; }
+        public List<Document> DocumentEneities { get; set; }
 
         [XmlArray("Issues")]
         [XmlArrayItem("Issue")]
@@ -66,10 +67,6 @@ namespace LightningReview.RevxFile.Models.V10
         [XmlElement]
         public string CreatedBy { get; set; }
 
-        #endregion
-
-        public string GID { get => GlobalId; set => GlobalId = value; }
-
         /// <summary>
         /// ファイルパス
         /// </summary>
@@ -78,11 +75,11 @@ namespace LightningReview.RevxFile.Models.V10
         public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
 
         public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
-        
+
         
         public IEnumerable<IIssue> AllIssues => Issues;
 
-        IEnumerable<IDocument> IReview.Documents => throw new NotImplementedException();
+        public IEnumerable<IDocument> Documents => DocumentEneities;
 
     }
 

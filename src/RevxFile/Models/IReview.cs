@@ -28,7 +28,7 @@ namespace LightningReview.RevxFile.Models
 
         string FilePath { get; set; }
 
-        IEnumerable<IIssue> AllIssues { get; }
+        IEnumerable<IIssue> Issues { get; }
 
         IEnumerable<IDocument> Documents { get; }
 

@@ -49,7 +49,7 @@ namespace LightningReview.RevxFile.Models.V10
 
         [XmlArray("Issues")]
         [XmlArrayItem("Issue")]
-        public List<Issue> Issues { get; set; }
+        public List<Issue> IssueEntities { get; set; }
 
         [XmlElement]
         public Project Project { get; set; }
@@ -77,7 +77,7 @@ namespace LightningReview.RevxFile.Models.V10
         public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
 
         
-        public IEnumerable<IIssue> AllIssues => Issues;
+        public IEnumerable<IIssue> Issues => IssueEntities;
 
         public IEnumerable<IDocument> Documents => DocumentEneities;
 

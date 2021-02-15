@@ -40,18 +40,6 @@ namespace LightningReview.RevxFile.Tests
             Assert.AreEqual(4, reviews.Count());
         }
 
-
-        [DataRow("V10")]
-        [DataRow("V18")]
-        [DataTestMethod]
-        public void EntityBaseTests(string version)
-        {
-            var review = ReadRevx(version,RevFileName);
-
-            Assert.IsNotNull(review.CreatedBy);
-            Assert.IsTrue(review.CreatedDateTime < DateTime.Now);
-        }
-
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -95,7 +83,7 @@ namespace LightningReview.RevxFile.Tests
             */
 
             #region 指摘件数
-            Assert.AreEqual(3, review.AllIssues.Count());
+            Assert.AreEqual(3, review.Issues.Count());
             //Assert.AreEqual(2, doc1.AllIssues.Count());
             #endregion
         }
@@ -106,7 +94,7 @@ namespace LightningReview.RevxFile.Tests
         public void IssueTest(string version)
         {
             var review = ReadRevx(version,RevFileName);
-            var allIssues = review.AllIssues;
+            var allIssues = review.Issues;
             Assert.IsNotNull(allIssues,"AllIssuesがnullです");
 
             // 指摘のフィールド

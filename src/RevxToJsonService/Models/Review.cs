@@ -31,7 +31,7 @@ namespace RevxToJsonService.Models
 			this.CopyFieldsFrom(reviewModel);
 
 			// 指摘をコピー
-			foreach ( var issueModel in reviewModel.AllIssues)
+			foreach ( var issueModel in reviewModel.Issues)
 			{
 				var issue = new Issue(issueModel);
 				Issues.Add(issue);

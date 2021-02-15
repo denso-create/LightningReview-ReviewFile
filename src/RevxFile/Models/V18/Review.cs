@@ -56,7 +56,7 @@ namespace LightningReview.RevxFile.Models.V18
         /// <summary>
         /// すべての指摘
         /// </summary>
-        public IEnumerable<IIssue> AllIssues
+        public IEnumerable<IIssue> Issues
         {
             get
             {

@@ -51,7 +51,7 @@ namespace LightningReview.RevxFile.Tests
                 var review = ReadRevx(version,revFilePath);
 
                 // 指摘を取得してみる
-                var issues = review.AllIssues;
+                var issues = review.Issues;
                 Assert.AreEqual(30,issues.Count());
             }
 

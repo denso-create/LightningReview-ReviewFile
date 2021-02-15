@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>LightningReview.ReviewFile</AssemblyName>
+    <RootNamespace>LightningReview.ReviewFile</RootNamespace>
+    <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。
+</Description>
+    <Copyright>DENSO CREATE CO., LTD</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>0.8.4</Version>
+    <Authors>DENSO CREATE CO., LTD</Authors>
+    <Company>DENSO CREATE CO., LTD</Company>
+    <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
+    <PackageReleaseNotes>Lightning Review V1.0-V1.8までのデータのフォーマットに対応
+IReview.AllIssuesをIReview.Issuesにシグニチャ変更</PackageReleaseNotes>
+    <AssemblyVersion>0.8.4.0</AssemblyVersion>
+    <FileVersion>0.8.4.0</FileVersion>
+  </PropertyGroup>
+
+</Project>

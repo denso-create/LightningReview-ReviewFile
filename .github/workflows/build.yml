@@ -21,6 +21,6 @@ jobs:
       run: dotnet restore 
       working-directory: src
     - name: Build
-      run: dotnet build src/RevxFile.sln --no-restore
+      run: dotnet build src/ReviewFile.sln --no-restore
     - name: Test
-      run: dotnet test src/RevxFile.sln --no-build --verbosity normal
+      run: dotnet test src/ReviewFile.sln --no-build --verbosity normal

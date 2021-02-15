@@ -10,10 +10,35 @@ namespace LightningReview.ReviewFile.Tests
     [TestClass]
     public class ReviewFileReaderPeformanceTest : TestBase
     {
-        //[TestCategory("SkipWhenLiveUnitTesting")]
-        [DataRow("V10",500)]
-        [DataRow("V18",500)]
-        [DataTestMethod]
+        [TestMethod]
+        public void Load100Times_PeformanceTest_V10()
+        {
+            LoadXTimes_PeformanceTest("V10", 100);
+        }
+
+        [TestMethod]
+        public void Load100Times_PeformanceTest_V18()
+        {
+            LoadXTimes_PeformanceTest("V18", 100);
+        }
+
+        [TestMethod]
+        [TestCategory("SkipWhenLiveUnitTesting")]
+        public void Load1000Times_PeformanceTest_V10()
+        {
+            LoadXTimes_PeformanceTest("V10", 1000);
+        }
+
+        [TestMethod]
+        [TestCategory("SkipWhenLiveUnitTesting")]
+        public void Load1000Times_PeformanceTest_V18()
+        {
+            LoadXTimes_PeformanceTest("V18", 1000);
+        }
+
+        //[DataRow("V10", 500)]
+        //[DataRow("V18", 500)]
+        //[DataTestMethod]
         public void LoadXTimes_PeformanceTest(string version,int dataCount)
         {
             var revxFolder = GetTestDataPath(version);
@@ -56,8 +81,8 @@ namespace LightningReview.ReviewFile.Tests
             }
 
             stopwatch.Stop();
-            // 実行時間は1ファイルあたり5ms以内であること
-            // 例： 1000ファイル = 5秒
+            // 実行時間は1ファイルあたり10ms以内であること
+            // 例： 1000ファイル = 10秒
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < dataCount * 10);
 
             //RemoveDirectory(peformanceTestFolder);

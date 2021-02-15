@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxFile.Models.Defenitions
+namespace LightningReview.RevxFile.Models.V18.Defenitions
 {
 
     [XmlRoot]

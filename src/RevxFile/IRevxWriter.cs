@@ -7,7 +7,7 @@ namespace LightningReview.RevxFile
 {
     public interface IRevxWriter
     {
-        void Write(string filePath, Review review);
+        void Write(string filePath, IReview review);
        
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml.Serialization;
 
 namespace LightningReview.RevxFile.Models
 {
-    public class ReviewSettings
+    public interface IReviewFile
     {
+        string SchemaVersion { get; set; }
+
+        IReview Review { get; }
     }
 }

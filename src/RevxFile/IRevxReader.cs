@@ -13,7 +13,7 @@ namespace LightningReview.RevxFile
         /// </summary>
         /// <param name="filepath">対象のrevxファイル</param>
         /// <returns></returns>
-        Review Read(string filepath);
+        IReview Read(string filepath);
 
         /// <summary>
         /// 指定フォルダのレビューファイルを読み込みます。
@@ -21,6 +21,6 @@ namespace LightningReview.RevxFile
         /// <param name="folderPath"></param>
         /// <param name="readSubFodler"></param>
         /// <returns></returns>
-        IEnumerable<Review> ReadFolder(string folderPath,bool readSubFodler=false);
+        IEnumerable<IReview> ReadFolder(string folderPath,bool readSubFodler=false);
     }
 }

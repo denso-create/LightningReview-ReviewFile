@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxFile.Models
+namespace LightningReview.RevxFile.Models.V18
 {
     [XmlRoot]
-    public class Issue : EntityBase
+    public class Issue : EntityBase,IIssue
     {
         [XmlElement]
         public string LID{ get; set; }
@@ -18,6 +18,12 @@ namespace LightningReview.RevxFile.Models
         public string Description { get; set; }
 
         [XmlElement]
+        public string Comment { get; set; }
+
+        [XmlElement]
+        public string Category { get; set; }
+
+        [XmlElement]
         public string Status { get; set; }
 
         [XmlElement]
@@ -27,7 +33,30 @@ namespace LightningReview.RevxFile.Models
         public string Reason { get; set; }
 
         [XmlElement]
+        public string IsSendingBack { get; set; }
+
+        [XmlElement("NeedToFix")]
+        public string NeedToFixString { get; set; }
+
+        [XmlElement]
+        public bool? NeedToFix => string.IsNullOrEmpty(NeedToFixString) && NeedToFixString == "はい";
+
+        [XmlElement]
+        public string HasBeenSentBack { get; set; }
+
+        [XmlElement]
+        public string DetectionActivity { get; set; }
+
+        [XmlElement]
+        public string InjectionActivity { get; set; }
+
+        [XmlElement]
+        public string OutlinePath { get; set; }
+
+        [XmlElement]
         public string Importance { get; set; }
+
+        #region  Assignments
 
         [XmlElement]
         public string ReportedBy { get; set; }
@@ -41,6 +70,20 @@ namespace LightningReview.RevxFile.Models
         [XmlElement]
         public string Resolution { get; set; }
 
+        [XmlElement("DateReported")]
+        public string DateReportedString { get; set; }
+
+        public DateTime? DateReported => DateTime.Parse(DateReportedString);
+
+        [XmlElement]
+        public string DueDateString { get; set; }
+
+        public DateTime? DueDate => DateTime.Parse(DueDateString);
+
+
+        #endregion
+
+        #region CustomFields
         [XmlElement]
         public string CustomText1 { get; set; }
 
@@ -70,6 +113,7 @@ namespace LightningReview.RevxFile.Models
 
         [XmlElement]
         public string CustomText10 { get; set; }
+        #endregion
 
     }
 }

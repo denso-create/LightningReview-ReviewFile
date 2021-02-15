@@ -6,6 +6,7 @@ using LightningReview.RevxFile.Models;
 using System.Xml.Serialization;
 using System.Threading.Tasks;
 using System.IO;
+using LightningReview.RevxFile.Models.V18;
 
 namespace LightningReview.RevxFile
 {
@@ -19,7 +20,7 @@ namespace LightningReview.RevxFile
         /// </summary>
         /// <param name="filePath">レビューファイルのパス</param>
         /// <returns>ロードしたレビューモデル</returns>
-        public Review Read(string filePath)
+        public IReview Read(string filePath)
         {
             using ( var archive = ZipFile.OpenRead(filePath))
             {
@@ -28,8 +29,9 @@ namespace LightningReview.RevxFile
                 using ( var zipEntryStream = reviewXmlEntry.Open() )
                 {
                     // デシリアライズする
+                    // TODO V1.8/V1.7で両対応させる
                     var serializer = new XmlSerializer(typeof(ReviewFile));
-                    var reviewFile = (ReviewFile)serializer.Deserialize(zipEntryStream);
+                    var reviewFile = (IReviewFile)serializer.Deserialize(zipEntryStream);
 
                     // フィールドを追加設定する
                     reviewFile.Review.FilePath = filePath;
@@ -45,7 +47,7 @@ namespace LightningReview.RevxFile
         /// <param name="folderPath">対象フォルダ</param>
         /// <param name="includeSubFodler">サブフォルダも対象にする</param>
         /// <returns></returns>
-        public IEnumerable<Review> ReadFolder(string folderPath, bool includeSubFodler = false)
+        public IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFodler = false)
         {
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
             if (Directory.Exists(folderPath) == false)
@@ -57,7 +59,7 @@ namespace LightningReview.RevxFile
             var searchOption = includeSubFodler ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 
             var revxFilePaths = Directory.GetFiles(folderPath, "*.revx", searchOption);
-            var reviews = new List<Review>();
+            var reviews = new List<IReview>();
             foreach (var revxFilePath in revxFilePaths)
             {
                 var review = Read(revxFilePath);

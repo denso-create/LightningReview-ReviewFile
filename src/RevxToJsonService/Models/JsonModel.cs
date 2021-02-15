@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LightningReview.RevxFile.Models;
 using RevxToJsonService.Extensions;
 
 namespace RevxToJsonService.Models
@@ -25,7 +26,7 @@ namespace RevxToJsonService.Models
         /// Revxのモデルからインスタンスを生成
         /// </summary>
         /// <param name="reviews"></param>
-        public JsonModel(IEnumerable<LightningReview.RevxFile.Models.Review> reviews)
+        public JsonModel(IEnumerable<IReview> reviews)
         {
             foreach ( var revModel in reviews)
             {

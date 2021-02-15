@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxFile.Models
+namespace LightningReview.RevxFile.Models.V18
 {
     [XmlRoot]
     public class Issues : EntityBase
@@ -11,5 +11,7 @@ namespace LightningReview.RevxFile.Models
         [XmlArray("List")]
         [XmlArrayItem("Issue")]
         public List<Issue> List { get; set; }  = new List<Issue>();
+
     }
+
 }

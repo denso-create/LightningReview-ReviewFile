@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LightningReview.RevxFile.Models;
 using RevxToJsonService.Extensions;
 
 
@@ -24,7 +25,7 @@ namespace RevxToJsonService.Models
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="reviewModel"></param>
-		public Review(LightningReview.RevxFile.Models.Review reviewModel)
+		public Review(IReview reviewModel)
 		{
 			// 同じ名前のフィールドをコピー
 			this.CopyFieldsFrom(reviewModel);

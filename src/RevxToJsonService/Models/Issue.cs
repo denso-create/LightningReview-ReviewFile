@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LightningReview.RevxFile.Models;
 using RevxToJsonService.Extensions;
 
 namespace RevxToJsonService.Models
@@ -9,7 +10,7 @@ namespace RevxToJsonService.Models
     {
         public Issue() { }
 
-        public Issue(LightningReview.RevxFile.Models.Issue issue)
+        public Issue(IIssue issue)
         {
             // フィールドをコピー
             this.CopyFieldsFrom(issue);

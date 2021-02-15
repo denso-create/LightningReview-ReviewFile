@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using System.Linq;
 
-namespace LightningReview.RevxFile.Models
+namespace LightningReview.RevxFile.Models.V18
 {
     [XmlRoot]
-    public class Review : EntityBase
+    public class Review : EntityBase, IReview
     {
         #region 永続化プロパティ
-
 
         [XmlElement]
         public string Name { get; set; }
@@ -28,6 +28,12 @@ namespace LightningReview.RevxFile.Models
 
         [XmlElement]
         public string ActualDate { get; set; }
+
+        [XmlElement]
+        public string PlannedTime { get; set; }
+
+        [XmlElement]
+        public string ActualTime { get; set; }
 
         [XmlElement]
         public string Unit { get; set; }
@@ -50,11 +56,11 @@ namespace LightningReview.RevxFile.Models
         /// <summary>
         /// すべての指摘
         /// </summary>
-        public IEnumerable<Issue> AllIssues
+        public IEnumerable<IIssue> AllIssues
         {
             get
             {
-                var issues = new List<Issue>();
+                var issues = new List<IIssue>();
 
                 // 各ドキュメントの指摘
                 foreach (var doc in Documents.List)
@@ -62,9 +68,11 @@ namespace LightningReview.RevxFile.Models
                     issues.AddRange(doc.AllIssues);
                 }
 
-                return issues;
+                return issues.ToList();
             }
         }
+
+        IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
         #endregion
     }

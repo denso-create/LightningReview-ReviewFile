@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using System.Linq;
 
-namespace LightningReview.RevxFile.Models
+namespace LightningReview.RevxFile.Models.V18
 {
     [XmlRoot]
-    public class Document : EntityBase
+    public class Document : EntityBase,IDocument
     {
         [XmlElement]
         public string LID { get; set; }
@@ -27,14 +28,13 @@ namespace LightningReview.RevxFile.Models
         public OutlineTree OutlineTree { get; set; } = new OutlineTree();
 
         /// <summary>
-        /// アウトラインノード
-        /// </summary>
-        public IList<OutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children;
-
-        /// <summary>
         /// 全ての指摘
         /// </summary>
-        public IEnumerable<Issue> AllIssues => OutlineTree.VirtualRoot.AllIssues;
+        public IEnumerable<IIssue> AllIssues => OutlineTree.VirtualRoot.AllIssues;
 
+        /// <summary>
+        /// アウトラインノード
+        /// </summary>
+        public IEnumerable<IOutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children.OfType<IOutlineNode>();
     }
 }

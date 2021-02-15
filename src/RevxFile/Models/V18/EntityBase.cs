@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.RevxFile.Models
+namespace LightningReview.RevxFile.Models.V18
 {
     public abstract class EntityBase
     {
@@ -25,9 +25,12 @@ namespace LightningReview.RevxFile.Models
         [XmlElement("CreatedDateTime")]
         public string CreatedDateTimeString { get; set; }
 
-        public DateTime? CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
+        public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
 
-        [XmlElement]
-        public string LastUpdatedDateTime { get; set; }
+        [XmlElement("LastUpdatedDateTime")]
+        public string LastUpdatedDateTimeString { get; set; }
+
+        public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
+
     }
 }

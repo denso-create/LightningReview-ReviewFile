@@ -10,11 +10,13 @@
 [![NuGet](https://img.shields.io/nuget/v/LightningReview.RevxFile.svg)](http://nuget.org/packages/LightningReview.RevxFile)
 
 
-Lightning Reviewのrevxファイルを高速に読み書き可能なライブラリです。
+Lightning Reviewのrevxファイルのレビューや指摘のデータを高速に読み込み可能なライブラリです。
 
 * コンパクトで他への依存関係がない軽量な設計になっています。
+* Lightning ReviewはV1.8でrevxのフォーマットが変わりましたが、このライブラリではどちらのファイルも対応していますので複数バージョンでの分析が可能です。
 * 1000ファイルのレビューファイル(revx)の読み込みに数秒程度で処理可能と非常に高速になっています。
-* 現在は読み込みのみサポートしています。
+* すべての要素に対応しているわけではありません。主にレビュー、ドキュメントとアウトライン、指摘に関する情報が参照できます。
+
 
 ### Install
 ```

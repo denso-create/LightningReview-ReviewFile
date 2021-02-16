@@ -13,15 +13,15 @@ namespace ReviewFileToJsonService.Tests
     public class ReviewFileToJsonExporterTests
     {
         /// <summary>
-        /// �e�X�g�f�[�^�i�[�t�H���_�i�r���h����DLL�t�@�C������̑��΃p�X�j
+        /// テストデータ格納フォルダ（ビルドしたDLLファイルからの相対パス）
         /// </summary>
         protected virtual string TestDataFolderName => @"TestData";
 
         /// <summary>
-        /// �e�X�g�f�[�^�̃t�@�C���p�X���擾����
+        /// テストデータのファイルパスを取得する
         /// </summary>
-        /// <param name="fileName">�e�X�g�f�[�^�̃t�@�C����</param>
-        /// <returns>�e�X�g�f�[�^�̃t�@�C���p�X</returns>
+        /// <param name="fileName">テストデータのファイル名</param>
+        /// <returns>テストデータのファイルパス</returns>
         protected string GetTestDataPath(string fileName = null)
         {
             var exePath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
@@ -43,13 +43,13 @@ namespace ReviewFileToJsonService.Tests
             var outputPath = GetTestDataPath("output.json");
             var exporter = new ReviewFileToJsonExporter();
 
-            // �����̃t�@�C��
+            // フォルダ直下を指定
             exporter.Export(revxFolder, outputPath);
             var json = File.ReadAllText(outputPath);
             dynamic jsonModel = JsonConvert.DeserializeObject(json);
             Assert.AreEqual(3, (int)jsonModel.TotalReviewCount);
 
-            // �T�u�t�H���_���܂�
+            // サブフォルダ以下も指定
             exporter.Export(revxFolder, outputPath,true);
             json = File.ReadAllText(outputPath);
             jsonModel = JsonConvert.DeserializeObject(json);
@@ -66,17 +66,17 @@ namespace ReviewFileToJsonService.Tests
                 File.Delete(outputPath);
             }
 
-            // �G�N�X�|�[�g
+            // エクスポート処理
             var exporter = new ReviewFileToJsonExporter();
             exporter.Export(revxFolder, outputPath);
 
-            // �t�@�C���̓��e���e�X�g
+            // 出力先のファイルが生成されたか確認する
             Assert.IsTrue(File.Exists(outputPath));
 
             var json = File.ReadAllText(outputPath);
             dynamic jsonModel = JsonConvert.DeserializeObject(json);
 
-            // ���g���m�F
+            // 出力されたJsonの内容をテストする
             Assert.IsNotNull(jsonModel.Reviews);
             Assert.AreEqual(3,jsonModel.Reviews.Count);
             Assert.AreEqual(3, jsonModel.Reviews[0].Issues.Count);
@@ -86,7 +86,6 @@ namespace ReviewFileToJsonService.Tests
             Assert.AreEqual("1", (string)issue1.LID);
             Assert.AreEqual("Member2", (string)issue1.AssignedTo);
             Assert.AreEqual("Member3", (string)issue1.ConfirmedBy);
-
         }
 
         [TestCategory("SkipWhenLiveUnitTesting")]
@@ -95,16 +94,16 @@ namespace ReviewFileToJsonService.Tests
         {
             var revxFolder = GetTestDataPath();
 
-            // �e�X�g�p�̃t�H���_���쐬����
+            // テスト用のフォルダを作成する
             var peformanceTestFolder = Path.Combine(revxFolder, "PeformanceTestData");
             RecreateDirectory(peformanceTestFolder);
 
-            #region �e�X�g�f�[�^�̍쐬
+            #region テストデータの作成
 
-            // �w�肳�ꂽ�t�H���_�ȉ��̃��r���[�t�@�C���ɑ΂��āA���r���[�̃f�[�^���擾����
+            // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する
             var ReviewFile = Directory.GetFiles(revxFolder, "*.revx", SearchOption.AllDirectories).FirstOrDefault();
 
-            // �e�X�g�t�@�C���̍쐬
+            // テストファイルの作成
             for ( var i=0;i<1000;i++)
             {
                 var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceReviewFile{i}.revx");
@@ -113,7 +112,7 @@ namespace ReviewFileToJsonService.Tests
 
             #endregion
 
-            #region ���s���Ď��Ԃ��v������
+            #region パフォーマンステスト
 
             var stopwatch = new Stopwatch();
 
@@ -122,13 +121,13 @@ namespace ReviewFileToJsonService.Tests
             exporter.Export(peformanceTestFolder, outputPath);
             stopwatch.Start();
 
-            // ���s���Ԃ�5000ms�ȓ��ł��邱��
+            // 処理時間が5000ms以内であるか
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < 5000);
             #endregion
         }
 
         /// <summary>
-        /// �t�H���_���쐬����B���łɂ���΃t�@�C�����폜���čč쐬����
+        /// フォルダを作成する。すでにあればファイルを削除して再作成する
         /// </summary>
         /// <param name="folder"></param>
         private void RecreateDirectory(string folder)

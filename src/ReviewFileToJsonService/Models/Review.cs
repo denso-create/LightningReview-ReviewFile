@@ -41,14 +41,26 @@ namespace ReviewFileToJsonService.Models
 
         #region 公開プロパティ
 
+        public string GID { get; set; }
+
         public string Name { get; set; }
+        
         public string Goal { get; set; }
+
         public string Domain { get; set; }
 
         public string Place { get; set; }
+
         public string PlannedDate { get; set; }
+
         public string ActualDate { get; set; }
+
+        public string PlannedTime { get; set; }
+
+        public string ActualTime { get; set; }
+
         public string Unit { get; set; }
+        
         public string PlannedScale { get; set; }
 
         /// <summary>
@@ -60,11 +72,6 @@ namespace ReviewFileToJsonService.Models
 		/// 指摘一覧
 		/// </summary>
 		public IList<Issue> Issues { get; } = new List<Issue>();
-
-        public string GID { get; set; }
-        public string PlannedTime { get; set; }
-        public string ActualTime { get; set; }
-
         #endregion
     }
 }

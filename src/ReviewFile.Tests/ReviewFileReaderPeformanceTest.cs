@@ -83,7 +83,8 @@ namespace LightningReview.ReviewFile.Tests
             stopwatch.Stop();
             // 実行時間は1ファイルあたり10ms以内であること
             // 例： 1000ファイル = 10秒
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds < dataCount * 10);
+            var requiredTime = dataCount * 10;
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < requiredTime,$"{stopwatch.ElapsedMilliseconds}ms > {requiredTime}ms: {version}の{dataCount}レビューの読み込みが要求値の{requiredTime}msを超えて{stopwatch.ElapsedMilliseconds}msとなりました。");
 
             //RemoveDirectory(peformanceTestFolder);
         }

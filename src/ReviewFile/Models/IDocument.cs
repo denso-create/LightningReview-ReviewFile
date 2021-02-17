@@ -9,6 +9,8 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IDocument
     {
+	    #region 公開プロパティ
+
 	    /// <summary>
 	    /// グローバルID
 	    /// </summary>
@@ -43,5 +45,7 @@ namespace LightningReview.ReviewFile.Models
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
         IEnumerable<IOutlineNode> OutlineNodes { get; }
+
+        #endregion
     }
 }

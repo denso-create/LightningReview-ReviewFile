@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IReview
     {
-	    #region プロパティ
+	    #region 公開プロパティ
 
         /// <summary>
         /// グローバルID

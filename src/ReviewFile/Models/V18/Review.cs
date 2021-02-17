@@ -10,8 +10,36 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Review : EntityBase, IReview
     {
-        #region 永続化プロパティ
+        #region プロパティ
 
+        /// <summary>
+        /// ファイルパス
+        /// </summary>
+        public string FilePath { get; set; }
+
+        /// <summary>
+        /// すべての指摘
+        /// </summary>
+        public IEnumerable<IIssue> Issues
+        {
+	        get
+	        {
+		        var issues = new List<IIssue>();
+
+		        // 各ドキュメントの指摘
+		        foreach (var doc in Documents.List)
+		        {
+			        issues.AddRange(doc.AllIssues);
+		        }
+
+		        return issues.ToList();
+	        }
+        }
+
+        IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
+
+        #region 基本設定タブ
+        
         [XmlElement]
         public string Name { get; set; }
 
@@ -24,63 +52,10 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string Place { get; set; }
 
-        [XmlElement]
-        public string PlannedDate { get; set; }
-
-        [XmlElement]
-        public string ActualDate { get; set; }
-
-        [XmlElement]
-        public string PlannedTime { get; set; }
-
-        [XmlElement]
-        public string ActualTime { get; set; }
-
-        [XmlElement]
-        public string Unit { get; set; }
-
-        [XmlElement]
-        public string PlannedScale { get; set; }
-
-        [XmlElement]
-        public string ActualScale { get; set; }
-
-        [XmlElement]
-        public string IssueCountOfGoal { get; set; }
         
         [XmlElement]
         public Documents Documents { get; set; }
-
-        #endregion
-
-        #region 非永続化プロパティ
-
-        /// <summary>
-        /// ファイルパス
-        /// </summary>
-        public string FilePath { get; set; }
-
-        /// <summary>
-        /// すべての指摘
-        /// </summary>
-        public IEnumerable<IIssue> Issues
-        {
-            get
-            {
-                var issues = new List<IIssue>();
-
-                // 各ドキュメントの指摘
-                foreach (var doc in Documents.List)
-                {
-                    issues.AddRange(doc.AllIssues);
-                }
-
-                return issues.ToList();
-            }
-        }
-
-        IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
-
+        
         /// <summary>
         /// ステータス
         /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
@@ -132,6 +107,34 @@ namespace LightningReview.ReviewFile.Models.V18
 	        set => Project.Name = value;
         }
 
+        #endregion
+
+        #region 予実タブ
+        
+        [XmlElement]
+        public string PlannedDate { get; set; }
+
+        [XmlElement]
+        public string ActualDate { get; set; }
+
+        [XmlElement]
+        public string PlannedTime { get; set; }
+
+        [XmlElement]
+        public string ActualTime { get; set; }
+
+        [XmlElement]
+        public string Unit { get; set; }
+
+        [XmlElement]
+        public string PlannedScale { get; set; }
+
+        [XmlElement]
+        public string ActualScale { get; set; }
+
+        [XmlElement]
+        public string IssueCountOfGoal { get; set; }
+
         /// <summary>
         /// 実績件数
         /// </summary>
@@ -154,6 +157,8 @@ namespace LightningReview.ReviewFile.Models.V18
 		        return issueCountOfActualCount.ToString();
 	        }
         }
+
+        #endregion
 
 		#endregion
 	}

@@ -9,6 +9,8 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Document : EntityBase,IDocument
     {
+	    #region プロパティ
+        
 	    [XmlElement]
         public string LID { get; set; }
 
@@ -33,5 +35,7 @@ namespace LightningReview.ReviewFile.Models.V18
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
         public IEnumerable<IOutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children.OfType<IOutlineNode>();
+
+        #endregion
     }
 }

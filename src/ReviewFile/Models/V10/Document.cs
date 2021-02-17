@@ -8,6 +8,8 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Document : IDocument
     {
+	    #region プロパティ
+
         [XmlAttribute]
         public string GlobalId { get; set; }
         public string GID { get => GlobalId; set => GlobalId = value; }
@@ -33,5 +35,7 @@ namespace LightningReview.ReviewFile.Models.V10
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
         public IEnumerable<IOutlineNode> OutlineNodes => throw new NotImplementedException();
+
+        #endregion
     }
 }

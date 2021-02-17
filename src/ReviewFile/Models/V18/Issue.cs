@@ -8,6 +8,8 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Issue : EntityBase,IIssue
     {
+	    #region プロパティ
+
         [XmlElement]
         public string LID{ get; set; }
 
@@ -52,9 +54,7 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement]
         public string Importance { get; set; }
-
-        #region  Assignments
-
+        
         [XmlElement]
         public string ReportedBy { get; set; }
 
@@ -77,9 +77,8 @@ namespace LightningReview.ReviewFile.Models.V18
 
         public DateTime? DueDate => DateTime.Parse(DueDateString);
 
-        #endregion
+        #region カスタムフィールド
 
-        #region CustomFields
         [XmlElement]
         public string CustomText1 { get; set; }
 
@@ -109,7 +108,9 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement]
         public string CustomText10 { get; set; }
+
         #endregion
 
+        #endregion
     }
 }

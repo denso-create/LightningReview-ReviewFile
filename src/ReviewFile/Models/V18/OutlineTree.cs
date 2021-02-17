@@ -8,7 +8,11 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class OutlineTree : EntityBase
     {
-        [XmlElement]
+	    #region プロパティ
+
+	    [XmlElement]
         public OutlineNode VirtualRoot { get; set; } = new OutlineNode();
+
+        #endregion
     }
 }

@@ -8,10 +8,37 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Review : IReview
     {
+	    #region プロパティ
+
         [XmlAttribute]
         public string GlobalId { get; set; }
         public string GID { get => GlobalId; set => GlobalId = value; }
 
+        [XmlElement]
+        public string CreatedBy { get; set; }
+
+        [XmlElement]
+        public string LastUpdatedBy { get; set; }
+
+        [XmlElement("CreatedDateTime")]
+        public string CreatedDateTimeString { get; set; }
+        public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
+
+        [XmlElement("LastUpdatedDateTime")]
+        public string LastUpdatedDateTimeString { get; set; }
+        public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
+
+        /// <summary>
+        /// ファイルパス
+        /// </summary>
+        public string FilePath { get; set; }
+
+        public IEnumerable<IIssue> Issues => IssueEntities;
+
+        public IEnumerable<IDocument> Documents => DocumentEneities;
+
+        #region 基本設定タブ
+        
         [XmlElement]
         public string Name { get; set; }
 
@@ -52,6 +79,32 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string Place { get; set; }
 
+        [XmlElement]
+        public Project Project { get; set; }
+
+        /// <summary>
+        /// プロジェクトコード
+        /// </summary>
+        public string ProjectCode
+        {
+	        get => Project.Code;
+	        set => Project.Code = value;
+        }
+
+        /// <summary>
+        /// プロジェクト名
+        /// </summary>
+        public string ProjectName
+        {
+	        get => Project.Name;
+	        set => Project.Name = value;
+        }
+
+        #endregion
+
+        #region 予実タブ
+
+        
         [XmlElement]
         public string PlannedDate { get; set; }
 
@@ -107,52 +160,8 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlArrayItem("Issue")]
         public List<Issue> IssueEntities { get; set; }
 
-        [XmlElement]
-        public Project Project { get; set; }
+        #endregion
 
-        /// <summary>
-        /// プロジェクトコード
-        /// </summary>
-        public string ProjectCode
-        {
-	        get => Project.Code;
-	        set => Project.Code = value;
-        }
-
-        /// <summary>
-        /// プロジェクト名
-        /// </summary>
-        public string ProjectName
-        {
-	        get => Project.Name;
-	        set => Project.Name = value;
-        }
-
-        [XmlElement]
-        public string LastUpdatedBy { get; set; }
-
-        [XmlElement("CreatedDateTime")]
-        public string CreatedDateTimeString { get; set; }
-
-
-        [XmlElement("LastUpdatedDateTime")]
-        public string LastUpdatedDateTimeString { get; set; }
-
-        [XmlElement]
-        public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// ファイルパス
-        /// </summary>
-        public string FilePath { get; set; }
-
-        public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
-
-        public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
-
-        public IEnumerable<IIssue> Issues => IssueEntities;
-
-        public IEnumerable<IDocument> Documents => DocumentEneities;
+        #endregion
     }
-
 }

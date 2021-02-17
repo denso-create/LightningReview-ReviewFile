@@ -9,6 +9,8 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IIssue
     {
+	    #region 公開プロパティ
+
         string GID { get; set; }
         string LID { get; set; }
         string Type { get; set; }
@@ -39,5 +41,7 @@ namespace LightningReview.ReviewFile.Models
         string CustomText8 { get; set; }
         string CustomText9 { get; set; }
         string CustomText10 { get; set; }
+
+        #endregion
     }
 }

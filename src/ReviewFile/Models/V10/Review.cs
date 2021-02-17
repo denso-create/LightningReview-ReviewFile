@@ -16,11 +16,39 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string Name { get; set; }
 
+        /// <summary>
+        /// ステータス
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string Status { get; set; }
+
         [XmlElement]
         public string Goal { get; set; }
 
         [XmlElement]
+        public string EndCondition { get; set; }
+
+        /// <summary>
+        /// ドメイン
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
         public string Domain { get; set; }
+
+        /// <summary>
+        /// レビュー種別
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string ReviewType { get; set; }
+
+        /// <summary>
+        /// レビュー形式
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string ReviewStyle { get; set; }
 
         [XmlElement]
         public string Place { get; set; }
@@ -43,6 +71,35 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string PlannedScale { get; set; }
 
+        [XmlElement]
+        public string ActualScale { get; set; }
+
+        [XmlElement]
+        public string IssueCountOfGoal { get; set; }
+
+        /// <summary>
+        /// 実績件数
+        /// </summary>
+        public string IssueCountOfActual
+        {
+	        get
+	        {
+		        var issueCountOfActualCount = 0;
+		        foreach (var issue in Issues)
+		        {
+			        // 指摘タイプがグッドポイントあるいは対策要否が否でない指摘の件数が実績件数
+			        if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
+			        {
+				        continue;
+			        }
+
+			        issueCountOfActualCount++;
+		        }
+
+		        return issueCountOfActualCount.ToString();
+	        }
+        }
+
         [XmlArray("Documents")]
         [XmlArrayItem("Document")]
         public List<Document> DocumentEneities { get; set; }
@@ -53,6 +110,24 @@ namespace LightningReview.ReviewFile.Models.V10
 
         [XmlElement]
         public Project Project { get; set; }
+
+        /// <summary>
+        /// プロジェクトコード
+        /// </summary>
+        public string ProjectCode
+        {
+	        get => Project.Code;
+	        set => Project.Code = value;
+        }
+
+        /// <summary>
+        /// プロジェクト名
+        /// </summary>
+        public string ProjectName
+        {
+	        get => Project.Name;
+	        set => Project.Name = value;
+        }
 
         [XmlElement]
         public string LastUpdatedBy { get; set; }
@@ -81,6 +156,6 @@ namespace LightningReview.ReviewFile.Models.V10
 
         public IEnumerable<IDocument> Documents => DocumentEneities;
 
-    }
+	}
 
 }

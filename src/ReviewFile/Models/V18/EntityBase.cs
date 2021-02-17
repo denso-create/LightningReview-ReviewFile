@@ -15,7 +15,6 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string GID { get; set; } 
 
-
         [XmlElement]
         public string CreatedBy { get; set; }
 

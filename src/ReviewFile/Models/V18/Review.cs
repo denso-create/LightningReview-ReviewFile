@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using System.Linq;
+using LightningReview.ReviewFile.Models.V18.Defenitions;
 
 namespace LightningReview.ReviewFile.Models.V18
 {
@@ -18,8 +19,8 @@ namespace LightningReview.ReviewFile.Models.V18
         public string Goal { get; set; }
 
         [XmlElement]
-        public string Domain { get; set; }
-
+        public string EndCondition { get; set; }
+        
         [XmlElement]
         public string Place { get; set; }
 
@@ -41,6 +42,12 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string PlannedScale { get; set; }
 
+        [XmlElement]
+        public string ActualScale { get; set; }
+
+        [XmlElement]
+        public string IssueCountOfGoal { get; set; }
+        
         [XmlElement]
         public Documents Documents { get; set; }
 
@@ -74,6 +81,80 @@ namespace LightningReview.ReviewFile.Models.V18
 
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
-        #endregion
-    }
+        /// <summary>
+        /// ステータス
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// ドメイン
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// レビュー種別
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string ReviewType { get; set; }
+
+        /// <summary>
+        /// レビュー形式
+        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
+        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
+        /// </summary>
+        public string ReviewStyle { get; set; }
+
+        /// <summary>
+        /// プロジェクト
+        /// </summary>
+        public Project Project { get; set; }
+
+        /// <summary>
+        /// プロジェクトコード
+        /// </summary>
+        public string ProjectCode
+        {
+	        get => Project.Code;
+	        set => Project.Code = value;
+        }
+
+        /// <summary>
+        /// プロジェクト名
+        /// </summary>
+        public string ProjectName
+        {
+	        get => Project.Name;
+	        set => Project.Name = value;
+        }
+
+        /// <summary>
+        /// 実績件数
+        /// </summary>
+        public string IssueCountOfActual
+        {
+	        get
+	        {
+		        var issueCountOfActualCount = 0;
+		        foreach (var issue in Issues)
+		        {
+                    // 指摘タイプがグッドポイントあるいは対策要否が否でない指摘の件数が実績件数
+			        if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
+			        {
+                        continue;
+			        }
+
+			        issueCountOfActualCount++;
+		        }
+
+		        return issueCountOfActualCount.ToString();
+	        }
+        }
+
+		#endregion
+	}
 }

@@ -30,6 +30,5 @@ namespace LightningReview.ReviewFile.Models.V18
         public string LastUpdatedDateTimeString { get; set; }
 
         public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
-
     }
 }

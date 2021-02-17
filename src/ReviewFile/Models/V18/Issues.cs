@@ -11,7 +11,6 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlArray("List")]
         [XmlArrayItem("Issue")]
         public List<Issue> List { get; set; }  = new List<Issue>();
-
     }
 
 }

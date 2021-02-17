@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LightningReview.ReviewFile.Models
 {
+    /// <summary>
+    /// 指摘のインタフェース
+    /// </summary>
     public interface IIssue
     {
         string GID { get; set; }

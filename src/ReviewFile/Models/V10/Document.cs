@@ -13,17 +13,25 @@ namespace LightningReview.ReviewFile.Models.V10
         public string GID { get => GlobalId; set => GlobalId = value; }
 
         [XmlAttribute]
-        public string Name { get; set; }
-
-        [XmlAttribute]
         public string ID { get; set; }
-
         public string LID { get => ID; set => ID = value; }
 
+        [XmlAttribute]
+        public string Name { get; set; }
+
+        [XmlElement]
+        public string AbsolutePath { get; set; }
+
+        [XmlElement]
+        public string ApplicationType { get; set; }
+        
         //[XmlArray]
         //[XmlArrayItem("OutlineTree")]
         //public List<OutlineNode> OutlineTree { get; set; }
 
+        /// <summary>
+        /// このドキュメントに関連づくアウトラインの一覧
+        /// </summary>
         public IEnumerable<IOutlineNode> OutlineNodes => throw new NotImplementedException();
     }
 }

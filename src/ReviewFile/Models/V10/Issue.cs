@@ -8,14 +8,12 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Issue : IIssue
     {
+	    [XmlAttribute]
+        public string GlobalId { get; set; }
         public string GID { get => GlobalId; set => GlobalId = value; }
 
         [XmlAttribute]
-        public string GlobalId { get; set; }
-
-        [XmlAttribute]
         public string ID { get; set; }
-
         public string LID { get=>ID; set=>ID=value; }
 
         [XmlElement]

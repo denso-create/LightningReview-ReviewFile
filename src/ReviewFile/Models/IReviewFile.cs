@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LightningReview.ReviewFile.Models
 {
+    /// <summary>
+    /// レビューファイルのインタフェース
+    /// </summary>
     public interface IReviewFile
     {
         /// <summary>

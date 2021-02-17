@@ -10,7 +10,6 @@ namespace LightningReview.ReviewFile.Models.V10
     {
         [XmlAttribute]
         public string GlobalId { get; set; }
-
         public string GID { get => GlobalId; set => GlobalId = value; }
 
         [XmlElement]
@@ -151,11 +150,9 @@ namespace LightningReview.ReviewFile.Models.V10
 
         public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
 
-        
         public IEnumerable<IIssue> Issues => IssueEntities;
 
         public IEnumerable<IDocument> Documents => DocumentEneities;
-
-	}
+    }
 
 }

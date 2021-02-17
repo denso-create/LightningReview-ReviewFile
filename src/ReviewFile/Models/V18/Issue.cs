@@ -77,7 +77,6 @@ namespace LightningReview.ReviewFile.Models.V18
 
         public DateTime? DueDate => DateTime.Parse(DueDateString);
 
-
         #endregion
 
         #region CustomFields

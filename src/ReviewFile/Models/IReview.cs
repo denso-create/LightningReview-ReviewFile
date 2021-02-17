@@ -4,6 +4,9 @@ using System.Text;
 
 namespace LightningReview.ReviewFile.Models
 {
+    /// <summary>
+    /// レビューのインタフェース
+    /// </summary>
     public interface IReview
     {
 	    #region プロパティ

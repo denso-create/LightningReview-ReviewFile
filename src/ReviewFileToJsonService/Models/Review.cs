@@ -65,7 +65,7 @@ namespace ReviewFileToJsonService.Models
         /// <summary>
         /// 作成日時
         /// </summary>
-        public DateTime CreatedDateTime { get; set; }
+        public DateTime? CreatedDateTime { get; set; }
 
         /// <summary>
         /// 最終更新者
@@ -75,7 +75,7 @@ namespace ReviewFileToJsonService.Models
         /// <summary>
         /// 最終更新日時
         /// </summary>
-        public DateTime LastUpdatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
 
 	    #region 基本設定タブ
 
@@ -116,12 +116,12 @@ namespace ReviewFileToJsonService.Models
         /// <summary>
         /// 計画実施日
         /// </summary>
-        public string PlannedDate { get; set; }
+        public DateTime? PlannedDate { get; set; }
 
         /// <summary>
         /// 実績実施日
         /// </summary>
-        public string ActualDate { get; set; }
+        public DateTime? ActualDate { get; set; }
 
         /// <summary>
         /// 計画時間（分単位）

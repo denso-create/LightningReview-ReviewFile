@@ -21,6 +21,9 @@ namespace LightningReview.ReviewFile.Models
         /// </summary>
         string Name { get; set; }
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         IEnumerable<IOutlineNode> Children { get; }
 
         #endregion

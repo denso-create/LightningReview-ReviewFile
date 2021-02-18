@@ -18,7 +18,7 @@ namespace LightningReview.ReviewFile.Models.V18
         public string FilePath { get; set; }
 
         /// <summary>
-        /// すべての指摘
+        /// このレビューファイルに関連づく指摘の一覧
         /// </summary>
         public IEnumerable<IIssue> Issues
         {
@@ -36,6 +36,9 @@ namespace LightningReview.ReviewFile.Models.V18
 	        }
         }
 
+        /// <summary>
+        /// このレビューファイルに関連づくドキュメントの一覧
+        /// </summary>
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
         #region 基本設定タブ

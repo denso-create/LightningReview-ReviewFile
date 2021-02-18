@@ -85,12 +85,14 @@ namespace LightningReview.ReviewFile.Models.V18
         #endregion
 
         #region 予実タブ
-        
-        [XmlElement]
-        public string PlannedDate { get; set; }
 
-        [XmlElement]
-        public string ActualDate { get; set; }
+        [XmlElement("PlannedDate")]
+        public string PlannedDateString { get; set; }
+        public DateTime? PlannedDate => string.IsNullOrEmpty(PlannedDateString) ? (DateTime?) null : DateTime.Parse(PlannedDateString);
+
+        [XmlElement("ActualDate")]
+        public string ActualDateString { get; set; }
+        public DateTime? ActualDate => string.IsNullOrEmpty(ActualDateString) ? (DateTime?) null : DateTime.Parse(ActualDateString);
 
         [XmlElement]
         public string PlannedTime { get; set; }

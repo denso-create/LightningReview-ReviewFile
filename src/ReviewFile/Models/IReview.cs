@@ -59,11 +59,6 @@ namespace LightningReview.ReviewFile.Models
         string Name { get; set; }
 
         /// <summary>
-        /// ステータス
-        /// </summary>
-        string Status { get; set; }
-
-        /// <summary>
         /// 目的
         /// </summary>
         string Goal { get; set; }
@@ -72,21 +67,6 @@ namespace LightningReview.ReviewFile.Models
         /// 終了条件
         /// </summary>
         string EndCondition { get; set; }
-
-        /// <summary>
-        /// ドメイン
-        /// </summary>
-        string Domain { get; set; }
-
-        /// <summary>
-        /// レビュー種別
-        /// </summary>
-        string ReviewType { get; set; }
-
-        /// <summary>
-        /// レビュー形式
-        /// </summary>
-        string ReviewStyle { get; set; }
 
         /// <summary>
         /// 場所

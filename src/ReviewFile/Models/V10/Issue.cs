@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
@@ -65,8 +66,7 @@ namespace LightningReview.ReviewFile.Models.V10
 	        get
 	        {
 		        // アウトラインパスの末尾のアウトライン名を取得
-		        var outlineName = Regex.Match(OutlinePath, @"[^/]+$");
-		        return outlineName.Value;
+		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
 	        }
         }
 
@@ -77,8 +77,7 @@ namespace LightningReview.ReviewFile.Models.V10
 	        get
 	        {
 		        // アウトラインパスの先頭のアウトライン名を取得
-		        var rootOutlineName = Regex.Match(OutlinePath.TrimStart('/'), @"^[^/]+");
-		        return rootOutlineName.Value;
+		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
 	        }
         }
 

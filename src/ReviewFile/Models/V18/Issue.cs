@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -84,7 +85,7 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement("DateReported")]
         public string DateReportedString { get; set; }
-        public DateTime? DateReported => DateTime.Parse(DateReportedString);
+        public DateTime? DateReported => string.IsNullOrEmpty(DateReportedString) ? (DateTime?) null : DateTime.Parse(DateReportedString);
 
         [XmlElement]
         public string NeedToFix { get; set; }
@@ -94,12 +95,12 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement("DueDate")]
         public string DueDateString { get; set; }
-        public DateTime? DueDate => DateTime.Parse(DueDateString);
+        public DateTime? DueDate =>string.IsNullOrEmpty(DueDateString) ? (DateTime?)null : DateTime.Parse(DueDateString);
 
         [XmlElement("DateFixed")]
         public string DateFixedString { get; set; }
-        public DateTime? DateFixed => DateTime.Parse(DateFixedString);
-
+        public DateTime? DateFixed => string.IsNullOrEmpty(DateFixedString) ? (DateTime?) null : DateTime.Parse(DateFixedString);
+  
         [XmlElement]
         public string Resolution { get; set; }
 
@@ -108,8 +109,8 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement("DateConfirmed")]
         public string DateConfirmedString { get; set; }
-        public DateTime? DateConfirmed => DateTime.Parse(DateConfirmedString);
-
+        public DateTime? DateConfirmed => string.IsNullOrEmpty(DateConfirmedString) ? (DateTime?) null : DateTime.Parse(DateConfirmedString);
+        
         [XmlElement]
         public string Comment { get; set; }
 

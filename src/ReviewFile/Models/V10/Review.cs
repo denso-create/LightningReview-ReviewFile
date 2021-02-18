@@ -42,39 +42,11 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string Name { get; set; }
 
-        /// <summary>
-        /// ステータス
-        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
-        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
-        /// </summary>
-        public string Status { get; set; }
-
         [XmlElement]
         public string Goal { get; set; }
 
         [XmlElement]
         public string EndCondition { get; set; }
-
-        /// <summary>
-        /// ドメイン
-        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
-        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
-        /// </summary>
-        public string Domain { get; set; }
-
-        /// <summary>
-        /// レビュー種別
-        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
-        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
-        /// </summary>
-        public string ReviewType { get; set; }
-
-        /// <summary>
-        /// レビュー形式
-        /// TODO xmlの階層が深く取得が複雑となり、実装に時間がかかるため今後の課題とする
-        /// 現時点ではデータ収集の対象になり得ないと考えられるため保留
-        /// </summary>
-        public string ReviewStyle { get; set; }
 
         [XmlElement]
         public string Place { get; set; }
@@ -104,7 +76,6 @@ namespace LightningReview.ReviewFile.Models.V10
 
         #region 予実タブ
 
-        
         [XmlElement]
         public string PlannedDate { get; set; }
 

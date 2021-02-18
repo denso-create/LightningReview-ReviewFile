@@ -39,7 +39,7 @@ namespace LightningReview.ReviewFile.Models
         /// <summary>
         /// 作成日時
         /// </summary>
-        DateTime CreatedDateTime { get; }
+        DateTime? CreatedDateTime { get; }
 
         /// <summary>
         /// 最終更新者
@@ -49,7 +49,7 @@ namespace LightningReview.ReviewFile.Models
         /// <summary>
         /// 最終更新日時
         /// </summary>
-        DateTime LastUpdatedDateTime { get; }
+        DateTime? LastUpdatedDateTime { get; }
 
 	    #region 基本設定タブ
 
@@ -90,12 +90,12 @@ namespace LightningReview.ReviewFile.Models
         /// <summary>
         /// 計画実施日
         /// </summary>
-        string PlannedDate { get; set; }
+        DateTime? PlannedDate { get; }
 
         /// <summary>
         /// 実績実施日
         /// </summary>
-        string ActualDate { get; set; }
+        DateTime? ActualDate { get; }
 
         /// <summary>
         /// 計画時間（分単位）

@@ -32,11 +32,11 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement("CreatedDateTime")]
         public string CreatedDateTimeString { get; set; }
-        public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
+        public DateTime? CreatedDateTime => string.IsNullOrEmpty(CreatedDateTimeString) ? (DateTime?) null : DateTime.Parse(CreatedDateTimeString);
 
         [XmlElement("LastUpdatedDateTime")]
         public string LastUpdatedDateTimeString { get; set; }
-        public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
+        public DateTime? LastUpdatedDateTime => string.IsNullOrEmpty(LastUpdatedDateTimeString) ? (DateTime?) null : DateTime.Parse(LastUpdatedDateTimeString);
 
         #endregion
     }

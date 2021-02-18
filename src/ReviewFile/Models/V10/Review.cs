@@ -22,11 +22,11 @@ namespace LightningReview.ReviewFile.Models.V10
 
         [XmlElement("CreatedDateTime")]
         public string CreatedDateTimeString { get; set; }
-        public DateTime CreatedDateTime => DateTime.Parse(CreatedDateTimeString);
+        public DateTime? CreatedDateTime => string.IsNullOrEmpty(CreatedDateTimeString) ? (DateTime?) null : DateTime.Parse(CreatedDateTimeString);
 
         [XmlElement("LastUpdatedDateTime")]
         public string LastUpdatedDateTimeString { get; set; }
-        public DateTime LastUpdatedDateTime => DateTime.Parse(LastUpdatedDateTimeString);
+        public DateTime? LastUpdatedDateTime => string.IsNullOrEmpty(LastUpdatedDateTimeString) ? (DateTime?) null : DateTime.Parse(LastUpdatedDateTimeString);
 
         /// <summary>
         /// ファイルパス
@@ -82,11 +82,13 @@ namespace LightningReview.ReviewFile.Models.V10
 
         #region 予実タブ
 
-        [XmlElement]
-        public string PlannedDate { get; set; }
+        [XmlElement("PlannedDate")]
+        public string PlannedDateString { get; set; }
+        public DateTime? PlannedDate => string.IsNullOrEmpty(PlannedDateString) ? (DateTime?) null : DateTime.Parse(PlannedDateString);
 
-        [XmlElement]
-        public string ActualDate { get; set; }
+        [XmlElement("ActualDate")]
+        public string ActualDateString { get; set; }
+        public DateTime? ActualDate => string.IsNullOrEmpty(ActualDateString) ? (DateTime?) null : DateTime.Parse(ActualDateString);
 
         [XmlElement]
         public string PlannedTime { get; set; }

@@ -22,6 +22,9 @@ namespace LightningReview.ReviewFile.Models.V10
         //[XmlArrayItem("OutlineNode")]
         //public List<OutlineNode> ChildNodes { get; set; }
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         public IEnumerable<IOutlineNode> Children => throw new NotImplementedException();
 
         #endregion

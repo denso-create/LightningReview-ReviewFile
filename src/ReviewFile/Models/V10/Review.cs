@@ -33,8 +33,14 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string FilePath { get; set; }
 
+        /// <summary>
+        /// このレビューファイルに関連づく指摘の一覧
+        /// </summary>
         public IEnumerable<IIssue> Issues => IssueEntities;
 
+        /// <summary>
+        /// このレビューファイルに関連づくドキュメントの一覧
+        /// </summary>
         public IEnumerable<IDocument> Documents => DocumentEneities;
 
         #region 基本設定タブ

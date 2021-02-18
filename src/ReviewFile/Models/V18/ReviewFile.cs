@@ -16,6 +16,9 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public Review Review { get; set; }
 
+        /// <summary>
+        /// レビュー
+        /// </summary>
         IReview IReviewFile.Review => Review;
 
         #endregion

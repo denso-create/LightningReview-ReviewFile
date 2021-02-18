@@ -41,6 +41,9 @@ namespace LightningReview.ReviewFile.Models.V18
             }
         }
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         public IEnumerable<IOutlineNode> Children => ChildNodes.OfType<IOutlineNode>();
 
         #endregion

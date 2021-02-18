@@ -59,22 +59,24 @@ namespace LightningReview.ReviewFile.Models.V10
         public string Importance { get; set; }
 
         /// <summary>
-        /// 場所（関連付けられているアウトラインノードの名前）
+        /// 関連付けられているアウトラインノードの名前
         /// </summary>
         public string OutlineName {
 	        get
 	        {
+		        // アウトラインパスの末尾のアウトライン名を取得
 		        var outlineName = Regex.Match(OutlinePath, @"[^/]+$");
 		        return outlineName.Value;
 	        }
         }
 
         /// <summary>
-        /// 場所（ルートレベルのアウトラインノードの名前）
+        /// ルートレベルのアウトラインノードの名前
         /// </summary>
         public string RootOutlineName {
 	        get
 	        {
+		        // アウトラインパスの先頭のアウトライン名を取得
 		        var rootOutlineName = Regex.Match(OutlinePath.TrimStart('/'), @"^[^/]+");
 		        return rootOutlineName.Value;
 	        }

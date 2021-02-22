@@ -49,6 +49,19 @@ namespace LightningReview.ReviewFile.Tests
 
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
+            Assert.AreEqual("RevEndCondition", review.EndCondition);
+            Assert.AreEqual("RevPlace", review.Place);
+            Assert.AreEqual("RevProjectCode", review.ProjectCode);
+            Assert.AreEqual("RevProjectName", review.ProjectName);
+            Assert.AreEqual(DateTime.Parse("2021/2/18 0:00:00"), review.PlannedDate);
+            Assert.AreEqual(DateTime.Parse("2021/2/19 0:00:00"), review.ActualDate);
+            Assert.AreEqual("1", review.PlannedTime);
+            Assert.AreEqual("2", review.ActualTime);
+            Assert.AreEqual("ページ", review.Unit);
+            Assert.AreEqual("3", review.PlannedScale);
+            Assert.AreEqual("4", review.ActualScale);
+            Assert.AreEqual("5", review.IssueCountOfGoal);
+            Assert.AreEqual("3", review.IssueCountOfActual);
         }
 
         [DataRow("V10")]

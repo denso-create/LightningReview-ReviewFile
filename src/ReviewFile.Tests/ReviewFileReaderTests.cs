@@ -1,7 +1,9 @@
 using LightningReview.ReviewFile.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace LightningReview.ReviewFile.Tests
 {
@@ -47,6 +49,16 @@ namespace LightningReview.ReviewFile.Tests
         {
             var review = ReadReviewFile(version,RevFileName);
 
+            // ドキュメントの絶対パス
+            var currentPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
+            var testDataPath = Path.Combine(currentPath, "TestData", version, RevFileName);
+            Assert.AreEqual(testDataPath, review.FilePath);
+
+            Assert.AreEqual("b90a3142-2c05-4550-9ac5-008ea6461bc0", review.GID);
+            Assert.AreEqual("作成者", review.CreatedBy);
+            Assert.AreEqual(DateTime.Parse("2021/02/12 6:16:01"), review.CreatedDateTime);
+            Assert.AreEqual("最終更新者", review.LastUpdatedBy);
+            Assert.AreEqual(DateTime.Parse("2021/02/22 18:42:46"), review.LastUpdatedDateTime);
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
             Assert.AreEqual("RevEndCondition", review.EndCondition);

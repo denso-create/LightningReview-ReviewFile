@@ -1,0 +1,41 @@
+name: Publish-Nuget
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    branches: [ master ]
+    types:
+      - completed
+
+jobs:
+  publish-nuget:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: src
+    - name: Build
+      run: dotnet build src --no-restore
+
+    - name: Publish to NuGet
+      uses: brandedoutcast/publish-nuget@v2
+      with:
+        PROJECT_FILE_PATH: src/ReviewFile/ReviewFile.csproj
+        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
+        TAG_FORMAT: '*'
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+
+    - name: Publish to NuGet
+      uses: brandedoutcast/publish-nuget@v2
+      with:
+        PROJECT_FILE_PATH: src/ReviewFileToJsonService/ReviewFileToJsonService.csproj
+        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
+        TAG_FORMAT: '*'
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}

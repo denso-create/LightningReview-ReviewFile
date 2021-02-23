@@ -95,10 +95,8 @@ namespace LightningReview.ReviewFile.Tests
             Assert.AreEqual("4d7c6fbc-3eb5-4166-a2c3-257b5d0646ef", doc1.GID);
             Assert.AreEqual("1", doc1.LID);
 
-            // ドキュメントの絶対パス（src\ReviewFile.Tests\TestData以下のテスト用Excelファイルを指定）
-            var currentPath = AppDomain.CurrentDomain.BaseDirectory;;
-            var testDocumentPath = Path.GetFullPath(currentPath + @"..\..\..\TestData\ドキュメントモデル確認用テストデータ.xlsx");
-            Assert.AreEqual(testDocumentPath, doc1.AbsolutePath);
+            // ドキュメントの絶対パス（テストデータにはsrc\ReviewFile.Tests\TestData以下のテスト用Excelファイルを関連づけている）
+            Assert.AreEqual(@"C:\Git\LightningReview-RevxFile\src\ReviewFile.Tests\TestData\ドキュメントモデル確認用テストデータ.xlsx", doc1.AbsolutePath);
 
             // TODO V1の場合はOutlineNodeのXML構造が独特なのでXMLの属性マッピングで永続化できない
             /*

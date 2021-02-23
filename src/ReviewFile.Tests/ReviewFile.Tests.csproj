@@ -49,6 +49,9 @@
     <None Update="TestData\V18\SubFolder\RevFile3.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\ドキュメントモデル確認用テストデータ.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

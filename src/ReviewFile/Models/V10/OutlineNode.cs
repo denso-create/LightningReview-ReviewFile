@@ -11,9 +11,9 @@ namespace LightningReview.ReviewFile.Models.V10
 	    #region プロパティ
 
         [XmlAttribute]
-        public string GlobalId { get; set; }
+        public string GlobalID { get; set; }
 
-        public string GID { get => GlobalId; set => GlobalId = value; }
+        public string GID { get => GlobalID; set => GlobalID = value; }
 
         [XmlAttribute]
         public string Name { get; set; }

@@ -17,10 +17,10 @@ namespace LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReadFileTest(string version)
         {
-            var review = ReadReviewFile(version,RevFileName);
+            var review = ReadReviewFile(version, RevFileName);
 
             Assert.IsNotNull(review);
-            Assert.AreEqual(GetTestDataPath(version,RevFileName), review.FilePath);
+            Assert.AreEqual(GetTestDataPath(version, RevFileName), review.FilePath);
         }
 
         [DataRow("V10")]
@@ -40,6 +40,16 @@ namespace LightningReview.ReviewFile.Tests
             // サブフォルダも対象
             reviews = reader.ReadFolder(folder, true);
             Assert.AreEqual(4, reviews.Count());
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void ReadStreamTest(string version)
+        {
+	        var review = ReadReviewStream(version, RevFileName);
+	        Assert.IsNotNull(review);
+	        Assert.AreEqual(string.Empty, review.FilePath);
         }
 
         [DataRow("V10")]

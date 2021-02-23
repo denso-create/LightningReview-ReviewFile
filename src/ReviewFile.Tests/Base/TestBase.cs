@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Reflection;
 using System.Text;
 
@@ -40,7 +41,7 @@ namespace LightningReview.ReviewFile.Tests
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        protected IReview ReadReviewFile(string version,string filePath)
+        protected IReview ReadReviewFile(string version, string filePath)
         {
             var filepath = GetTestDataPath(version, filePath);
             var reader = new ReviewFileReader();
@@ -79,7 +80,27 @@ namespace LightningReview.ReviewFile.Tests
                 }
                 Directory.Delete(directory);
             }
+        }
 
+        /// <summary>
+        /// ストリームのロード
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        protected IReview ReadReviewStream(string version, string fileName)
+        {
+	        var filePath = GetTestDataPath(version, fileName);
+	        using (var archive = ZipFile.OpenRead(filePath))
+	        {
+		        // revxから"Review.xml"を抜き出す
+		        var reviewXmlEntry = archive.GetEntry("Review.xml");
+		        using (var zipEntryStream = reviewXmlEntry.Open())
+		        {
+			        var reader = new ReviewFileReader();
+			        var review = reader.Read(zipEntryStream);
+			        return review;
+		        }
+	        }
         }
     }
 }

@@ -49,11 +49,12 @@ namespace LightningReview.ReviewFile.Tests
         {
             var review = ReadReviewFile(version,RevFileName);
 
-            // ドキュメントの絶対パス
+            // レビューの絶対パス
             var currentPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
             var testDataPath = Path.Combine(currentPath, "TestData", version, RevFileName);
             Assert.AreEqual(testDataPath, review.FilePath);
 
+            // レビューのフィールド
             Assert.AreEqual("b90a3142-2c05-4550-9ac5-008ea6461bc0", review.GID);
             Assert.AreEqual("作成者", review.CreatedBy);
             Assert.AreEqual(DateTime.Parse("2021/02/12 6:16:01"), review.CreatedDateTime);
@@ -84,12 +85,20 @@ namespace LightningReview.ReviewFile.Tests
             var review = ReadReviewFile(version,RevFileName);
             Assert.IsNotNull(review.Documents);
 
-            // ドキュメントは2つ
+            // ドキュメントは2つあるか
             Assert.AreEqual(2, review.Documents.Count());
 
-            // 1つめのドキュメント
+            // 1つ目のドキュメントのフィールド
             var doc1 = review.Documents.ToList()[0];
             Assert.AreEqual("Doc1", doc1.Name);
+            Assert.AreEqual("EXCEL", doc1.ApplicationType);
+            Assert.AreEqual("4d7c6fbc-3eb5-4166-a2c3-257b5d0646ef", doc1.GID);
+            Assert.AreEqual("1", doc1.LID);
+
+            // ドキュメントの絶対パス（src\ReviewFile.Tests\TestData以下のテスト用Excelファイルを指定）
+            var currentPath = AppDomain.CurrentDomain.BaseDirectory;;
+            var testDocumentPath = Path.GetFullPath(currentPath + @"..\..\..\TestData\ドキュメントモデル確認用テストデータ.xlsx");
+            Assert.AreEqual(testDocumentPath, doc1.AbsolutePath);
 
             // TODO V1の場合はOutlineNodeのXML構造が独特なのでXMLの属性マッピングで永続化できない
             /*
@@ -122,7 +131,7 @@ namespace LightningReview.ReviewFile.Tests
             var issues = review.Issues;
             Assert.IsNotNull(issues,"Review.Issuesがnullです");
 
-            // 指摘のフィールド
+            // 1つ目の指摘のフィールド
             var issue1 = issues.FirstOrDefault(i => i.LID == "1");
             Assert.IsNotNull(issue1,$"LID=1の指摘がありません 。指摘数={issues.Count()}");
             Assert.AreEqual("Issue1 Description", issue1.Description);

@@ -23,6 +23,12 @@ IReview.AllIssuesをIReview.Issuesにシグニチャ変更</PackageReleaseNotes>
     <FileVersion>0.8.4.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>LightningReview.ReviewFileToJsonService.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="5.0.1" />
   </ItemGroup>

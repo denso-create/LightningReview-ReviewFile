@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LightningReview.ReviewFileToJsonService</name>
+    </assembly>
+    <members>
+        <member name="M:ReviewFileToJsonService.Extensions.FieldCopyHelper.CopyFieldsFrom``2(``0,``1)">
+            <summary>
+            指定オブジェクトから同じ名前のプロパティがあれば値をコピーする
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="self"></param>
+            <param name="from"></param>
+        </member>
+        <member name="T:ReviewFileToJsonService.Models.Issue">
+            <summary>
+            指摘
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.Issue.#ctor">
+            <summary>
+            コンストラクタ
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.Issue.#ctor(LightningReview.ReviewFile.Models.IIssue)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="issue"></param>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.LID">
+            <summary>
+            ローカルID
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Type">
+            <summary>
+            タイプ
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CorrectionPolicy">
+            <summary>
+            修正方針
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Category">
+            <summary>
+            分類
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Description">
+            <summary>
+            説明
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Reason">
+            <summary>
+            指摘理由
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.SendingBackReason">
+            <summary>
+            差し戻し理由
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Status">
+            <summary>
+            指摘のステータス
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.IsSendingBack">
+            <summary>
+            現在差戻し中かどうか
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.HasBeenSentBack">
+            <summary>
+            過去に一度でも差し戻しがあったか
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.DetectionActivity">
+            <summary>
+            検出工程
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.InjectionActivity">
+            <summary>
+            原因工程
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Priority">
+            <summary>
+            優先度
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Importance">
+            <summary>
+            重大度
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.OutlineName">
+            <summary>
+            関連付けられているアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.RootOutlineName">
+            <summary>
+            ルートレベルのアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.OutlinePath">
+            <summary>
+            アウトラインノードのパス
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.ReportedBy">
+            <summary>
+            報告者
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.DateReported">
+            <summary>
+            報告日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.NeedToFix">
+            <summary>
+            対策要否
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.AssignedTo">
+            <summary>
+            修正者
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.DueDate">
+            <summary>
+            期日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.DateFixed">
+            <summary>
+            修正日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Resolution">
+            <summary>
+            対策
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.ConfirmedBy">
+            <summary>
+            確認者
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.DateConfirmed">
+            <summary>
+            確認日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.Comment">
+            <summary>
+            コメント
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText1">
+            <summary>
+            カスタムテキスト1
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText2">
+            <summary>
+            カスタムテキスト2
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText3">
+            <summary>
+            カスタムテキスト3
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText4">
+            <summary>
+            カスタムテキスト4
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText5">
+            <summary>
+            カスタムテキスト5
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText6">
+            <summary>
+            カスタムテキスト6
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText7">
+            <summary>
+            カスタムテキスト7
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText8">
+            <summary>
+            カスタムテキスト8
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText9">
+            <summary>
+            カスタムテキスト9
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Issue.CustomText10">
+            <summary>
+            カスタムテキスト10
+            </summary>
+        </member>
+        <member name="T:ReviewFileToJsonService.Models.JsonModel">
+            <summary>
+            JSONファイルのルートオブジェクト
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.JsonModel.#ctor">
+            <summary>
+            コンストラクタ
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.JsonModel.#ctor(System.Collections.Generic.IEnumerable{LightningReview.ReviewFile.Models.IReview})">
+            <summary>
+            Revxのモデルからインスタンスを生成
+            </summary>
+            <param name="reviews"></param>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.JsonModel.TotalReviewCount">
+            <summary>
+            レビュー数
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.JsonModel.TotalIssueCount">
+            <summary>
+            すべてのレビューの総指摘件数
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.JsonModel.Reviews">
+            <summary>
+            レビュー一覧
+            </summary>
+        </member>
+        <member name="T:ReviewFileToJsonService.Models.Review">
+            <summary>
+            レビュー
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.Review.#ctor">
+            <summary>
+            コンストラクタ
+            </summary>
+        </member>
+        <member name="M:ReviewFileToJsonService.Models.Review.#ctor(LightningReview.ReviewFile.Models.IReview)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="reviewModel"></param>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.FilePath">
+            <summary>
+            レビューファイルの絶対パス
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.Issues">
+            <summary>
+            指摘一覧
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.CreatedBy">
+            <summary>
+            作成者
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.CreatedDateTime">
+            <summary>
+            作成日時
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.LastUpdatedBy">
+            <summary>
+            最終更新者
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.LastUpdatedDateTime">
+            <summary>
+            最終更新日時
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.Name">
+            <summary>
+            レビュー名
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.Goal">
+            <summary>
+            目的
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.EndCondition">
+            <summary>
+            終了条件
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.Place">
+            <summary>
+            場所
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.ProjectCode">
+            <summary>
+            プロジェクトコード
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.ProjectName">
+            <summary>
+            プロジェクト名
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.PlannedDate">
+            <summary>
+            計画実施日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.ActualDate">
+            <summary>
+            実績実施日
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.PlannedTime">
+            <summary>
+            計画時間（分単位）
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.ActualTime">
+            <summary>
+            実績時間(分単位)
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.Unit">
+            <summary>
+            成果物単位
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.PlannedScale">
+            <summary>
+            予定規模
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.ActualScale">
+            <summary>
+            実績規模
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.IssueCountOfGoal">
+            <summary>
+            目標件数
+            </summary>
+        </member>
+        <member name="P:ReviewFileToJsonService.Models.Review.IssueCountOfActual">
+            <summary>
+            実績件数
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFileToJsonService.ReviewFileToJsonExporter">
+            <summary>
+            RevxのJsonエクスポート
+            </summary>
+        </member>
+        <member name="M:LightningReview.ReviewFileToJsonService.ReviewFileToJsonExporter.Export(System.String,System.String,System.Boolean)">
+            <summary>
+            指定フォルダのレビューファイルを集計してJSONファイルに出力する
+            </summary>
+            <param name="revxFolder"></param>
+            <param name="outputFilePath"></param>
+            <param name="includeSubFolders"></param>
+        </member>
+    </members>
+</doc>

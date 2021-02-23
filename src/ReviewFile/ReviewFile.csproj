@@ -24,4 +24,10 @@ IReview.AllIssuesをIReview.Issuesにシグニチャ変更</PackageReleaseNotes>
     <FileVersion>0.8.4.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>LightningReview.ReviewFile.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
 </Project>

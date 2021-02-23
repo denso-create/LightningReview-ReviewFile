@@ -25,20 +25,20 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         public IReview Read(string filePath)
         {
-	        using (var archive = ZipFile.OpenRead(filePath))
-	        {
-		        // revxから"Review.xml"を抜き出す
-		        var reviewXmlEntry = archive.GetEntry("Review.xml");
-		        using (var zipEntryStream = reviewXmlEntry.Open())
-		        {
-			        var review = Read(zipEntryStream);
+            using (var archive = ZipFile.OpenRead(filePath))
+            {
+                // revxから"Review.xml"を抜き出す
+                var reviewXmlEntry = archive.GetEntry("Review.xml");
+                using (var zipEntryStream = reviewXmlEntry.Open())
+                {
+                    var review = Read(zipEntryStream);
 
                     // Streamを引数にしたReadメソッドではファイルパスが設定されていないため、ここで設定する
-			        review.FilePath = filePath;
+                    review.FilePath = filePath;
 
-			        return review;
-		        }
-	        }
+                    return review;
+                }
+            }
         }
 
         public async Task<IReview> ReadAsync(string filepath)
@@ -86,31 +86,30 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         public IReview Read(Stream reviewFileStream)
         {
-	        try
-	        {
-		        // スキーマバージョン値を取得
-		        var xDoc = XDocument.Load(reviewFileStream);
-		        var xElement = xDoc.Element("ReviewFile");
-		        if (xElement == null) throw new ReviewFileFormatException("ReviewFile Element Missing");
-		        var schemeVersion = double.Parse(xElement.Element("SchemaVersion").Value);
+            try
+            {
+                // スキーマバージョン値を取得
+                var xDoc = XDocument.Load(reviewFileStream);
+                var xElement = xDoc.Element("ReviewFile");
+                if (xElement == null) throw new ReviewFileFormatException("ReviewFile Element Missing");
+                var schemeVersion = double.Parse(xElement.Element("SchemaVersion").Value);
 
-		        // デシリアライズする
-		        // スキーマが1.7以降はV1.8のモデルになる
-		        var serializer = schemeVersion >= 1.7
-			        ? new XmlSerializer(typeof(Models.V18.ReviewFile))
-			        : new XmlSerializer(typeof(Models.V10.ReviewFile));
-		        var reviewFile = (IReviewFile) serializer.Deserialize(xDoc.CreateReader());
+                // デシリアライズする
+                // スキーマが1.7以降はV1.8のモデルになる
+                var serializer = schemeVersion >= 1.7
+                    ? new XmlSerializer(typeof(Models.V18.ReviewFile))
+                    : new XmlSerializer(typeof(Models.V10.ReviewFile));
+                var reviewFile = (IReviewFile) serializer.Deserialize(xDoc.CreateReader());
 
                 // Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
                 reviewFile.Review.FilePath = string.Empty;
-		        
-		        return reviewFile.Review;
-	        }
-	        catch (Exception ex)
-	        {
-		        throw new ReviewFileFormatException(ex.Message, ex);
-	        }
-
+                
+                return reviewFile.Review;
+            }
+            catch (Exception ex)
+            {
+	            throw new ReviewFileFormatException(ex.Message, ex);
+            }
         }
 
         public async Task<IReview> ReadAsync(Stream reviewFileStream)

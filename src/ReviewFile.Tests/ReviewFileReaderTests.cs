@@ -134,14 +134,43 @@ namespace LightningReview.ReviewFile.Tests
             // 1つ目の指摘のフィールド
             var issue1 = issues.FirstOrDefault(i => i.LID == "1");
             Assert.IsNotNull(issue1,$"LID=1の指摘がありません 。指摘数={issues.Count()}");
-            Assert.AreEqual("Issue1 Description", issue1.Description);
+            Assert.AreEqual("a74cde8d-d7e7-4948-8a60-82f0fabea5f8", issue1.GID);
             Assert.AreEqual("不具合", issue1.Type);
+            Assert.AreEqual("Issue1 CorrectionPolicy", issue1.CorrectionPolicy);
+            Assert.AreEqual("RevCategory2", issue1.Category);
+            Assert.AreEqual("Issue1 Description", issue1.Description);
+            Assert.AreEqual("Issue1 Reason", issue1.Reason);
+            Assert.AreEqual("RevSendingBackReason", issue1.SendingBackReason);
             Assert.AreEqual("未修正", issue1.Status);
+            Assert.AreEqual("True", issue1.IsSendingBack);
+            Assert.AreEqual("True", issue1.HasBeenSentBack);
+            Assert.AreEqual("RevDetectionActivity2", issue1.DetectionActivity);
+            Assert.AreEqual("RevInjectionActivity2", issue1.InjectionActivity);
             Assert.AreEqual("高", issue1.Priority);
             Assert.AreEqual("中", issue1.Importance);
+            Assert.AreEqual("outline1-1", issue1.OutlineName);
+            Assert.AreEqual("Doc1", issue1.RootOutlineName);
+            Assert.AreEqual("/Doc1/outline1/outline1-1", issue1.OutlinePath);
             Assert.AreEqual("Member1", issue1.ReportedBy);
+            Assert.AreEqual(DateTime.Parse("2021/2/12 0:00:00"), issue1.DateReported);
+            Assert.AreEqual("はい", issue1.NeedToFix);
             Assert.AreEqual("Member2", issue1.AssignedTo);
+            Assert.AreEqual(DateTime.Parse("2021/2/13 0:00:00"), issue1.DueDate);
+            Assert.AreEqual(DateTime.Parse("2021/2/14 0:00:00"), issue1.DateFixed);
+            Assert.AreEqual("Issue1 Resolution", issue1.Resolution);
             Assert.AreEqual("Member3", issue1.ConfirmedBy);
+            Assert.AreEqual(DateTime.Parse("2021/2/15 0:00:00"), issue1.DateConfirmed);
+            Assert.AreEqual("RevComment", issue1.Comment);
+            Assert.AreEqual("TextA2", issue1.CustomText1);
+            Assert.AreEqual("TextB2", issue1.CustomText2);
+            Assert.AreEqual("TextC2", issue1.CustomText3);
+            Assert.AreEqual("TextD2", issue1.CustomText4);
+            Assert.AreEqual("TextE2", issue1.CustomText5);
+            Assert.AreEqual("TextF2", issue1.CustomText6);
+            Assert.AreEqual("TextG2", issue1.CustomText7);
+            Assert.AreEqual("TextH2", issue1.CustomText8);
+            Assert.AreEqual("TextI2", issue1.CustomText9);
+            Assert.AreEqual("TextJ2", issue1.CustomText10);
         }
     }
 }

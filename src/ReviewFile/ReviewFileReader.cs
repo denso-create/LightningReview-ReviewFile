@@ -101,8 +101,8 @@ namespace LightningReview.ReviewFile
 			        : new XmlSerializer(typeof(Models.V10.ReviewFile));
 		        var reviewFile = (IReviewFile) serializer.Deserialize(xDoc.CreateReader());
 
-				// Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
-				reviewFile.Review.FilePath = string.Empty;
+                // Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
+                reviewFile.Review.FilePath = string.Empty;
 		        
 		        return reviewFile.Review;
 	        }

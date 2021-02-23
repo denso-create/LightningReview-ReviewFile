@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LightningReview.ReviewFile</name>
+    </assembly>
+    <members>
+        <member name="M:LightningReview.ReviewFile.IReviewFileReader.Read(System.String)">
+            <summary>
+            指定ファイルのレビューファイルを読み込みます。
+            </summary>
+            <param name="filepath">対象のレビューファイル</param>
+            <returns></returns>
+        </member>
+        <member name="M:LightningReview.ReviewFile.IReviewFileReader.ReadFolder(System.String,System.Boolean)">
+            <summary>
+            指定フォルダのレビューファイルを読み込みます。
+            </summary>
+            <param name="folderPath"></param>
+            <param name="readSubFodler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LightningReview.ReviewFile.Models.IDocument">
+            <summary>
+            ドキュメントのインタフェース
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.LID">
+            <summary>
+            ローカルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.Name">
+            <summary>
+            ドキュメント名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.AbsolutePath">
+            <summary>
+            ドキュメントの絶対パス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.ApplicationType">
+            <summary>
+            関連づいているアプリケーション
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IDocument.OutlineNodes">
+            <summary>
+            このドキュメントに関連づくアウトラインの一覧
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFile.Models.IIssue">
+            <summary>
+            指摘のインタフェース
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.LID">
+            <summary>
+            ローカルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Type">
+            <summary>
+            タイプ
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CorrectionPolicy">
+            <summary>
+            修正方針
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Category">
+            <summary>
+            分類
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Description">
+            <summary>
+            説明
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Reason">
+            <summary>
+            指摘理由
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.SendingBackReason">
+            <summary>
+            差し戻し理由
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Status">
+            <summary>
+            指摘のステータス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.IsSendingBack">
+            <summary>
+            現在差戻し中かどうか
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.HasBeenSentBack">
+            <summary>
+            過去に一度でも差し戻しがあったか
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.DetectionActivity">
+            <summary>
+            検出工程
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.InjectionActivity">
+            <summary>
+            原因工程
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Priority">
+            <summary>
+            優先度
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Importance">
+            <summary>
+            重大度
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.OutlineName">
+            <summary>
+            関連付けられているアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.RootOutlineName">
+            <summary>
+            ルートレベルのアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.OutlinePath">
+            <summary>
+            アウトラインノードのパス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.ReportedBy">
+            <summary>
+            報告者
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.DateReported">
+            <summary>
+            報告日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.NeedToFix">
+            <summary>
+            対策要否
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.AssignedTo">
+            <summary>
+            修正者
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.DueDate">
+            <summary>
+            期日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.DateFixed">
+            <summary>
+            修正日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Resolution">
+            <summary>
+            対策
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.ConfirmedBy">
+            <summary>
+            確認者
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.DateConfirmed">
+            <summary>
+            確認日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.Comment">
+            <summary>
+            コメント
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText1">
+            <summary>
+            カスタムテキスト1
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText2">
+            <summary>
+            カスタムテキスト2
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText3">
+            <summary>
+            カスタムテキスト3
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText4">
+            <summary>
+            カスタムテキスト4
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText5">
+            <summary>
+            カスタムテキスト5
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText6">
+            <summary>
+            カスタムテキスト6
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText7">
+            <summary>
+            カスタムテキスト7
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText8">
+            <summary>
+            カスタムテキスト8
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText9">
+            <summary>
+            カスタムテキスト9
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IIssue.CustomText10">
+            <summary>
+            カスタムテキスト10
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFile.Models.IOutlineNode">
+            <summary>
+            アウトラインノードのインタフェース
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IOutlineNode.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IOutlineNode.Name">
+            <summary>
+            ノード名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IOutlineNode.Children">
+            <summary>
+            子ノードの一覧
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFile.Models.IReview">
+            <summary>
+            レビューのインタフェース
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.GID">
+            <summary>
+            グローバルID
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.FilePath">
+            <summary>
+            レビューファイルの絶対パス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Issues">
+            <summary>
+            このレビューファイルに関連づく指摘の一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Documents">
+            <summary>
+            このレビューファイルに関連づくドキュメントの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.CreatedBy">
+            <summary>
+            作成者
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.CreatedDateTime">
+            <summary>
+            作成日時
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.LastUpdatedBy">
+            <summary>
+            最終更新者
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.LastUpdatedDateTime">
+            <summary>
+            最終更新日時
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Name">
+            <summary>
+            レビュー名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Goal">
+            <summary>
+            目的
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.EndCondition">
+            <summary>
+            終了条件
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Place">
+            <summary>
+            場所
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.ProjectCode">
+            <summary>
+            プロジェクトコード
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.ProjectName">
+            <summary>
+            プロジェクト名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.PlannedDate">
+            <summary>
+            計画実施日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.ActualDate">
+            <summary>
+            実績実施日
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.PlannedTime">
+            <summary>
+            計画時間（分単位）
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.ActualTime">
+            <summary>
+            実績時間(分単位)
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.Unit">
+            <summary>
+            成果物単位
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.PlannedScale">
+            <summary>
+            予定規模
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.ActualScale">
+            <summary>
+            実績規模
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.IssueCountOfGoal">
+            <summary>
+            目標件数
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReview.IssueCountOfActual">
+            <summary>
+            実績件数
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFile.Models.IReviewFile">
+            <summary>
+            レビューファイルのインタフェース
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReviewFile.SchemaVersion">
+            <summary>
+            スキーマバージョン値
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.IReviewFile.Review">
+            <summary>
+            レビュー
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Document.OutlineNodes">
+            <summary>
+            このドキュメントに関連づくアウトラインの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Issue.OutlineName">
+            <summary>
+            関連付けられているアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Issue.RootOutlineName">
+            <summary>
+            ルートレベルのアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.OutlineNode.Children">
+            <summary>
+            子ノードの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.FilePath">
+            <summary>
+            ファイルパス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.Issues">
+            <summary>
+            このレビューファイルに関連づく指摘の一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.Documents">
+            <summary>
+            このレビューファイルに関連づくドキュメントの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.ProjectCode">
+            <summary>
+            プロジェクトコード
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.ProjectName">
+            <summary>
+            プロジェクト名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.Review.IssueCountOfActual">
+            <summary>
+            実績件数
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V10.ReviewFile.LightningReview#ReviewFile#Models#IReviewFile#Review">
+            <summary>
+            レビュー
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Document.AllIssues">
+            <summary>
+            このドキュメントに関連づく指摘の一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Document.OutlineNodes">
+            <summary>
+            このドキュメントに関連づくアウトラインの一覧
+            </summary>
+        </member>
+        <member name="M:LightningReview.ReviewFile.Models.V18.EntityBase.#ctor">
+            <summary>
+            コンストラクタ
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Issue.OutlineName">
+            <summary>
+            関連付けられているアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Issue.RootOutlineName">
+            <summary>
+            ルートレベルのアウトラインノードの名前
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.OutlineNode.AllIssues">
+            <summary>
+            子ノードまでのすべての指摘
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.OutlineNode.Children">
+            <summary>
+            子ノードの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.FilePath">
+            <summary>
+            ファイルパス
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.Issues">
+            <summary>
+            このレビューファイルに関連づく指摘の一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.LightningReview#ReviewFile#Models#IReview#Documents">
+            <summary>
+            このレビューファイルに関連づくドキュメントの一覧
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.Project">
+            <summary>
+            プロジェクト
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.ProjectCode">
+            <summary>
+            プロジェクトコード
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.ProjectName">
+            <summary>
+            プロジェクト名
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.Review.IssueCountOfActual">
+            <summary>
+            実績件数
+            </summary>
+        </member>
+        <member name="P:LightningReview.ReviewFile.Models.V18.ReviewFile.LightningReview#ReviewFile#Models#IReviewFile#Review">
+            <summary>
+            レビュー
+            </summary>
+        </member>
+        <member name="T:LightningReview.ReviewFile.ReviewFileReader">
+            <summary>
+            レビューファイルのリーダー
+            </summary>
+        </member>
+        <member name="M:LightningReview.ReviewFile.ReviewFileReader.Read(System.String)">
+            <summary>
+            ファイルからロードします。
+            </summary>
+            <param name="filePath">レビューファイルのパス</param>
+            <returns>ロードしたレビューモデル</returns>
+        </member>
+        <member name="M:LightningReview.ReviewFile.ReviewFileReader.ReadFolder(System.String,System.Boolean)">
+            <summary>
+            フォルダからロードします
+            </summary>
+            <param name="folderPath">対象フォルダ</param>
+            <param name="includeSubFodler">サブフォルダも対象にする</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

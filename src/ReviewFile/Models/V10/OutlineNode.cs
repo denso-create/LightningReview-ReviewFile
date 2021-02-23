@@ -8,10 +8,12 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class OutlineNode : IOutlineNode
     {
-        [XmlAttribute]
-        public string GlobalId { get; set; }
+	    #region プロパティ
 
-        public string GID { get => GlobalId; set => GlobalId = value; }
+        [XmlAttribute]
+        public string GlobalID { get; set; }
+
+        public string GID { get => GlobalID; set => GlobalID = value; }
 
         [XmlAttribute]
         public string Name { get; set; }
@@ -20,6 +22,11 @@ namespace LightningReview.ReviewFile.Models.V10
         //[XmlArrayItem("OutlineNode")]
         //public List<OutlineNode> ChildNodes { get; set; }
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         public IEnumerable<IOutlineNode> Children => throw new NotImplementedException();
+
+        #endregion
     }
 }

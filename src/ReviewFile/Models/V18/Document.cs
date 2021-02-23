@@ -9,7 +9,9 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Document : EntityBase,IDocument
     {
-        [XmlElement]
+	    #region プロパティ
+        
+	    [XmlElement]
         public string LID { get; set; }
 
         [XmlElement]
@@ -19,22 +21,21 @@ namespace LightningReview.ReviewFile.Models.V18
         public string AbsolutePath { get; set; }
 
         [XmlElement]
-        public string RelativePath { get; set; }
-
-        [XmlElement]
         public string ApplicationType { get; set; }
 
         [XmlElement]
         public OutlineTree OutlineTree { get; set; } = new OutlineTree();
 
         /// <summary>
-        /// 全ての指摘
+        /// このドキュメントに関連づく指摘の一覧
         /// </summary>
         public IEnumerable<IIssue> AllIssues => OutlineTree.VirtualRoot.AllIssues;
 
         /// <summary>
-        /// アウトラインノード
+        /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
         public IEnumerable<IOutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children.OfType<IOutlineNode>();
+
+        #endregion
     }
 }

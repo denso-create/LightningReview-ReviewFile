@@ -9,6 +9,8 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class OutlineNode : EntityBase,IOutlineNode
     {
+	    #region プロパティ
+
         [XmlElement]
         public string Name { get; set; }
 
@@ -39,6 +41,11 @@ namespace LightningReview.ReviewFile.Models.V18
             }
         }
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         public IEnumerable<IOutlineNode> Children => ChildNodes.OfType<IOutlineNode>();
+
+        #endregion
     }
 }

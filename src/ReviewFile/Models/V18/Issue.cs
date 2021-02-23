@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V18
@@ -8,35 +11,34 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Issue : EntityBase,IIssue
     {
-        [XmlElement]
-        public string LID{ get; set; }
+	    #region プロパティ
+
+	    [XmlElement]
+        public string LID { get; set; }
 
         [XmlElement]
         public string Type { get; set; }
 
         [XmlElement]
-        public string Description { get; set; }
-
-        [XmlElement]
-        public string Comment { get; set; }
+        public string CorrectionPolicy { get; set; }
 
         [XmlElement]
         public string Category { get; set; }
 
         [XmlElement]
-        public string Status { get; set; }
-
-        [XmlElement]
-        public string Priority { get; set; }
+        public string Description { get; set; }
 
         [XmlElement]
         public string Reason { get; set; }
 
         [XmlElement]
-        public string IsSendingBack { get; set; }
+        public string SendingBackReason { get; set; }
 
         [XmlElement]
-        public string NeedToFix { get; set; }
+        public string Status { get; set; }
+
+        [XmlElement]
+        public string IsSendingBack { get; set; }
 
         [XmlElement]
         public string HasBeenSentBack { get; set; }
@@ -48,39 +50,72 @@ namespace LightningReview.ReviewFile.Models.V18
         public string InjectionActivity { get; set; }
 
         [XmlElement]
-        public string OutlinePath { get; set; }
+        public string Priority { get; set; }
 
         [XmlElement]
         public string Importance { get; set; }
 
-        #region  Assignments
+        /// <summary>
+        /// 関連付けられているアウトラインノードの名前
+        /// </summary>
+        public string OutlineName {
+	        get
+	        {
+		        // アウトラインパスの末尾のアウトライン名を取得
+		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
+	        }
+        }
+
+        /// <summary>
+        /// ルートレベルのアウトラインノードの名前
+        /// </summary>
+        public string RootOutlineName {
+	        get
+	        {
+		        // アウトラインパスの先頭のアウトライン名を取得
+		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
+	        }
+        }
+
+        [XmlElement]
+        public string OutlinePath { get; set; }
 
         [XmlElement]
         public string ReportedBy { get; set; }
 
+        [XmlElement("DateReported")]
+        public string DateReportedString { get; set; }
+        public DateTime? DateReported => string.IsNullOrEmpty(DateReportedString) ? (DateTime?) null : DateTime.Parse(DateReportedString);
+
+        [XmlElement]
+        public string NeedToFix { get; set; }
+
         [XmlElement]
         public string AssignedTo { get; set; }
+
+        [XmlElement("DueDate")]
+        public string DueDateString { get; set; }
+        public DateTime? DueDate =>string.IsNullOrEmpty(DueDateString) ? (DateTime?)null : DateTime.Parse(DueDateString);
+
+        [XmlElement("DateFixed")]
+        public string DateFixedString { get; set; }
+        public DateTime? DateFixed => string.IsNullOrEmpty(DateFixedString) ? (DateTime?) null : DateTime.Parse(DateFixedString);
+  
+        [XmlElement]
+        public string Resolution { get; set; }
 
         [XmlElement]
         public string ConfirmedBy { get; set; }
 
+        [XmlElement("DateConfirmed")]
+        public string DateConfirmedString { get; set; }
+        public DateTime? DateConfirmed => string.IsNullOrEmpty(DateConfirmedString) ? (DateTime?) null : DateTime.Parse(DateConfirmedString);
+        
         [XmlElement]
-        public string Resolution { get; set; }
+        public string Comment { get; set; }
 
-        [XmlElement("DateReported")]
-        public string DateReportedString { get; set; }
+        #region カスタムフィールド
 
-        public DateTime? DateReported => DateTime.Parse(DateReportedString);
-
-        [XmlElement]
-        public string DueDateString { get; set; }
-
-        public DateTime? DueDate => DateTime.Parse(DueDateString);
-
-
-        #endregion
-
-        #region CustomFields
         [XmlElement]
         public string CustomText1 { get; set; }
 
@@ -110,7 +145,9 @@ namespace LightningReview.ReviewFile.Models.V18
 
         [XmlElement]
         public string CustomText10 { get; set; }
-        #endregion
 
+        #endregion
+        
+        #endregion
     }
 }

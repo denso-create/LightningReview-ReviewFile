@@ -42,21 +42,21 @@ Console.WriteLine(review.Issues.Count());
 
 フォルダにある複数のレビューファイルを指定する場合
 ```cs
-    // フォルダにある複数のレビューファイルを指定する場合
-    var reviews = reader.ReadFolder(folder);
-    foreach ( var review in reviews)
+// フォルダにある複数のレビューファイルを指定する場合
+var reviews = reader.ReadFolder(folder);
+foreach ( var review in reviews)
+{
+    Console.WriteLine(review.Name);
+
+    // レビューごとの指摘件数
+    Console.WriteLine(review.Issues.Count());
+
+    // 指摘毎の詳細
+    foreach ( var issue in review.Issues)
     {
-        Console.WriteLine(review.Name);
-
-        // レビューごとの指摘件数
-        Console.WriteLine(review.Issues.Count());
-
-        // 指摘毎の詳細
-        foreach ( var issue in review.Issues)
-        {
-            Console.WriteLine(issue.Description);
-        }
+        Console.WriteLine(issue.Description);
     }
+}
 ```
 
 ## LightnigReview.ReviewFileToJsonService
@@ -110,4 +110,52 @@ exporter.Export(folderPath, jsonFilePath);
 
 `-r`を指定するとサブフォルダまで対象にできます。
 
+### 出力されるJSONファイルのフォーマット
 
+```json 
+{
+    "TotalReviewCount": 3,  // 読みこんだレビューファイルの数
+    "TotalIssueCount": 9,   // すべてのレビューファイルの指摘の合計
+    "Reviews": [            // 読み込んだレビューの一覧 
+        {
+            // レビュー①のフィールド情報
+            "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc0",
+            "FilePath": "C:\\work\\\\RevFile1.revx",
+            // ...
+            "Issues": [
+                {
+                    // レビュー①に関連する指摘①のフィールド情報
+                    "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f8",
+                    "LID": "1",
+                    // ...
+                },
+                {
+                    // レビュー①に関連する指摘②のフィールド情報
+                    "GID": "4eaf62fa-995a-45f7-9ddf-65e605bfc28c",
+                    "LID": "2",
+                    // ...
+                }
+            ]  
+        },
+        {
+            // レビュー②のフィールド情報
+            "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc1",
+            "FilePath": "C:\\work\\\\RevFile2.revx",
+            // ...
+            "Issues": [
+                {
+                    // レビュー②に関連する指摘①のフィールド情報
+                    "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f9",
+                    "LID": "1",
+                    // ...
+                }
+            ]
+        }
+    ]
+}
+``` 
+### 出力フィールドの説明
+フィールド情報の詳細は下記クラスに記載してありますのでそちらを参照ください。
+- レビューのフィールド情報：　　
+  https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs#L43
+- 指摘のフィールド情報：https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs#L35

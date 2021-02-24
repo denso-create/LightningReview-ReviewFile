@@ -74,7 +74,7 @@ Console.WriteLine(review.LastUpdatedDateTime);
 // レビューが持つ指摘の要素にアクセスする場合
 foreach (var issue in review.Issues)
 {
-	// 指摘の状態
+	// 指摘のステータス
 	Console.WriteLine(issue.Status);
     // 指摘の優先度
 	Console.WriteLine(issue.Priority);
@@ -145,19 +145,19 @@ exporter.Export(folderPath, jsonFilePath);
             // レビュー①のフィールド情報
             "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc0",
             "FilePath": "C:\\work\\\\RevFile1.revx",
-            // ...
+            //...
             "Issues": [
                 {
                     // レビュー①に関連する指摘①のフィールド情報
                     "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f8",
                     "LID": "1",
-                    // ...
+                    //...
                 },
                 {
                     // レビュー①に関連する指摘②のフィールド情報
                     "GID": "4eaf62fa-995a-45f7-9ddf-65e605bfc28c",
                     "LID": "2",
-                    // ...
+                    //...
                 }
             ]  
         },
@@ -165,13 +165,13 @@ exporter.Export(folderPath, jsonFilePath);
             // レビュー②のフィールド情報
             "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc1",
             "FilePath": "C:\\work\\\\RevFile2.revx",
-            // ...
+            //...
             "Issues": [
                 {
                     // レビュー②に関連する指摘①のフィールド情報
                     "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f9",
                     "LID": "1",
-                    // ...
+                    //...
                 }
             ]
         }
@@ -179,7 +179,6 @@ exporter.Export(folderPath, jsonFilePath);
 }
 ``` 
 ### 出力フィールドの説明
-フィールド情報の詳細は下記クラスに記載してありますのでそちらを参照ください。
-- レビューのフィールド情報：　　
-  https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs#L43
-- 指摘のフィールド情報：https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs#L35
+フィールド情報の詳細は下記クラスに記載してあります。
+- レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)
+- 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs)

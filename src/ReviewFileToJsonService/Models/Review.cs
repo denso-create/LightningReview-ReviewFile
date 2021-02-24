@@ -51,12 +51,7 @@ namespace ReviewFileToJsonService.Models
         /// レビューファイルの絶対パス
         /// </summary>
         public string FilePath { get; set; }
-
-        /// <summary>
-        /// 指摘一覧
-        /// </summary>
-        public IList<Issue> Issues { get; } = new List<Issue>();
-
+        
         /// <summary>
         /// 作成者
         /// </summary>
@@ -159,6 +154,11 @@ namespace ReviewFileToJsonService.Models
         public string IssueCountOfActual { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// 指摘一覧
+        /// </summary>
+        public IList<Issue> Issues { get; } = new List<Issue>();
 
         #endregion
     }

@@ -59,6 +59,30 @@ foreach ( var review in reviews)
 }
 ```
 
+読み込んだレビューおよび指摘の要素にアクセスする場合
+```cs
+// レビューの要素にアクセスする場合
+var review = reader.Read(ReviewFilePath);
+
+// レビューのプロジェクト名
+Console.WriteLine(review.ProjectName);
+// レビューの目標件数
+Console.WriteLine(review.IssueCountOfGoal);
+// レビューの最終更新日時
+Console.WriteLine(review.LastUpdatedDateTime);
+
+// レビューが持つ指摘の要素にアクセスする場合
+foreach (var issue in review.Issues)
+{
+	// 指摘の状態
+	Console.WriteLine(issue.Status);
+    // 指摘の優先度
+	Console.WriteLine(issue.Priority);
+    // 指摘の修正日
+    Console.WriteLine(issue.DateFixed);
+}
+```
+
 ## LightnigReview.ReviewFileToJsonService
 
 [![NuGet](https://img.shields.io/nuget/v/LightningReview.ReviewFileToJsonService.svg)](http://nuget.org/packages/LightningReview.ReviewFileToJsonService)

@@ -72,7 +72,7 @@ namespace ReviewFileToJsonService.Models
         /// </summary>
         public DateTime? LastUpdatedDateTime { get; set; }
 
-        #region 基本設定タブ
+        #region 基本設定
 
         /// <summary>
         /// レビュー名
@@ -106,7 +106,7 @@ namespace ReviewFileToJsonService.Models
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         /// <summary>
         /// 計画実施日

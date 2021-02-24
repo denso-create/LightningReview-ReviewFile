@@ -43,7 +43,7 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public IEnumerable<IDocument> Documents => DocumentEneities;
 
-        #region 基本設定タブ
+        #region 基本設定
         
         [XmlElement]
         public string Name { get; set; }
@@ -80,7 +80,7 @@ namespace LightningReview.ReviewFile.Models.V10
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         [XmlElement("PlannedDate")]
         public string PlannedDateString { get; set; }

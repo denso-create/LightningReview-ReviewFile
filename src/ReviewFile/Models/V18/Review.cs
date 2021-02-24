@@ -41,7 +41,7 @@ namespace LightningReview.ReviewFile.Models.V18
         /// </summary>
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
-        #region 基本設定タブ
+        #region 基本設定
         
         [XmlElement]
         public string Name { get; set; }
@@ -84,7 +84,7 @@ namespace LightningReview.ReviewFile.Models.V18
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         [XmlElement("PlannedDate")]
         public string PlannedDateString { get; set; }

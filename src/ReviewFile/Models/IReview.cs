@@ -51,7 +51,7 @@ namespace LightningReview.ReviewFile.Models
         /// </summary>
         DateTime? LastUpdatedDateTime { get; }
 
-        #region 基本設定タブ
+        #region 基本設定
 
         /// <summary>
         /// レビュー名
@@ -85,7 +85,7 @@ namespace LightningReview.ReviewFile.Models
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         /// <summary>
         /// 計画実施日

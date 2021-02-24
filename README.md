@@ -61,17 +61,17 @@ foreach ( var review in reviews)
 
 読み込んだレビューおよび指摘の要素にアクセスする場合
 ```cs
-// レビューの要素にアクセスする場合
+// レビューを取得する
 var review = reader.Read(ReviewFilePath);
 
 // レビューのプロジェクト名
 Console.WriteLine(review.ProjectName);
 // レビューの目標件数
 Console.WriteLine(review.IssueCountOfGoal);
-// レビューの最終更新日時
-Console.WriteLine(review.LastUpdatedDateTime);
+// レビューの計画実施日
+Console.WriteLine(review.PlannedDate);
 
-// レビューが持つ指摘の要素にアクセスする場合
+// レビューが持つ指摘を取得する
 foreach (var issue in review.Issues)
 {
 	// 指摘のステータス
@@ -182,3 +182,6 @@ exporter.Export(folderPath, jsonFilePath);
 フィールド情報の詳細は下記クラスに記載してあります。
 - レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)
 - 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs)
+
+### 補足
+ReviewFileToJsonCLIを用いて出力されるJSONファイルはUTF-8でエンコードされたJSONファイルとなっているため、出力されたJSONファイルを別ツールで読み込む場合は、UTF-8で読み込む必要があることに注意してください。

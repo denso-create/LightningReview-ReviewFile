@@ -19,6 +19,11 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         IReview Read(string filepath);
 
+        /// <summary>
+        /// 非同期で指定ファイルのレビューファイルを読み込みます。
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         Task<IReview> ReadAsync(string filepath);
 
         /// <summary>
@@ -29,6 +34,12 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         IEnumerable<IReview> ReadFolder(string folderPath, bool readSubFodler = false);
         
+        /// <summary>
+        /// 非同期で指定フォルダのレビューファイルを読み込みます。
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <param name="readSubFodler"></param>
+        /// <returns></returns>
         Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false);
 
         /// <summary>
@@ -38,6 +49,11 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         IReview Read(Stream reviewFileStream);
 
+        /// <summary>
+        /// 非同期でレビューファイルのストリームを読み込みます。
+        /// </summary>
+        /// <param name="reviewFileStream"></param>
+        /// <returns></returns>
         Task<IReview> ReadAsync(Stream reviewFileStream);
     }
 }

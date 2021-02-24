@@ -11,14 +11,14 @@ namespace ReviewFileToJsonService.Models
     /// </summary>
     public class Issue 
     {
-	    #region 構築
+        #region 構築
 
-	    /// <summary>
-	    /// コンストラクタ
-	    /// </summary>
-	    public Issue()
-	    {
-	    }
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public Issue()
+        {
+        }
 
         /// <summary>
         /// コンストラクタ
@@ -148,7 +148,7 @@ namespace ReviewFileToJsonService.Models
         /// 期日
         /// </summary>
         public DateTime? DueDate { get; set; }
-		
+        
         /// <summary>
         /// 修正日
         /// </summary>

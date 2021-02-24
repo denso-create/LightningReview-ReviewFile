@@ -9,36 +9,36 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IDocument
     {
-	    #region 公開プロパティ
+        #region 公開プロパティ
 
-	    /// <summary>
-	    /// グローバルID
-	    /// </summary>
+        /// <summary>
+        /// グローバルID
+        /// </summary>
         string GID { get; set; }
 
-	    /// <summary>
-	    /// ローカルID
-	    /// </summary>
+        /// <summary>
+        /// ローカルID
+        /// </summary>
         string LID { get; set; }
 
-	    /// <summary>
-	    /// ドキュメント名
-	    /// </summary>
+        /// <summary>
+        /// ドキュメント名
+        /// </summary>
         string Name { get; set; }
 
-	    /// <summary>
-	    /// ドキュメントの絶対パス
-	    /// </summary>
-	    string AbsolutePath { get; set; }
+        /// <summary>
+        /// ドキュメントの絶対パス
+        /// </summary>
+        string AbsolutePath { get; set; }
 
-	    /// <summary>
-	    /// 関連づいているアプリケーション
-	    /// </summary>
-	    string ApplicationType { get; set; }
+        /// <summary>
+        /// 関連づいているアプリケーション
+        /// </summary>
+        string ApplicationType { get; set; }
 
-	    /// <summary>
-	    /// このドキュメントに関連づく指摘の一覧
-	    /// </summary>
+        /// <summary>
+        /// このドキュメントに関連づく指摘の一覧
+        /// </summary>
         //IEnumerable<IIssue> AllIssues { get; }
 
         /// <summary>

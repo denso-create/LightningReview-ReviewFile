@@ -10,9 +10,9 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Issue : IIssue
     {
-	    #region プロパティ
+        #region プロパティ
         
-	    [XmlAttribute]
+        [XmlAttribute]
         public string GlobalID { get; set; }
         public string GID { get => GlobalID; set => GlobalID = value; }
 
@@ -63,22 +63,22 @@ namespace LightningReview.ReviewFile.Models.V10
         /// 関連付けられているアウトラインノードの名前
         /// </summary>
         public string OutlineName {
-	        get
-	        {
-		        // アウトラインパスの末尾のアウトライン名を取得
-		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
-	        }
+            get
+            {
+                // アウトラインパスの末尾のアウトライン名を取得
+                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
+            }
         }
 
         /// <summary>
         /// ルートレベルのアウトラインノードの名前
         /// </summary>
         public string RootOutlineName {
-	        get
-	        {
-		        // アウトラインパスの先頭のアウトライン名を取得
-		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
-	        }
+            get
+            {
+                // アウトラインパスの先頭のアウトライン名を取得
+                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
+            }
         }
 
         [XmlElement]

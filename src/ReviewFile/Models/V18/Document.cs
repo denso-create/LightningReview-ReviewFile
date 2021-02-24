@@ -9,9 +9,9 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Document : EntityBase,IDocument
     {
-	    #region プロパティ
+        #region プロパティ
         
-	    [XmlElement]
+        [XmlElement]
         public string LID { get; set; }
 
         [XmlElement]

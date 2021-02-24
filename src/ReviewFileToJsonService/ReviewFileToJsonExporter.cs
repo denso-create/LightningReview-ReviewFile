@@ -24,8 +24,8 @@ namespace LightningReview.ReviewFileToJsonService
         /// <param name="includeSubFolders"></param>
         public void Export(string revxFolder,string outputFilePath,bool includeSubFolders=false)
         {
-			var reader = new ReviewFileReader();
-			var readReviews = reader.ReadFolder(revxFolder, includeSubFolders);
+            var reader = new ReviewFileReader();
+            var readReviews = reader.ReadFolder(revxFolder, includeSubFolders);
             // Jsonモデル
             var jsonModel = new JsonModel(readReviews);
 
@@ -39,7 +39,7 @@ namespace LightningReview.ReviewFileToJsonService
 
             // JSONとして書き出しする
             var jsonString = JsonSerializer.Serialize(jsonModel, options);
-			File.WriteAllText(outputFilePath, jsonString);
+            File.WriteAllText(outputFilePath, jsonString);
         }
 
     }

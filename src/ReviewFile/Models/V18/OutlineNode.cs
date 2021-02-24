@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class OutlineNode : EntityBase,IOutlineNode
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlElement]
         public string Name { get; set; }

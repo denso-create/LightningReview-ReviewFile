@@ -8,7 +8,7 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Project
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlElement]
         public string Code { get; set; }

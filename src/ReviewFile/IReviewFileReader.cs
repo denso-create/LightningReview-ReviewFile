@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace LightningReview.ReviewFile
 {
-	/// <summary>
-	/// レビューファイルのリーダーのインタフェース
-	/// </summary>
-	public interface IReviewFileReader
+    /// <summary>
+    /// レビューファイルのリーダーのインタフェース
+    /// </summary>
+    public interface IReviewFileReader
     {
         /// <summary>
         /// 指定ファイルのレビューファイルを読み込みます。

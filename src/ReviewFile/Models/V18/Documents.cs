@@ -8,7 +8,7 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Documents : EntityBase
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlArray("List")]
         [XmlArrayItem("Document")]

@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IIssue
     {
-	    #region 公開プロパティ
+        #region 公開プロパティ
 
         /// <summary>
         /// グローバルID
@@ -125,7 +125,7 @@ namespace LightningReview.ReviewFile.Models
         /// 期日
         /// </summary>
         DateTime? DueDate { get; }
-		
+        
         /// <summary>
         /// 修正日
         /// </summary>

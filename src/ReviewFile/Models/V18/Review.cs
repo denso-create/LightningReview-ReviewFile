@@ -22,18 +22,18 @@ namespace LightningReview.ReviewFile.Models.V18
         /// </summary>
         public IEnumerable<IIssue> Issues
         {
-	        get
-	        {
-		        var issues = new List<IIssue>();
+            get
+            {
+                var issues = new List<IIssue>();
 
-		        // 各ドキュメントの指摘
-		        foreach (var doc in Documents.List)
-		        {
-			        issues.AddRange(doc.AllIssues);
-		        }
+                // 各ドキュメントの指摘
+                foreach (var doc in Documents.List)
+                {
+                    issues.AddRange(doc.AllIssues);
+                }
 
-		        return issues.ToList();
-	        }
+                return issues.ToList();
+            }
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace LightningReview.ReviewFile.Models.V18
         /// </summary>
         public string ProjectCode
         {
-	        get => Project.Code;
-	        set => Project.Code = value;
+            get => Project.Code;
+            set => Project.Code = value;
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace LightningReview.ReviewFile.Models.V18
         /// </summary>
         public string ProjectName
         {
-	        get => Project.Name;
-	        set => Project.Name = value;
+            get => Project.Name;
+            set => Project.Name = value;
         }
 
         #endregion
@@ -117,26 +117,26 @@ namespace LightningReview.ReviewFile.Models.V18
         /// </summary>
         public string IssueCountOfActual
         {
-	        get
-	        {
-		        var issueCountOfActualCount = 0;
-		        foreach (var issue in Issues)
-		        {
+            get
+            {
+                var issueCountOfActualCount = 0;
+                foreach (var issue in Issues)
+                {
                     // 指摘タイプがグッドポイントあるいは対策要否が否でない指摘の件数が実績件数
-			        if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
-			        {
+                    if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
+                    {
                         continue;
-			        }
+                    }
 
-			        issueCountOfActualCount++;
-		        }
+                    issueCountOfActualCount++;
+                }
 
-		        return issueCountOfActualCount.ToString();
-	        }
+                return issueCountOfActualCount.ToString();
+            }
         }
 
         #endregion
 
-		#endregion
-	}
+        #endregion
+    }
 }

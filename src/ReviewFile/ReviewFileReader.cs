@@ -108,13 +108,13 @@ namespace LightningReview.ReviewFile
             }
             catch (Exception ex)
             {
-	            throw new ReviewFileFormatException(ex.Message, ex);
+                throw new ReviewFileFormatException(ex.Message, ex);
             }
         }
 
         public async Task<IReview> ReadAsync(Stream reviewFileStream)
         {
-	        return await Task.Run(() => Read(reviewFileStream));
+            return await Task.Run(() => Read(reviewFileStream));
         }
     }
 }

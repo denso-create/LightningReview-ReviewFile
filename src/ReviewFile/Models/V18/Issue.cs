@@ -11,9 +11,9 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Issue : EntityBase,IIssue
     {
-	    #region プロパティ
+        #region プロパティ
 
-	    [XmlElement]
+        [XmlElement]
         public string LID { get; set; }
 
         [XmlElement]
@@ -59,22 +59,22 @@ namespace LightningReview.ReviewFile.Models.V18
         /// 関連付けられているアウトラインノードの名前
         /// </summary>
         public string OutlineName {
-	        get
-	        {
-		        // アウトラインパスの末尾のアウトライン名を取得
-		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
-	        }
+            get
+            {
+                // アウトラインパスの末尾のアウトライン名を取得
+                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
+            }
         }
 
         /// <summary>
         /// ルートレベルのアウトラインノードの名前
         /// </summary>
         public string RootOutlineName {
-	        get
-	        {
-		        // アウトラインパスの先頭のアウトライン名を取得
-		        return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
-	        }
+            get
+            {
+                // アウトラインパスの先頭のアウトライン名を取得
+                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
+            }
         }
 
         [XmlElement]

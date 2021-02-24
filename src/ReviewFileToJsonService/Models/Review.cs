@@ -7,9 +7,9 @@ using ReviewFileToJsonService.Extensions;
 
 namespace ReviewFileToJsonService.Models
 {
-	/// <summary>
-	/// レビュー
-	/// </summary>
+    /// <summary>
+    /// レビュー
+    /// </summary>
     public class Review 
     {
         #region 構築
@@ -18,25 +18,25 @@ namespace ReviewFileToJsonService.Models
         /// コンストラクタ
         /// </summary>
         public Review() 
-		{
-		}
+        {
+        }
 
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param name="reviewModel"></param>
-		public Review(IReview reviewModel)
-		{
-			// 同じ名前のフィールドをコピー
-			this.CopyFieldsFrom(reviewModel);
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="reviewModel"></param>
+        public Review(IReview reviewModel)
+        {
+            // 同じ名前のフィールドをコピー
+            this.CopyFieldsFrom(reviewModel);
 
-			// 指摘をコピー
-			foreach ( var issueModel in reviewModel.Issues)
-			{
-				var issue = new Issue(issueModel);
-				Issues.Add(issue);
+            // 指摘をコピー
+            foreach ( var issueModel in reviewModel.Issues)
+            {
+                var issue = new Issue(issueModel);
+                Issues.Add(issue);
             }
-		}
+        }
 
         #endregion
 
@@ -72,7 +72,7 @@ namespace ReviewFileToJsonService.Models
         /// </summary>
         public DateTime? LastUpdatedDateTime { get; set; }
 
-	    #region 基本設定タブ
+        #region 基本設定タブ
 
         /// <summary>
         /// レビュー名

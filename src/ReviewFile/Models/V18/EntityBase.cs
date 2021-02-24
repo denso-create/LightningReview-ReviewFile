@@ -7,7 +7,7 @@ namespace LightningReview.ReviewFile.Models.V18
 {
     public abstract class EntityBase
     {
-	    #region 構築
+        #region 構築
 
         /// <summary>
         /// コンストラクタ

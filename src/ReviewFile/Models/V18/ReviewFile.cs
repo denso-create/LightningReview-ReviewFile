@@ -8,7 +8,7 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class ReviewFile : IReviewFile
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlElement]
         public string SchemaVersion { get; set; }

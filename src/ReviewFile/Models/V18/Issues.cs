@@ -8,7 +8,7 @@ namespace LightningReview.ReviewFile.Models.V18
     [XmlRoot]
     public class Issues : EntityBase
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlArray("List")]
         [XmlArrayItem("Issue")]

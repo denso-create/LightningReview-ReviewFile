@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IReview
     {
-	    #region 公開プロパティ
+        #region 公開プロパティ
 
         /// <summary>
         /// グローバルID
@@ -51,7 +51,7 @@ namespace LightningReview.ReviewFile.Models
         /// </summary>
         DateTime? LastUpdatedDateTime { get; }
 
-	    #region 基本設定タブ
+        #region 基本設定タブ
 
         /// <summary>
         /// レビュー名

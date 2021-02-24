@@ -8,7 +8,7 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Document : IDocument
     {
-	    #region プロパティ
+        #region プロパティ
 
         [XmlAttribute]
         public string GlobalID { get; set; }

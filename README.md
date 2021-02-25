@@ -74,10 +74,10 @@ Console.WriteLine(review.PlannedDate);
 // レビューが持つ指摘を取得する
 foreach (var issue in review.Issues)
 {
-	// 指摘のステータス
-	Console.WriteLine(issue.Status);
+    // 指摘のステータス
+    Console.WriteLine(issue.Status);
     // 指摘の優先度
-	Console.WriteLine(issue.Priority);
+    Console.WriteLine(issue.Priority);
     // 指摘の修正日
     Console.WriteLine(issue.DateFixed);
 }
@@ -136,7 +136,7 @@ exporter.Export(folderPath, jsonFilePath);
 
 ### 出力されるJSONファイルのフォーマット
 
-```json 
+``` 
 {
     "TotalReviewCount": 3,  // 読みこんだレビューファイルの数
     "TotalIssueCount": 9,   // すべてのレビューファイルの指摘の合計
@@ -178,6 +178,7 @@ exporter.Export(folderPath, jsonFilePath);
     ]
 }
 ``` 
+
 ### 出力フィールドの説明
 フィールド情報の詳細は下記クラスに記載してあります。
 - レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)

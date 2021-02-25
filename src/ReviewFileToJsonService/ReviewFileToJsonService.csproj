@@ -13,13 +13,13 @@
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
     <PackageId>LightningReview.ReviewFileToJsonService</PackageId>
-    <PackageVersion>0.8.7</PackageVersion>
-    <Version>0.8.7</Version>
+    <PackageVersion>0.8.8</PackageVersion>
+    <Version>0.8.8</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>ドキュメントおよびコメントの拡充と推敲を行った</PackageReleaseNotes>
-    <AssemblyVersion>0.8.7.0</AssemblyVersion>
-    <FileVersion>0.8.7.0</FileVersion>
+    <PackageReleaseNotes>テストを追加</PackageReleaseNotes>
+    <AssemblyVersion>0.8.8.0</AssemblyVersion>
+    <FileVersion>0.8.8.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

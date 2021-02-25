@@ -134,6 +134,21 @@ exporter.Export(folderPath, jsonFilePath);
 
 `-r`を指定するとサブフォルダまで対象にできます。
 
+| ReviewFileToJson.exe -f folder -u
+
+`-u`を指定すると出力されるJSONファイルにおいてUnicodeエスケープを行いません。
+
+### `-u`オプションの注意点
+本オプションをつけることで出力されるJSONファイルはUTF-8でエンコードされたJSONファイルとなります。  
+以下はJSONファイルの指摘の重大度の出力イメージ例
+
+```
+"Importance": "\u4E2D" // -u オプションをつけず、Unicodeエスケープされた状態
+"Importance": "中"     // -u オプションをつけて、UTF-8で出力された状態
+```
+
+-uをつけて出力されたJSONファイルを別ツールで読み込む場合は、ファイル内容がうまく読み取れなくなる恐れがあるため、UTF-8で読み込む必要があることに注意してください。
+
 ### 出力されるJSONファイルのフォーマット
 
 ``` 
@@ -183,6 +198,3 @@ exporter.Export(folderPath, jsonFilePath);
 フィールド情報の詳細は下記クラスに記載してあります。
 - レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)
 - 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs)
-
-### 補足
-ReviewFileToJsonCLIを用いて出力されるJSONファイルはUTF-8でエンコードされたJSONファイルとなっているため、出力されたJSONファイルを別ツールで読み込む場合は、UTF-8で読み込む必要があることに注意してください。

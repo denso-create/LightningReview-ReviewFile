@@ -16,6 +16,9 @@ namespace LightningReview.ReviewFileToJsonService
     /// </summary>
     public class ReviewFileToJsonExporter
     {
+        /// <summary>
+        /// ログ出力
+        /// </summary>
         public Action<string> Logger { get; set; }
 
         /// <summary>

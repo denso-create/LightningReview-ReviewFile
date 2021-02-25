@@ -41,6 +41,11 @@ namespace LightningReview.ReviewFile
             }
         }
 
+        /// <summary>
+        /// 非同期でファイルからロードします。
+        /// </summary>
+        /// <param name="filePath">レビューファイルのパス</param>
+        /// <returns>ロードしたレビューモデル</returns>
         public async Task<IReview> ReadAsync(string filepath)
         {
             return await Task.Run(() => Read(filepath));
@@ -74,6 +79,12 @@ namespace LightningReview.ReviewFile
             return reviews;
         }
 
+        /// <summary>
+        /// 非同期でフォルダからロードします。
+        /// </summary>
+        /// <param name="folderPath">フォルダのパス</param>
+        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
+        /// <returns>ロードしたレビューモデル</returns>
         public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false)
         {
             return await Task.Run(() => ReadFolderAsync(folderPath, readSubFodler));
@@ -112,6 +123,11 @@ namespace LightningReview.ReviewFile
             }
         }
 
+        /// <summary>
+        /// 非同期でストリームからロードします。
+        /// </summary>
+        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
+        /// <returns>ロードしたレビューモデル</returns>
         public async Task<IReview> ReadAsync(Stream reviewFileStream)
         {
             return await Task.Run(() => Read(reviewFileStream));

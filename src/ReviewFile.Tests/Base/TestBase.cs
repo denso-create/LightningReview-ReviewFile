@@ -89,18 +89,18 @@ namespace LightningReview.ReviewFile.Tests
         /// <returns></returns>
         protected IReview ReadReviewStream(string version, string fileName)
         {
-	        var filePath = GetTestDataPath(version, fileName);
-	        using (var archive = ZipFile.OpenRead(filePath))
-	        {
-		        // revxから"Review.xml"を抜き出す
-		        var reviewXmlEntry = archive.GetEntry("Review.xml");
-		        using (var zipEntryStream = reviewXmlEntry.Open())
-		        {
-			        var reader = new ReviewFileReader();
-			        var review = reader.Read(zipEntryStream);
-			        return review;
-		        }
-	        }
+            var filePath = GetTestDataPath(version, fileName);
+            using (var archive = ZipFile.OpenRead(filePath))
+            {
+                // revxから"Review.xml"を抜き出す
+                var reviewXmlEntry = archive.GetEntry("Review.xml");
+                using (var zipEntryStream = reviewXmlEntry.Open())
+                {
+                    var reader = new ReviewFileReader();
+                    var review = reader.Read(zipEntryStream);
+                    return review;
+                }
+            }
         }
     }
 }

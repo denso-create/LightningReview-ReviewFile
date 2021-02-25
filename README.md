@@ -42,21 +42,45 @@ Console.WriteLine(review.Issues.Count());
 
 フォルダにある複数のレビューファイルを指定する場合
 ```cs
-    // フォルダにある複数のレビューファイルを指定する場合
-    var reviews = reader.ReadFolder(folder);
-    foreach ( var review in reviews)
+// フォルダにある複数のレビューファイルを指定する場合
+var reviews = reader.ReadFolder(folder);
+foreach ( var review in reviews)
+{
+    Console.WriteLine(review.Name);
+
+    // レビューごとの指摘件数
+    Console.WriteLine(review.Issues.Count());
+
+    // 指摘毎の詳細
+    foreach ( var issue in review.Issues)
     {
-        Console.WriteLine(review.Name);
-
-        // レビューごとの指摘件数
-        Console.WriteLine(review.Issues.Count());
-
-        // 指摘毎の詳細
-        foreach ( var issue in review.Issues)
-        {
-            Console.WriteLine(issue.Description);
-        }
+        Console.WriteLine(issue.Description);
     }
+}
+```
+
+読み込んだレビューおよび指摘の要素にアクセスする場合
+```cs
+// レビューを取得する
+var review = reader.Read(ReviewFilePath);
+
+// レビューのプロジェクト名
+Console.WriteLine(review.ProjectName);
+// レビューの目標件数
+Console.WriteLine(review.IssueCountOfGoal);
+// レビューの計画実施日
+Console.WriteLine(review.PlannedDate);
+
+// レビューが持つ指摘を取得する
+foreach (var issue in review.Issues)
+{
+    // 指摘のステータス
+    Console.WriteLine(issue.Status);
+    // 指摘の優先度
+    Console.WriteLine(issue.Priority);
+    // 指摘の修正日
+    Console.WriteLine(issue.DateFixed);
+}
 ```
 
 ## LightnigReview.ReviewFileToJsonService
@@ -110,4 +134,67 @@ exporter.Export(folderPath, jsonFilePath);
 
 `-r`を指定するとサブフォルダまで対象にできます。
 
+| ReviewFileToJson.exe -f folder -u
 
+`-u`を指定すると出力されるJSONファイルにおいてUnicodeエスケープを行いません。
+
+### `-u`オプションの注意点
+本オプションをつけることで出力されるJSONファイルはUTF-8でエンコードされたJSONファイルとなります。  
+以下はJSONファイルの指摘の重大度の出力イメージ例
+
+```
+"Importance": "\u4E2D" // -u オプションをつけず、Unicodeエスケープされた状態
+"Importance": "中"     // -u オプションをつけて、UTF-8で出力された状態
+```
+
+-uをつけて出力されたJSONファイルを別ツールで読み込む場合は、ファイル内容がうまく読み取れなくなる恐れがあるため、UTF-8で読み込む必要があることに注意してください。
+
+### 出力されるJSONファイルのフォーマット
+
+``` 
+{
+    "TotalReviewCount": 3,  // 読みこんだレビューファイルの数
+    "TotalIssueCount": 9,   // すべてのレビューファイルの指摘の合計
+    "Reviews": [            // 読み込んだレビューの一覧 
+        {
+            // レビュー①のフィールド情報
+            "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc0",
+            "FilePath": "C:\\work\\\\RevFile1.revx",
+            //...
+            "Issues": [
+                {
+                    // レビュー①に関連する指摘①のフィールド情報
+                    "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f8",
+                    "LID": "1",
+                    //...
+                },
+                {
+                    // レビュー①に関連する指摘②のフィールド情報
+                    "GID": "4eaf62fa-995a-45f7-9ddf-65e605bfc28c",
+                    "LID": "2",
+                    //...
+                }
+            ]  
+        },
+        {
+            // レビュー②のフィールド情報
+            "GID": "b90a3142-2c05-4550-9ac5-008ea6461bc1",
+            "FilePath": "C:\\work\\\\RevFile2.revx",
+            //...
+            "Issues": [
+                {
+                    // レビュー②に関連する指摘①のフィールド情報
+                    "GID": "a74cde8d-d7e7-4948-8a60-82f0fabea5f9",
+                    "LID": "1",
+                    //...
+                }
+            ]
+        }
+    ]
+}
+``` 
+
+### 出力フィールドの説明
+フィールド情報の詳細は下記クラスに記載してあります。
+- レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)
+- 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs)

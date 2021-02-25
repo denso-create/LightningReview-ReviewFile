@@ -8,24 +8,51 @@ namespace LightningReview.ReviewFile.Models.V10
     [XmlRoot]
     public class Review : IReview
     {
-	    #region プロパティ
+        #region プロパティ
 
+        /// <summary>
+        /// グローバルID（V10定義）
+        /// </summary>
         [XmlAttribute]
         public string GlobalID { get; set; }
+
+        /// <summary>
+        /// グローバルID
+        /// </summary>
         public string GID { get => GlobalID; set => GlobalID = value; }
 
+        /// <summary>
+        /// 作成者
+        /// </summary>
         [XmlElement]
         public string CreatedBy { get; set; }
 
+        /// <summary>
+        /// 最終更新者
+        /// </summary>
         [XmlElement]
         public string LastUpdatedBy { get; set; }
 
+        /// <summary>
+        /// 作成日時の文字列
+        /// </summary>
         [XmlElement("CreatedDateTime")]
         public string CreatedDateTimeString { get; set; }
+
+        /// <summary>
+        /// 作成日時
+        /// </summary>
         public DateTime? CreatedDateTime => string.IsNullOrEmpty(CreatedDateTimeString) ? (DateTime?) null : DateTime.Parse(CreatedDateTimeString);
 
+        /// <summary>
+        /// 最終更新日時
+        /// </summary>
         [XmlElement("LastUpdatedDateTime")]
         public string LastUpdatedDateTimeString { get; set; }
+
+        /// <summary>
+        /// 最終更新日時の文字列
+        /// </summary>
         public DateTime? LastUpdatedDateTime => string.IsNullOrEmpty(LastUpdatedDateTimeString) ? (DateTime?) null : DateTime.Parse(LastUpdatedDateTimeString);
 
         /// <summary>
@@ -43,7 +70,7 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public IEnumerable<IDocument> Documents => DocumentEneities;
 
-        #region 基本設定タブ
+        #region 基本設定
         
         [XmlElement]
         public string Name { get; set; }
@@ -65,8 +92,8 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string ProjectCode
         {
-	        get => Project.Code;
-	        set => Project.Code = value;
+            get => Project.Code;
+            set => Project.Code = value;
         }
 
         /// <summary>
@@ -74,13 +101,13 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string ProjectName
         {
-	        get => Project.Name;
-	        set => Project.Name = value;
+            get => Project.Name;
+            set => Project.Name = value;
         }
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         [XmlElement("PlannedDate")]
         public string PlannedDateString { get; set; }
@@ -113,22 +140,22 @@ namespace LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string IssueCountOfActual
         {
-	        get
-	        {
-		        var issueCountOfActualCount = 0;
-		        foreach (var issue in Issues)
-		        {
-			        // 指摘タイプがグッドポイントあるいは対策要否が否でない指摘の件数が実績件数
-			        if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
-			        {
-				        continue;
-			        }
+            get
+            {
+                var issueCountOfActualCount = 0;
+                foreach (var issue in Issues)
+                {
+                    // 指摘タイプがグッドポイントあるいは対策要否が否でない指摘の件数が実績件数
+                    if ((issue.Type == "グッドポイント") || (issue.NeedToFix == "いいえ"))
+                    {
+                        continue;
+                    }
 
-			        issueCountOfActualCount++;
-		        }
+                    issueCountOfActualCount++;
+                }
 
-		        return issueCountOfActualCount.ToString();
-	        }
+                return issueCountOfActualCount.ToString();
+            }
         }
 
         [XmlArray("Documents")]

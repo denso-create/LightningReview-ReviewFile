@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IReviewFile
     {
-	    #region 公開プロパティ
+        #region 公開プロパティ
 
         /// <summary>
         /// スキーマバージョン値

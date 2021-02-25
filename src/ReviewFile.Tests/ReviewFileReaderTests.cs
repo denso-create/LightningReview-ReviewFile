@@ -47,9 +47,9 @@ namespace LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReadStreamTest(string version)
         {
-	        var review = ReadReviewStream(version, RevFileName);
-	        Assert.IsNotNull(review);
-	        Assert.AreEqual(string.Empty, review.FilePath);
+            var review = ReadReviewStream(version, RevFileName);
+            Assert.IsNotNull(review);
+            Assert.AreEqual(string.Empty, review.FilePath);
         }
 
         [DataRow("V10")]

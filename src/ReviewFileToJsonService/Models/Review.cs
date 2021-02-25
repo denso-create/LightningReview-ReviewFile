@@ -7,9 +7,9 @@ using ReviewFileToJsonService.Extensions;
 
 namespace ReviewFileToJsonService.Models
 {
-	/// <summary>
-	/// レビュー
-	/// </summary>
+    /// <summary>
+    /// レビュー
+    /// </summary>
     public class Review 
     {
         #region 構築
@@ -18,25 +18,25 @@ namespace ReviewFileToJsonService.Models
         /// コンストラクタ
         /// </summary>
         public Review() 
-		{
-		}
+        {
+        }
 
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param name="reviewModel"></param>
-		public Review(IReview reviewModel)
-		{
-			// 同じ名前のフィールドをコピー
-			this.CopyFieldsFrom(reviewModel);
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="reviewModel"></param>
+        public Review(IReview reviewModel)
+        {
+            // 同じ名前のフィールドをコピー
+            this.CopyFieldsFrom(reviewModel);
 
-			// 指摘をコピー
-			foreach ( var issueModel in reviewModel.Issues)
-			{
-				var issue = new Issue(issueModel);
-				Issues.Add(issue);
+            // 指摘をコピー
+            foreach ( var issueModel in reviewModel.Issues)
+            {
+                var issue = new Issue(issueModel);
+                Issues.Add(issue);
             }
-		}
+        }
 
         #endregion
 
@@ -51,12 +51,7 @@ namespace ReviewFileToJsonService.Models
         /// レビューファイルの絶対パス
         /// </summary>
         public string FilePath { get; set; }
-
-        /// <summary>
-        /// 指摘一覧
-        /// </summary>
-        public IList<Issue> Issues { get; } = new List<Issue>();
-
+        
         /// <summary>
         /// 作成者
         /// </summary>
@@ -77,7 +72,7 @@ namespace ReviewFileToJsonService.Models
         /// </summary>
         public DateTime? LastUpdatedDateTime { get; set; }
 
-	    #region 基本設定タブ
+        #region 基本設定
 
         /// <summary>
         /// レビュー名
@@ -111,7 +106,7 @@ namespace ReviewFileToJsonService.Models
 
         #endregion
 
-        #region 予実タブ
+        #region 予実
 
         /// <summary>
         /// 計画実施日
@@ -159,6 +154,11 @@ namespace ReviewFileToJsonService.Models
         public string IssueCountOfActual { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// 指摘一覧
+        /// </summary>
+        public IList<Issue> Issues { get; } = new List<Issue>();
 
         #endregion
     }

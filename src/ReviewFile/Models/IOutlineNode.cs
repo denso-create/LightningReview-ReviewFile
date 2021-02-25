@@ -9,7 +9,7 @@ namespace LightningReview.ReviewFile.Models
     /// </summary>
     public interface IOutlineNode
     {
-	    #region 公開プロパティ
+        #region 公開プロパティ
         
         /// <summary>
         /// グローバルID

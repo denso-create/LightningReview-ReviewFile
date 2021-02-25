@@ -6,17 +6,29 @@ using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V18
 {
+    /// <summary>
+    /// アウトラインノード
+    /// </summary>
     [XmlRoot]
     public class OutlineNode : EntityBase,IOutlineNode
     {
-	    #region プロパティ
+        #region プロパティ
 
+        /// <summary>
+        /// ノード名
+        /// </summary>
         [XmlElement]
         public string Name { get; set; }
 
+        /// <summary>
+        /// このアウトラインに関連づく指摘の一覧
+        /// </summary>
         [XmlElement]
         public Issues Issues { get; set; } = new Issues();
 
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
         [XmlArray("Children")]
         [XmlArrayItem("OutlineNode")]
         public List<OutlineNode> ChildNodes{ get; set; } = new List<OutlineNode>();

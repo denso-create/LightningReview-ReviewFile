@@ -5,6 +5,9 @@ using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V10
 {
+    /// <summary>
+    /// ドキュメント
+    /// </summary>
     [XmlRoot]
     public class Document : IDocument
     {
@@ -50,6 +53,9 @@ namespace LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string ApplicationType { get; set; }
         
+        /// <summary>
+        /// アウトラインツリー
+        /// </summary>
         //[XmlArray]
         //[XmlArrayItem("OutlineTree")]
         //public List<OutlineNode> OutlineTree { get; set; }

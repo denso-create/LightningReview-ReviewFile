@@ -6,17 +6,29 @@ using System.Linq;
 
 namespace LightningReview.ReviewFile.Models.V18
 {
+    /// <summary>
+    /// ドキュメント
+    /// </summary>
     [XmlRoot]
     public class Document : EntityBase,IDocument
     {
         #region プロパティ
         
+        /// <summary>
+        /// ローカルID
+        /// </summary>
         [XmlElement]
         public string LID { get; set; }
 
+        /// <summary>
+        /// ドキュメント名
+        /// </summary>
         [XmlElement]
         public string Name { get; set; }
 
+        /// <summary>
+        /// ドキュメントの絶対パス
+        /// </summary>
         [XmlElement]
         public string AbsolutePath { get; set; }
 

@@ -5,6 +5,9 @@ using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V18
 {
+    /// <summary>
+    /// レビュー設定
+    /// </summary>
     public class ReviewSettings
     {
     }

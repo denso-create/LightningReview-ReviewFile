@@ -15,32 +15,32 @@ namespace LightningReview.ReviewFile
         /// <summary>
         /// 指定ファイルのレビューファイルを読み込みます。
         /// </summary>
-        /// <param name="filepath">レビューファイルのパス</param>
+        /// <param name="filePath">レビューファイルのパス</param>
         /// <returns>ロードしたレビューモデル</returns>
-        IReview Read(string filepath);
+        IReview Read(string filePath);
 
         /// <summary>
         /// 非同期で指定ファイルのレビューファイルを読み込みます。
         /// </summary>
-        /// <param name="filepath"></param>
+        /// <param name="filePath"></param>
         /// <returns></returns>
-        Task<IReview> ReadAsync(string filepath);
+        Task<IReview> ReadAsync(string filePath);
 
         /// <summary>
         /// 指定フォルダのレビューファイルを読み込みます。
         /// </summary>
         /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="readSubFodler">サブフォルダも対象にするか</param>
+        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        IEnumerable<IReview> ReadFolder(string folderPath, bool readSubFodler = false);
+        IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFodler = false);
         
         /// <summary>
         /// 非同期で指定フォルダのレビューファイルを読み込みます。
         /// </summary>
         /// <param name="folderPath"></param>
-        /// <param name="readSubFodler"></param>
+        /// <param name="includeSubFodler"></param>
         /// <returns></returns>
-        Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false);
+        Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false);
 
         /// <summary>
         /// レビューファイルのストリームを読み込みます。

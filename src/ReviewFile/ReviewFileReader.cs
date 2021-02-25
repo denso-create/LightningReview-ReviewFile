@@ -46,9 +46,9 @@ namespace LightningReview.ReviewFile
         /// </summary>
         /// <param name="filePath">レビューファイルのパス</param>
         /// <returns>ロードしたレビューモデル</returns>
-        public async Task<IReview> ReadAsync(string filepath)
+        public async Task<IReview> ReadAsync(string filePath)
         {
-            return await Task.Run(() => Read(filepath));
+            return await Task.Run(() => Read(filePath));
         }
 
         /// <summary>
@@ -85,9 +85,9 @@ namespace LightningReview.ReviewFile
         /// <param name="folderPath">フォルダのパス</param>
         /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool readSubFodler = false)
+        public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false)
         {
-            return await Task.Run(() => ReadFolderAsync(folderPath, readSubFodler));
+            return await Task.Run(() => ReadFolderAsync(folderPath, includeSubFodler));
         }
 
         /// <summary>

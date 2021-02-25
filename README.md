@@ -196,5 +196,5 @@ exporter.Export(folderPath, jsonFilePath);
 
 ### 出力フィールドの説明
 フィールド情報の詳細は下記クラスに記載してあります。
-- レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Review.cs)
-- 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/master/src/ReviewFileToJsonService/Models/Issue.cs)
+- レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/main/src/ReviewFileToJsonService/Models/Review.cs)
+- 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/main/src/ReviewFileToJsonService/Models/Issue.cs)

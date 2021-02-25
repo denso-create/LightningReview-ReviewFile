@@ -15,14 +15,17 @@ namespace ReviewFileToJson
         /// </summary>
         class Options
         {
-            [Option('f',"folder",Required =true,HelpText ="対象のレビューファイルが存在しているフォルダを指定します。")]
-            public string FolderPath { get; set; }
+	        [Option('f', "folder", Required = true, HelpText = "対象のレビューファイルが存在しているフォルダを指定します。")]
+	        public string FolderPath { get; set; }
 
-            [Option('o', "output", Required = false, HelpText = "JSONファイルの出力先のパスを指定します。")]
-            public string OutputPath { get; set; }
+	        [Option('o', "output", Required = false, HelpText = "JSONファイルの出力先のパスを指定します。")]
+	        public string OutputPath { get; set; }
 
-            [Option('r', "recursive", Required = false,  HelpText = "サブフォルダも含めてファイルを検索します。" , Default =false)]
-            public bool Recursive { get; set; }
+	        [Option('r', "recursive", Required = false, HelpText = "サブフォルダも含めてファイルを検索します。", Default = false)]
+	        public bool Recursive { get; set; }
+
+	        [Option('u', "unescaped", Required = false, HelpText = "出力JSONファイル内の日本語をUnicodeエスケープしません。", Default = false)]
+	        public bool UnescapedUnicode { get; set; }
         }
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace ReviewFileToJson
         {
 
             #region コマンドライン引数を取得
+
             // 引数を取得
             var parseResult = Parser.Default.ParseArguments<Options>(args);
             if (parseResult.Tag == ParserResultType.NotParsed)
@@ -60,6 +64,9 @@ namespace ReviewFileToJson
             // サブフォルダを含む
             var recursive = parsed.Value.Recursive;
 
+            // Unicodeエスケープを防止
+            var unescapedUnicode = parsed.Value.UnescapedUnicode;
+
             #endregion
 
             #region 処理の実行
@@ -76,7 +83,7 @@ namespace ReviewFileToJson
             Console.WriteLine($"フォルダ{folderPath}のレビューファイルを検索しています。");
 
             // 実行
-            exporter.Export(folderPath, outputPath, recursive);
+            exporter.Export(folderPath, outputPath, recursive, unescapedUnicode);
             stopWatch.Stop();
 
             // 完了メッセージ

@@ -21,28 +21,32 @@ namespace LightningReview.ReviewFileToJsonService
         /// <summary>
         /// 指定フォルダのレビューファイルを集計してJSONファイルに出力する
         /// </summary>
-        /// <param name="revxFolder"></param>
-        /// <param name="outputFilePath"></param>
-        /// <param name="includeSubFolders"></param>
-        public void Export(string revxFolder,string outputFilePath,bool includeSubFolders=false)
+        /// <param name="revxFolder">レビューファイルが格納されたフォルダ</param>
+        /// <param name="outputFilePath">出力ファイルのパス</param>
+        /// <param name="includeSubFolders">サブフォルダも含めるか</param>
+        /// <param name="unescapedUnicode">Unicodeエスケープを防ぐか</param>
+        public void Export(string revxFolder, string outputFilePath, bool includeSubFolders = false, bool unescapedUnicode = false)
         {
             var reader = new ReviewFileReader();
             var readReviews = reader.ReadFolder(revxFolder, includeSubFolders);
             // Jsonモデル
             var jsonModel = new JsonModel(readReviews);
-            
+
             // シリアライズ時のオプション設定
             var options = new JsonSerializerOptions()
+            {
+                // 読みやすいようにインデントを付与する
+                WriteIndented = true
+            };
+
+            if (unescapedUnicode)
             {
                 // JSONファイル内の日本語をUnicodeエスケープされないようにすることで
                 // UTF-8でエンコードされたJSONファイルとして出力される
                 // 出力されたJSONファイルを別ツールを用いて読み込む場合にUTF-8以外で
                 // 読み込もうとすると日本語が文字化けしてしまうため、UTF-8で読み込むこと
-	            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-
-                // 読みやすいようにインデントを付与する
-                WriteIndented = true,
-            };
+                options.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+            }
 
             // ログ出力
             Logger?.Invoke($"{readReviews.Count()}件のレビューファイルが見つかりました。");

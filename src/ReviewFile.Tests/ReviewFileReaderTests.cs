@@ -103,7 +103,7 @@ namespace LightningReview.ReviewFile.Tests
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
-        public void NoSetValueReviewTest(string version)
+        public void NotSetValueReviewTest(string version)
         {
             var review = ReadReviewFile(version, NotSetValueReviewName);
 
@@ -221,7 +221,7 @@ namespace LightningReview.ReviewFile.Tests
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
-        public void NoSetValueIssueTest(string version)
+        public void NotSetValueIssueTest(string version)
         {
             var review = ReadReviewFile(version, NotSetValueIssueName);
             var issues = review.Issues;

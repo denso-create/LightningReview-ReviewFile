@@ -48,11 +48,11 @@ namespace LightningReview.ReviewFile.Tests
 
             // 直下のフォルダ
             Assert.IsNotNull(reviews);
-            Assert.AreEqual(2, reviews.Count());
+            Assert.AreEqual(4, reviews.Count());
 
             // サブフォルダも対象
             reviews = reader.ReadFolder(folder, true);
-            Assert.AreEqual(4, reviews.Count());
+            Assert.AreEqual(6, reviews.Count());
         }
 
         [DataRow("V10")]

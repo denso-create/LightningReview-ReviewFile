@@ -10,8 +10,19 @@ namespace LightningReview.ReviewFile.Tests
     [TestClass]
     public class ReviewFileReaderTests : TestBase
     {
+        /// <summary>
+        /// テストデータ
+        /// </summary>
         private string RevFileName = "RevFile1.revx";
+
+        /// <summary>
+        /// Reviewの未設定を確認するテストデータ
+        /// </summary>
         private string NotSetValueReviewName = "NotSetValueReview.revx";
+
+        /// <summary>
+        /// Issueの未設定を確認するテストデータ
+        /// </summary>
         private string NotSetValueIssueName = "NotSetValueIssue.revx";
 
         [DataRow("V10")]
@@ -216,7 +227,7 @@ namespace LightningReview.ReviewFile.Tests
             var issues = review.Issues;
             Assert.IsNotNull(issues,"Review.Issuesがnullです");
 
-            // 1つ目の指摘のフィールド
+            // 指摘の未設定のフィールド
             var issue1 = issues.FirstOrDefault(i => i.LID == "1");
             Assert.AreEqual("", issue1.CorrectionPolicy);
             Assert.AreEqual("", issue1.Category);

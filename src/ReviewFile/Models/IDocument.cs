@@ -37,11 +37,6 @@ namespace LightningReview.ReviewFile.Models
         string ApplicationType { get; set; }
 
         /// <summary>
-        /// このドキュメントに関連づく指摘の一覧
-        /// </summary>
-        //IEnumerable<IIssue> AllIssues { get; }
-
-        /// <summary>
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
         IEnumerable<IOutlineNode> OutlineNodes { get; }

@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace LightningReview.ReviewFile.Tests
 {
@@ -58,11 +59,79 @@ namespace LightningReview.ReviewFile.Tests
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
+        public void ReadNotExistFolderTest(string version)
+        {
+	        var folderPath = "NotExist";
+	        var reader = new ReviewFileReader();
+
+	        try
+	        {
+		        var reviews = reader.ReadFolder(folderPath);
+	        }
+	        catch (Exception exception)
+	        {
+		        Assert.AreEqual($"{folderPath}が存在しません。", exception.Message);
+                return;
+	        }
+
+            Assert.Fail();
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
         public void ReadStreamTest(string version)
         {
             var review = ReadReviewStream(version, RevFileName);
             Assert.IsNotNull(review);
             Assert.AreEqual(string.Empty, review.FilePath);
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void ReadAbnormalStreamTest(string version)
+        {
+	
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public async Task ReadAsyncTest(string version)
+        {
+            #region ReadAsync
+
+            var filepath = GetTestDataPath(version, RevFileName);
+            var reader = new ReviewFileReader();
+            var review = await reader.ReadAsync(filepath);
+            Assert.IsNotNull(review);
+            Assert.AreEqual(GetTestDataPath(version, RevFileName), review.FilePath);
+
+            #endregion
+
+            #region ReadFolderAsync
+
+            var folder = GetTestDataPath(version);
+
+            //直下のフォルダ
+            var reviews = await reader.ReadFolderAsync(folder);
+            Assert.IsNotNull(reviews);
+            Assert.AreEqual(4, reviews.Count());
+
+            // サブフォルダも対象
+            reviews = await reader.ReadFolderAsync(folder, true);
+            Assert.AreEqual(6, reviews.Count());
+
+            #endregion
+
+            #region ReadAsync(Stream)
+
+            review = await ReadAsyncReviewStream(version, RevFileName);
+            Assert.IsNotNull(review);
+            Assert.AreEqual(string.Empty, review.FilePath);
+
+            #endregion
         }
 
         [DataRow("V10")]

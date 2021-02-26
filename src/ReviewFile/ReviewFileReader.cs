@@ -87,7 +87,7 @@ namespace LightningReview.ReviewFile
         /// <returns>ロードしたレビューモデル</returns>
         public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false)
         {
-            return await Task.Run(() => ReadFolderAsync(folderPath, includeSubFodler));
+            return await Task.Run(() => ReadFolder(folderPath, includeSubFodler));
         }
 
         /// <summary>

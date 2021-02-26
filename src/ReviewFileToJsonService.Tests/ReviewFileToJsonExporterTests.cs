@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace ReviewFileToJsonService.Tests
 {
@@ -54,6 +55,12 @@ namespace ReviewFileToJsonService.Tests
             json = File.ReadAllText(outputPath);
             jsonModel = JsonConvert.DeserializeObject(json);
             Assert.AreEqual(6, (int)jsonModel.TotalReviewCount);
+
+            // Unicodeエスケープしないように設定
+            exporter.Export(revxFolder, outputPath, unescapedUnicode: true);
+            json = File.ReadAllText(outputPath);
+            //出力ファイルの文字列中にひらがな、漢字が含まれているか確認する
+            Assert.IsTrue(Regex.IsMatch(json, @"[\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+"));
         }
 
         [TestMethod]

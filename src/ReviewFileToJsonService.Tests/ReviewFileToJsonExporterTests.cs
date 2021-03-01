@@ -73,9 +73,13 @@ namespace ReviewFileToJsonService.Tests
                 File.Delete(outputPath);
             }
 
+            var logMesseage = string.Empty;
             // エクスポート処理
             var exporter = new ReviewFileToJsonExporter();
+            exporter.Logger = (message) => logMesseage = message;
             exporter.Export(revxFolder, outputPath);
+
+            Assert.AreEqual($"3件のレビューファイルが見つかりました。", logMesseage);
 
             // 出力先のファイルが生成されたか確認する
             Assert.IsTrue(File.Exists(outputPath));
@@ -130,6 +134,7 @@ namespace ReviewFileToJsonService.Tests
 
             // 処理時間が5000ms以内であるか
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < 5000);
+
             #endregion
         }
 

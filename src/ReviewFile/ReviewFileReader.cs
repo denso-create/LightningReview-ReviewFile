@@ -62,7 +62,7 @@ namespace LightningReview.ReviewFile
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
             if (Directory.Exists(folderPath) == false)
             {
-                throw new Exception($"{folderPath}が存在しません。");
+                throw new Exception($"{folderPath} is not a valid directory.");
             }
 
             // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する

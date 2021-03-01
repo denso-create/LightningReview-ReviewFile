@@ -111,7 +111,7 @@ namespace ReviewFileToJsonService.Tests
             var ReviewFile = Directory.GetFiles(revxFolder, "*.revx", SearchOption.AllDirectories).FirstOrDefault();
 
             // テストファイルの作成
-            for ( var i=0;i<1000;i++)
+            for (var i = 0; i < 1000; i++)
             {
                 var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceReviewFile{i}.revx");
                 File.Copy(ReviewFile, destFilePath);
@@ -136,7 +136,7 @@ namespace ReviewFileToJsonService.Tests
         [TestMethod]
         public void LoggerTest()
         {
-	        var exporter = new ReviewFileToJsonExporter();
+            var exporter = new ReviewFileToJsonExporter();
             exporter.Logger = (message) => Console.WriteLine(message);
             Assert.IsNotNull(exporter.Logger);
         }
@@ -154,7 +154,8 @@ namespace ReviewFileToJsonService.Tests
                 {
                     File.Delete(file);
                 }
-            } else 
+            }
+            else
             {
                 Directory.CreateDirectory(folder);
             }

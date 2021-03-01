@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace ReviewFileToJsonService.Tests
 {
@@ -54,6 +55,12 @@ namespace ReviewFileToJsonService.Tests
             json = File.ReadAllText(outputPath);
             jsonModel = JsonConvert.DeserializeObject(json);
             Assert.AreEqual(6, (int)jsonModel.TotalReviewCount);
+
+            // Unicodeエスケープしないように設定
+            exporter.Export(revxFolder, outputPath, unescapedUnicode: true);
+            json = File.ReadAllText(outputPath);
+            //出力ファイルの文字列中にひらがな、漢字が含まれているか確認する
+            Assert.IsTrue(Regex.IsMatch(json, @"[\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+"));
         }
 
         [TestMethod]
@@ -66,9 +73,13 @@ namespace ReviewFileToJsonService.Tests
                 File.Delete(outputPath);
             }
 
+            var logMesseage = string.Empty;
             // エクスポート処理
             var exporter = new ReviewFileToJsonExporter();
+            exporter.Logger = (message) => logMesseage = message;
             exporter.Export(revxFolder, outputPath);
+
+            Assert.AreEqual($"3件のレビューファイルが見つかりました。", logMesseage);
 
             // 出力先のファイルが生成されたか確認する
             Assert.IsTrue(File.Exists(outputPath));
@@ -104,7 +115,7 @@ namespace ReviewFileToJsonService.Tests
             var ReviewFile = Directory.GetFiles(revxFolder, "*.revx", SearchOption.AllDirectories).FirstOrDefault();
 
             // テストファイルの作成
-            for ( var i=0;i<1000;i++)
+            for (var i = 0; i < 1000; i++)
             {
                 var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceReviewFile{i}.revx");
                 File.Copy(ReviewFile, destFilePath);
@@ -123,7 +134,16 @@ namespace ReviewFileToJsonService.Tests
 
             // 処理時間が5000ms以内であるか
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < 5000);
+
             #endregion
+        }
+
+        [TestMethod]
+        public void LoggerTest()
+        {
+            var exporter = new ReviewFileToJsonExporter();
+            exporter.Logger = (message) => Console.WriteLine(message);
+            Assert.IsNotNull(exporter.Logger);
         }
 
         /// <summary>
@@ -139,7 +159,8 @@ namespace ReviewFileToJsonService.Tests
                 {
                     File.Delete(file);
                 }
-            } else 
+            }
+            else
             {
                 Directory.CreateDirectory(folder);
             }

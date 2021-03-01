@@ -32,9 +32,15 @@ namespace LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string AbsolutePath { get; set; }
 
+        /// <summary>
+        /// 関連づいているアプリケーション
+        /// </summary>
         [XmlElement]
         public string ApplicationType { get; set; }
 
+        /// <summary>
+        /// アウトラインツリー
+        /// </summary>
         [XmlElement]
         public OutlineTree OutlineTree { get; set; } = new OutlineTree();
 

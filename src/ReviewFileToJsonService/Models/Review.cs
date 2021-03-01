@@ -4,7 +4,6 @@ using System.Text;
 using LightningReview.ReviewFile.Models;
 using ReviewFileToJsonService.Extensions;
 
-
 namespace ReviewFileToJsonService.Models
 {
     /// <summary>

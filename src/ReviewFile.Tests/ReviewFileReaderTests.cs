@@ -4,13 +4,33 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using LightningReview.ReviewFile.Exceptions;
 
 namespace LightningReview.ReviewFile.Tests
 {
     [TestClass]
     public class ReviewFileReaderTests : TestBase
     {
+        /// <summary>
+        /// テストデータ
+        /// </summary>
         private string RevFileName = "RevFile1.revx";
+
+        /// <summary>
+        /// Reviewの未設定を確認するテストデータ
+        /// </summary>
+        private string NotSetValueReviewName = "NotSetValueReview.revx";
+
+        /// <summary>
+        /// Issueの未設定を確認するテストデータ
+        /// </summary>
+        private string NotSetValueIssueName = "NotSetValueIssue.revx";
+
+        /// <summary>
+        /// Stream内のReviewFile要素が存在しないテストデータ
+        /// </summary>
+        private string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
 
         [DataRow("V10")]
         [DataRow("V18")]
@@ -35,11 +55,32 @@ namespace LightningReview.ReviewFile.Tests
 
             // 直下のフォルダ
             Assert.IsNotNull(reviews);
-            Assert.AreEqual(2, reviews.Count());
+            Assert.AreEqual(4, reviews.Count());
 
             // サブフォルダも対象
             reviews = reader.ReadFolder(folder, true);
-            Assert.AreEqual(4, reviews.Count());
+            Assert.AreEqual(6, reviews.Count());
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void ReadNotExistFolderTest(string version)
+        {
+            var folderPath = "NotExist";
+            var reader = new ReviewFileReader();
+
+            try
+            {
+                var reviews = reader.ReadFolder(folderPath);
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual($"{folderPath} is not a valid directory.", exception.Message);
+                return;
+            }
+
+            Assert.Fail();
         }
 
         [DataRow("V10")]
@@ -52,12 +93,85 @@ namespace LightningReview.ReviewFile.Tests
             Assert.AreEqual(string.Empty, review.FilePath);
         }
 
+        [TestMethod]
+        public void ReadReviewFileElementMissinfTest()
+        {
+            try
+            {
+                var review = ReadReviewStream("", NotReviewFileStreamName);
+            }
+            catch (ReviewFileFormatException reviewFileFormatException)
+            {
+                Assert.AreEqual("ReviewFile Element Missing", reviewFileFormatException.Message);
+                return;
+            }
+            
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void ReadNullStreamTest()
+        {
+            var reader = new ReviewFileReader();
+
+            try
+            {
+               reader.Read(Stream.Null);
+            }
+            catch (ReviewFileFormatException reviewFileFormatException)
+            {
+                Assert.AreEqual("Root element is missing.", reviewFileFormatException.Message);
+                return;
+            }
+
+            Assert.Fail();
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public async Task ReadAsyncTest(string version)
+        {
+            #region ReadAsync
+
+            var filepath = GetTestDataPath(version, RevFileName);
+            var reader = new ReviewFileReader();
+            var review = await reader.ReadAsync(filepath);
+            Assert.IsNotNull(review);
+            Assert.AreEqual(GetTestDataPath(version, RevFileName), review.FilePath);
+
+            #endregion
+
+            #region ReadFolderAsync
+
+            var folder = GetTestDataPath(version);
+
+            //直下のフォルダ
+            var reviews = await reader.ReadFolderAsync(folder);
+            Assert.IsNotNull(reviews);
+            Assert.AreEqual(4, reviews.Count());
+
+            // サブフォルダも対象
+            reviews = await reader.ReadFolderAsync(folder, true);
+            Assert.AreEqual(6, reviews.Count());
+
+            #endregion
+
+            #region ReadAsync(Stream)
+
+            review = await ReadAsyncReviewStream(version, RevFileName);
+            Assert.IsNotNull(review);
+            Assert.AreEqual(string.Empty, review.FilePath);
+
+            #endregion
+        }
+
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
         public void ReviewTest(string version)
         {
-            var review = ReadReviewFile(version,RevFileName);
+            var review = ReadReviewFile(version, RevFileName);
 
             // レビューの絶対パス
             var currentPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
@@ -85,6 +199,30 @@ namespace LightningReview.ReviewFile.Tests
             Assert.AreEqual("4", review.ActualScale);
             Assert.AreEqual("5", review.IssueCountOfGoal);
             Assert.AreEqual("3", review.IssueCountOfActual);
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void NotSetValueReviewTest(string version)
+        {
+            var review = ReadReviewFile(version, NotSetValueReviewName);
+
+            // レビューの未設定のフィールド
+            Assert.AreEqual("", review.Goal);
+            Assert.AreEqual("", review.EndCondition);
+            Assert.AreEqual("", review.Place);
+            Assert.AreEqual("", review.ProjectCode);
+            Assert.AreEqual("", review.ProjectName);
+            Assert.IsNull(review.PlannedDate);
+            Assert.IsNull(review.ActualDate);
+            Assert.AreEqual("", review.PlannedTime);
+            Assert.AreEqual("", review.ActualTime);
+            Assert.AreEqual("", review.Unit);
+            Assert.AreEqual("", review.PlannedScale);
+            Assert.AreEqual("", review.ActualScale);
+            Assert.AreEqual("", review.IssueCountOfGoal);
+            Assert.AreEqual("0", review.IssueCountOfActual);
         }
 
         [DataRow("V10")]
@@ -135,7 +273,7 @@ namespace LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void IssueTest(string version)
         {
-            var review = ReadReviewFile(version,RevFileName);
+            var review = ReadReviewFile(version, RevFileName);
             var issues = review.Issues;
             Assert.IsNotNull(issues,"Review.Issuesがnullです");
 
@@ -179,6 +317,43 @@ namespace LightningReview.ReviewFile.Tests
             Assert.AreEqual("TextH2", issue1.CustomText8);
             Assert.AreEqual("TextI2", issue1.CustomText9);
             Assert.AreEqual("TextJ2", issue1.CustomText10);
+        }
+
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataTestMethod]
+        public void NotSetValueIssueTest(string version)
+        {
+            var review = ReadReviewFile(version, NotSetValueIssueName);
+            var issues = review.Issues;
+            Assert.IsNotNull(issues,"Review.Issuesがnullです");
+
+            // 指摘の未設定のフィールド
+            var issue1 = issues.FirstOrDefault(i => i.LID == "1");
+            Assert.AreEqual("", issue1.CorrectionPolicy);
+            Assert.AreEqual("", issue1.Category);
+            Assert.AreEqual("", issue1.Description);
+            Assert.AreEqual("", issue1.Reason);
+            Assert.AreEqual("", issue1.SendingBackReason);
+            Assert.AreEqual("", issue1.DetectionActivity);
+            Assert.AreEqual("", issue1.InjectionActivity);
+            Assert.AreEqual("", issue1.Importance);
+            Assert.IsNull(issue1.DateReported);
+            Assert.IsNull(issue1.DueDate);
+            Assert.IsNull(issue1.DateFixed);
+            Assert.AreEqual("", issue1.Resolution);
+            Assert.IsNull(issue1.DateConfirmed);
+            Assert.AreEqual("", issue1.Comment);
+            Assert.AreEqual("", issue1.CustomText1);
+            Assert.AreEqual("", issue1.CustomText2);
+            Assert.AreEqual("", issue1.CustomText3);
+            Assert.AreEqual("", issue1.CustomText4);
+            Assert.AreEqual("", issue1.CustomText5);
+            Assert.AreEqual("", issue1.CustomText6);
+            Assert.AreEqual("", issue1.CustomText7);
+            Assert.AreEqual("", issue1.CustomText8);
+            Assert.AreEqual("", issue1.CustomText9);
+            Assert.AreEqual("", issue1.CustomText10);
         }
     }
 }

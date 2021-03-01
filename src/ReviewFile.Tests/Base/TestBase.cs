@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LightningReview.ReviewFile.Tests
 {
@@ -101,6 +102,27 @@ namespace LightningReview.ReviewFile.Tests
                     return review;
                 }
             }
+        }
+
+        /// <summary>
+        /// 非同期のストリームのロード
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        protected async Task<IReview> ReadAsyncReviewStream(string version, string fileName)
+        {
+	        var filePath = GetTestDataPath(version, fileName);
+	        using (var archive = ZipFile.OpenRead(filePath))
+	        {
+		        // revxから"Review.xml"を抜き出す
+		        var reviewXmlEntry = archive.GetEntry("Review.xml");
+		        using (var zipEntryStream = reviewXmlEntry.Open())
+		        {
+			        var reader = new ReviewFileReader();
+			        var review = await reader.ReadAsync(zipEntryStream);
+			        return review;
+		        }
+	        }
         }
     }
 }

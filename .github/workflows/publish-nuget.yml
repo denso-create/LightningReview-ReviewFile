@@ -3,7 +3,7 @@ name: Publish-Nuget
 on:
   workflow_run:
     workflows: ["Build"]
-    branches: [ main ]
+    branches: [main]
     types:
       - completed
 

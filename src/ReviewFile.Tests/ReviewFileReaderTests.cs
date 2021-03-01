@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using LightningReview.ReviewFile.Exceptions;
 
 namespace LightningReview.ReviewFile.Tests
 {
@@ -25,6 +26,11 @@ namespace LightningReview.ReviewFile.Tests
         /// Issueの未設定を確認するテストデータ
         /// </summary>
         private string NotSetValueIssueName = "NotSetValueIssue.revx";
+
+        /// <summary>
+        /// Stream内のReviewFile要素が存在しないテストデータ
+        /// </summary>
+        private string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
 
         [DataRow("V10")]
         [DataRow("V18")]
@@ -61,18 +67,18 @@ namespace LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReadNotExistFolderTest(string version)
         {
-	        var folderPath = "NotExist";
-	        var reader = new ReviewFileReader();
+            var folderPath = "NotExist";
+            var reader = new ReviewFileReader();
 
-	        try
-	        {
-		        var reviews = reader.ReadFolder(folderPath);
-	        }
-	        catch (Exception exception)
-	        {
-		        Assert.AreEqual($"{folderPath}が存在しません。", exception.Message);
+            try
+            {
+                var reviews = reader.ReadFolder(folderPath);
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual($"{folderPath}が存在しません。", exception.Message);
                 return;
-	        }
+            }
 
             Assert.Fail();
         }
@@ -87,12 +93,39 @@ namespace LightningReview.ReviewFile.Tests
             Assert.AreEqual(string.Empty, review.FilePath);
         }
 
-        [DataRow("V10")]
-        [DataRow("V18")]
-        [DataTestMethod]
-        public void ReadAbnormalStreamTest(string version)
+        [TestMethod]
+        public void ReadReviewFileElementMissinfTest()
         {
-	
+            try
+            {
+                var review = ReadReviewStream("", NotReviewFileStreamName);
+            }
+            catch (ReviewFileFormatException reviewFileFormatException)
+            {
+                Assert.AreEqual("ReviewFile Element Missing", reviewFileFormatException.Message);
+                return;
+            }
+            
+
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void ReadNullStreamTest()
+        {
+            var reader = new ReviewFileReader();
+
+            try
+            {
+               reader.Read(Stream.Null);
+            }
+            catch (ReviewFileFormatException reviewFileFormatException)
+            {
+                Assert.AreEqual("Root element is missing.", reviewFileFormatException.Message);
+                return;
+            }
+
+            Assert.Fail();
         }
 
         [DataRow("V10")]

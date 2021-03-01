@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestData\NotReviewFileStreamTestDate.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\V10\NotSetValueIssue.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

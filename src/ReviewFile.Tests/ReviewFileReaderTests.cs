@@ -76,7 +76,7 @@ namespace LightningReview.ReviewFile.Tests
             }
             catch (Exception exception)
             {
-                Assert.AreEqual($"{folderPath}が存在しません。", exception.Message);
+                Assert.AreEqual($"{folderPath} is not a valid directory.", exception.Message);
                 return;
             }
 

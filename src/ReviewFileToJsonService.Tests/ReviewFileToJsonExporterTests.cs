@@ -133,6 +133,14 @@ namespace ReviewFileToJsonService.Tests
             #endregion
         }
 
+        [TestMethod]
+        public void LoggerTest()
+        {
+	        var exporter = new ReviewFileToJsonExporter();
+            exporter.Logger = (message) => Console.WriteLine(message);
+            Assert.IsNotNull(exporter.Logger);
+        }
+
         /// <summary>
         /// フォルダを作成する。すでにあればファイルを削除して再作成する
         /// </summary>

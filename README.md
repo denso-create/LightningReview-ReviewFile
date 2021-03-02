@@ -82,6 +82,11 @@ foreach (var issue in review.Issues)
     Console.WriteLine(issue.DateFixed);
 }
 ```
+### フレームワーク
+.Net Standard 2.0
+
+### 依存パッケージ
+なし
 
 ## LightnigReview.ReviewFileToJsonService
 
@@ -98,7 +103,6 @@ Nuget: [LightningReview.ReviewFileToJsonService](https://www.nuget.org/packages/
 ```
 C:\Project> NuGet Install LightnigReview.ReviewFileToJsonService
 ```
-
 
 ### 例
 
@@ -117,6 +121,13 @@ exporter.Logger = (message) => Console.WriteLine(message);
 exporter.Export(folderPath, jsonFilePath);
 ```
 
+### フレームワーク
+- .Net Standard 2.0
+
+### 依存パッケージ
+- LightnigReview.ReviewFile  
+- System.Text.Json  
+- System.Text.Encodings.Web
 
 ## ReviewFileToJsonCLI
 
@@ -198,3 +209,10 @@ exporter.Export(folderPath, jsonFilePath);
 フィールド情報の詳細は下記クラスに記載してあります。
 - レビューのフィールド情報について: [Review.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/main/src/ReviewFileToJsonService/Models/Review.cs)
 - 指摘のフィールド情報について: [Issue.cs](https://github.com/denso-create/LightningReview-ReviewFile/blob/main/src/ReviewFileToJsonService/Models/Issue.cs)
+
+### フレームワーク
+- .Net Core 3.1
+
+### 依存パッケージ
+- LightningReview.ReviewFileToJsonService
+- CommandLineParser

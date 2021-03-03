@@ -57,8 +57,21 @@ namespace ReviewFileToJson
 
             // 出力先のファイルが指定なければ設定する
             var outputPath = parsed.Value.OutputPath;
-            if ( string.IsNullOrEmpty(outputPath) ) {
+            if (string.IsNullOrEmpty(outputPath))
+            {
                 outputPath = "output.json";
+            }
+            else if (Path.GetExtension(outputPath) == string.Empty)
+            {
+	            Console.WriteLine($"エラー：指定した出力ファイル{outputPath}に拡張子を設定してください。");
+	            return;
+            }
+
+            var outputFolderPath = Path.GetDirectoryName(outputPath);
+            if (!string.IsNullOrEmpty(outputFolderPath) && !Directory.Exists(outputFolderPath))
+            {
+	            Console.WriteLine($"エラー：指定した出力ファイル{outputPath}のフォルダが存在しません。");
+	            return;
             }
 
             // サブフォルダを含む

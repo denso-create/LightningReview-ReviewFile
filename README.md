@@ -133,19 +133,19 @@ exporter.Export(folderPath, jsonFilePath);
 
 フォルダ内のレビューファイルの内容をJSONファイルに出力するコマンドラインプログラムです。
 
-| ReviewFileToJson.exe -f folder
+| ReviewFileToJson.exe -f folderPath
 
-と実行すると、現在のフォルダに `output.json` を出力します。
+`-f`でレビューファイルが格納されたフォルダパスを指定すると、現在のフォルダに `output.json` を出力します。
 
-| ReviewFileToJson.exe -f folder -o myJsonFile.json
+| ReviewFileToJson.exe -f folderPath -o myJsonFile.json
 
-のように `-o`で出力ファイル（パス）を指定できます。
+ `-o`で出力ファイル（パス）を指定できます。
 
-| ReviewFileToJson.exe -f folder -o myJsonFile.json -r
+| ReviewFileToJson.exe -f folderPath -o myJsonFile.json -r
 
 `-r`を指定するとサブフォルダまで対象にできます。
 
-| ReviewFileToJson.exe -f folder -u
+| ReviewFileToJson.exe -f folderPath -u
 
 `-u`を指定すると出力されるJSONファイルにおいてUnicodeエスケープを行いません。
 

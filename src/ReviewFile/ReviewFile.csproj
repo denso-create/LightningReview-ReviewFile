@@ -6,15 +6,15 @@
     <RootNamespace>LightningReview.ReviewFile</RootNamespace>
     <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。
 </Description>
-    <Copyright>DENSO CREATE CO., LTD</Copyright>
+    <Copyright>DENSO CREATE INC. All rights reserved.</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
     <Version>1.0.0</Version>
-    <Authors>DENSO CREATE CO., LTD</Authors>
-    <Company>DENSO CREATE CO., LTD</Company>
+    <Authors>DENSO CREATE INC.</Authors>
+    <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>

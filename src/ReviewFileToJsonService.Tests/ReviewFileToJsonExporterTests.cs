@@ -102,6 +102,9 @@ namespace ReviewFileToJsonService.Tests
             Assert.AreEqual("Member3", (string)issue1.ConfirmedBy);
         }
 
+        /// <summary>
+        /// ReviewFileToJsonExporterクラスのパフォーマンステスト
+        /// </summary>
         [TestCategory("SkipWhenLiveUnitTesting")]
         [TestMethod]
         public void PerfomanceTest()

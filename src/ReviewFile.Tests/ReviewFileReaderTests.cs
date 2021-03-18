@@ -9,6 +9,9 @@ using LightningReview.ReviewFile.Exceptions;
 
 namespace LightningReview.ReviewFile.Tests
 {
+    /// <summary>
+    /// ReviewFileReaderクラスのテスト
+    /// </summary>
     [TestClass]
     public class ReviewFileReaderTests : TestBase
     {

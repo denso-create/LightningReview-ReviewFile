@@ -10,6 +10,9 @@ using System.Text.RegularExpressions;
 
 namespace ReviewFileToJsonService.Tests
 {
+    /// <summary>
+    /// ReviewFileToJsonExporterクラスのテスト
+    /// </summary>
     [TestClass]
     public class ReviewFileToJsonExporterTests
     {

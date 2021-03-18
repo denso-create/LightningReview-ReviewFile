@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace LightningReview.ReviewFile.Tests
 {
+    /// <summary>
+    /// ReviewFileReaderクラスのパフォーマンステスト
+    /// </summary>
     [TestClass]
     public class ReviewFileReaderPeformanceTest : TestBase
     {

@@ -40,6 +40,9 @@ namespace ReviewFileToJsonService.Tests
             return path;
         }
 
+        /// <summary>
+        /// Exportの引数のテスト
+        /// </summary>
         [TestMethod]
         public void ExportParamTest()
         {

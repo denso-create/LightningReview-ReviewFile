@@ -41,7 +41,7 @@ namespace ReviewFileToJsonService.Tests
         }
 
         /// <summary>
-        /// Exportの引数のテスト
+        /// Exportメソッドの引数のテスト
         /// </summary>
         [TestMethod]
         public void ExportParamTest()
@@ -69,6 +69,9 @@ namespace ReviewFileToJsonService.Tests
             Assert.IsTrue(Regex.IsMatch(json, @"[\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+"));
         }
 
+        /// <summary>
+        /// Exportメソッドのテスト
+        /// </summary>
         [TestMethod]
         public void ExportTest()
         {

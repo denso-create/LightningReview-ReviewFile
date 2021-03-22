@@ -150,6 +150,9 @@ namespace ReviewFileToJsonService.Tests
             #endregion
         }
 
+        /// <summary>
+        /// Loggerのテスト
+        /// </summary>
         [TestMethod]
         public void LoggerTest()
         {

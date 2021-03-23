@@ -54,7 +54,7 @@ jobs:
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore 
-      working-directory: ${{SolutionPath}}
+      working-directory: ${{env.SolutionPath}}
     
     # 解析を開始する
     #   k:SonarCloudで設定したプロジェクトキー
@@ -65,22 +65,22 @@ jobs:
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"denso-create_LightningReview-ReviewFile" /o:"denso-create" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
     
     # 解析対象となるビルドとテストを実行する
     - name: Build
-      run: dotnet build ${{SolutionPath}} --configuration Release --no-restore
+      run: dotnet build ${{env.SolutionPath}} --configuration Release --no-restore
 
     # テスト時にカバレッジレポートを出力するようにオプションを指定する
     #   /p:CollectCoverage=true:コードカバレッジを有効化し、カバレッジレポートを出力するようにする
     #   /p:CoverletOutputFormat=opencover:出力するカバレッジレポートの種類を指定
     - name: Test
-      run: dotnet test ${{SolutionPath}} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test ${{env.SolutionPath}} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
     # 解析を終了する
     - name: End Sonar analysis
       run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}

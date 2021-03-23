@@ -2,7 +2,9 @@ name: Publish-Nuget
 
 # ワークフローが動作する条件を指定する
 # 下記設定はmainブランチに対してワークフローのBuildが完了したことをトリガとする
+# workflow_dispatchとはGitHub上でワークフローを手動実行できるトリガ。利便性が高いため基本設定するのを推奨
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Build"]
     branches: [main]
@@ -15,6 +17,11 @@ jobs:
 
     # 動作環境
     runs-on: ubuntu-latest
+
+    # 環境変数
+    env:
+      # slnファイルの存在するフォルダの相対パス
+      SolutionPath: src
 
     steps:
 
@@ -32,11 +39,11 @@ jobs:
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: src
+      working-directory: ${SolutionPath}
 
     # ビルドを実行する
     - name: Build
-      run: dotnet build src --no-restore
+      run: dotnet build ${SolutionPath} --no-restore
 
     # ReviewFileを公開する
     # PROJECT_FILE_PATH:公開するプロジェクトのパス

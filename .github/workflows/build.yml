@@ -2,13 +2,20 @@ name: Build
 
 # ワークフローが動作する条件を指定する
 # 下記設定はmainブランチに対してsrcフォルダ以下を変更したプッシュあるいはプルリクエストをトリガとする
+# workflow_dispatchとはGitHub上でワークフローを手動実行できるトリガ。利便性が高いため基本設定するのを推奨
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ['src/**']
   pull_request:
     branches: [main]
     paths: ['src/**']
+
+# 環境変数
+env:
+  # ソースファイルのあるフォルダ
+  SOURCE_FOLDER: src
 
 # 仮想環境で行わせる動作を記述する
 jobs:
@@ -33,12 +40,12 @@ jobs:
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: src
+      working-directory: ${{env.SOURCE_FOLDER}}
     
     # ビルドを実行する
     - name: Build
-      run: dotnet build src --no-restore
+      run: dotnet build ${{env.SOURCE_FOLDER}} --no-restore
     
     # テストを実行する
     - name: Test
-      run: dotnet test src --no-build --verbosity normal
+      run: dotnet test ${{env.SOURCE_FOLDER}} --no-build --verbosity normal

@@ -15,17 +15,17 @@ namespace ReviewFileToJson
         /// </summary>
         class Options
         {
-	        [Option('f', "folder", Required = true, HelpText = "対象のレビューファイルが存在しているフォルダを指定します。")]
-	        public string FolderPath { get; set; }
+            [Option('f', "folder", Required = true, HelpText = "対象のレビューファイルが存在しているフォルダを指定します。")]
+            public string FolderPath { get; set; }
 
-	        [Option('o', "output", Required = false, HelpText = "JSONファイルの出力先のパスを指定します。")]
-	        public string OutputPath { get; set; }
+            [Option('o', "output", Required = false, HelpText = "JSONファイルの出力先のパスを指定します。")]
+            public string OutputPath { get; set; }
 
-	        [Option('r', "recursive", Required = false, HelpText = "サブフォルダも含めてファイルを検索します。", Default = false)]
-	        public bool Recursive { get; set; }
+            [Option('r', "recursive", Required = false, HelpText = "サブフォルダも含めてファイルを検索します。", Default = false)]
+            public bool Recursive { get; set; }
 
-	        [Option('u', "unescaped", Required = false, HelpText = "出力JSONファイル内の日本語をUnicodeエスケープしません。", Default = false)]
-	        public bool UnescapedUnicode { get; set; }
+            [Option('u', "unescaped", Required = false, HelpText = "出力JSONファイル内の日本語をUnicodeエスケープしません。", Default = false)]
+            public bool UnescapedUnicode { get; set; }
         }
 
         /// <summary>
@@ -34,7 +34,6 @@ namespace ReviewFileToJson
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-
             #region コマンドライン引数を取得
 
             // 引数を取得
@@ -61,23 +60,25 @@ namespace ReviewFileToJson
             {
                 outputPath = "output.json";
             }
+            // 拡張子がない出力ファイルが指定された場合、フォルダと判断してエラーとする
             else if (Path.GetExtension(outputPath) == string.Empty)
             {
-	            Console.WriteLine($"エラー：指定した出力ファイル{outputPath}に拡張子を設定してください。");
-	            return;
+                Console.WriteLine($"エラー：指定した出力ファイル{outputPath}に拡張子を設定してください。");
+                return;
             }
 
+            // 出力ファイルパス中に存在しないフォルダが含まれる場合はエラーとする
             var outputFolderPath = Path.GetDirectoryName(outputPath);
             if (!string.IsNullOrEmpty(outputFolderPath) && !Directory.Exists(outputFolderPath))
             {
-	            Console.WriteLine($"エラー：指定した出力ファイル{outputPath}のフォルダが存在しません。");
-	            return;
+                Console.WriteLine($"エラー：指定した出力ファイル{outputPath}のフォルダが存在しません。");
+                return;
             }
 
-            // サブフォルダを含む
+            // サブフォルダを含むか
             var recursive = parsed.Value.Recursive;
 
-            // Unicodeエスケープを防止
+            // Unicodeエスケープを防止するか
             var unescapedUnicode = parsed.Value.UnescapedUnicode;
 
             #endregion

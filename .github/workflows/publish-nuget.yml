@@ -1,5 +1,7 @@
 name: Publish-Nuget
 
+# ワークフローが動作する条件を指定する
+# 下記設定はmainブランチに対してワークフローのBuildが完了したことをトリガとする
 on:
   workflow_run:
     workflows: ["Build"]
@@ -7,24 +9,41 @@ on:
     types:
       - completed
 
+# 仮想環境で行わせる動作を記述する
 jobs:
   publish-nuget:
 
+    # 動作環境
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+
+    # リポジトリの内容をチェックアウトする
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # dotnet CLIを利用するためにdotNet環境を入れる
+    # dotnet-versionにはSDKバージョンを指定する
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
-    - name: Install dependencies
+    
+    # 依存関係を復元する
+    - name: Restore dependencies
       run: dotnet restore
       working-directory: src
+
+    # ビルドを実行する
     - name: Build
       run: dotnet build src --no-restore
 
-    - name: Publish to NuGet
+    # ReviewFileを公開する
+    # PROJECT_FILE_PATH:公開するプロジェクトのパス
+    # VERSION_REGEX:公開する際のバージョン（下記は正規表現でcsproj内のPackageVersionタグを取得している）
+    # TAG_FORMAT:gitのタグのフォーマット
+    # NUGET_KEY:Nugetへの認証に必要なトークンを指定する
+    - name: Publish to ReviewFile
       uses: brandedoutcast/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: src/ReviewFile/ReviewFile.csproj
@@ -32,7 +51,8 @@ jobs:
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
-    - name: Publish to NuGet
+    # ReviewFileToJsonServiceを公開する
+    - name: Publish to ReviewFileToJsonService
       uses: brandedoutcast/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: src/ReviewFileToJsonService/ReviewFileToJsonService.csproj

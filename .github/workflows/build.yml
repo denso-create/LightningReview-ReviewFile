@@ -1,5 +1,7 @@
 name: Build
 
+# ワークフローが動作する条件を指定する
+# 下記設定はmainブランチに対してsrcフォルダ以下を変更したプッシュあるいはプルリクエストをトリガとする
 on:
   push:
     branches: [main]
@@ -8,21 +10,35 @@ on:
     branches: [main]
     paths: ['src/**']
 
+# 仮想環境で行わせる動作を記述する
 jobs:
   build:
 
+    # 動作環境
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+
+    # リポジトリの内容をチェックアウトする
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # dotnet CLIを利用するためにdotNet環境を入れる
+    # dotnet-versionにはSDKバージョンを指定する
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+    
+    # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore
       working-directory: src
+    
+    # ビルドを実行する
     - name: Build
       run: dotnet build src --no-restore
+    
+    # テストを実行する
     - name: Test
       run: dotnet test src --no-build --verbosity normal

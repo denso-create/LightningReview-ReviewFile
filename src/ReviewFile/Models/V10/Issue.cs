@@ -7,9 +7,9 @@ using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V10
 {
-	/// <summary>
-	/// 指摘
-	/// </summary>
+    /// <summary>
+    /// 指摘
+    /// </summary>
     [XmlRoot]
     public class Issue : IIssue
     {

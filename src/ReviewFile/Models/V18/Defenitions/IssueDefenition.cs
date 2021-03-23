@@ -5,9 +5,9 @@ using System.Xml.Serialization;
 
 namespace LightningReview.ReviewFile.Models.V18.Defenitions
 {
-	/// <summary>
-	/// 指摘の定義
-	/// </summary>
+    /// <summary>
+    /// 指摘の定義
+    /// </summary>
     [XmlRoot]
     public class IssueDefenition : EntityBase
     {

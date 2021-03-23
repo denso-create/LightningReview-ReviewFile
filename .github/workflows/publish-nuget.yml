@@ -39,11 +39,11 @@ jobs:
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ${SolutionPath}
+      working-directory: ${{SolutionPath}}
 
     # ビルドを実行する
     - name: Build
-      run: dotnet build ${SolutionPath} --no-restore
+      run: dotnet build ${{SolutionPath}} --no-restore
 
     # ReviewFileを公開する
     # PROJECT_FILE_PATH:公開するプロジェクトのパス

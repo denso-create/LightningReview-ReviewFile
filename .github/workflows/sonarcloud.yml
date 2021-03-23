@@ -54,7 +54,7 @@ jobs:
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore 
-      working-directory: ${SolutionPath}
+      working-directory: ${{SolutionPath}}
     
     # 解析を開始する
     #   k:SonarCloudで設定したプロジェクトキー
@@ -70,13 +70,13 @@ jobs:
     
     # 解析対象となるビルドとテストを実行する
     - name: Build
-      run: dotnet build ${SolutionPath} --configuration Release --no-restore
+      run: dotnet build ${{SolutionPath}} --configuration Release --no-restore
 
     # テスト時にカバレッジレポートを出力するようにオプションを指定する
     #   /p:CollectCoverage=true:コードカバレッジを有効化し、カバレッジレポートを出力するようにする
     #   /p:CoverletOutputFormat=opencover:出力するカバレッジレポートの種類を指定
     - name: Test
-      run: dotnet test ${SolutionPath} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test ${{SolutionPath}} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
     # 解析を終了する
     - name: End Sonar analysis

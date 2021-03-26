@@ -1,6 +1,6 @@
 # LightningReview-ReviewFile
 
-![Build](https://img.shields.io/github/workflow/status/denso-create/LightningReview-ReviewFile/Build)
+![Build](https://img.shields.io/github/workflow/status/denso-create/LightningReview-ReviewFile/Build) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=denso-create_LightningReview-ReviewFile&metric=alert_status)](https://sonarcloud.io/dashboard?id=denso-create_LightningReview-ReviewFile)
 
 デンソークリエイトのレビュー支援ツール Lightning Review（https://www.lightning-review.com/) のレビューファイルに関するライブラリとツールです。Lightning Reviewアプリケーション不要でLightning Reviewのレビューファイルの高速なデータ読み込みが可能です。また、.NET Standard/.NET Coreで開発をしているのでWindows/Linux/Macで動作可能です。
 

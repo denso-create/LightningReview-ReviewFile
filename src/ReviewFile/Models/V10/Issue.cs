@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
-namespace LightningReview.ReviewFile.Models.V10
+namespace DensoCreate.LightningReview.ReviewFile.Models.V10
 {
     /// <summary>
     /// 指摘

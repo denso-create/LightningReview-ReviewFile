@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LightningReview.ReviewFile.Models
+namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
     /// 指摘のインタフェース

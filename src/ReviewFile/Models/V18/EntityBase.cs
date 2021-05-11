@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.ReviewFile.Models.V18
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
     /// <summary>
     /// 各エンティティに共通する基底クラス

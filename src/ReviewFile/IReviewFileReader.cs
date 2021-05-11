@@ -1,11 +1,11 @@
-﻿using LightningReview.ReviewFile.Models;
+﻿using DensoCreate.LightningReview.ReviewFile.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LightningReview.ReviewFile
+namespace DensoCreate.LightningReview.ReviewFile
 {
     /// <summary>
     /// レビューファイルのリーダーのインタフェース

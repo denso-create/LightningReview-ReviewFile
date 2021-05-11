@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.ReviewFile.Models.V10
+namespace DensoCreate.LightningReview.ReviewFile.Models.V10
 {
     /// <summary>
     /// レビュー

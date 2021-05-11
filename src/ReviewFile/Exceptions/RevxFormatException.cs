@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LightningReview.ReviewFile.Exceptions
+namespace DensoCreate.LightningReview.ReviewFile.Exceptions
 {
     /// <summary>
     /// ReviewFileで使用する例外クラス

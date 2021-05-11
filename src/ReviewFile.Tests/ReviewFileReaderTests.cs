@@ -1,13 +1,13 @@
-using LightningReview.ReviewFile.Models;
+using DensoCreate.LightningReview.ReviewFile.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using LightningReview.ReviewFile.Exceptions;
+using DensoCreate.LightningReview.ReviewFile.Exceptions;
 
-namespace LightningReview.ReviewFile.Tests
+namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
     /// <summary>
     /// ReviewFileReaderクラスのテスト

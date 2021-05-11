@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
-namespace LightningReview.ReviewFile.Models.V18
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
     /// <summary>
     /// 指摘

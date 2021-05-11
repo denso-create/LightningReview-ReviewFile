@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using LightningReview.ReviewFile.Models;
-using ReviewFileToJsonService.Extensions;
+using DensoCreate.LightningReview.ReviewFile.Models;
+using DensoCreate.LightningReview.ReviewFileToJsonService.Extensions;
 
-namespace ReviewFileToJsonService.Models
+namespace DensoCreate.LightningReview.ReviewFileToJsonService
 {
     /// <summary>
     /// JSONファイルのルートオブジェクト

@@ -1,4 +1,4 @@
-using LightningReview.ReviewFileToJsonService;
+using DensoCreate.LightningReview.ReviewFileToJsonService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace ReviewFileToJsonService.Tests
+namespace DensoCreate.LightningReview.ReviewFileToJsonService.Tests
 {
     /// <summary>
     /// ReviewFileToJsonExporterクラスのテスト

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO.Compression;
-using LightningReview.ReviewFile.Models;
+using DensoCreate.LightningReview.ReviewFile.Models;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Linq;
 using System.Linq;
-using LightningReview.ReviewFile.Exceptions;
+using DensoCreate.LightningReview.ReviewFile.Exceptions;
 
-namespace LightningReview.ReviewFile
+namespace DensoCreate.LightningReview.ReviewFile
 {
     /// <summary>
     /// レビューファイルのリーダー

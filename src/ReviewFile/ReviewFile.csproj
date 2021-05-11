@@ -11,16 +11,16 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Version>1.0.0</Version>
+    <PackageVersion>1.0.4</PackageVersion>
+    <Version>1.0.4</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
-    <PackageReleaseNotes>フレームワークおよび依存パッケージの情報を整理</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>名前空間のリファクタリング</PackageReleaseNotes>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

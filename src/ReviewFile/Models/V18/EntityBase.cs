@@ -15,7 +15,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public EntityBase()
+        protected EntityBase()
         {
             GID = Guid.NewGuid().ToString();
         }

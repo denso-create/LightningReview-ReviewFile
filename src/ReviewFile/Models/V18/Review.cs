@@ -35,7 +35,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
                     issues.AddRange(doc.AllIssues);
                 }
 
-                return issues.ToList();
+                return issues;
             }
         }
 

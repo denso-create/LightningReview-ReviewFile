@@ -42,6 +42,39 @@ namespace DensoCreate.LightningReview.ReviewFile
         }
 
         /// <summary>
+        /// ストリームからロードします。
+        /// </summary>
+        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
+        /// <returns>ロードしたレビューモデル</returns>
+        public IReview Read(Stream reviewFileStream)
+        {
+	        try
+	        {
+		        // スキーマバージョン値を取得
+		        var xDoc = XDocument.Load(reviewFileStream);
+		        var xElement = xDoc.Element("ReviewFile");
+		        if (xElement == null) throw new ReviewFileFormatException("ReviewFile Element Missing");
+		        var schemeVersion = double.Parse(xElement.Element("SchemaVersion").Value);
+
+		        // デシリアライズする
+		        // スキーマが1.7以降はV1.8のモデルになる
+		        var serializer = schemeVersion >= 1.7
+			        ? new XmlSerializer(typeof(Models.V18.ReviewFile))
+			        : new XmlSerializer(typeof(Models.V10.ReviewFile));
+		        var reviewFile = (IReviewFile) serializer.Deserialize(xDoc.CreateReader());
+
+		        // Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
+		        reviewFile.Review.FilePath = string.Empty;
+                
+		        return reviewFile.Review;
+	        }
+	        catch (Exception ex)
+	        {
+		        throw new ReviewFileFormatException(ex.Message, ex);
+	        }
+        }
+
+        /// <summary>
         /// 非同期でファイルからロードします。
         /// </summary>
         /// <param name="filePath">レビューファイルのパス</param>
@@ -49,6 +82,16 @@ namespace DensoCreate.LightningReview.ReviewFile
         public async Task<IReview> ReadAsync(string filePath)
         {
             return await Task.Run(() => Read(filePath));
+        }
+        
+        /// <summary>
+        /// 非同期でストリームからロードします。
+        /// </summary>
+        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
+        /// <returns>ロードしたレビューモデル</returns>
+        public async Task<IReview> ReadAsync(Stream reviewFileStream)
+        {
+	        return await Task.Run(() => Read(reviewFileStream));
         }
 
         /// <summary>
@@ -62,7 +105,7 @@ namespace DensoCreate.LightningReview.ReviewFile
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
             if (Directory.Exists(folderPath) == false)
             {
-                throw new Exception($"{folderPath} is not a valid directory.");
+                throw new ReviewFileFormatException($"{folderPath} is not a valid directory.");
             }
 
             // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する
@@ -88,49 +131,6 @@ namespace DensoCreate.LightningReview.ReviewFile
         public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false)
         {
             return await Task.Run(() => ReadFolder(folderPath, includeSubFodler));
-        }
-
-        /// <summary>
-        /// ストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
-        public IReview Read(Stream reviewFileStream)
-        {
-            try
-            {
-                // スキーマバージョン値を取得
-                var xDoc = XDocument.Load(reviewFileStream);
-                var xElement = xDoc.Element("ReviewFile");
-                if (xElement == null) throw new ReviewFileFormatException("ReviewFile Element Missing");
-                var schemeVersion = double.Parse(xElement.Element("SchemaVersion").Value);
-
-                // デシリアライズする
-                // スキーマが1.7以降はV1.8のモデルになる
-                var serializer = schemeVersion >= 1.7
-                    ? new XmlSerializer(typeof(Models.V18.ReviewFile))
-                    : new XmlSerializer(typeof(Models.V10.ReviewFile));
-                var reviewFile = (IReviewFile) serializer.Deserialize(xDoc.CreateReader());
-
-                // Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
-                reviewFile.Review.FilePath = string.Empty;
-                
-                return reviewFile.Review;
-            }
-            catch (Exception ex)
-            {
-                throw new ReviewFileFormatException(ex.Message, ex);
-            }
-        }
-
-        /// <summary>
-        /// 非同期でストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
-        public async Task<IReview> ReadAsync(Stream reviewFileStream)
-        {
-            return await Task.Run(() => Read(reviewFileStream));
         }
     }
 }

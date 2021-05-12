@@ -20,11 +20,25 @@ namespace DensoCreate.LightningReview.ReviewFile
         IReview Read(string filePath);
 
         /// <summary>
+        /// レビューファイルのストリームを読み込みます。
+        /// </summary>
+        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
+        /// <returns>ロードしたレビューモデル</returns>
+        IReview Read(Stream reviewFileStream);
+
+        /// <summary>
         /// 非同期で指定ファイルのレビューファイルを読み込みます。
         /// </summary>
         /// <param name="filePath">レビューファイルのパス</param>
         /// <returns>ロードしたレビューモデル</returns>
         Task<IReview> ReadAsync(string filePath);
+
+        /// <summary>
+        /// 非同期でレビューファイルのストリームを読み込みます。
+        /// </summary>
+        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
+        /// <returns>ロードしたレビューモデル</returns>
+        Task<IReview> ReadAsync(Stream reviewFileStream);
 
         /// <summary>
         /// 指定フォルダのレビューファイルを読み込みます。
@@ -41,19 +55,5 @@ namespace DensoCreate.LightningReview.ReviewFile
         /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
         Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false);
-
-        /// <summary>
-        /// レビューファイルのストリームを読み込みます。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
-        IReview Read(Stream reviewFileStream);
-
-        /// <summary>
-        /// 非同期でレビューファイルのストリームを読み込みます。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
-        Task<IReview> ReadAsync(Stream reviewFileStream);
     }
 }

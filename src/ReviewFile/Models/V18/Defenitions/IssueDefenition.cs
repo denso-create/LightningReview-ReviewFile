@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace LightningReview.ReviewFile.Models.V18.Defenitions
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Defenitions
 {
     /// <summary>
     /// 指摘の定義

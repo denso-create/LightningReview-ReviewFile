@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace ReviewFileToJsonService.Extensions
+namespace DensoCreate.LightningReview.ReviewFileToJsonService.Extensions
 {
     internal static class FieldCopyHelper
     {

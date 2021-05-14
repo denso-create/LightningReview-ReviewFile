@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using System.Linq;
-using LightningReview.ReviewFile.Models.V18.Defenitions;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Defenitions;
 
-namespace LightningReview.ReviewFile.Models.V18
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
     /// <summary>
     /// レビュー
@@ -35,7 +35,7 @@ namespace LightningReview.ReviewFile.Models.V18
                     issues.AddRange(doc.AllIssues);
                 }
 
-                return issues.ToList();
+                return issues;
             }
         }
 

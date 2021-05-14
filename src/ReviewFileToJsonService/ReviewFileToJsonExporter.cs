@@ -1,5 +1,5 @@
-﻿using LightningReview.ReviewFile;
-using ReviewFileToJsonService.Models;
+﻿using DensoCreate.LightningReview.ReviewFile;
+using DensoCreate.LightningReview.ReviewFileToJsonService;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 
-namespace LightningReview.ReviewFileToJsonService
+namespace DensoCreate.LightningReview.ReviewFileToJsonService
 {
     /// <summary>
     /// RevxのJsonエクスポート

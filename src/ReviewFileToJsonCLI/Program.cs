@@ -1,12 +1,12 @@
 ﻿using CommandLine;
-using LightningReview.ReviewFileToJsonService;
+using DensoCreate.LightningReview.ReviewFileToJsonService;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
-namespace ReviewFileToJson
+namespace DensoCreate.LightningReview.ReviewFileToJson
 {
     class Program
     {

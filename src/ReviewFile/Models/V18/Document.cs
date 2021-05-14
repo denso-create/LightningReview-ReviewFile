@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Linq;
 
-namespace LightningReview.ReviewFile.Models.V18
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
     /// <summary>
     /// ドキュメント

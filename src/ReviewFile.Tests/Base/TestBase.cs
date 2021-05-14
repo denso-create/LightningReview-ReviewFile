@@ -1,4 +1,4 @@
-﻿using LightningReview.ReviewFile.Models;
+﻿using DensoCreate.LightningReview.ReviewFile.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LightningReview.ReviewFile.Tests
+namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
     public class TestBase
     {

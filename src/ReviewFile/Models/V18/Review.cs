@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.Linq;
-using DensoCreate.LightningReview.ReviewFile.Models.V18.Defenitions;
+using System.Xml.Serialization;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
@@ -98,6 +96,26 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
             get => Project.Name;
             set => Project.Name = value;
         }
+        
+        /// <summary>
+        /// レビュー種別
+        /// </summary>
+        public string ReviewType { get; }
+
+        /// <summary>
+        /// ドメイン
+        /// </summary>
+        public string Domain { get; }
+
+        /// <summary>
+        /// レビューのステータス
+        /// </summary>
+        public string ReviewStatus { get; }
+
+        /// <summary>
+        /// レビュ形式
+        /// </summary>
+        public string ReviewStyle { get; }
 
         #endregion
 

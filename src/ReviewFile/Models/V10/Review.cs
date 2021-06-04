@@ -71,7 +71,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// <summary>
         /// このレビューファイルに関連づくドキュメントの一覧
         /// </summary>
-        public IEnumerable<IDocument> Documents => DocumentEneities;
+        public IEnumerable<IDocument> Documents => DocumentEntities;
 
         #region 基本設定
         
@@ -122,6 +122,31 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
             get => Project.Name;
             set => Project.Name = value;
         }
+        
+        /// <summary>
+        /// 定義
+        /// </summary>
+        public Definition Definition { get; set; }
+        
+        /// <summary>
+        /// レビュー種別
+        /// </summary>
+        public string ReviewType => Definition.ReviewDefinition.ReviewType;
+
+        /// <summary>
+        /// ドメイン
+        /// </summary>
+        public string Domain => Definition.ReviewDefinition.Domain;
+
+        /// <summary>
+        /// レビューのステータス
+        /// </summary>
+        public string ReviewStatus => Definition.ReviewDefinition.Status;
+
+        /// <summary>
+        /// レビュ形式
+        /// </summary>
+        public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
 
         #endregion
 
@@ -213,7 +238,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// </summary>
         [XmlArray("Documents")]
         [XmlArrayItem("Document")]
-        public List<Document> DocumentEneities { get; set; }
+        public List<Document> DocumentEntities { get; set; }
 
         /// <summary>
         /// このレビューファイルに関連づく指摘の一覧

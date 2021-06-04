@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Defenitions
+namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions
 {
     /// <summary>
     /// 定義
     /// </summary>
     [XmlRoot]
-    public class Defenition : EntityBase
+    public class Definition : EntityBase
     {
         /// <summary>
         /// 未対応の要素

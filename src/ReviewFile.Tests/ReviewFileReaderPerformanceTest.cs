@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using DensoCreate.LightningReview.ReviewFile.Tests.Base;
 
 namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
@@ -13,18 +14,27 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
     [TestClass]
     public class ReviewFileReaderPerformanceTest : TestBase
     {
+        /// <summary>
+        /// V10での100ファイル分のパフォーマンステスト
+        /// </summary>
         [TestMethod]
         public void Load100Times_PerformanceTest_V10()
         {
             LoadXTimes_PerformanceTest("V10", 100);
         }
 
+        /// <summary>
+        /// V18での100ファイル分のパフォーマンステスト
+        /// </summary>
         [TestMethod]
         public void Load100Times_PerformanceTest_V18()
         {
             LoadXTimes_PerformanceTest("V18", 100);
         }
 
+        /// <summary>
+        /// V10での1000ファイル分のパフォーマンステスト
+        /// </summary>
         [TestMethod]
         [TestCategory("SkipWhenLiveUnitTesting")]
         public void Load1000Times_PerformanceTest_V10()
@@ -32,6 +42,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             LoadXTimes_PerformanceTest("V10", 1000);
         }
 
+        /// <summary>
+        /// V18での1000ファイル分のパフォーマンステスト
+        /// </summary>
         [TestMethod]
         [TestCategory("SkipWhenLiveUnitTesting")]
         public void Load1000Times_PerformanceTest_V18()
@@ -39,9 +52,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             LoadXTimes_PerformanceTest("V18", 1000);
         }
 
-        //[DataRow("V10", 500)]
-        //[DataRow("V18", 500)]
-        //[DataTestMethod]
+        /// <summary>
+        /// パフォーマンステスト実行処理
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        /// <param name="dataCount">データ数</param>
         public void LoadXTimes_PerformanceTest(string version,int dataCount)
         {
             var revxFolder = GetTestDataPath(version);

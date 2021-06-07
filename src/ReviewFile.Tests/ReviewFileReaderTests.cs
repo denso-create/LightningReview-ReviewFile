@@ -18,22 +18,22 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// テストデータ
         /// </summary>
-        private string RevFileName = "RevFile1.revx";
+        private readonly string RevFileName = "RevFile1.revx";
 
         /// <summary>
         /// Reviewの未設定を確認するテストデータ
         /// </summary>
-        private string NotSetValueReviewName = "NotSetValueReview.revx";
+        private readonly string NotSetValueReviewName = "NotSetValueReview.revx";
 
         /// <summary>
         /// Issueの未設定を確認するテストデータ
         /// </summary>
-        private string NotSetValueIssueName = "NotSetValueIssue.revx";
+        private readonly string NotSetValueIssueName = "NotSetValueIssue.revx";
 
         /// <summary>
         /// Stream内のReviewFile要素が存在しないテストデータ
         /// </summary>
-        private string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
+        private readonly string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
 
         [DataRow("V10")]
         [DataRow("V18")]
@@ -65,12 +65,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(6, reviews.Count());
         }
 
-        [DataRow("V10")]
-        [DataRow("V18")]
-        [DataTestMethod]
-        public void ReadNotExistFolderTest(string version)
+        [TestMethod]
+        public void ReadNotExistFolderTest()
         {
-            var folderPath = "NotExist";
+            const string folderPath = "NotExist";
             var reader = new ReviewFileReader();
 
             try
@@ -97,7 +95,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         [TestMethod]
-        public void ReadReviewFileElementMissinfTest()
+        public void ReadReviewFileElementMissingTest()
         {
             try
             {

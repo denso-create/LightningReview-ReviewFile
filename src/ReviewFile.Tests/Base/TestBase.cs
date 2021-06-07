@@ -10,9 +10,6 @@ using System.Threading.Tasks;
 
 namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
-    /// <summary>
-    /// テストのベースクラス
-    /// </summary>
     public class TestBase
     {
         /// <summary>
@@ -21,11 +18,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         protected virtual string TestDataFolderName => @"TestData";
 
         /// <summary>
-        /// テストデータのファイルパスを取得します。
+        /// テストデータのファイルパスを取得する
         /// </summary>
-        /// <param name="version">バージョン</param>
         /// <param name="fileName">テストデータのファイル名</param>
-        /// <returns></returns>
+        /// <returns>テストデータのファイルパス</returns>
         protected string GetTestDataPath(string version="",string fileName = null)
         {
             var exePath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
@@ -44,7 +40,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// レビューファイルのロード
         /// </summary>
-        /// <param name="version">バージョン</param>
         /// <param name="filePath"></param>
         /// <returns></returns>
         protected IReview ReadReviewFile(string version, string filePath)
@@ -56,7 +51,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
-        /// フォルダを作成します。すでにあればファイルを削除して再作成します。
+        /// フォルダを作成する。すでにあればファイルを削除して再作成する
         /// </summary>
         /// <param name="directory"></param>
         protected void RecreateDirectory(string directory)
@@ -75,10 +70,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             }
         }
 
-        /// <summary>
-        /// フォルダを削除します。
-        /// </summary>
-        /// <param name="directory"></param>
         protected void RemoveDirectory(string directory)
         {
             if (Directory.Exists(directory))
@@ -95,7 +86,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// ストリームのロード
         /// </summary>
-        /// <param name="version">バージョン</param>
         /// <param name="fileName"></param>
         /// <returns></returns>
         protected IReview ReadReviewStream(string version, string fileName)
@@ -117,7 +107,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// 非同期のストリームのロード
         /// </summary>
-        /// <param name="version">バージョン</param>
         /// <param name="fileName"></param>
         /// <returns></returns>
         protected async Task<IReview> ReadAsyncReviewStream(string version, string fileName)

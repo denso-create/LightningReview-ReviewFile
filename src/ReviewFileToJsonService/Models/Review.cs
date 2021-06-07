@@ -103,6 +103,26 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService
         /// </summary>
         public string ProjectName { get; set; }
 
+        /// <summary>
+        /// レビュー種別
+        /// </summary>
+        public string ReviewType { get; set; }
+
+        /// <summary>
+        /// ドメイン
+        /// </summary>
+        public string Domain { get; set; }
+
+        /// <summary>
+        /// レビューのステータス
+        /// </summary>
+        public string ReviewStatus { get; set; }
+
+        /// <summary>
+        /// レビュ形式
+        /// </summary>
+        public string ReviewStyle { get; set; }
+
         #endregion
 
         #region 予実

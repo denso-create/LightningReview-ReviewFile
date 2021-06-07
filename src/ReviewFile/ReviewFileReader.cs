@@ -98,9 +98,9 @@ namespace DensoCreate.LightningReview.ReviewFile
         /// フォルダからロードします。
         /// </summary>
         /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
+        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        public IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFodler = false)
+        public IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFolder = false)
         {
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
             if (Directory.Exists(folderPath) == false)
@@ -109,7 +109,7 @@ namespace DensoCreate.LightningReview.ReviewFile
             }
 
             // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する
-            var searchOption = includeSubFodler ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+            var searchOption = includeSubFolder ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 
             var ReviewFilePaths = Directory.GetFiles(folderPath, "*.revx", searchOption);
             var reviews = new List<IReview>();
@@ -126,11 +126,11 @@ namespace DensoCreate.LightningReview.ReviewFile
         /// 非同期でフォルダからロードします。
         /// </summary>
         /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
+        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false)
+        public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFolder = false)
         {
-            return await Task.Run(() => ReadFolder(folderPath, includeSubFodler));
+            return await Task.Run(() => ReadFolder(folderPath, includeSubFolder));
         }
     }
 }

@@ -53,10 +53,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement]
         public string ApplicationType { get; set; }
         
-        //[XmlArray]
-        //[XmlArrayItem("OutlineTree")]
-        //public List<OutlineNode> OutlineTree { get; set; }
-
         /// <summary>
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>

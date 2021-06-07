@@ -18,22 +18,22 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// テストデータ
         /// </summary>
-        private string RevFileName = "RevFile1.revx";
+        private readonly string RevFileName = "RevFile1.revx";
 
         /// <summary>
         /// Reviewの未設定を確認するテストデータ
         /// </summary>
-        private string NotSetValueReviewName = "NotSetValueReview.revx";
+        private readonly string NotSetValueReviewName = "NotSetValueReview.revx";
 
         /// <summary>
         /// Issueの未設定を確認するテストデータ
         /// </summary>
-        private string NotSetValueIssueName = "NotSetValueIssue.revx";
+        private readonly string NotSetValueIssueName = "NotSetValueIssue.revx";
 
         /// <summary>
         /// Stream内のReviewFile要素が存在しないテストデータ
         /// </summary>
-        private string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
+        private readonly string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
 
         [DataRow("V10")]
         [DataRow("V18")]
@@ -65,12 +65,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(6, reviews.Count());
         }
 
-        [DataRow("V10")]
-        [DataRow("V18")]
-        [DataTestMethod]
-        public void ReadNotExistFolderTest(string version)
+        [TestMethod]
+        public void ReadNotExistFolderTest()
         {
-            var folderPath = "NotExist";
+            const string folderPath = "NotExist";
             var reader = new ReviewFileReader();
 
             try
@@ -97,7 +95,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         [TestMethod]
-        public void ReadReviewFileElementMissinfTest()
+        public void ReadReviewFileElementMissingTest()
         {
             try
             {
@@ -193,6 +191,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("RevPlace", review.Place);
             Assert.AreEqual("RevProjectCode", review.ProjectCode);
             Assert.AreEqual("RevProjectName", review.ProjectName);
+            Assert.AreEqual("RevReviewType2", review.ReviewType);
+            Assert.AreEqual("RevDomain2", review.Domain);
+            Assert.AreEqual("RevStatus", review.ReviewStatus);
+            Assert.AreEqual("RevReviewStyle2", review.ReviewStyle);
             Assert.AreEqual(DateTime.Parse("2021/2/18 0:00:00"), review.PlannedDate);
             Assert.AreEqual(DateTime.Parse("2021/2/19 0:00:00"), review.ActualDate);
             Assert.AreEqual("1", review.PlannedTime);
@@ -217,6 +219,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.Place);
             Assert.AreEqual("", review.ProjectCode);
             Assert.AreEqual("", review.ProjectName);
+            Assert.AreEqual("", review.ReviewType);
+            Assert.AreEqual("", review.Domain);
+            Assert.AreEqual("", review.ReviewStatus);
+            Assert.AreEqual("", review.ReviewStyle);
             Assert.IsNull(review.PlannedDate);
             Assert.IsNull(review.ActualDate);
             Assert.AreEqual("", review.PlannedTime);

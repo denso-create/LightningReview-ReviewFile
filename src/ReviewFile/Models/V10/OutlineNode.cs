@@ -30,10 +30,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlAttribute]
         public string Name { get; set; }
 
-        //[XmlArray("")]
-        //[XmlArrayItem("OutlineNode")]
-        //public List<OutlineNode> ChildNodes { get; set; }
-
         /// <summary>
         /// 子ノードの一覧
         /// </summary>

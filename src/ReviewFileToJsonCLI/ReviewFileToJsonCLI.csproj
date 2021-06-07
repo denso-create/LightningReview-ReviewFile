@@ -4,7 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>ReviewFileToJson</AssemblyName>
-    <RootNamespace>ReviewFileToJson</RootNamespace>
+    <RootNamespace>DensoCreate.LightningReview.ReviewFileToJson</RootNamespace>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

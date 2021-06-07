@@ -82,13 +82,13 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService.Tests
                 File.Delete(outputPath);
             }
 
-            var logMesseage = string.Empty;
+            var logMessage = string.Empty;
             // エクスポート処理
             var exporter = new ReviewFileToJsonExporter();
-            exporter.Logger = (message) => logMesseage = message;
+            exporter.Logger = (message) => logMessage = message;
             exporter.Export(revxFolder, outputPath);
 
-            Assert.AreEqual($"3件のレビューファイルが見つかりました。", logMesseage);
+            Assert.AreEqual($"3件のレビューファイルが見つかりました。", logMessage);
 
             // 出力先のファイルが生成されたか確認する
             Assert.IsTrue(File.Exists(outputPath));
@@ -113,13 +113,13 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService.Tests
         /// </summary>
         [TestCategory("SkipWhenLiveUnitTesting")]
         [TestMethod]
-        public void PerfomanceTest()
+        public void PerformanceTest()
         {
             var revxFolder = GetTestDataPath();
 
             // テスト用のフォルダを作成する
-            var peformanceTestFolder = Path.Combine(revxFolder, "PeformanceTestData");
-            RecreateDirectory(peformanceTestFolder);
+            var performanceTestFolder = Path.Combine(revxFolder, "PerformanceTestData");
+            RecreateDirectory(performanceTestFolder);
 
             #region テストデータの作成
 
@@ -129,7 +129,7 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService.Tests
             // テストファイルの作成
             for (var i = 0; i < 1000; i++)
             {
-                var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceReviewFile{i}.revx");
+                var destFilePath = Path.Combine(performanceTestFolder, $"PerformanceReviewFile{i}.revx");
                 File.Copy(ReviewFile, destFilePath);
             }
 
@@ -139,9 +139,9 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService.Tests
 
             var stopwatch = new Stopwatch();
 
-            var outputPath = Path.Combine(peformanceTestFolder, "output.json");
+            var outputPath = Path.Combine(performanceTestFolder, "output.json");
             var exporter = new ReviewFileToJsonExporter();
-            exporter.Export(peformanceTestFolder, outputPath);
+            exporter.Export(performanceTestFolder, outputPath);
             stopwatch.Start();
 
             // 処理時間が5000ms以内であるか

@@ -44,16 +44,16 @@ namespace DensoCreate.LightningReview.ReviewFile
         /// 指定フォルダのレビューファイルを読み込みます。
         /// </summary>
         /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
+        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFodler = false);
+        IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFolder = false);
         
         /// <summary>
         /// 非同期で指定フォルダのレビューファイルを読み込みます。
         /// </summary>
         /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFodler">サブフォルダも対象にするか</param>
+        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
         /// <returns>ロードしたレビューモデル</returns>
-        Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFodler = false);
+        Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFolder = false);
     }
 }

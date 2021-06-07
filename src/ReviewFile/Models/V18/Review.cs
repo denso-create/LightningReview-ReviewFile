@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.Linq;
-using DensoCreate.LightningReview.ReviewFile.Models.V18.Defenitions;
+using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
@@ -98,6 +97,32 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
             get => Project.Name;
             set => Project.Name = value;
         }
+
+        /// <summary>
+        /// 定義
+        /// </summary>
+        [XmlElement]
+        public Definition Definition { get; set; }
+
+        /// <summary>
+        /// レビュー種別
+        /// </summary>
+        public string ReviewType => Definition.ReviewDefinition.ReviewType;
+
+        /// <summary>
+        /// ドメイン
+        /// </summary>
+        public string Domain => Definition.ReviewDefinition.Domain;
+
+        /// <summary>
+        /// レビューのステータス
+        /// </summary>
+        public string ReviewStatus => Definition.ReviewDefinition.Status;
+
+        /// <summary>
+        /// レビュ形式
+        /// </summary>
+        public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
 
         #endregion
 

@@ -11,70 +11,70 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
     /// ReviewFileReaderクラスのパフォーマンステスト
     /// </summary>
     [TestClass]
-    public class ReviewFileReaderPeformanceTest : TestBase
+    public class ReviewFileReaderPerformanceTest : TestBase
     {
         [TestMethod]
-        public void Load100Times_PeformanceTest_V10()
+        public void Load100Times_PerformanceTest_V10()
         {
-            LoadXTimes_PeformanceTest("V10", 100);
+            LoadXTimes_PerformanceTest("V10", 100);
         }
 
         [TestMethod]
-        public void Load100Times_PeformanceTest_V18()
+        public void Load100Times_PerformanceTest_V18()
         {
-            LoadXTimes_PeformanceTest("V18", 100);
-        }
-
-        [TestMethod]
-        [TestCategory("SkipWhenLiveUnitTesting")]
-        public void Load1000Times_PeformanceTest_V10()
-        {
-            LoadXTimes_PeformanceTest("V10", 1000);
+            LoadXTimes_PerformanceTest("V18", 100);
         }
 
         [TestMethod]
         [TestCategory("SkipWhenLiveUnitTesting")]
-        public void Load1000Times_PeformanceTest_V18()
+        public void Load1000Times_PerformanceTest_V10()
         {
-            LoadXTimes_PeformanceTest("V18", 1000);
+            LoadXTimes_PerformanceTest("V10", 1000);
+        }
+
+        [TestMethod]
+        [TestCategory("SkipWhenLiveUnitTesting")]
+        public void Load1000Times_PerformanceTest_V18()
+        {
+            LoadXTimes_PerformanceTest("V18", 1000);
         }
 
         //[DataRow("V10", 500)]
         //[DataRow("V18", 500)]
         //[DataTestMethod]
-        public void LoadXTimes_PeformanceTest(string version,int dataCount)
+        public void LoadXTimes_PerformanceTest(string version,int dataCount)
         {
             var revxFolder = GetTestDataPath(version);
 
             // テスト用のフォルダを作成する
-            var peformanceTestFolder = Path.Combine(GetTestDataPath(), "PeformanceTestData");
-            RecreateDirectory(peformanceTestFolder);
+            var performanceTestFolder = Path.Combine(GetTestDataPath(), "PerformanceTestData");
+            RecreateDirectory(performanceTestFolder);
 
             #region テストデータの作成
 
             // 指定されたフォルダ以下のレビューファイルに対して、レビューのデータを取得する
-            var ReviewFile = Path.Combine(revxFolder, "RevFilePerformance30.revx");
-            Assert.IsTrue(File.Exists(ReviewFile),"テストデータがありません");
+            var reviewFile = Path.Combine(revxFolder, "RevFilePerformance30.revx");
+            Assert.IsTrue(File.Exists(reviewFile),"テストデータがありません");
 
             // テストファイルの作成
             for (var i = 0; i < dataCount; i++)
             {
-                var destFilePath = Path.Combine(peformanceTestFolder, $"PerformanceReviewFile{i}.revx");
-                File.Copy(ReviewFile, destFilePath);
+                var destFilePath = Path.Combine(performanceTestFolder, $"PerformanceReviewFile{i}.revx");
+                File.Copy(reviewFile, destFilePath);
             }
 
             #endregion
 
-            var ReviewFiles = Directory.EnumerateFiles(peformanceTestFolder, "*.revx");
+            var reviewFiles = Directory.EnumerateFiles(performanceTestFolder, "*.revx");
 
             // 指定数作成できているか
-            Assert.AreEqual(dataCount, ReviewFiles.Count());
+            Assert.AreEqual(dataCount, reviewFiles.Count());
 
             // 実際にファイルを読み込む
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            foreach ( var revFilePath in ReviewFiles)
+            foreach ( var revFilePath in reviewFiles)
             {
                 var review = ReadReviewFile(version,revFilePath);
 
@@ -89,7 +89,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var requiredTime = dataCount * 10;
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < requiredTime,$"{stopwatch.ElapsedMilliseconds}ms > {requiredTime}ms: {version}の{dataCount}レビューの読み込みが要求値の{requiredTime}msを超えて{stopwatch.ElapsedMilliseconds}msとなりました。");
 
-            //RemoveDirectory(peformanceTestFolder);
+            //RemoveDirectory(performanceTestFolder);
         }
     }
 }

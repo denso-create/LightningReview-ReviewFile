@@ -82,6 +82,26 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// プロジェクト名
         /// </summary>
         string ProjectName { get; set; }
+        
+        /// <summary>
+        /// レビュー種別
+        /// </summary>
+        string ReviewType { get; }
+
+        /// <summary>
+        /// ドメイン
+        /// </summary>
+        string Domain { get; }
+
+        /// <summary>
+        /// レビューのステータス
+        /// </summary>
+        string ReviewStatus { get; }
+
+        /// <summary>
+        /// レビュ形式
+        /// </summary>
+        string ReviewStyle { get; }
 
         #endregion
 

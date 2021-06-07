@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDefinitions;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions
 {
@@ -12,15 +10,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions
     public class Definition : EntityBase
     {
         /// <summary>
-        /// 未対応の要素
+        /// レビューの定義
         /// </summary>
         [XmlElement]
-        public string Code { get; set; }
-
-        /// <summary>
-        /// 未対応の要素
-        /// </summary>
-        [XmlElement]
-        public string Name { get; set; }
+        public ReviewDefinition ReviewDefinition { get; set; }
     }
 }

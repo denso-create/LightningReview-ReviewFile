@@ -1,15 +1,15 @@
-﻿using DensoCreate.LightningReview.ReviewFile.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
+using DensoCreate.LightningReview.ReviewFile.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DensoCreate.LightningReview.ReviewFile.Tests
+namespace DensoCreate.LightningReview.ReviewFile.Tests.Base
 {
+    /// <summary>
+    /// テストのベースクラス
+    /// </summary>
     public class TestBase
     {
         /// <summary>
@@ -18,8 +18,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         protected virtual string TestDataFolderName => @"TestData";
 
         /// <summary>
-        /// テストデータのファイルパスを取得する
+        /// テストデータのファイルパスを取得します。
         /// </summary>
+        /// <param name="version">バージョン</param>
         /// <param name="fileName">テストデータのファイル名</param>
         /// <returns>テストデータのファイルパス</returns>
         protected string GetTestDataPath(string version="",string fileName = null)
@@ -40,6 +41,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// レビューファイルのロード
         /// </summary>
+        /// <param name="version">バージョン</param>
         /// <param name="filePath"></param>
         /// <returns></returns>
         protected IReview ReadReviewFile(string version, string filePath)
@@ -51,7 +53,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
-        /// フォルダを作成する。すでにあればファイルを削除して再作成する
+        /// フォルダを作成します。すでにあればファイルを削除して再作成します。
         /// </summary>
         /// <param name="directory"></param>
         protected void RecreateDirectory(string directory)
@@ -70,6 +72,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             }
         }
 
+        /// <summary>
+        /// フォルダを削除します。
+        /// </summary>
+        /// <param name="directory"></param>
         protected void RemoveDirectory(string directory)
         {
             if (Directory.Exists(directory))
@@ -86,6 +92,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// ストリームのロード
         /// </summary>
+        /// <param name="version">バージョン</param>
         /// <param name="fileName"></param>
         /// <returns></returns>
         protected IReview ReadReviewStream(string version, string fileName)
@@ -107,6 +114,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// 非同期のストリームのロード
         /// </summary>
+        /// <param name="version">バージョン</param>
         /// <param name="fileName"></param>
         /// <returns></returns>
         protected async Task<IReview> ReadAsyncReviewStream(string version, string fileName)

@@ -8,7 +8,6 @@
     <AssemblyName>LightningReview.ReviewFile.Tests</AssemblyName>
 
     <RootNamespace>DensoCreate.LightningReview.ReviewFile.Tests</RootNamespace>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

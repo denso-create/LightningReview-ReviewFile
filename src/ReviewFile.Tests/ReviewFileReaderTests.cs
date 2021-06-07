@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using DensoCreate.LightningReview.ReviewFile.Exceptions;
+using DensoCreate.LightningReview.ReviewFile.Tests.Base;
 
 namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
@@ -35,6 +36,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// </summary>
         private readonly string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
 
+        /// <summary>
+        /// ファイルパス引数でのReadメソッドのテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -46,6 +51,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(GetTestDataPath(version, RevFileName), review.FilePath);
         }
 
+        /// <summary>
+        /// ReadFolderメソッドのテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -65,6 +74,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(6, reviews.Count());
         }
 
+        /// <summary>
+        /// レビューファイルが存在しない場合の異常値のテスト
+        /// </summary>
         [TestMethod]
         public void ReadNotExistFolderTest()
         {
@@ -84,6 +96,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.Fail();
         }
 
+        /// <summary>
+        /// Stream引数でのReadメソッドのテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -94,6 +110,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(string.Empty, review.FilePath);
         }
 
+        /// <summary>
+        /// Stream内のReviewFile要素が存在しない場合のテスト
+        /// </summary>
         [TestMethod]
         public void ReadReviewFileElementMissingTest()
         {
@@ -110,6 +129,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.Fail();
         }
 
+        /// <summary>
+        /// Null値を引数でのReadメソッドのテスト
+        /// </summary>
         [TestMethod]
         public void ReadNullStreamTest()
         {
@@ -128,6 +150,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.Fail();
         }
 
+        /// <summary>
+        /// 非同期メソッドのテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        /// <returns></returns>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -167,6 +194,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             #endregion
         }
 
+        /// <summary>
+        /// Reviewモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -206,6 +237,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("3", review.IssueCountOfActual);
         }
 
+        /// <summary>
+        /// Reviewモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -234,6 +269,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("0", review.IssueCountOfActual);
         }
 
+        /// <summary>
+        /// Documentモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -277,6 +316,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             #endregion
         }
 
+        /// <summary>
+        /// Issueモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]
@@ -328,6 +371,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("TextJ2", issue1.CustomText10);
         }
 
+        /// <summary>
+        /// Issueモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataTestMethod]

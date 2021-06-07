@@ -1,12 +1,12 @@
 ﻿using System.Xml.Serialization;
 
-namespace DensoCreate.LightningReview.ReviewFile.Models.V10
+namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.ReviewDefinitions
 {
     /// <summary>
     /// メンバ
     /// </summary>
     [XmlRoot]
-    public class Members
+    public class Member
     {
         /// <summary>
         /// 名前

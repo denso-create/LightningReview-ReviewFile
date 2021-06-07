@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
-using DensoCreate.LightningReview.ReviewFile.Models.V10;
 
-namespace DensoCreate.LightningReview.ReviewFile.Models
+namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.ReviewDefinitions
 {
     /// <summary>
     /// レビューの定義
@@ -11,11 +10,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
     public class ReviewDefinition
     {
         /// <summary>
-        /// レビュー種別
+        /// レビュー種別一覧
         /// </summary>
         [XmlArray("ReviewTypes")]
         [XmlArrayItem("ReviewType")]
-        public List<ReviewTypes> ReviewTypes { get; set; }
+        public List<ReviewType> ReviewTypes { get; set; }
 
         /// <summary>
         /// レビュー種別
@@ -37,14 +36,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         }
 
         /// <summary>
-        /// メンバ
+        /// メンバ一覧
         /// </summary>
         [XmlArray("Members")]
         [XmlArrayItem("Member")]
-        public List<Members> Members{ get; set; }
+        public List<Member> Members{ get; set; }
 
         /// <summary>
-        /// ドメイン
+        /// ドメイン一覧
         /// </summary>
         [XmlArray("Domains")]
         [XmlArrayItem("Domain")]
@@ -70,7 +69,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         }
 
         /// <summary>
-        /// レビューのステータス
+        /// レビューのステータス一覧
         /// </summary>
         [XmlArray("Status")]
         [XmlArrayItem("Status")]
@@ -96,11 +95,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         }
 
         /// <summary>
-        /// レビュ形式
+        /// レビュ形式一覧
         /// </summary>
         [XmlArray("ReviewStyles")]
         [XmlArrayItem("ReviewStyle")]
-        public List<ReviewStyles> ReviewStyles { get; set; }
+        public List<ReviewStyle> ReviewStyles { get; set; }
 
         /// <summary>
         /// レビュ形式

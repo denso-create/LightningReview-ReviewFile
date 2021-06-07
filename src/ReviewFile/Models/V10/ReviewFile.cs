@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V10
 {

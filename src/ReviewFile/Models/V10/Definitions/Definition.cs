@@ -1,6 +1,7 @@
 ﻿using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.ReviewDefinitions;
 
-namespace DensoCreate.LightningReview.ReviewFile.Models.V10
+namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions
 {
     /// <summary>
     /// 定義

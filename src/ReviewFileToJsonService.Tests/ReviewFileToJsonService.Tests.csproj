@@ -5,6 +5,7 @@
 
     <IsPackable>false</IsPackable>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <RootNamespace>DensoCreate.LightningReview.ReviewFileToJsonService.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

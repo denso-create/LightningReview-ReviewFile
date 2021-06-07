@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.ReviewFileToJsonService</AssemblyName>
-    <RootNamespace>LightningReview.ReviewFileToJsonService</RootNamespace>
+    <RootNamespace>DensoCreate.LightningReview.ReviewFileToJsonService</RootNamespace>
     <Authors>DENSO CREATE INC.</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを検索してjsonファイルにデータを出力可能なライブラリです。</Description>

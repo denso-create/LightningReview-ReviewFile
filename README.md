@@ -217,13 +217,13 @@ exporter.Export(folderPath, jsonFilePath);
 - LightningReview.ReviewFileToJsonService
 - CommandLineParser
 
-### 活用例：コマンドラインから読み出してExcelに展開します
+### 活用例：コマンドラインプログラムを実行してレビューファイルのレビューや指摘のデータをExcelで表示します
 
 本ライブラリの具体的な利用例を動画を使ってご紹介します。  
 ここでは、以下の Step で実施します。  
 
-- [Step1：コマンドラインプログラムを実行してレビューファイルのデータを取得します](https://github.com/denso-create/LightningReview-ReviewFile#step1%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%8B%E3%82%89%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97%E3%81%A6%E6%83%85%E5%A0%B1%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B)
-- [Step2：取得したレビューファイルのデータをExcel上に表形式で表示します](https://github.com/denso-create/LightningReview-ReviewFile#step2%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E6%83%85%E5%A0%B1%E3%82%92excel%E3%81%AB%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B)
+- [Step1：コマンドラインプログラムを実行してレビューファイルのデータを取得します](#step1コマンドラインプログラムを実行してレビューファイルのデータを取得します)
+- [Step2：取得したレビューファイルのデータをExcel上に表形式で表示します](#step2取得したレビューファイルのデータをexcel上に表形式で表示します)
 
 #### Step1：コマンドラインプログラムを実行してレビューファイルのデータを取得します
 

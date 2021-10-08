@@ -217,25 +217,25 @@ exporter.Export(folderPath, jsonFilePath);
 - LightningReview.ReviewFileToJsonService
 - CommandLineParser
 
-### 【活用例】コマンドラインから読み出してExcelに展開する
+### 活用例：コマンドラインから読み出してExcelに展開します
 
 本ライブラリの具体的な利用例を動画を使ってご紹介します。  
-ここでは、以下の Step で実施しています。  
+ここでは、以下の Step で実施します。  
 
-- [Step1：コマンドラインから読み出して情報を取得する](https://github.com/denso-create/LightningReview-ReviewFile#step1%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%8B%E3%82%89%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97%E3%81%A6%E6%83%85%E5%A0%B1%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B)
-- [Step2：取得した情報をExcelに展開する](https://github.com/denso-create/LightningReview-ReviewFile#step2%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E6%83%85%E5%A0%B1%E3%82%92excel%E3%81%AB%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B)
+- [Step1：コマンドラインプログラムを実行してレビューファイルのデータを取得します](https://github.com/denso-create/LightningReview-ReviewFile#step1%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%8B%E3%82%89%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97%E3%81%A6%E6%83%85%E5%A0%B1%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B)
+- [Step2：取得したレビューファイルのデータをExcel上に表形式で表示します](https://github.com/denso-create/LightningReview-ReviewFile#step2%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E6%83%85%E5%A0%B1%E3%82%92excel%E3%81%AB%E5%B1%95%E9%96%8B%E3%81%99%E3%82%8B)
 
-#### Step1：コマンドラインから読み出して情報を取得する
+#### Step1：コマンドラインプログラムを実行してレビューファイルのデータを取得します
 
-フォルダ内に複数格納されたレビューファイルに登録された指摘を、JSON形式に出力します。  
-下の動画では、Windows のコマンドプロンプトにてLightning Reviewのファイルが格納されたフォルダを指定して実行しています。
+フォルダ内に複数格納されているレビューファイルに登録されたレビューや指摘といったデータを、JSON形式の出力ファイルとして取得します。  
+下の動画では、Windows のコマンドプロンプトにて Lightning Review のファイルが複数格納されたフォルダを指定して実行することで、output.jsonという出力ファイルを取得しています。
 
 ![output](https://user-images.githubusercontent.com/71699816/136491468-6979b6df-05fd-4824-8ecb-2d166cda3d6d.gif)
 
-#### Step2：取得した情報をExcelに展開する
+#### Step2：取得したレビューファイルのデータをExcel上に表形式で表示します
 
-JSON形式のデータは、Excelの機能を利用して表形式に変換できます。  
-下の動画では、Step1 にて取得したJSON形式のデータ（output.json）を、Excelで表に変換しています。  
-Lightning Review ファイルが保持している生のデータを一覧にできるため、その後はお好みの形に合わせて分析することができます。
+JSON形式で取得されたoutput.jsonは、Excelの機能を利用して表形式に変換できます。  
+下の動画では、Step1 にて取得したoutput.jsonファイルをExcelで表に変換して表示しています。  
+Lightning Review ファイルが保持しているそのままのデータを一覧に表示できるため、その後はお好みの形に合わせて分析できます。
 
 ![data_transform](https://user-images.githubusercontent.com/71699816/136491547-6348fb81-004b-42ac-9024-55512bea407c.gif)

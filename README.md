@@ -216,3 +216,26 @@ exporter.Export(folderPath, jsonFilePath);
 ### 依存パッケージ
 - LightningReview.ReviewFileToJsonService
 - CommandLineParser
+
+### 【活用例】コマンドラインから読み出してExcelに展開する
+
+本ライブラリの具体的な利用例を動画を使ってご紹介します。  
+ここでは、以下の Step で実施しています。  
+
+- Step1：コマンドラインから読み出して情報を取得する。
+- Step2：取得した情報をExcelに展開する。
+
+#### Step1：コマンドラインから読み出して情報を取得する
+
+フォルダ内に複数格納されたレビューファイルに登録された指摘を、JSON形式に出力します。  
+下の動画では、Windows のコマンドプロンプトにてLightning Reviewのファイルが格納されたフォルダを指定して実行しています。
+
+![output](https://user-images.githubusercontent.com/71699816/136491468-6979b6df-05fd-4824-8ecb-2d166cda3d6d.gif)
+
+#### Step2：取得した情報をExcelに展開する
+
+JSON形式のデータは、Excelの機能を利用して表形式に変換できます。  
+下の動画では、Step1 にて取得したJSON形式のデータ（output.json）を、Excelで表に変換しています。  
+Lightning Review ファイルが保持している生のデータを一覧にできるため、その後はお好みの形に合わせて分析することができます。
+
+![data_transform](https://user-images.githubusercontent.com/71699816/136491547-6348fb81-004b-42ac-9024-55512bea407c.gif)

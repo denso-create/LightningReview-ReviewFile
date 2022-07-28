@@ -270,8 +270,72 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string CustomText10 { get; set; }
 
+        /// <summary>
+        /// カスタムテキスト11
+        /// </summary>
+        /// <remarks>
+        /// カスタムテキスト11以降の定義がないバージョンのレビューファイルを開いた場合は、該当のXML属性が存在しないためnullとなる。
+        /// カスタムテキストの値が未設定の状態とXML属性が存在しない状態を一貫させるため、string.Emptyで初期化する。
+        /// </remarks>
+        [XmlElement]
+        public string CustomText11 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト12
+        /// </summary>
+        [XmlElement]
+        public string CustomText12 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト13
+        /// </summary>
+        [XmlElement]
+        public string CustomText13 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト14
+        /// </summary>
+        [XmlElement]
+        public string CustomText14 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト15
+        /// </summary>
+        [XmlElement]
+        public string CustomText15 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト16
+        /// </summary>
+        [XmlElement]
+        public string CustomText16 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト17
+        /// </summary>
+        [XmlElement]
+        public string CustomText17 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト18
+        /// </summary>
+        [XmlElement]
+        public string CustomText18 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト19
+        /// </summary>
+        [XmlElement]
+        public string CustomText19 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト20
+        /// </summary>
+        [XmlElement]
+        public string CustomText20 { get; set; } = string.Empty;
+
         #endregion
-        
+
         #endregion
     }
 }

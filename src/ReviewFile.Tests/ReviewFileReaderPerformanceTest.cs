@@ -33,6 +33,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
+        /// V20での100ファイル分のパフォーマンステスト
+        /// </summary>
+        [TestMethod]
+        public void Load100Times_PerformanceTest_V20()
+        {
+	        LoadXTimes_PerformanceTest("V20", 100);
+        }
+
+        /// <summary>
         /// V10での1000ファイル分のパフォーマンステスト
         /// </summary>
         [TestMethod]
@@ -50,6 +59,16 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         public void Load1000Times_PerformanceTest_V18()
         {
             LoadXTimes_PerformanceTest("V18", 1000);
+        }
+
+        /// <summary>
+        /// V20での1000ファイル分のパフォーマンステスト
+        /// </summary>
+        [TestMethod]
+        [TestCategory("SkipWhenLiveUnitTesting")]
+        public void Load1000Times_PerformanceTest_V20()
+        {
+	        LoadXTimes_PerformanceTest("V20", 1000);
         }
 
         /// <summary>

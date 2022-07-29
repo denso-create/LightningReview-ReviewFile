@@ -42,6 +42,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void ReadFileTest(string version)
         {
@@ -57,6 +58,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]		
         [DataTestMethod]
         public void ReadFolderTest(string version)
         {
@@ -102,6 +104,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void ReadStreamTest(string version)
         {
@@ -157,6 +160,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <returns></returns>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public async Task ReadAsyncTest(string version)
         {
@@ -200,6 +204,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void ReviewTest(string version)
         {
@@ -215,7 +220,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("作成者", review.CreatedBy);
             Assert.AreEqual(DateTime.Parse("2021/02/12 6:16:01"), review.CreatedDateTime);
             Assert.AreEqual("最終更新者", review.LastUpdatedBy);
-            Assert.AreEqual(DateTime.Parse("2021/02/22 18:42:46"), review.LastUpdatedDateTime);
+            if (version == "V20")
+            {
+	            Assert.AreEqual(DateTime.Parse("2022/07/29 11:43:30"), review.LastUpdatedDateTime);
+            }
+            else
+            { 
+	            Assert.AreEqual(DateTime.Parse("2021/02/22 18:42:46"), review.LastUpdatedDateTime);
+            } 
             Assert.AreEqual("RevTitle", review.Name);
             Assert.AreEqual("RevPurpose", review.Goal);
             Assert.AreEqual("RevEndCondition", review.EndCondition);
@@ -235,6 +247,31 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("4", review.ActualScale);
             Assert.AreEqual("5", review.IssueCountOfGoal);
             Assert.AreEqual("3", review.IssueCountOfActual);
+            if(version == "V20")
+            {
+	            // V20のテストデータのみで以下のフィールドが設定されている。
+	            // そのため、versionが"V20"のときのみ値チェックを行う。
+	            Assert.AreEqual("TextA2", review.CustomText1);
+	            Assert.AreEqual("TextB2", review.CustomText2);
+	            Assert.AreEqual("TextC2", review.CustomText3);
+	            Assert.AreEqual("TextD2", review.CustomText4);
+	            Assert.AreEqual("TextE2", review.CustomText5);
+	            Assert.AreEqual("TextF2", review.CustomText6);
+	            Assert.AreEqual("TextG2", review.CustomText7);
+	            Assert.AreEqual("TextH2", review.CustomText8);
+	            Assert.AreEqual("TextI2", review.CustomText9);
+	            Assert.AreEqual("TextJ2", review.CustomText10);
+	            Assert.AreEqual("TextK2", review.CustomText11);
+	            Assert.AreEqual("TextL2", review.CustomText12);
+	            Assert.AreEqual("TextM2", review.CustomText13);
+	            Assert.AreEqual("TextN2", review.CustomText14);
+	            Assert.AreEqual("TextO2", review.CustomText15);
+	            Assert.AreEqual("TextP2", review.CustomText16);
+	            Assert.AreEqual("TextQ2", review.CustomText17);
+	            Assert.AreEqual("TextR2", review.CustomText18);
+	            Assert.AreEqual("TextS2", review.CustomText19);
+	            Assert.AreEqual("TextT2", review.CustomText20);
+            }
         }
 
         /// <summary>
@@ -243,6 +280,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void NotSetValueReviewTest(string version)
         {
@@ -267,6 +305,31 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.ActualScale);
             Assert.AreEqual("", review.IssueCountOfGoal);
             Assert.AreEqual("0", review.IssueCountOfActual);
+
+            // ・versionがV10とV18の場合
+            //      ・カスタムテキスト1～20に対応するXML属性が存在しない場合は、初期値の空文字が返ることを検証する。
+            // ・versionがV20の場合
+            //      ・カスタムテキスト1～20に対応するXML属性が存在する場合は、取得した未設定の値として空文字が返ることを検証する。
+            Assert.AreEqual("", review.CustomText1);
+            Assert.AreEqual("", review.CustomText2);
+            Assert.AreEqual("", review.CustomText3);
+            Assert.AreEqual("", review.CustomText4);
+            Assert.AreEqual("", review.CustomText5);
+            Assert.AreEqual("", review.CustomText6);
+            Assert.AreEqual("", review.CustomText7);
+            Assert.AreEqual("", review.CustomText8);
+            Assert.AreEqual("", review.CustomText9);
+            Assert.AreEqual("", review.CustomText10);
+            Assert.AreEqual("", review.CustomText11);
+            Assert.AreEqual("", review.CustomText12);
+            Assert.AreEqual("", review.CustomText13);
+            Assert.AreEqual("", review.CustomText14);
+            Assert.AreEqual("", review.CustomText15);
+            Assert.AreEqual("", review.CustomText16);
+            Assert.AreEqual("", review.CustomText17);
+            Assert.AreEqual("", review.CustomText18);
+            Assert.AreEqual("", review.CustomText19);
+            Assert.AreEqual("", review.CustomText20);
         }
 
         /// <summary>
@@ -275,6 +338,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void DocumentTest(string version)
         {
@@ -322,6 +386,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void IssueTest(string version)
         {
@@ -369,6 +434,21 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("TextH2", issue1.CustomText8);
             Assert.AreEqual("TextI2", issue1.CustomText9);
             Assert.AreEqual("TextJ2", issue1.CustomText10);
+			if(version == "V20")
+            {
+	            // V20のテストデータのみで以下のフィールドが設定されている。
+	            // そのため、versionが"V20"のときのみ値チェックを行う。
+				Assert.AreEqual("TextK2", issue1.CustomText11);
+	            Assert.AreEqual("TextL2", issue1.CustomText12);
+	            Assert.AreEqual("TextM2", issue1.CustomText13);
+	            Assert.AreEqual("TextN2", issue1.CustomText14);
+	            Assert.AreEqual("TextO2", issue1.CustomText15);
+	            Assert.AreEqual("TextP2", issue1.CustomText16);
+	            Assert.AreEqual("TextQ2", issue1.CustomText17);
+	            Assert.AreEqual("TextR2", issue1.CustomText18);
+	            Assert.AreEqual("TextS2", issue1.CustomText19);
+	            Assert.AreEqual("TextT2", issue1.CustomText20);
+            }
         }
 
         /// <summary>
@@ -377,6 +457,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
+        [DataRow("V20")]
         [DataTestMethod]
         public void NotSetValueIssueTest(string version)
         {
@@ -410,6 +491,21 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText8);
             Assert.AreEqual("", issue1.CustomText9);
             Assert.AreEqual("", issue1.CustomText10);
+			
+            // ・versionがV10とV18の場合
+            //      ・カスタムテキスト11～20に対応するXML属性が存在しない場合は、初期値の空文字が返ることを検証する。
+            // versionがV20の場合
+            //      ・カスタムテキスト11～20に対応するXML属性が存在する場合は、取得した未設定の値として空文字が返ることを検証する。
+            Assert.AreEqual("", issue1.CustomText11);
+            Assert.AreEqual("", issue1.CustomText12);
+            Assert.AreEqual("", issue1.CustomText13);
+            Assert.AreEqual("", issue1.CustomText14);
+            Assert.AreEqual("", issue1.CustomText15);
+            Assert.AreEqual("", issue1.CustomText16);
+            Assert.AreEqual("", issue1.CustomText17);
+            Assert.AreEqual("", issue1.CustomText18);
+            Assert.AreEqual("", issue1.CustomText19);
+            Assert.AreEqual("", issue1.CustomText20);
         }
     }
 }

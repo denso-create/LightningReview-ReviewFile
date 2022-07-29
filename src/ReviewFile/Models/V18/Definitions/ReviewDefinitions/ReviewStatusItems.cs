@@ -7,13 +7,13 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
     /// V2.0のレビューのステータス一覧
     /// </summary>
     [XmlRoot("StatusItems")]
-	public class ReviewStatusItems
-	{
-		/// <summary>
-		/// レビューのステータスの定義の一覧
-		/// </summary>
-		[XmlArray("List")]
-		[XmlArrayItem("StatusItem")]
-		public List<ReviewStatusItem> ReviewStatusListItems { get; set; }
-	}
+    public class ReviewStatusItems
+    {
+        /// <summary>
+        /// レビューのステータスの定義の一覧
+        /// </summary>
+        [XmlArray("List")]
+        [XmlArrayItem("StatusItem")]
+        public List<ReviewStatusItem> ReviewStatusListItems { get; set; }
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDefinitions
 {
-	/// <summary>
+    /// <summary>
     /// V2.0のレビューのステータスの定義
     /// </summary>
     public class ReviewStatusItem

@@ -14,6 +14,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// </summary>
         [XmlArray("List")]
         [XmlArrayItem("StatusItem")]
-        public List<ReviewStatusItem> ReviewStatusListItems { get; set; }
+        public List<ReviewStatusItem> ReviewStatusItemList { get; set; }
     }
 }

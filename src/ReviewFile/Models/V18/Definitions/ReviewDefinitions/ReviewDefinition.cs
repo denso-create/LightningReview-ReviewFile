@@ -87,7 +87,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
 	            // V2.0の選択されたステータスの文字列を取得する
 	            if (StatusItems != null)
 	            {
-                    foreach (var statusItem in StatusItems.ReviewStatusListItems)
+                    foreach (var statusItem in StatusItems.ReviewStatusItemList)
                     {
                         if (statusItem.IsSelected == "True")
                         {

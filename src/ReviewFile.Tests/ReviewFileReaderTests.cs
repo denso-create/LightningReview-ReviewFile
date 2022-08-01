@@ -222,7 +222,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("最終更新者", review.LastUpdatedBy);
             if (version == "V20")
             {
-                Assert.AreEqual(DateTime.Parse("2022/07/29 11:43:30"), review.LastUpdatedDateTime);
+	            // V20のテストデータ作成時に最終更新日時が更新されたため、
+	            // versionが"V20"の場合は期待値を変更する。
+	            // 新しいバージョンのテストをする際にテストデータを更新した場合は、同様に期待値を変更すること。
+	            Assert.AreEqual(DateTime.Parse("2022/07/29 11:43:30"), review.LastUpdatedDateTime);
             }
             else
             {

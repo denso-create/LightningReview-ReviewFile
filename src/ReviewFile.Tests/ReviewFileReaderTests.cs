@@ -277,6 +277,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// Reviewモデルのフィールドが未設定の場合のテスト
         /// </summary>
+        /// <remarks>
+        /// カスタムテキスト1～20に対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+        ///     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+        ///     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+        /// </remarks>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
@@ -455,6 +460,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// Issueモデルのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
+        /// <remarks>
+        /// カスタムテキスト11～20に対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+        ///     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+        ///     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+        /// </remarks>
         [DataRow("V10")]
         [DataRow("V18")]
         [DataRow("V20")]

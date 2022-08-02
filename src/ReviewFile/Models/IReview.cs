@@ -154,6 +154,110 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
 
         #endregion
 
+        #region カスタムフィールド
+        
+        /// <summary>
+        /// カスタムテキスト1
+        /// </summary>
+        string CustomText1 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト2
+        /// </summary>
+        string CustomText2 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト3
+        /// </summary>
+        string CustomText3 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト4
+        /// </summary>
+        string CustomText4 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト5
+        /// </summary>
+        string CustomText5 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト6
+        /// </summary>
+        string CustomText6 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト7
+        /// </summary>
+        string CustomText7 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト8
+        /// </summary>
+        string CustomText8 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト9
+        /// </summary>
+        string CustomText9 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト10
+        /// </summary>
+        string CustomText10 { get; set; }
+
+		/// <summary>
+        /// カスタムテキスト11
+        /// </summary>
+        string CustomText11 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト12
+        /// </summary>
+        string CustomText12 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト13
+        /// </summary>
+        string CustomText13 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト14
+        /// </summary>
+        string CustomText14 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト15
+        /// </summary>
+        string CustomText15 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト16
+        /// </summary>
+        string CustomText16 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト17
+        /// </summary>
+        string CustomText17 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト18
+        /// </summary>
+        string CustomText18 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト19
+        /// </summary>
+        string CustomText19 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト20
+        /// </summary>
+        string CustomText20 { get; set; }
+
+        #endregion
+
         #endregion
     }
 }

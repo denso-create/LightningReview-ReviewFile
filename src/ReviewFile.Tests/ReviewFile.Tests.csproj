@@ -64,6 +64,24 @@
     <None Update="TestData\V18\SubFolder\RevFile3.revx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\V20\NotSetValueIssue.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V20\NotSetValueReview.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V20\RevFile1.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V20\RevFilePerformance30.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V20\SubFolder\RevFile2.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\V20\SubFolder\RevFile3.revx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\ドキュメントモデル確認用テストデータ.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

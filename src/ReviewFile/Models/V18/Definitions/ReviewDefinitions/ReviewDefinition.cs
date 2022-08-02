@@ -65,10 +65,16 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         }
 
         /// <summary>
-        /// レビューのステータス一覧
+        /// V2.0より前のバージョンのレビューのステータス一覧
         /// </summary>
         [XmlElement("Status")]
         public ReviewStatus StatusList { get; set; }
+        
+        /// <summary>
+        /// V2.0のレビューのステータス一覧
+        /// </summary>
+        [XmlElement] 
+        public ReviewStatusItems StatusItems { get; set; }
 
         /// <summary>
         /// レビューのステータス
@@ -76,8 +82,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         public string Status
         {
             get
-            {
-                foreach (var statusItem in StatusList.ReviewStatusItems.ListItems)
+            { 
+	            // V2.0以降で1度でも保存されていた場合、
+	            // V2.0の選択されたステータスの文字列を取得する
+	            if (StatusItems != null)
+	            {
+                    foreach (var statusItem in StatusItems.ReviewStatusItemList)
+                    {
+                        if (statusItem.IsSelected == "True")
+                        {
+                            return statusItem.Name;
+                        }
+                    }
+
+                    // V2.0以降で保存されていたがステータスが未設定の場合、空文字を返す
+                    return string.Empty;
+	            }
+				
+	            foreach (var statusItem in StatusList.ReviewStatusItems.ListItems)
                 {
                     if (statusItem.Default == "True")
                     {
@@ -96,7 +118,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         public ReviewStyles ReviewStyles { get; set; }
 
         /// <summary>
-        /// レビューのステータス
+        /// レビューの形式
         /// </summary>
         public string ReviewStyle
         {

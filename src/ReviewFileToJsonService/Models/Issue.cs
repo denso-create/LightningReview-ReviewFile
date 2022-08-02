@@ -224,6 +224,56 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService
         /// </summary>
         public string CustomText10 { get; set; }
 
+        /// <summary>
+        /// カスタムテキスト11
+        /// </summary>
+        public string CustomText11 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト12
+        /// </summary>
+        public string CustomText12 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト13
+        /// </summary>
+        public string CustomText13 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト14
+        /// </summary>
+        public string CustomText14 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト15
+        /// </summary>
+        public string CustomText15 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト16
+        /// </summary>
+        public string CustomText16 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト17
+        /// </summary>
+        public string CustomText17 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト18
+        /// </summary>
+        public string CustomText18 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト19
+        /// </summary>
+        public string CustomText19 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト20
+        /// </summary>
+        public string CustomText20 { get; set; }
+
         #endregion
     }
 }

@@ -211,6 +211,134 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #endregion
 
+        #region カスタムフィールド
+
+        /// <summary>
+        /// カスタムテキスト1
+        /// </summary>
+        /// <remarks>
+        /// カスタムテキスト1以降の定義がないバージョンのレビューファイルを開いた場合は、該当のXML属性が存在しないためnullとなる。
+        /// カスタムテキストの値が未設定の状態とXML属性が存在しない状態を一貫させるため、string.Emptyで初期化する。
+        /// </remarks>
+        [XmlElement]
+        public string CustomText1 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト2
+        /// </summary>
+        [XmlElement]
+        public string CustomText2 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト3
+        /// </summary>
+        [XmlElement]
+        public string CustomText3 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト4
+        /// </summary>
+        [XmlElement]
+        public string CustomText4 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト5
+        /// </summary>
+        [XmlElement]
+        public string CustomText5 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト6
+        /// </summary>
+        [XmlElement]
+        public string CustomText6 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト7
+        /// </summary>
+        [XmlElement]
+        public string CustomText7 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト8
+        /// </summary>
+        [XmlElement]
+        public string CustomText8 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト9
+        /// </summary>
+        [XmlElement]
+        public string CustomText9 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト10
+        /// </summary>
+        [XmlElement]
+        public string CustomText10 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト11
+        /// </summary>
+        [XmlElement]
+        public string CustomText11 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト12
+        /// </summary>
+        [XmlElement]
+        public string CustomText12 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト13
+        /// </summary>
+        [XmlElement]
+        public string CustomText13 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト14
+        /// </summary>
+        [XmlElement]
+        public string CustomText14 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト15
+        /// </summary>
+        [XmlElement]
+        public string CustomText15 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト16
+        /// </summary>
+        [XmlElement]
+        public string CustomText16 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト17
+        /// </summary>
+        [XmlElement]
+        public string CustomText17 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト18
+        /// </summary>
+        [XmlElement]
+        public string CustomText18 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト19
+        /// </summary>
+        [XmlElement]
+        public string CustomText19 { get; set; } = string.Empty;
+
+        /// <summary>
+        /// カスタムテキスト20
+        /// </summary>
+        [XmlElement]
+        public string CustomText20 { get; set; } = string.Empty;
+
+        #endregion
+
         #endregion
     }
 }

@@ -200,7 +200,57 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// カスタムテキスト10
         /// </summary>
         string CustomText10 { get; set; }
-        
+
+		/// <summary>
+        /// カスタムテキスト11
+        /// </summary>
+        string CustomText11 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト12
+        /// </summary>
+        string CustomText12 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト13
+        /// </summary>
+        string CustomText13 { get; set; }
+
+        /// <summary>
+        /// カスタムテキスト14
+        /// </summary>
+        string CustomText14 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト15
+        /// </summary>
+        string CustomText15 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト16
+        /// </summary>
+        string CustomText16 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト17
+        /// </summary>
+        string CustomText17 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト18
+        /// </summary>
+        string CustomText18 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト19
+        /// </summary>
+        string CustomText19 { get; set; } 
+
+        /// <summary>
+        /// カスタムテキスト20
+        /// </summary>
+        string CustomText20 { get; set; }
+
         #endregion
     }
 }

@@ -71,7 +71,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         public ReviewStatus StatusList { get; set; }
         
         /// <summary>
-        /// V2.0のレビューのステータス一覧
+        /// V2.0以降のレビューのステータス一覧
         /// </summary>
         [XmlElement] 
         public ReviewStatusItems StatusItems { get; set; }
@@ -84,7 +84,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
             get
             { 
 	            // V2.0以降で1度でも保存されていた場合、
-	            // V2.0の選択されたステータスの文字列を取得する
+	            // V2.0以降の選択されたステータスの文字列を取得する
 	            if (StatusItems != null)
 	            {
                     foreach (var statusItem in StatusItems.ReviewStatusItemList)

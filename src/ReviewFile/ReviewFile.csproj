@@ -27,5 +27,9 @@
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
+    
+  <ItemGroup>
+    <Folder Include="Models\V18\Definitions\MemberDefinitions\" />
+  </ItemGroup>
 
 </Project>

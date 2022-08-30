@@ -43,6 +43,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
+        /// <summary>
+        /// メンバ情報の一覧
+        /// </summary>
+        IEnumerable<IReviewMember> Members => Definition.ReviewDefinition.Members.ListItems;
+
         #region 基本設定
         
         /// <summary>
@@ -336,6 +341,31 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         [XmlElement]
         public string CustomText20 { get; set; } = string.Empty;
+
+        #endregion
+
+        #region カスタムフィールドの定義
+
+        /// <summary>
+        /// レビューのカスタムフィールドの定義
+        /// </summary>
+        IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions => Definition.ReviewDefinition.CustomFields.ReviewCustomFieldDefinitions;
+
+        /// <summary>
+        /// メンバのカスタムロールの定義
+        /// </summary>
+        private IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions =>
+	        Definition.MemberDefinition.CustomRoles.MemberCustomRoleDefinitions;
+
+        /// <summary>
+        /// メンバのカスタムフィールドの定義
+        /// </summary>
+        IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions => Definition.MemberDefinition.CustomFields.MemberCustomFieldDefinitions;
+
+        /// <summary>
+        /// 指摘のカスタムフィールドの定義
+        /// </summary>
+        IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions => Definition.IssueDefinition.CustomFieldDefinitions;
 
         #endregion
 

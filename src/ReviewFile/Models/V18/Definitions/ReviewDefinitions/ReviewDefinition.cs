@@ -69,11 +69,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// </summary>
         [XmlElement("Status")]
         public ReviewStatus StatusList { get; set; }
-        
+
         /// <summary>
         /// V2.0以降のレビューのステータス一覧
         /// </summary>
-        [XmlElement] 
+        [XmlElement]
         public ReviewStatusItems StatusItems { get; set; }
 
         /// <summary>
@@ -82,11 +82,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         public string Status
         {
             get
-            { 
-	            // V2.0以降で1度でも保存されていた場合、
-	            // V2.0以降の選択されたステータスの文字列を取得する
-	            if (StatusItems != null)
-	            {
+            {
+                // V2.0以降で1度でも保存されていた場合、
+                // V2.0以降の選択されたステータスの文字列を取得する
+                if (StatusItems != null)
+                {
                     foreach (var statusItem in StatusItems.ReviewStatusItemList)
                     {
                         if (statusItem.IsSelected == "True")
@@ -97,9 +97,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
 
                     // V2.0以降で保存されていたがステータスが未設定の場合、空文字を返す
                     return string.Empty;
-	            }
-				
-	            foreach (var statusItem in StatusList.ReviewStatusItems.ListItems)
+                }
+
+                foreach (var statusItem in StatusList.ReviewStatusItems.ListItems)
                 {
                     if (statusItem.Default == "True")
                     {
@@ -110,6 +110,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
                 return string.Empty;
             }
         }
+
+        /// <summary>
+        /// レビューのカスタムフィールドの定義一覧
+        /// </summary>
+        [XmlElement("CustomFields")]
+        public ReviewCustomFields CustomFields { get; set; }
 
         /// <summary>
         /// レビュー形式一覧

@@ -5,7 +5,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
     /// <summary>
     /// V2.0以降のレビューのステータスの定義
     /// </summary>
-    public class ReviewStatusItem
+    public class ReviewStatusItem : EntityBase
     {
         /// <summary>
         /// 名前

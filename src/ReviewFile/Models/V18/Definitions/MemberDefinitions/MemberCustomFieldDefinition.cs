@@ -12,12 +12,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
         /// 表示名
         /// </summary>
         [XmlElement]
-        private string DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// フィールドを使用するか否か
         /// </summary>
         [XmlElement("UseThisField")]
-        private string Enabled { get; set; }
+        public string Enabled { get; set; }
     }
 }

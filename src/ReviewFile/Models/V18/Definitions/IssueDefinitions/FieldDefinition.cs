@@ -13,7 +13,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
         /// フィールドを使用するか否か
         /// </summary>
         [XmlElement("UseThisField")]
-        string Enabled { get; set; }
+        public string Enabled { get; set; }
 
         /// <summary>
         /// フィールド名

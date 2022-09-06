@@ -14,7 +14,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// 表示名
         /// </summary>
         [XmlElement]
-        private string DisplayName { get; set; }
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// 選択肢のリストを改行区切りで連結した文字列
@@ -41,7 +41,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// フィールドを使用するか否か
         /// </summary>
         [XmlElement("UseThisField")]
-        private string Enabled { get; set; }
+        public string Enabled { get; set; }
 
         /// <summary>
         /// 所属するグループ
@@ -54,7 +54,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// PlanAndActual     計画と実績 
         /// </value>
         [XmlElement]
-        private string Group { get; set; }
+        public string Group { get; set; }
 
         /// <summary>
         /// フィールドの選択肢の一覧

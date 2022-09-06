@@ -69,6 +69,18 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         public string EndCondition { get; set; }
         
         /// <summary>
+        /// 修正方針ステータスを使用するか
+        /// </summary>
+        [XmlElement]
+        public string UseCorrectionPolicyStatus { get; set; }
+
+        /// <summary>
+        /// 指摘理由を記録するか
+        /// </summary>
+        [XmlElement]
+        public string UseReason { get; set; }
+
+        /// <summary>
         /// 場所
         /// </summary>
         [XmlElement]
@@ -125,7 +137,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         public string ReviewStatus => Definition.ReviewDefinition.Status;
 
         /// <summary>
-        /// レビュ形式
+        /// レビュー形式
         /// </summary>
         public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
 

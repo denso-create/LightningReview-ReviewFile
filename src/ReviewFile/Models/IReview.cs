@@ -249,7 +249,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// カスタムテキスト19
         /// </summary>
-        string CustomText19 { get; set; } 
+        string CustomText19 { get; set; }
 
         /// <summary>
         /// カスタムテキスト20

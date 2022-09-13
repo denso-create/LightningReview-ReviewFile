@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DensoCreate.LightningReview.ReviewFile.Exceptions;
 using DensoCreate.LightningReview.ReviewFile.Tests.Base;
+using System.Collections.Generic;
 
 namespace DensoCreate.LightningReview.ReviewFile.Tests
 {
@@ -128,7 +129,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
                 Assert.AreEqual("ReviewFile Element Missing", reviewFileFormatException.Message);
                 return;
             }
-            
+
             Assert.Fail();
         }
 
@@ -142,7 +143,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
 
             try
             {
-               reader.Read(Stream.Null);
+                reader.Read(Stream.Null);
             }
             catch (ReviewFileFormatException reviewFileFormatException)
             {
@@ -222,10 +223,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("最終更新者", review.LastUpdatedBy);
             if (version == "V20")
             {
-	            // V20のテストデータ作成時に最終更新日時が更新されたため、
-	            // versionが"V20"の場合は期待値を変更する。
-	            // 新しいバージョンのテストをする際にテストデータを更新した場合は、同様に期待値を変更すること。
-	            Assert.AreEqual(DateTime.Parse("2022/07/29 11:43:30"), review.LastUpdatedDateTime);
+                // V20のテストデータ作成時に最終更新日時が更新されたため、
+                // versionが"V20"の場合は期待値を変更する。
+                // 新しいバージョンのテストをする際にテストデータを更新した場合は、同様に期待値を変更すること。
+                Assert.AreEqual(DateTime.Parse("2022/07/29 11:43:30"), review.LastUpdatedDateTime);
             }
             else
             {
@@ -238,9 +239,13 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("RevProjectCode", review.ProjectCode);
             Assert.AreEqual("RevProjectName", review.ProjectName);
             Assert.AreEqual("RevReviewType2", review.ReviewType);
+            CollectionAssert.AreEqual(new List<string>() { "RevReviewType1", "RevReviewType2" }, review.ReviewTypeAllowedValues.ToArray());
             Assert.AreEqual("RevDomain2", review.Domain);
-            Assert.AreEqual("RevStatus", review.ReviewStatus);
+            CollectionAssert.AreEqual(new List<string>() { "RevDomain1", "RevDomain2" }, review.DomainAllowedValues.ToArray());
+            Assert.AreEqual("RevStatus2", review.ReviewStatus);
+            CollectionAssert.AreEqual(new List<string>() { "RevStatus1", "RevStatus2" }, review.ReviewStatusAllowedValues.ToArray());
             Assert.AreEqual("RevReviewStyle2", review.ReviewStyle);
+            CollectionAssert.AreEqual(new List<string>() { "RevReviewStyle1", "RevReviewStyle2" }, review.ReviewStyleAllowedValues.ToArray());
             Assert.AreEqual(DateTime.Parse("2021/2/18 0:00:00"), review.PlannedDate);
             Assert.AreEqual(DateTime.Parse("2021/2/19 0:00:00"), review.ActualDate);
             Assert.AreEqual("1", review.PlannedTime);
@@ -250,10 +255,56 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("4", review.ActualScale);
             Assert.AreEqual("5", review.IssueCountOfGoal);
             Assert.AreEqual("3", review.IssueCountOfActual);
+            Assert.AreEqual("True", review.UseCorrectionPolicyStatus);
+            Assert.AreEqual("True", review.UseReason);
+            Assert.AreEqual("RevCategory2", review.CategoryDefaultValue);
+            CollectionAssert.AreEqual(new List<string>() { "RevCategory1", "RevCategory2" }, review.CategoryAllowedValues.ToArray());
+            Assert.AreEqual("RevDetectionActivity2", review.DetectionActivityDefaultValue);
+            CollectionAssert.AreEqual(new List<string>() { "RevDetectionActivity1", "RevDetectionActivity2" }, review.DetectionActivityAllowedValues.ToArray());
+            Assert.AreEqual("RevInjectionActivity2", review.InjectionActivityDefaultValue);
+            CollectionAssert.AreEqual(new List<string>() { "RevInjectionActivity1", "RevInjectionActivity2" }, review.InjectionActivityAllowedValues.ToArray());
+
+            // 指摘、ドキュメント、メンバ、ステータスの定義の個数
+            Assert.AreEqual(4, review.Issues.Count());
+            Assert.AreEqual(2, review.Documents.Count());
+            Assert.AreEqual(3, review.Members.Count());
+            Assert.AreEqual(1, review.StatusItems.Count());
+
+            if (version == "V10" || version == "V18")
+            {
+	            // カスタムフィールドの定義の個数
+	            Assert.AreEqual(0, review.ReviewCustomFieldDefinitions.Count());
+	            Assert.AreEqual(0, review.MemberCustomRoleDefinitions.Count());
+	            Assert.AreEqual(0, review.MemberCustomFieldDefinitions.Count());
+	            Assert.AreEqual(10, review.IssueCustomFieldDefinitions.Count());
+
+                // 現在のステータスの設定値
+                // Name, IsSelected以外は初期値となる
+                Assert.AreEqual("RevStatus2", review.ReviewStatusItem.Name);
+                Assert.IsNull(review.ReviewStatusItem.SelectedOn);
+                Assert.AreEqual("", review.ReviewStatusItem.SelectedBy);
+                Assert.AreEqual("False", review.ReviewStatusItem.IsClosed);
+                Assert.AreEqual("True", review.ReviewStatusItem.IsSelected);
+                Assert.AreEqual("None", review.ReviewStatusItem.Color);
+            }
+
             if (version == "V20")
             {
-                // V20のテストデータのみで以下のフィールドが設定されている。
-                // そのため、versionが"V20"のときのみ値チェックを行う。
+	            // カスタムフィールドの定義の個数
+	            Assert.AreEqual(20, review.ReviewCustomFieldDefinitions.Count());
+	            Assert.AreEqual(5, review.MemberCustomRoleDefinitions.Count());
+	            Assert.AreEqual(5, review.MemberCustomFieldDefinitions.Count());
+	            Assert.AreEqual(20, review.IssueCustomFieldDefinitions.Count());
+
+                // 現在のステータスの設定値
+                Assert.AreEqual("RevStatus2", review.ReviewStatusItem.Name);
+                Assert.AreEqual(DateTime.Parse("2021/2/18 0:00:00"), review.ReviewStatusItem.SelectedOn);
+                Assert.AreEqual("設定者", review.ReviewStatusItem.SelectedBy);
+                Assert.AreEqual("True", review.ReviewStatusItem.IsClosed);
+                Assert.AreEqual("True", review.ReviewStatusItem.IsSelected);
+                Assert.AreEqual("Red", review.ReviewStatusItem.Color);
+
+                // V20のテストデータのみで以下のカスタムフィールドが設定されている。
                 Assert.AreEqual("TextA2", review.CustomText1);
                 Assert.AreEqual("TextB2", review.CustomText2);
                 Assert.AreEqual("TextC2", review.CustomText3);
@@ -301,9 +352,13 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.ProjectCode);
             Assert.AreEqual("", review.ProjectName);
             Assert.AreEqual("", review.ReviewType);
+            CollectionAssert.AreEqual(new List<string>(), review.ReviewTypeAllowedValues.ToArray());
             Assert.AreEqual("", review.Domain);
+            CollectionAssert.AreEqual(new List<string>(), review.DomainAllowedValues.ToArray());
             Assert.AreEqual("", review.ReviewStatus);
+            CollectionAssert.AreEqual(new List<string>(), review.ReviewStatusAllowedValues.ToArray());
             Assert.AreEqual("", review.ReviewStyle);
+            CollectionAssert.AreEqual(new List<string>(), review.ReviewStyleAllowedValues.ToArray());
             Assert.IsNull(review.PlannedDate);
             Assert.IsNull(review.ActualDate);
             Assert.AreEqual("", review.PlannedTime);
@@ -313,6 +368,27 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.ActualScale);
             Assert.AreEqual("", review.IssueCountOfGoal);
             Assert.AreEqual("0", review.IssueCountOfActual);
+
+            // UseCorrectionPolicyStatus, UseReasonは初期値が空となっている。
+            // 明示的にFalseに変えるロジックを挟む必要があるため、本テストメソッドでチェックする。
+            Assert.AreEqual("False", review.UseCorrectionPolicyStatus);
+            Assert.AreEqual("False", review.UseReason);
+
+            Assert.AreEqual("", review.CategoryDefaultValue);
+            CollectionAssert.AreEqual(new List<string>(), review.CategoryAllowedValues.ToArray());
+            Assert.AreEqual("", review.DetectionActivityDefaultValue);
+            CollectionAssert.AreEqual(new List<string>(), review.DetectionActivityAllowedValues.ToArray());
+            Assert.AreEqual("", review.InjectionActivityDefaultValue);
+            CollectionAssert.AreEqual(new List<string>(), review.InjectionActivityAllowedValues.ToArray());
+
+            // 指摘、ドキュメント、メンバ、ステータスの定義の個数
+            Assert.AreEqual(0, review.Issues.Count());
+            Assert.AreEqual(0, review.Documents.Count());
+            Assert.AreEqual(0, review.Members.Count());
+            Assert.AreEqual(0, review.StatusItems.Count());
+
+            // 現在のステータスの設定値
+            Assert.IsNull(review.ReviewStatusItem);
 
             // ・versionがV10とV18の場合
             //      ・カスタムテキスト1～20に対応するXML属性が存在しない場合は、初期値の空文字が返ることを検証する。
@@ -350,7 +426,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void DocumentTest(string version)
         {
-            var review = ReadReviewFile(version,RevFileName);
+            var review = ReadReviewFile(version, RevFileName);
             Assert.IsNotNull(review.Documents);
 
             // ドキュメントは2つあるか
@@ -389,6 +465,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
+        /// Documentモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueDocumentTest(string version)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Issueモデルのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
@@ -400,11 +489,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         {
             var review = ReadReviewFile(version, RevFileName);
             var issues = review.Issues;
-            Assert.IsNotNull(issues,"Review.Issuesがnullです");
+            Assert.IsNotNull(issues, "Review.Issuesがnullです");
 
             // 1つ目の指摘のフィールド
             var issue1 = issues.FirstOrDefault(i => i.LID == "1");
-            Assert.IsNotNull(issue1,$"LID=1の指摘がありません 。指摘数={issues.Count()}");
+            Assert.IsNotNull(issue1, $"LID=1の指摘がありません 。指摘数={issues.Count()}");
             Assert.AreEqual("a74cde8d-d7e7-4948-8a60-82f0fabea5f8", issue1.GID);
             Assert.AreEqual("不具合", issue1.Type);
             Assert.AreEqual("Issue1 CorrectionPolicy", issue1.CorrectionPolicy);
@@ -476,7 +565,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         {
             var review = ReadReviewFile(version, NotSetValueIssueName);
             var issues = review.Issues;
-            Assert.IsNotNull(issues,"Review.Issuesがnullです");
+            Assert.IsNotNull(issues, "Review.Issuesがnullです");
 
             // 指摘の未設定のフィールド
             var issue1 = issues.FirstOrDefault(i => i.LID == "1");
@@ -504,7 +593,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText8);
             Assert.AreEqual("", issue1.CustomText9);
             Assert.AreEqual("", issue1.CustomText10);
-			
+
             // ・versionがV10とV18の場合
             //      ・カスタムテキスト11～20に対応するXML属性が存在しない場合は、初期値の空文字が返ることを検証する。
             // versionがV20の場合
@@ -519,6 +608,176 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText18);
             Assert.AreEqual("", issue1.CustomText19);
             Assert.AreEqual("", issue1.CustomText20);
+        }
+
+        /// <summary>
+        /// IssueCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void IssueCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// IssueCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueIssueCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// MemberCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void MemberCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// MemberCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueMemberCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// MemberCustomRoleDefinitionモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void MemberCustomRoleDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// MemberCustomRoleDefinitionモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueMemberCustomRoleDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// ReviewCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void ReviewCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// ReviewCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueReviewCustomFieldDefinitionTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// ReviewMemberモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void ReviewMemberTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// ReviewMemberモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueReviewMemberTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// OutlineNodeモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void OutlineNodeTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// OutlineNodeモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueOutlineNodeTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// StatusItemモデルのフィールドが設定された場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void StatusItemTest(string version)
+        {
+	        throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// StatusItemモデルのフィールドが未設定の場合のテスト
+        /// </summary>
+        /// <param name="version">バージョン</param>
+        [DataRow("V10")]
+        [DataRow("V18")]
+        [DataRow("V20")]
+        [DataTestMethod]
+        public void NotSetValueStatusItemTest(string version)
+        {
+	        throw new NotImplementedException();
         }
     }
 }

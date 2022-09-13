@@ -272,11 +272,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
 
             if (version == "V10" || version == "V18")
             {
-	            // カスタムフィールドの定義の個数
-	            Assert.AreEqual(0, review.ReviewCustomFieldDefinitions.Count());
-	            Assert.AreEqual(0, review.MemberCustomRoleDefinitions.Count());
-	            Assert.AreEqual(0, review.MemberCustomFieldDefinitions.Count());
-	            Assert.AreEqual(10, review.IssueCustomFieldDefinitions.Count());
+                // カスタムフィールドの定義の個数
+                Assert.AreEqual(0, review.ReviewCustomFieldDefinitions.Count());
+                Assert.AreEqual(0, review.MemberCustomRoleDefinitions.Count());
+                Assert.AreEqual(0, review.MemberCustomFieldDefinitions.Count());
+                Assert.AreEqual(10, review.IssueCustomFieldDefinitions.Count());
 
                 // 現在のステータスの設定値
                 // Name, IsSelected以外は初期値となる
@@ -290,11 +290,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
 
             if (version == "V20")
             {
-	            // カスタムフィールドの定義の個数
-	            Assert.AreEqual(20, review.ReviewCustomFieldDefinitions.Count());
-	            Assert.AreEqual(5, review.MemberCustomRoleDefinitions.Count());
-	            Assert.AreEqual(5, review.MemberCustomFieldDefinitions.Count());
-	            Assert.AreEqual(20, review.IssueCustomFieldDefinitions.Count());
+                // カスタムフィールドの定義の個数
+                Assert.AreEqual(20, review.ReviewCustomFieldDefinitions.Count());
+                Assert.AreEqual(5, review.MemberCustomRoleDefinitions.Count());
+                Assert.AreEqual(5, review.MemberCustomFieldDefinitions.Count());
+                Assert.AreEqual(20, review.IssueCustomFieldDefinitions.Count());
 
                 // 現在のステータスの設定値
                 Assert.AreEqual("RevStatus2", review.ReviewStatusItem.Name);
@@ -369,8 +369,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.IssueCountOfGoal);
             Assert.AreEqual("0", review.IssueCountOfActual);
 
-            // UseCorrectionPolicyStatus, UseReasonは初期値が空となっている。
-            // 明示的にFalseに変えるロジックを挟む必要があるため、本テストメソッドでチェックする。
+            // UseCorrectionPolicyStatus, UseReasonはXML上で初期値が空となっているため、明示的にFalseに変えるロジックが必要である。
+            // よって、本テストメソッドでチェックする。
             Assert.AreEqual("False", review.UseCorrectionPolicyStatus);
             Assert.AreEqual("False", review.UseReason);
 
@@ -620,7 +620,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void IssueCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+
+            // 設定された1つ目の指摘のカスタムフィールド
+            var issueCustomFieldDefinition = review.IssueCustomFieldDefinitions.FirstOrDefault();
+            Assert.AreEqual("カスタムテキスト1", issueCustomFieldDefinition.DisplayName);
+            Assert.AreEqual("TextA2", issueCustomFieldDefinition.DefaultValue);
+            Assert.AreEqual("True", issueCustomFieldDefinition.Enabled);
+            CollectionAssert.AreEqual(new List<string>() { "TextA1", "TextA2" }, issueCustomFieldDefinition.AllowedValues.ToArray());
         }
 
         /// <summary>
@@ -633,7 +640,18 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueIssueCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+
+            // 未設定の1つ目の指摘のカスタムフィールド
+            var customFieldDefinition1 = review.IssueCustomFieldDefinitions.FirstOrDefault();
+            CollectionAssert.AreEqual(new List<string>(), customFieldDefinition1.AllowedValues.ToArray());
+            Assert.AreEqual("", customFieldDefinition1.DefaultValue);
+
+
+            // 選択肢は定義されているが、デフォルト値が設定されていない場合
+            var customFieldDefinition2 = review.IssueCustomFieldDefinitions.ElementAt(1);
+            Assert.AreEqual(1, customFieldDefinition2.AllowedValues.Count());
+            Assert.AreEqual("", customFieldDefinition2.DefaultValue);
         }
 
         /// <summary>
@@ -644,7 +662,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void MemberCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -655,7 +673,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueMemberCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -666,7 +684,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void MemberCustomRoleDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -677,7 +695,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueMemberCustomRoleDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -688,7 +706,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReviewCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -699,7 +717,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueReviewCustomFieldDefinitionTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -712,7 +730,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReviewMemberTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -725,7 +743,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueReviewMemberTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -738,7 +756,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void OutlineNodeTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -751,7 +769,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueOutlineNodeTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -764,7 +782,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void StatusItemTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -777,7 +795,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueStatusItemTest(string version)
         {
-	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

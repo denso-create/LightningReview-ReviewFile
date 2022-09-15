@@ -17,6 +17,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
     [TestClass]
     public class ReviewFileReaderTests : TestBase
     {
+        #region 定数定義
+
         /// <summary>
         /// テストデータ
         /// </summary>
@@ -36,6 +38,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// Stream内のReviewFile要素が存在しないテストデータ
         /// </summary>
         private readonly string NotReviewFileStreamName = "NotReviewFileStreamTestDate.revx";
+
+        #endregion
+
+        #region レビューファイルの読み込み
 
         /// <summary>
         /// ファイルパス引数でのReadメソッドのテスト
@@ -199,8 +205,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             #endregion
         }
 
+        #endregion
+
+        #region IReview
+
         /// <summary>
-        /// Reviewモデルのフィールドが設定された場合のテスト
+        /// IReviewのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -302,7 +312,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
                 Assert.AreEqual("設定者", review.ReviewStatusItem.SelectedBy);
                 Assert.AreEqual("True", review.ReviewStatusItem.IsClosed);
                 Assert.AreEqual("True", review.ReviewStatusItem.IsSelected);
-                Assert.AreEqual("Red", review.ReviewStatusItem.Color);
+                Assert.AreEqual("赤", review.ReviewStatusItem.Color);
 
                 // V20のテストデータのみで以下のカスタムフィールドが設定されている。
                 Assert.AreEqual("TextA2", review.CustomText1);
@@ -329,7 +339,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
-        /// Reviewモデルのフィールドが未設定の場合のテスト
+        /// IReviewのフィールドが未設定の場合のテスト
         /// </summary>
         /// <remarks>
         /// カスタムテキスト1～20に対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
@@ -416,8 +426,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.CustomText20);
         }
 
+        #endregion
+
+        #region IDocument
+
         /// <summary>
-        /// Documentモデルのフィールドが設定された場合のテスト
+        /// IDocumentのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -427,13 +441,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         public void DocumentTest(string version)
         {
             var review = ReadReviewFile(version, RevFileName);
-            Assert.IsNotNull(review.Documents);
+            var documents = review.Documents;
+            Assert.IsNotNull(review.Documents, "Review.Documentsがnullです");
 
             // ドキュメントは2つあるか
-            Assert.AreEqual(2, review.Documents.Count());
+            Assert.AreEqual(2, documents.Count());
 
             // 1つ目のドキュメントのフィールド
-            var doc1 = review.Documents.ToList()[0];
+            var doc1 = documents.ToList()[0];
             Assert.AreEqual("Doc1", doc1.Name);
             Assert.AreEqual("EXCEL", doc1.ApplicationType);
             Assert.AreEqual("4d7c6fbc-3eb5-4166-a2c3-257b5d0646ef", doc1.GID);
@@ -441,6 +456,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
 
             // ドキュメントの絶対パス（テストデータにはsrc\ReviewFile.Tests\TestData以下のテスト用Excelファイルを関連づけている）
             Assert.AreEqual(@"C:\Git\LightningReview-RevxFile\src\ReviewFile.Tests\TestData\ドキュメントモデル確認用テストデータ.xlsx", doc1.AbsolutePath);
+
+            Assert.AreEqual(2, doc1.OutlineNodes.Count());
 
             // TODO V1の場合はOutlineNodeのXML構造が独特なのでXMLの属性マッピングで永続化できない
             /*
@@ -457,15 +474,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("outline2-1", node2.Children.ElementAt(0).Name);
             #endregion
             */
-
-            #region 指摘件数
-            Assert.AreEqual(3, review.Issues.Count());
-            //Assert.AreEqual(2, doc1.AllIssues.Count());
-            #endregion
         }
 
         /// <summary>
-        /// Documentモデルのフィールドが未設定の場合のテスト
+        /// IDocumentのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -474,11 +486,27 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueDocumentTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var documents = review.Documents;
+            Assert.IsNotNull(review.Documents, "Review.Documentsがnullです");
+
+            // ドキュメントは2つあるか
+            Assert.AreEqual(2, documents.Count());
+
+            // 1つ目のドキュメントのフィールド
+            // なお、Name、GID、LIDはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            var doc1 = documents.ToList()[0];
+            Assert.AreEqual("", doc1.ApplicationType);
+            Assert.AreEqual("", doc1.AbsolutePath);
+            Assert.AreEqual(0, doc1.OutlineNodes.Count());
         }
 
+        #endregion
+
+        #region IIssue
+
         /// <summary>
-        /// Issueモデルのフィールドが設定された場合のテスト
+        /// IIssueのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -531,6 +559,22 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("TextH2", issue1.CustomText8);
             Assert.AreEqual("TextI2", issue1.CustomText9);
             Assert.AreEqual("TextJ2", issue1.CustomText10);
+
+            // 指摘が関連づいているドキュメントの検証
+            var document = issue1.Document;
+            Assert.IsNotNull(document, "Issue.Documentがnullです");
+            Assert.AreEqual("", document.GID);
+            Assert.AreEqual("", document.Name);
+
+            // ドキュメントのIDの検証
+            Assert.AreEqual(document.GID, issue1.DocumentID);
+
+            // 指摘が関連づいているアウトラインノードの検証
+            var outlineNode = issue1.OutlineNode;
+            Assert.IsNotNull(outlineNode, "Issue.OutlineNodeがnullです");
+            Assert.IsNotNull("", outlineNode.GID);
+            Assert.IsNotNull("", outlineNode.Name);
+
             if (version == "V20")
             {
                 // V20のテストデータのみで以下のフィールドが設定されている。
@@ -549,7 +593,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         }
 
         /// <summary>
-        /// Issueモデルのフィールドが未設定の場合のテスト
+        /// IIssueのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         /// <remarks>
@@ -594,6 +638,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText9);
             Assert.AreEqual("", issue1.CustomText10);
 
+            // Document, DocumentIDは値が未設定になることがないため、本テストメソッドでは検証しない。
+            // 指摘がアウトラインノードに関連づいていない場合の検証
+            var outlineNode = issue1.OutlineNode;
+            Assert.IsNull(outlineNode);
+
             // ・versionがV10とV18の場合
             //      ・カスタムテキスト11～20に対応するXML属性が存在しない場合は、初期値の空文字が返ることを検証する。
             // versionがV20の場合
@@ -610,8 +659,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText20);
         }
 
+        #endregion
+
+        #region IIssueCustomFieldDefinition
+
         /// <summary>
-        /// IssueCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// IIssueCustomFieldDefinitionのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -621,17 +674,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         public void IssueCustomFieldDefinitionTest(string version)
         {
             var review = ReadReviewFile(version, RevFileName);
+            var customFieldDefinitions = review.IssueCustomFieldDefinitions;
+            Assert.IsNotNull(customFieldDefinitions, "Review.IssueCustomFieldDefinitionsがnullです");
 
             // 設定された1つ目の指摘のカスタムフィールド
-            var issueCustomFieldDefinition = review.IssueCustomFieldDefinitions.FirstOrDefault();
-            Assert.AreEqual("カスタムテキスト1", issueCustomFieldDefinition.DisplayName);
-            Assert.AreEqual("TextA2", issueCustomFieldDefinition.DefaultValue);
-            Assert.AreEqual("True", issueCustomFieldDefinition.Enabled);
-            CollectionAssert.AreEqual(new List<string>() { "TextA1", "TextA2" }, issueCustomFieldDefinition.AllowedValues.ToArray());
+            var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
+            Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
+            Assert.AreEqual("TextA2", customFieldDefinition.DefaultValue);
+            Assert.AreEqual("True", customFieldDefinition.Enabled);
+            CollectionAssert.AreEqual(new List<string>() { "TextA1", "TextA2" }, customFieldDefinition.AllowedValues.ToArray());
         }
 
         /// <summary>
-        /// IssueCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
+        /// IIssueCustomFieldDefinitionのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -640,88 +695,123 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueIssueCustomFieldDefinitionTest(string version)
         {
-            var review = ReadReviewFile(version, RevFileName);
+            var review = ReadReviewFile(version, NotSetValueReviewName);
+            var customFieldDefinitions = review.IssueCustomFieldDefinitions;
+            Assert.IsNotNull(customFieldDefinitions, "Review.IssueCustomFieldDefinitionsがnullです");
 
             // 未設定の1つ目の指摘のカスタムフィールド
-            var customFieldDefinition1 = review.IssueCustomFieldDefinitions.FirstOrDefault();
+            // なお、EnabledとDisplayNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            var customFieldDefinition1 = customFieldDefinitions.FirstOrDefault();
             CollectionAssert.AreEqual(new List<string>(), customFieldDefinition1.AllowedValues.ToArray());
             Assert.AreEqual("", customFieldDefinition1.DefaultValue);
 
-
             // 選択肢は定義されているが、デフォルト値が設定されていない場合
-            var customFieldDefinition2 = review.IssueCustomFieldDefinitions.ElementAt(1);
+            var customFieldDefinition2 = customFieldDefinitions.ElementAt(1);
             Assert.AreEqual(1, customFieldDefinition2.AllowedValues.Count());
             Assert.AreEqual("", customFieldDefinition2.DefaultValue);
         }
 
+        #endregion
+
+        #region IMemberCustomFieldDefinition
+
         /// <summary>
-        /// MemberCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// IMemberCustomFieldDefinitionのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
         public void MemberCustomFieldDefinitionTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var customFieldDefinitions = review.MemberCustomFieldDefinitions;
+            Assert.IsNotNull(customFieldDefinitions, "Review.MemberCustomFieldDefinitionsがnullです");
+
+            // 設定された1つ目のメンバーのカスタムフィールド
+            var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
+            Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
+            Assert.AreEqual("True", customFieldDefinition.Enabled);
         }
 
-        /// <summary>
-        /// MemberCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
-        /// </summary>
-        /// <param name="version">バージョン</param>
-        [DataRow("V20")]
-        [DataTestMethod]
-        public void NotSetValueMemberCustomFieldDefinitionTest(string version)
-        {
-            throw new NotImplementedException();
-        }
+        // 以下の理由から、IMemberCustomFieldDefinitionのフィールドが未設定の場合のテストは作成しない。
+        //      ・EnabledとDisplayNameはXML上で値が空になることがないため、未設定のチェックをする必要がない。
+
+        #endregion
+
+        #region IMemberCustomRoleDefinition
 
         /// <summary>
-        /// MemberCustomRoleDefinitionモデルのフィールドが設定された場合のテスト
+        /// IMemberCustomRoleDefinitionのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
         public void MemberCustomRoleDefinitionTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var customRoleDefinitions = review.MemberCustomRoleDefinitions;
+            Assert.IsNotNull(customRoleDefinitions, "Review.MemberCustomRoleDefinitionsがnullです");
+
+            // 設定された1つ目のメンバーのカスタムロール
+            var customRoleDefinition = customRoleDefinitions.FirstOrDefault();
+            Assert.AreEqual("カスタムロール1", customRoleDefinition.DisplayName);
+            Assert.AreEqual("True", customRoleDefinition.Enabled);
         }
 
-        /// <summary>
-        /// MemberCustomRoleDefinitionモデルのフィールドが未設定の場合のテスト
-        /// </summary>
-        /// <param name="version">バージョン</param>
-        [DataRow("V20")]
-        [DataTestMethod]
-        public void NotSetValueMemberCustomRoleDefinitionTest(string version)
-        {
-            throw new NotImplementedException();
-        }
+        // 以下の理由から、IMemberCustomRoleDefinitionのフィールドが未設定の場合のテストは作成しない。
+        //      ・EnabledとDisplayNameはXML上で値が空になることがないため、未設定のチェックをする必要がない。
+
+        #endregion
+
+        #region IReviewCustomFieldDefinition
 
         /// <summary>
-        /// ReviewCustomFieldDefinitionモデルのフィールドが設定された場合のテスト
+        /// IReviewCustomFieldDefinitionのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
         public void ReviewCustomFieldDefinitionTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var customFieldDefinitions = review.ReviewCustomFieldDefinitions;
+            Assert.IsNotNull(customFieldDefinitions, "Review.ReviewCustomFieldDefinitionsがnullです");
+
+            // 設定された1つ目のレビューのカスタムフィールド
+            var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
+            Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
+            Assert.AreEqual("True", customFieldDefinition.Enabled);
+            Assert.AreEqual("計画と実績", customFieldDefinition.Group);
+            CollectionAssert.AreEqual(new List<string>() { "TextA1", "TextA2" }, customFieldDefinition.AllowedValues.ToArray());
         }
 
         /// <summary>
-        /// ReviewCustomFieldDefinitionモデルのフィールドが未設定の場合のテスト
+        /// IReviewCustomFieldDefinitionのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
         public void NotSetValueReviewCustomFieldDefinitionTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var customFieldDefinitions = review.ReviewCustomFieldDefinitions;
+            Assert.IsNotNull(customFieldDefinitions, "Review.ReviewCustomFieldDefinitionsがnullです");
+
+            // 未設定の1つ目のレビューのカスタムフィールド
+            // ・EnabledとDisplayNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            // ・Groupが初期値で一度も変更されていない場合は、XML上で空となっているため、明示的にデフォルト値の"基本設定"に変えるロジックが必要である。
+            //   よって、本テストメソッドでチェックする。
+            var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
+            Assert.AreEqual("基本設定", customFieldDefinition.Group);
+            CollectionAssert.AreEqual(new List<string>(), customFieldDefinition.AllowedValues.ToArray());
         }
 
+        #endregion
+
+        #region IReviewMember
+
         /// <summary>
-        /// ReviewMemberモデルのフィールドが設定された場合のテスト
+        /// IReviewMemberのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -730,12 +820,46 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void ReviewMemberTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var members = review.Members;
+            Assert.IsNotNull(members, "Review.Membersがnullです");
+
+            // 設定された1つ目のメンバ
+            var reviewMember = members.FirstOrDefault();
+            Assert.AreEqual("Member1", reviewMember.Name);
+            Assert.AreEqual("True", reviewMember.Moderator);
+            Assert.AreEqual("True", reviewMember.Reviewee);
+            Assert.AreEqual("True", reviewMember.Reviewer);
+
+            if (version == "V20")
+            {
+                // 以下のフィールドはV20のみで設定されている。
+                Assert.AreEqual("True", reviewMember.CustomRole1);
+                Assert.AreEqual("True", reviewMember.CustomRole2);
+                Assert.AreEqual("True", reviewMember.CustomRole3);
+                Assert.AreEqual("True", reviewMember.CustomRole4);
+                Assert.AreEqual("True", reviewMember.CustomRole5);
+                Assert.AreEqual("カスタムテキスト1", reviewMember.CustomText1);
+                Assert.AreEqual("カスタムテキスト2", reviewMember.CustomText2);
+                Assert.AreEqual("カスタムテキスト3", reviewMember.CustomText3);
+                Assert.AreEqual("カスタムテキスト4", reviewMember.CustomText4);
+                Assert.AreEqual("カスタムテキスト5", reviewMember.CustomText5);
+                Assert.AreEqual("Tag", reviewMember.Tag);
+            }
         }
 
         /// <summary>
-        /// ReviewMemberモデルのフィールドが未設定の場合のテスト
+        /// IReviewMemberのフィールドが未設定の場合のテスト
         /// </summary>
+        /// <remarks>
+        /// カスタムテキスト1～5, カスタムロール1～5, タグに対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+        /// ・カスタムロール1～5
+        ///     ・versionがV10とV18の場合は、初期値のFalseが返ることを検証する。
+        ///     ・versionがV20の場合は、V10とV18のテストケースに合わせて、設定したFalseの値が返ることを検証する。
+        /// ・カスタムテキスト1～5, タグ
+        ///     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+        ///     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+        /// </remarks>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
@@ -743,11 +867,41 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueReviewMemberTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var members = review.Members;
+            Assert.IsNotNull(members, "Review.Membersがnullです");
+
+            // 未設定の1つ目のメンバ
+            // なお、Name、Moderator、Reviewee、ReviewerはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            var reviewMember = members.FirstOrDefault();
+
+            // カスタムテキスト1～5, カスタムロール1～5, タグに対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+            // ・カスタムロール1～5
+            //     ・versionがV10とV18の場合は、初期値のFalseが返ることを検証する。
+            //     ・versionがV20の場合は、V10とV18のテストケースに合わせて、設定したFalseの値が返ることを検証する。
+            Assert.AreEqual("False", reviewMember.CustomRole1);
+            Assert.AreEqual("False", reviewMember.CustomRole2);
+            Assert.AreEqual("False", reviewMember.CustomRole3);
+            Assert.AreEqual("False", reviewMember.CustomRole4);
+            Assert.AreEqual("False", reviewMember.CustomRole5);
+
+            // ・カスタムテキスト1～5, タグ
+            //     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+            //     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+            Assert.AreEqual("", reviewMember.CustomText1);
+            Assert.AreEqual("", reviewMember.CustomText2);
+            Assert.AreEqual("", reviewMember.CustomText3);
+            Assert.AreEqual("", reviewMember.CustomText4);
+            Assert.AreEqual("", reviewMember.CustomText5);
+            Assert.AreEqual("", reviewMember.Tag);
         }
 
+        #endregion
+
+        #region IOutlineNode
+
         /// <summary>
-        /// OutlineNodeモデルのフィールドが設定された場合のテスト
+        /// IOutlineNodeのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -756,11 +910,21 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void OutlineNodeTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var documents = review.Documents;
+            Assert.IsNotNull(documents, "Review.Documentsがnullです");
+            var outlineNodes = review.Documents.FirstOrDefault().OutlineNodes;
+            Assert.IsNotNull(outlineNodes, "Document.Membersがnullです");
+
+            // 設定された1つ目のドキュメントの1つ目のアウトラインノード
+            var outlineNode = outlineNodes.FirstOrDefault();
+            Assert.AreEqual("GID", outlineNode.GID);
+            Assert.AreEqual("outline1", outlineNode.Name);
+            Assert.AreEqual(2, outlineNode.Children.Count());
         }
 
         /// <summary>
-        /// OutlineNodeモデルのフィールドが未設定の場合のテスト
+        /// IOutlineNodeのフィールドが未設定の場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -769,11 +933,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueOutlineNodeTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var documents = review.Documents;
+            Assert.IsNotNull(documents, "Review.Documentsがnullです");
+            var outlineNodes = review.Documents.FirstOrDefault().OutlineNodes;
+            Assert.IsNotNull(outlineNodes, "Document.Membersがnullです");
+
+            // 1つ目のドキュメントの未設定の1つ目のアウトラインノード
+            // なお、GIDとNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            var outlineNode = outlineNodes.FirstOrDefault();
+            Assert.AreEqual(0, outlineNode.Children.Count());
         }
 
+        #endregion
+
+        #region IStatusItem
+
         /// <summary>
-        /// StatusItemモデルのフィールドが設定された場合のテスト
+        /// IStatusItemのフィールドが設定された場合のテスト
         /// </summary>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
@@ -782,12 +959,46 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void StatusItemTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var statusItems = review.StatusItems;
+            Assert.IsNotNull(statusItems, "Review.StatusItemsがnullです");
+
+            // 1つ目のステータスの定義
+            var statusItem = statusItems.FirstOrDefault();
+            Assert.AreEqual("RevStatus1", statusItem.Name);
+            Assert.AreEqual("True", statusItem.IsSelected);
+
+            if (version == "V20")
+            {
+                // 以下のフィールドはV20のみで設定されている。
+                Assert.AreEqual(DateTime.Parse("2021/2/18 0:00:00"), statusItem.SelectedOn);
+                Assert.AreEqual("設定者", statusItem.SelectedBy);
+                Assert.AreEqual("True", statusItem.IsClosed);
+                Assert.AreEqual("赤", statusItem.Color);
+            }
         }
 
         /// <summary>
-        /// StatusItemモデルのフィールドが未設定の場合のテスト
+        /// IStatusItemのフィールドが未設定の場合のテスト
         /// </summary>
+        /// <remarks>
+        /// IsSelectedプロパティは、各バージョンで以下のように検証する。
+        ///     ・versionがV10とV18の場合は、V20のテストケースに合わせて、設定したFalseの値が返ることを検証する。
+        ///     ・versionがV20の場合は、IsSelectedプロパティはXML上で初期値が空となっているため、明示的にFalseに変えるロジックが必要である。そのため、Falseの値が返ることを検証する。
+        /// 設定日, 設定者, IsClosed, Colorに対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+        /// ・設定日
+        ///     ・versionがV10とV18の場合は、未設定を意味する初期値のnullが返ることを検証する。
+        ///     ・versionがV20の場合は、取得した未設定の値としてnullが返ることを検証する。
+        /// ・設定者
+        ///     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+        ///     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+        /// ・IsClosed
+        ///     ・versionがV10とV18の場合は、初期値のFalseが返ることを検証する。
+        ///     ・versionがV20の場合は、IsClosedプロパティはXML上で初期値が空となっているため、明示的にFalseに変えるロジックが必要である。そのため、Falseの値が返ることを検証する。
+        /// ・Color
+        ///     ・versionがV10とV18の場合は、初期値の"なし"が返ることを検証する。
+        ///     ・versionがV20の場合は、ColorプロパティはXML上で初期値が空となっているため、明示的に"なし"に変えるロジックが必要である。そのため、"なし"の文字列が返ることを検証する。
+        /// </remarks>
         /// <param name="version">バージョン</param>
         [DataRow("V10")]
         [DataRow("V18")]
@@ -795,7 +1006,41 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataTestMethod]
         public void NotSetValueStatusItemTest(string version)
         {
-            throw new NotImplementedException();
+            var review = ReadReviewFile(version, RevFileName);
+            var statusItems = review.StatusItems;
+            Assert.IsNotNull(statusItems, "Review.StatusItemsがnullです");
+
+            // 1つ目のステータスの定義
+            // なお、NameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
+            var statusItem = statusItems.FirstOrDefault();
+
+            /// IsSelectedプロパティは、各バージョンで以下のように検証する。
+            ///     ・versionがV10とV18の場合は、V20のテストケースに合わせて、設定したFalseの値が返ることを検証する。
+            ///     ・versionがV20の場合は、IsSelectedプロパティはXML上で初期値が空となっているため、明示的にFalseに変えるロジックが必要である。そのため、Falseの値が返ることを検証する。
+            Assert.AreEqual("False", statusItem.IsSelected);
+
+            /// 設定日, 設定者, IsClosed, Colorに対応するXML属性はV20のテストデータにのみ存在するため、各バージョンで以下のように検証する。
+            /// ・設定日
+            ///     ・versionがV10とV18の場合は、未設定を意味する初期値のnullが返ることを検証する。
+            ///     ・versionがV20の場合は、取得した未設定の値としてnullが返ることを検証する。
+            Assert.IsNull(statusItem.SelectedOn);
+
+            /// ・設定者
+            ///     ・versionがV10とV18の場合は、初期値の空文字が返ることを検証する。
+            ///     ・versionがV20の場合は、取得した未設定の値として空文字が返ることを検証する。
+            Assert.AreEqual("", statusItem.SelectedBy);
+
+            /// ・IsClosed
+            ///     ・versionがV10とV18の場合は、初期値のFalseが返ることを検証する。
+            ///     ・versionがV20の場合は、IsClosedプロパティはXML上で初期値が空となっているため、明示的にFalseに変えるロジックが必要である。そのため、Falseの値が返ることを検証する。
+            Assert.AreEqual("False", statusItem.IsClosed);
+
+            /// ・Color
+            ///     ・versionがV10とV18の場合は、初期値の"なし"が返ることを検証する。
+            ///     ・versionがV20の場合は、ColorプロパティはXML上で初期値が空となっているため、明示的に"なし"に変えるロジックが必要である。そのため、"なし"の文字列が返ることを検証する。
+            Assert.AreEqual("なし", statusItem.Color);
         }
+
+        #endregion
     }
 }

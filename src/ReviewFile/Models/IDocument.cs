@@ -14,27 +14,27 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// グローバルID
         /// </summary>
-        string GID { get; set; }
+        string GID { get; }
 
         /// <summary>
         /// ローカルID
         /// </summary>
-        string LID { get; set; }
+        string LID { get; }
 
         /// <summary>
         /// ドキュメント名
         /// </summary>
-        string Name { get; set; }
+        string Name { get; }
 
         /// <summary>
         /// ドキュメントの絶対パス
         /// </summary>
-        string AbsolutePath { get; set; }
+        string AbsolutePath { get; }
 
         /// <summary>
         /// 関連づいているアプリケーション
         /// </summary>
-        string ApplicationType { get; set; }
+        string ApplicationType { get; }
 
         /// <summary>
         /// このドキュメントに関連づくアウトラインの一覧

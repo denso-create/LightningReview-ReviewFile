@@ -14,12 +14,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// グローバルID
         /// </summary>
-        string GID { get; set; }
+        string GID { get; }
 
         /// <summary>
         /// ノード名
         /// </summary>
-        string Name { get; set; }
+        string Name { get; }
 
         /// <summary>
         /// 子ノードの一覧

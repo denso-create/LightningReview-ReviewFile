@@ -115,15 +115,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         IEnumerable<string> DomainAllowedValues { get; }
 
         /// <summary>
-        /// 現在設定されているレビューのステータスの表示名を取得します。
+        /// 現在設定されているレビューのステータスの名前を取得します。
         /// </summary>
         string ReviewStatus { get; }
 
         /// <summary>
-        /// レビューのステータスの表示名の選択肢一覧を取得します。
+        /// レビューのステータスの選択肢の名前一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証します。
+        /// 選択肢の名前の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> ReviewStatusAllowedValues { get; }
 

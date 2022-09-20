@@ -12,8 +12,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
         /// <summary>
         /// フィールドを使用するか否か
         /// </summary>
-        [XmlElement("UseThisField")]
-        public string Enabled { get; set; }
+        [XmlElement]
+        public string UseThisField { get; set; }
+
+        /// <inheritdoc />
+        public bool Enabled => bool.TryParse(UseThisField, out var result) ? result : false;
 
         /// <summary>
         /// フィールド名
@@ -33,7 +36,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
         /// <remarks>
         /// 文字列中の選択肢の出現順はリストの並び順と一致することを保証する
         /// </remarks>
-        IEnumerable<string> AllowedValues
+        public IEnumerable<string> AllowedValues
         {
             get
             {
@@ -51,7 +54,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
         /// <summary>
         /// デフォルト値
         /// </summary>
-        string DefaultValue
+        public string DefaultValue
         {
             get
             {

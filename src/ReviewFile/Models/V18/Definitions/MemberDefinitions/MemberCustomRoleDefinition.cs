@@ -17,7 +17,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
         /// <summary>
         /// フィールドを使用するか否か
         /// </summary>
-        [XmlElement("UseThisField")]
-        public string Enabled { get; set; }
+        [XmlElement]
+        public string UseThisField { get; set; }
+
+        /// <inheritdoc />
+        public bool Enabled => bool.TryParse(UseThisField, out var result) ? result : false;
     }
 }

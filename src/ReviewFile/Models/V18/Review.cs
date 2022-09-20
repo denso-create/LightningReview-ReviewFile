@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDefinitions;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDefinitions;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
@@ -43,13 +45,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
-        /// <summary>
-        /// メンバ情報の一覧
-        /// </summary>
-        IEnumerable<IReviewMember> Members => Definition.ReviewDefinition.Members.ListItems;
+        /// <inheritdoc />
+        public IEnumerable<IReviewMember> Members => Definition.ReviewDefinition.Members.ListItems;
 
         #region 基本設定
-        
+
         /// <summary>
         /// レビュー名
         /// </summary>
@@ -67,18 +67,6 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         [XmlElement]
         public string EndCondition { get; set; }
-        
-        /// <summary>
-        /// 修正方針ステータスを使用するか
-        /// </summary>
-        [XmlElement]
-        public string UseCorrectionPolicyStatus { get; set; }
-
-        /// <summary>
-        /// 指摘理由を記録するか
-        /// </summary>
-        [XmlElement]
-        public string UseReason { get; set; }
 
         /// <summary>
         /// 場所
@@ -126,20 +114,38 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         public string ReviewType => Definition.ReviewDefinition.ReviewType;
 
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewTypeAllowedValues => Definition.ReviewDefinition.ReviewTypeAllowedValues;
+
         /// <summary>
         /// ドメイン
         /// </summary>
         public string Domain => Definition.ReviewDefinition.Domain;
+
+        /// <inheritdoc />
+        public IEnumerable<string> DomainAllowedValues => Definition.ReviewDefinition.DomainAllowedValues;
 
         /// <summary>
         /// レビューのステータス
         /// </summary>
         public string ReviewStatus => Definition.ReviewDefinition.Status;
 
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewStatusAllowedValues => Definition.ReviewDefinition.StatusAllowedValues;
+
+        /// <inheritdoc />
+        public IStatusItem ReviewStatusItem => Definition.ReviewDefinition.StatusItem;
+
+        /// <inheritdoc />
+        public IEnumerable<IStatusItem> ReviewStatusItems => Definition.ReviewDefinition.StatusItems;
+
         /// <summary>
         /// レビュー形式
         /// </summary>
         public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
+
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewStyleAllowedValues => Definition.ReviewDefinition.ReviewStyleAllowedValues;
 
         #endregion
 
@@ -154,7 +160,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// <summary>
         /// 計画実施日
         /// </summary>
-        public DateTime? PlannedDate => string.IsNullOrEmpty(PlannedDateString) ? (DateTime?) null : DateTime.Parse(PlannedDateString);
+        public DateTime? PlannedDate => string.IsNullOrEmpty(PlannedDateString) ? (DateTime?)null : DateTime.Parse(PlannedDateString);
 
         /// <summary>
         /// 実績実施日の文字列
@@ -165,7 +171,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// <summary>
         /// 実績実施日
         /// </summary>
-        public DateTime? ActualDate => string.IsNullOrEmpty(ActualDateString) ? (DateTime?) null : DateTime.Parse(ActualDateString);
+        public DateTime? ActualDate => string.IsNullOrEmpty(ActualDateString) ? (DateTime?)null : DateTime.Parse(ActualDateString);
 
         /// <summary>
         /// 計画時間（分単位）
@@ -356,28 +362,83 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #endregion
 
+        #region 指摘のプロパティの定義
+
+        /// <summary>
+        /// 修正方針ステータスを使用するか
+        /// </summary>
+        [XmlElement("UseCorrectionPolicyStatus")]
+        public string UseCorrectionPolicyStatusString { get; set; }
+
+        /// <inheritdoc />
+        public bool UseCorrectionPolicyStatus => bool.TryParse(UseCorrectionPolicyStatusString, out var result) ? result : false;
+
+        /// <summary>
+        /// 指摘理由を記録するか
+        /// </summary>
+        [XmlElement("UseReason")]
+        public string UseReasonString { get; set; }
+
+        /// <inheritdoc />
+        public bool UseReason => bool.TryParse(UseReasonString, out var result) ? result : false;
+
+        /// <inheritdoc />
+        public string CategoryDefaultValue => Definition.IssueDefinition.CategoryDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> CategoryAllowedValues => Definition.IssueDefinition.CategoryAllowedValues;
+
+        /// <inheritdoc />
+        public string DetectionActivityDefaultValue => Definition.IssueDefinition.DetectionActivityDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> DetectionActivityAllowedValues => Definition.IssueDefinition.DetectionActivityAllowedValues;
+
+        /// <inheritdoc />
+        public string InjectionActivityDefaultValue => Definition.IssueDefinition.InjectionActivityDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> InjectionActivityAllowedValues =>
+            Definition.IssueDefinition.InjectionActivityAllowedValues;
+
+        #endregion
+
         #region カスタムフィールドの定義
 
         /// <summary>
         /// レビューのカスタムフィールドの定義
         /// </summary>
-        IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions => Definition.ReviewDefinition.CustomFields.ReviewCustomFieldDefinitions;
+        /// <remarks>
+        /// LR2.0より前のバージョンでは、レビューのカスタムフィールドが存在しないため、ReviewDefinition.CustomFields.ReviewCustomFieldDefinitionsはnullとなる。
+        /// そのため、空のリストを生成して返すように実装している。
+        /// </remarks>
+        public IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions => 
+	        Definition.ReviewDefinition.CustomFields?.ReviewCustomFieldDefinitions ?? (new List<ReviewCustomFieldDefinition>());
 
         /// <summary>
         /// メンバのカスタムロールの定義
         /// </summary>
-        private IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions =>
-	        Definition.MemberDefinition.CustomRoles.MemberCustomRoleDefinitions;
+        /// <remarks>
+        /// LR2.0より前のバージョンでは、メンバーの定義が存在しないため、MemberDefinitionはnullとなる。
+        /// そのため、空のリストを生成して返すように実装している。
+        /// </remarks>
+        public IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions =>
+            Definition.MemberDefinition?.CustomRoles.MemberCustomRoleDefinitions ?? (new List<MemberCustomRoleDefinition>());
 
         /// <summary>
         /// メンバのカスタムフィールドの定義
         /// </summary>
-        IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions => Definition.MemberDefinition.CustomFields.MemberCustomFieldDefinitions;
+        /// <remarks>
+        /// LR2.0より前のバージョンでは、メンバーの定義が存在しないため、MemberDefinitionはnullとなる。
+        /// そのため、空のリストを生成して返すように実装している。
+        /// </remarks>
+        public IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions => 
+	        Definition.MemberDefinition?.CustomFields.MemberCustomFieldDefinitions ?? (new List<MemberCustomFieldDefinition>());
 
         /// <summary>
         /// 指摘のカスタムフィールドの定義
         /// </summary>
-        IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions => Definition.IssueDefinition.CustomFieldDefinitions;
+        public IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions => Definition.IssueDefinition.CustomFieldDefinitions;
 
         #endregion
 

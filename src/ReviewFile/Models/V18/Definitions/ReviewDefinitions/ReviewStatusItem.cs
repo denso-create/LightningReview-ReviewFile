@@ -8,6 +8,17 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
     /// </summary>
     public class ReviewStatusItem : EntityBase, IStatusItem
     {
+	    #region 定数定義
+
+        /// <summary>
+        /// Colorプロパティの初期値
+        /// </summary>
+	    private const string c_DefaultColor = "なし";
+
+	    #endregion
+
+	    #region プロパティ
+
         /// <summary>
         /// 名前
         /// </summary>
@@ -23,50 +34,66 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         /// <summary>
         /// 設定日
         /// </summary>
-        public DateTime? SelectedOn =>string.IsNullOrEmpty(SelectedOnString) ? (DateTime?)null : DateTime.Parse(SelectedOnString);
+        public DateTime? SelectedOn => DateTime.TryParse(SelectedOnString, out var result) ? result : (DateTime?)null;
 
         /// <summary>
         /// 設定者
         /// </summary>
         [XmlElement]
-        public string SelectedBy { get; set; }
+        public string SelectedBy { get; set; } = string.Empty;
 
         /// <summary>
         /// クローズを意味するステータスか
         /// </summary>
-        [XmlElement]
-        public string IsClosed { get; set; }
+        [XmlElement("IsClosed")]
+        public string IsClosedString { get; set; }
+
+        /// <inheritdoc />
+
+        public bool IsClosed => bool.TryParse(IsClosedString, out var result) ? result : false;
 
         /// <summary>
         /// このステータスが、現在のステータスとして設定されているか
         /// </summary>
-        [XmlElement]
-        public string IsSelected { get; set; }
+        [XmlElement("IsSelected")]
+        public string IsSelectedString { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSelected => bool.TryParse(IsSelectedString, out var result) ? result : false;
 
         /// <summary>
         /// ステータスの色
         /// </summary>
         /// <value>
         /// 色の種類の文字列。
-        /// 本プロパティの値域と、それぞれの値に対応する種類を以下に示します。
-        /// [値域]      [値に対応する種類]
-        /// None        なし
-        /// Red         赤
-        /// Orange      橙
-        /// Yellow      黄
-        /// Green       緑
-        /// Blue        青
-        /// Purple      紫
-        /// Gray        灰
-        /// LightRed    薄い赤
-        /// LightOrange 薄い橙
-        /// LightYellow 薄い黄
-        /// LightGreen  薄い緑
-        /// LightBlue   薄い青
-        /// LightPurple 薄い紫
-        /// LightGray   薄い灰
+        /// 本プロパティの値域を以下に示します。
+        /// [値域]
+        /// なし
+        /// 赤
+        /// 橙
+        /// 黄
+        /// 緑
+        /// 青
+        /// 紫
+        /// 灰
+        /// 薄い赤
+        /// 薄い橙
+        /// 薄い黄
+        /// 薄い緑
+        /// 薄い青
+        /// 薄い紫
+        /// 薄い灰
         /// </value>
-        [XmlElement]
-        public string Color { get; set; }
+        /// <remarks>
+        /// この属性は、対応するレビューファイルの設定値を一度も変更していない場合、初期値が空文字列となる。
+        /// 空文字列の場合は、初期値の"なし"に変換したいため、いったん本プロパティでデシリアライズしている。
+        /// </remarks>
+        [XmlElement("Color")]
+        public string ColorString { get; set; }
+
+        /// <inheritdoc />
+        public string Color => string.IsNullOrEmpty(ColorString) ? c_DefaultColor : ColorString;
+
+        #endregion
     }
 }

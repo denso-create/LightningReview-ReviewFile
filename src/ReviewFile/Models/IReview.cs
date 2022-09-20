@@ -5,148 +5,151 @@ using System.Text;
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// レビューのインタフェース
+    /// レビューのインタフェースです。
     /// </summary>
     public interface IReview
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// グローバルID
+        /// グローバルIDを取得します。
         /// </summary>
         string GID { get; }
 
         /// <summary>
-        /// レビューファイルの絶対パス
+        /// レビューファイルの絶対パスを取得します。
         /// </summary>
         string FilePath { get; }
 
         /// <summary>
-        /// このレビューファイルに関連づく指摘の一覧
+        /// このレビューファイルに関連づく指摘の一覧を取得します。
         /// </summary>
         IEnumerable<IIssue> Issues { get; }
 
         /// <summary>
-        /// このレビューファイルに関連づくドキュメントの一覧
+        /// このレビューファイルに関連づくドキュメントの一覧を取得します。
         /// </summary>
         IEnumerable<IDocument> Documents { get; }
 
         /// <summary>
-        /// メンバ情報の一覧
+        /// メンバ情報の一覧を取得します。
         /// </summary>
         IEnumerable<IReviewMember> Members { get; }
 
         /// <summary>
-        /// 作成者
+        /// 作成者を取得します。
         /// </summary>
         string CreatedBy { get; }
         
         /// <summary>
-        /// 作成日時
+        /// 作成日時を取得します。
         /// </summary>
         DateTime? CreatedDateTime { get; }
 
         /// <summary>
-        /// 最終更新者
+        /// 最終更新者を取得します。
         /// </summary>
         string LastUpdatedBy { get; }
 
         /// <summary>
-        /// 最終更新日時
+        /// 最終更新日時を取得します。
         /// </summary>
         DateTime? LastUpdatedDateTime { get; }
 
         #region 基本設定
 
         /// <summary>
-        /// レビュー名
+        /// レビュー名を取得します。
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// 目的
+        /// 目的を取得します。
         /// </summary>
         string Goal { get; }
 
         /// <summary>
-        /// 終了条件
+        /// 終了条件を取得します。
         /// </summary>
         string EndCondition { get; }
 
         /// <summary>
-        /// 場所
+        /// 場所を取得します。
         /// </summary>
         string Place { get; }
 
         /// <summary>
-        /// プロジェクトコード
+        /// プロジェクトコードを取得します。
         /// </summary>
         string ProjectCode { get; }
 
         /// <summary>
-        /// プロジェクト名
+        /// プロジェクト名を取得します。
         /// </summary>
         string ProjectName { get; }
         
         /// <summary>
-        /// レビュー種別
+        /// レビュー種別を取得します。
         /// </summary>
         string ReviewType { get; }
 
         /// <summary>
-        /// レビュー種別の選択肢一覧
+        /// レビュー種別の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> ReviewTypeAllowedValues { get; }
 
         /// <summary>
-        /// ドメイン
+        /// ドメインを取得します。
         /// </summary>
         string Domain { get; }
 
         /// <summary>
-        /// ドメインの選択肢一覧
+        /// ドメインの選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> DomainAllowedValues { get; }
 
         /// <summary>
-        /// レビューのステータス
+        /// 現在設定されているレビューのステータスの表示名を取得します。
         /// </summary>
         string ReviewStatus { get; }
 
         /// <summary>
-        /// ステータスの選択肢一覧
+        /// レビューのステータスの表示名の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> ReviewStatusAllowedValues { get; }
 
         /// <summary>
-        /// 現在設定されているレビューのステータス
+        /// 現在設定されているレビューのステータスを取得します。
         /// </summary>
         IStatusItem ReviewStatusItem { get; } 
 
         /// <summary>
-        /// ステータスの定義の一覧
+        /// レビューのステータスの選択肢一覧を取得します。
         /// </summary>
-        IEnumerable<IStatusItem> StatusItems { get; }
+        /// <remarks>
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
+        /// </remarks>
+        IEnumerable<IStatusItem> ReviewStatusItems { get; }
 
         /// <summary>
-        /// レビュー形式
+        /// レビュー形式を取得します。
         /// </summary>
         string ReviewStyle { get; }
 
         /// <summary>
-        /// レビュー形式の選択肢一覧
+        /// レビュー形式の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> ReviewStyleAllowedValues { get; }
 
@@ -155,47 +158,47 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         #region 予実
 
         /// <summary>
-        /// 計画実施日
+        /// 計画実施日を取得します。
         /// </summary>
         DateTime? PlannedDate { get; }
 
         /// <summary>
-        /// 実績実施日
+        /// 実績実施日を取得します。
         /// </summary>
         DateTime? ActualDate { get; }
 
         /// <summary>
-        /// 計画時間（分単位）
+        /// 計画時間（分単位）を取得します。
         /// </summary>
         string PlannedTime { get; }
 
         /// <summary>
-        /// 実績時間(分単位)
+        /// 実績時間(分単位)を取得します。
         /// </summary>
         string ActualTime { get; }
 
         /// <summary>
-        /// 成果物単位
+        /// 成果物単位を取得します。
         /// </summary>
         string Unit { get; }
 
         /// <summary>
-        /// 予定規模
+        /// 予定規模を取得します。
         /// </summary>
         string PlannedScale { get; }
 
         /// <summary>
-        /// 実績規模
+        /// 実績規模を取得します。
         /// </summary>
         string ActualScale { get; }
 
         /// <summary>
-        /// 目標件数
+        /// 目標件数を取得します。
         /// </summary>
         string IssueCountOfGoal { get; }
 
         /// <summary>
-        /// 実績件数
+        /// 実績件数を取得します。
         /// </summary>
         string IssueCountOfActual { get; }
 
@@ -204,102 +207,102 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         #region カスタムフィールド
         
         /// <summary>
-        /// カスタムテキスト1
+        /// カスタムテキスト1の値を取得します。
         /// </summary>
         string CustomText1 { get; }
 
         /// <summary>
-        /// カスタムテキスト2
+        /// カスタムテキスト2の値を取得します。
         /// </summary>
         string CustomText2 { get; }
 
         /// <summary>
-        /// カスタムテキスト3
+        /// カスタムテキスト3の値を取得します。
         /// </summary>
         string CustomText3 { get; }
 
         /// <summary>
-        /// カスタムテキスト4
+        /// カスタムテキスト4の値を取得します。
         /// </summary>
         string CustomText4 { get; }
 
         /// <summary>
-        /// カスタムテキスト5
+        /// カスタムテキスト5の値を取得します。
         /// </summary>
         string CustomText5 { get; }
 
         /// <summary>
-        /// カスタムテキスト6
+        /// カスタムテキスト6の値を取得します。
         /// </summary>
         string CustomText6 { get; }
 
         /// <summary>
-        /// カスタムテキスト7
+        /// カスタムテキスト7の値を取得します。
         /// </summary>
         string CustomText7 { get; }
 
         /// <summary>
-        /// カスタムテキスト8
+        /// カスタムテキスト8の値を取得します。
         /// </summary>
         string CustomText8 { get; }
 
         /// <summary>
-        /// カスタムテキスト9
+        /// カスタムテキスト9の値を取得します。
         /// </summary>
         string CustomText9 { get; }
 
         /// <summary>
-        /// カスタムテキスト10
+        /// カスタムテキスト10の値を取得します。
         /// </summary>
         string CustomText10 { get; }
 
 		/// <summary>
-        /// カスタムテキスト11
+        /// カスタムテキスト11の値を取得します。
         /// </summary>
         string CustomText11 { get; }
 
         /// <summary>
-        /// カスタムテキスト12
+        /// カスタムテキスト12の値を取得します。
         /// </summary>
         string CustomText12 { get; }
 
         /// <summary>
-        /// カスタムテキスト13
+        /// カスタムテキスト13の値を取得します。
         /// </summary>
         string CustomText13 { get; }
 
         /// <summary>
-        /// カスタムテキスト14
+        /// カスタムテキスト14の値を取得します。
         /// </summary>
         string CustomText14 { get; } 
 
         /// <summary>
-        /// カスタムテキスト15
+        /// カスタムテキスト15の値を取得します。
         /// </summary>
         string CustomText15 { get; } 
 
         /// <summary>
-        /// カスタムテキスト16
+        /// カスタムテキスト16の値を取得します。
         /// </summary>
         string CustomText16 { get; } 
 
         /// <summary>
-        /// カスタムテキスト17
+        /// カスタムテキスト17の値を取得します。
         /// </summary>
         string CustomText17 { get; } 
 
         /// <summary>
-        /// カスタムテキスト18
+        /// カスタムテキスト18の値を取得します。
         /// </summary>
         string CustomText18 { get; } 
 
         /// <summary>
-        /// カスタムテキスト19
+        /// カスタムテキスト19の値を取得します。
         /// </summary>
         string CustomText19 { get; }
 
         /// <summary>
-        /// カスタムテキスト20
+        /// カスタムテキスト20の値を取得します。
         /// </summary>
         string CustomText20 { get; }
 
@@ -308,51 +311,51 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         #region 指摘のプロパティの定義
 
         /// <summary>
-        /// 修正方針ステータスを使用するか
+        /// 修正方針ステータスを使用するかを取得します。
         /// </summary>
-        string UseCorrectionPolicyStatus { get; }
+        bool UseCorrectionPolicyStatus { get; }
 
         /// <summary>
-        /// 指摘理由を記録するか
+        /// 指摘理由を記録するかを取得します。
         /// </summary>
-        string UseReason { get; }
+        bool UseReason { get; }
 
         /// <summary>
-        /// 分類のデフォルト値
+        /// 分類のデフォルト値を取得します。
         /// </summary>
         string CategoryDefaultValue { get; }
 
         /// <summary>
-        /// 分類の選択肢一覧
+        /// 分類の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> CategoryAllowedValues { get; }
 
         /// <summary>
-        /// 検出工程のデフォルト値
+        /// 検出工程のデフォルト値を取得します。
         /// </summary>
         string DetectionActivityDefaultValue { get; }
 
         /// <summary>
-        /// 検出工程の選択肢一覧
+        /// 検出工程の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> DetectionActivityAllowedValues { get; }
 
         /// <summary>
-        /// 原因工程のデフォルト値
+        /// 原因工程のデフォルト値を取得します。
         /// </summary>
         string InjectionActivityDefaultValue { get; }
 
         /// <summary>
-        /// 原因工程の選択肢一覧
+        /// 原因工程の選択肢一覧を取得します。
         /// </summary>
         /// <remarks>
-        /// 選択肢の出現順はリストの並び順と一致することを保証する
+        /// 選択肢の出現順はリストの並び順と一致することを保証します。
         /// </remarks>
         IEnumerable<string> InjectionActivityAllowedValues { get; }
 
@@ -361,22 +364,22 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         #region カスタムフィールドの定義
 
         /// <summary>
-        /// レビューのカスタムフィールドの定義
+        /// レビューのカスタムフィールドの定義を取得します。
         /// </summary>
         IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions { get; }
 
         /// <summary>
-        /// メンバのカスタムロールの定義
+        /// メンバのカスタムロールの定義を取得します。
         /// </summary>
         IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions { get; }
 
         /// <summary>
-        /// メンバのカスタムフィールドの定義
+        /// メンバのカスタムフィールドの定義を取得します。
         /// </summary>
         IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions { get; }
 
         /// <summary>
-        /// 指摘のカスタムフィールドの定義
+        /// 指摘のカスタムフィールドの定義を取得します。
         /// </summary>
         IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions { get; }
 

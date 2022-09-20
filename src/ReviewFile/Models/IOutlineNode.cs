@@ -5,24 +5,24 @@ using System.Text;
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// アウトラインノードのインタフェース
+    /// アウトラインノードのインタフェースです。
     /// </summary>
     public interface IOutlineNode
     {
         #region 公開プロパティ
         
         /// <summary>
-        /// グローバルID
+        /// グローバルIDを取得します。
         /// </summary>
         string GID { get; }
 
         /// <summary>
-        /// ノード名
+        /// ノード名を取得します。
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// 子ノードの一覧
+        /// 子ノードの一覧を取得します。
         /// </summary>
         IEnumerable<IOutlineNode> Children { get; }
 

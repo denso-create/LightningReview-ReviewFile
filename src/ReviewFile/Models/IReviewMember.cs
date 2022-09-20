@@ -1,84 +1,84 @@
 ﻿namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// メンバのインタフェース
+    /// メンバのインタフェースです。
     /// </summary>
 	public interface IReviewMember
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// メンバーの名前
+        /// メンバーの名前を取得します。
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// メンバーはレビューワか
+        /// メンバーはレビューワかを取得します。
         /// </summary>
-        string Reviewer { get; }
+        bool Reviewer { get; }
 
         /// <summary>
-        /// メンバーはレビューイか
+        /// メンバーはレビューイかを取得します。
         /// </summary>
-        string Reviewee { get; }
+        bool Reviewee { get; }
 
         /// <summary>
-        /// メンバーは確認者か
+        /// メンバーは確認者かを取得します。
         /// </summary>
-        string Moderator { get; }
+        bool Moderator { get; }
 
         /// <summary>
-        /// カスタムロール1
+        /// カスタムロール1の値を取得します。
         /// </summary>
-        string CustomRole1 { get; }
+        bool CustomRole1 { get; }
 
         /// <summary>
-        /// カスタムロール2
+        /// カスタムロール2の値を取得します。
         /// </summary>
-        string CustomRole2 { get; }
+        bool CustomRole2 { get; }
 
         /// <summary>
-        /// カスタムロール3
+        /// カスタムロール3の値を取得します。
         /// </summary>
-        string CustomRole3 { get; }
+        bool CustomRole3 { get; }
 
         /// <summary>
-        /// カスタムロール4
+        /// カスタムロール4の値を取得します。
         /// </summary>
-        string CustomRole4 { get; }
+        bool CustomRole4 { get; }
 
         /// <summary>
-        /// カスタムロール5
+        /// カスタムロール5の値を取得します。
         /// </summary>
-        string CustomRole5 { get; }
+        bool CustomRole5 { get; }
 
         /// <summary>
-        /// カスタムテキスト1
+        /// カスタムテキスト1の値を取得します。
         /// </summary>
         string CustomText1 { get; }
 
         /// <summary>
-        /// カスタムテキスト2
+        /// カスタムテキスト2の値を取得します。
         /// </summary>
         string CustomText2 { get; }
 
         /// <summary>
-        /// カスタムテキスト3
+        /// カスタムテキスト3の値を取得します。
         /// </summary>
         string CustomText3 { get; }
 
         /// <summary>
-        /// カスタムテキスト4
+        /// カスタムテキスト4の値を取得します。
         /// </summary>
         string CustomText4 { get; }
 
         /// <summary>
-        /// カスタムテキスト5
+        /// カスタムテキスト5の値を取得します。
         /// </summary>
         string CustomText5 { get; }
 
         /// <summary>
-        /// UI非表示な情報
+        /// UI非表示な情報をタグとして取得します。
         /// </summary>
         string Tag { get; }
 

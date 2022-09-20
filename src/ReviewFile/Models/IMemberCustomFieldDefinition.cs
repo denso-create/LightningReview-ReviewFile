@@ -1,21 +1,21 @@
 ﻿namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// メンバのカスタムフィールドのインターフェース
+    /// メンバのカスタムフィールドのインターフェースです。
     /// </summary>
     public interface IMemberCustomFieldDefinition
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// 表示名
+        /// 表示名を取得します。
         /// </summary>
         string DisplayName { get; }
 
         /// <summary>
-        /// フィールドを使用するか
+        /// フィールドを使用するかを取得します。
         /// </summary>
-        string Enabled { get; }
+        bool Enabled { get; }
 
         #endregion
     }

@@ -1,21 +1,21 @@
 ﻿namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// メンバのカスタムロールのインターフェース
+    /// メンバのカスタムロールのインターフェースです。
     /// </summary>
     public interface IMemberCustomRoleDefinition
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// 表示名
+        /// 表示名を取得します。
         /// </summary>
         string DisplayName { get; }
 
         /// <summary>
-        /// フィールドを使用するか
+        /// フィールドを使用するかを取得します。
         /// </summary>
-        string Enabled { get; }
+        bool Enabled { get; }
 
         #endregion
     }

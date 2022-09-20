@@ -5,264 +5,264 @@ using System.Text;
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// 指摘のインタフェース
+    /// 指摘のインタフェースです。
     /// </summary>
     public interface IIssue
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// グローバルID
+        /// グローバルIDを取得します。
         /// </summary>
         string GID { get; }
 
         /// <summary>
-        /// ローカルID
+        /// ローカルIDを取得します。
         /// </summary>
         string LID { get; }
 
         /// <summary>
-        /// 対象ドキュメント
+        /// 対象ドキュメントを取得します。
         /// </summary>
         IDocument Document { get; }
 
         /// <summary>
-        /// 対象ドキュメントのID
+        /// 対象ドキュメントのIDを取得します。
         /// </summary>
         string DocumentID { get; }
 
         /// <summary>
-        /// 関連付けられているアウトラインノード
+        /// 関連づいているアウトラインノードを取得します。
         /// </summary>
         IOutlineNode OutlineNode { get; }
 
         /// <summary>
-        /// タイプ
+        /// タイプを取得します。
         /// </summary>
         string Type { get; }
 
         /// <summary>
-        /// 修正方針
+        /// 修正方針を取得します。
         /// </summary>
         string CorrectionPolicy { get; }
 
         /// <summary>
-        /// 分類
+        /// 分類を取得します。
         /// </summary>
         string Category { get; }
 
         /// <summary>
-        /// 説明
+        /// 説明を取得します。
         /// </summary>
         string Description { get; }
 
         /// <summary>
-        /// 指摘理由
+        /// 指摘理由を取得します。
         /// </summary>
         string Reason { get; }
 
         /// <summary>
-        /// 差し戻し理由
+        /// 差し戻し理由を取得します。
         /// </summary>
         string SendingBackReason{ get; }
 
         /// <summary>
-        /// 指摘のステータス
+        /// 指摘のステータスを取得します。
         /// </summary>
         string Status { get; }
 
         /// <summary>
-        /// 現在差戻し中かどうか
+        /// 現在差戻し中かどうかを取得します。
         /// </summary>
-        string IsSendingBack { get; }
+        bool IsSendingBack { get; }
 
         /// <summary>
-        /// 過去に一度でも差し戻しがあったか
+        /// 過去に一度でも差し戻しがあったかを取得します。
         /// </summary>
-        string HasBeenSentBack { get; }
+        bool HasBeenSentBack { get; }
         
         /// <summary>
-        /// 検出工程
+        /// 検出工程を取得します。
         /// </summary>
         string DetectionActivity { get; }
 
         /// <summary>
-        /// 原因工程
+        /// 原因工程を取得します。
         /// </summary>
         string InjectionActivity { get; }
 
         /// <summary>
-        /// 優先度
+        /// 優先度を取得します。
         /// </summary>
         string Priority { get; }
 
         /// <summary>
-        /// 重大度
+        /// 重大度を取得します。
         /// </summary>
         string Importance { get; }
 
         /// <summary>
-        /// 関連付けられているアウトラインノードの名前
+        /// 関連づいているアウトラインノードの名前を取得します。
         /// </summary>
        string OutlineName { get; }
 
         /// <summary>
-        /// ルートレベルのアウトラインノードの名前
+        /// ルートレベルのアウトラインノードの名前を取得します。
         /// </summary>
         string RootOutlineName { get; }
 
         /// <summary>
-        /// アウトラインノードのパス
+        /// アウトラインノードのパスを取得します。
         /// </summary>
         string OutlinePath { get; }
 
         /// <summary>
-        /// 報告者
+        /// 報告者を取得します。
         /// </summary>
         string ReportedBy { get; }
 
         /// <summary>
-        /// 報告日
+        /// 報告日を取得します。
         /// </summary>
         DateTime? DateReported { get; }
 
         /// <summary>
-        /// 対策要否
+        /// 対策要否を取得します。
         /// </summary>
         string NeedToFix { get; }
 
         /// <summary>
-        /// 修正者
+        /// 修正者を取得します。
         /// </summary>
         string AssignedTo { get; }
 
         /// <summary>
-        /// 期日
+        /// 期日を取得します。
         /// </summary>
         DateTime? DueDate { get; }
         
         /// <summary>
-        /// 修正日
+        /// 修正日を取得します。
         /// </summary>
         DateTime? DateFixed { get; }
 
         /// <summary>
-        /// 対策
+        /// 対策を取得します。
         /// </summary>
         string Resolution { get; }
 
         /// <summary>
-        /// 確認者
+        /// 確認者を取得します。
         /// </summary>
         string ConfirmedBy { get; }
 
         /// <summary>
-        /// 確認日
+        /// 確認日を取得します。
         /// </summary>
         DateTime? DateConfirmed { get; }
 
         /// <summary>
-        /// コメント
+        /// コメントを取得します。
         /// </summary>
         string Comment { get; }
         
         /// <summary>
-        /// カスタムテキスト1
+        /// カスタムテキスト1の値を取得します。
         /// </summary>
         string CustomText1 { get; }
 
         /// <summary>
-        /// カスタムテキスト2
+        /// カスタムテキスト2の値を取得します。
         /// </summary>
         string CustomText2 { get; }
 
         /// <summary>
-        /// カスタムテキスト3
+        /// カスタムテキスト3の値を取得します。
         /// </summary>
         string CustomText3 { get; }
 
         /// <summary>
-        /// カスタムテキスト4
+        /// カスタムテキスト4の値を取得します。
         /// </summary>
         string CustomText4 { get; }
 
         /// <summary>
-        /// カスタムテキスト5
+        /// カスタムテキスト5の値を取得します。
         /// </summary>
         string CustomText5 { get; }
 
         /// <summary>
-        /// カスタムテキスト6
+        /// カスタムテキスト6の値を取得します。
         /// </summary>
         string CustomText6 { get; }
 
         /// <summary>
-        /// カスタムテキスト7
+        /// カスタムテキスト7の値を取得します。
         /// </summary>
         string CustomText7 { get; }
 
         /// <summary>
-        /// カスタムテキスト8
+        /// カスタムテキスト8の値を取得します。
         /// </summary>
         string CustomText8 { get; }
 
         /// <summary>
-        /// カスタムテキスト9
+        /// カスタムテキスト9の値を取得します。
         /// </summary>
         string CustomText9 { get; }
 
         /// <summary>
-        /// カスタムテキスト10
+        /// カスタムテキスト10の値を取得します。
         /// </summary>
         string CustomText10 { get; }
 
 		/// <summary>
-        /// カスタムテキスト11
+        /// カスタムテキスト11の値を取得します。
         /// </summary>
         string CustomText11 { get; }
 
         /// <summary>
-        /// カスタムテキスト12
+        /// カスタムテキスト12の値を取得します。
         /// </summary>
         string CustomText12 { get; }
 
         /// <summary>
-        /// カスタムテキスト13
+        /// カスタムテキスト13の値を取得します。
         /// </summary>
         string CustomText13 { get; }
 
         /// <summary>
-        /// カスタムテキスト14
+        /// カスタムテキスト14の値を取得します。
         /// </summary>
         string CustomText14 { get; } 
 
         /// <summary>
-        /// カスタムテキスト15
+        /// カスタムテキスト15の値を取得します。
         /// </summary>
         string CustomText15 { get; } 
 
         /// <summary>
-        /// カスタムテキスト16
+        /// カスタムテキスト16の値を取得します。
         /// </summary>
         string CustomText16 { get; } 
 
         /// <summary>
-        /// カスタムテキスト17
+        /// カスタムテキスト17の値を取得します。
         /// </summary>
         string CustomText17 { get; } 
 
         /// <summary>
-        /// カスタムテキスト18
+        /// カスタムテキスト18の値を取得します。
         /// </summary>
         string CustomText18 { get; } 
 
         /// <summary>
-        /// カスタムテキスト19
+        /// カスタムテキスト19の値を取得します。
         /// </summary>
         string CustomText19 { get; } 
 
         /// <summary>
-        /// カスタムテキスト20
+        /// カスタムテキスト20の値を取得します。
         /// </summary>
         string CustomText20 { get; }
 

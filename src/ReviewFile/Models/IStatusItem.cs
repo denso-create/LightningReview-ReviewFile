@@ -3,39 +3,39 @@
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// ステータスのインターフェース
+    /// レビューのステータスのインターフェースです。
     /// </summary>
     public interface IStatusItem
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// ステータスの名前
+        /// ステータスの名前を取得します。
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// 設定日
+        /// 設定日を取得します。
         /// </summary>
         DateTime? SelectedOn { get; }
 
         /// <summary>
-        /// 設定者
+        /// 設定者を取得します。
         /// </summary>
         string SelectedBy { get; }
 
         /// <summary>
-        /// クローズを意味するステータスか
+        /// クローズを意味するステータスかを取得します。
         /// </summary>
-        string IsClosed { get; }
+        bool IsClosed { get; }
 
         /// <summary>
-        /// このステータスが、現在のステータスとして設定されているか
+        /// このステータスが、現在のステータスとして設定されているかを取得します。
         /// </summary>
-        string IsSelected { get; }
+        bool IsSelected { get; }
 
         /// <summary>
-        /// ステータスの色
+        /// ステータスの色を取得します。
         /// </summary>
         /// <value>
         /// 色の種類の文字列。

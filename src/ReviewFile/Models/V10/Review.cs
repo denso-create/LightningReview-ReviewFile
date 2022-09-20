@@ -74,6 +74,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// </summary>
         public IEnumerable<IDocument> Documents => DocumentEntities;
 
+        /// <inheritdoc />
+        public IEnumerable<IReviewMember> Members => Definition.ReviewDefinition.Members;
+
         #region 基本設定
         
         /// <summary>
@@ -134,20 +137,38 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string ReviewType => Definition.ReviewDefinition.ReviewType;
 
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewTypeAllowedValues => Definition.ReviewDefinition.ReviewTypeAllowedValues;
+
         /// <summary>
         /// ドメイン
         /// </summary>
         public string Domain => Definition.ReviewDefinition.Domain;
+
+        /// <inheritdoc />
+        public IEnumerable<string> DomainAllowedValues => Definition.ReviewDefinition.DomainAllowedValues;
 
         /// <summary>
         /// レビューのステータス
         /// </summary>
         public string ReviewStatus => Definition.ReviewDefinition.Status;
 
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewStatusAllowedValues => Definition.ReviewDefinition.StatusAllowedValues;
+
+        /// <inheritdoc />
+        public IStatusItem ReviewStatusItem => Definition.ReviewDefinition.StatusItem;
+
+        /// <inheritdoc />
+        public IEnumerable<IStatusItem> ReviewStatusItems => Definition.ReviewDefinition.StatusItems;
+
         /// <summary>
-        /// レビュ形式
+        /// レビュー形式
         /// </summary>
         public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
+
+        /// <inheritdoc />
+        public IEnumerable<string> ReviewStyleAllowedValues => Definition.ReviewDefinition.ReviewStyleAllowedValues;
 
         #endregion
 
@@ -355,6 +376,62 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// カスタムテキスト20
         /// </summary>
         public string CustomText20 { get; set; } = string.Empty;
+
+        #endregion
+
+        #region 指摘のプロパティの定義
+
+        /// <summary>
+        /// 修正方針ステータスを使用するか
+        /// </summary>
+        [XmlElement("UseCorrectionPolicyStatus")]
+        public string UseCorrectionPolicyStatusString { get; set; }
+
+        /// <inheritdoc />
+        public bool UseCorrectionPolicyStatus => bool.TryParse(UseCorrectionPolicyStatusString, out var result) ? result : false;
+
+        /// <summary>
+        /// 指摘理由を記録するか
+        /// </summary>
+        [XmlElement("UseReason")]
+        public string UseReasonString { get; set; }
+
+        /// <inheritdoc />
+        public bool UseReason => bool.TryParse(UseReasonString, out var result) ? result : false;
+
+        /// <inheritdoc />
+        public string CategoryDefaultValue => Definition.IssueDefinition.CategoryDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> CategoryAllowedValues => Definition.IssueDefinition.CategoryAllowedValues;
+
+        /// <inheritdoc />
+        public string DetectionActivityDefaultValue => Definition.IssueDefinition.DetectionActivityDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> DetectionActivityAllowedValues => Definition.IssueDefinition.DetectionActivityAllowedValues;
+
+        /// <inheritdoc />
+        public string InjectionActivityDefaultValue => Definition.IssueDefinition.InjectionActivityDefaultValue;
+
+        /// <inheritdoc />
+        public IEnumerable<string> InjectionActivityAllowedValues => Definition.IssueDefinition.InjectionActivityAllowedValues;
+
+        #endregion
+
+        #region カスタムフィールドの定義
+
+        /// <inheritdoc />
+        public IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions => new List<IReviewCustomFieldDefinition>();
+
+        /// <inheritdoc />
+        public IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions => new List<IMemberCustomRoleDefinition>();
+
+        /// <inheritdoc />
+        public IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions => new List<IMemberCustomFieldDefinition>();
+
+        /// <inheritdoc />
+        public IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions => Definition.IssueDefinition.CustomFieldDefinitions;
 
         #endregion
 

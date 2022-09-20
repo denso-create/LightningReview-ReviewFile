@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDefinitions;
 using DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.ReviewDefinitions;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions
@@ -14,5 +15,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions
         /// </summary>
         [XmlElement]
         public ReviewDefinition ReviewDefinition { get; set; }
+
+        /// <summary>
+        /// 指摘の定義
+        /// </summary>
+        [XmlElement]
+        public IssueDefinition IssueDefinition { get; set; }
     }
 }

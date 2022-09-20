@@ -29,6 +29,7 @@
   </PropertyGroup>
     
   <ItemGroup>
+    <Folder Include="Models\V10\Definitions\IssueDefinitions\" />
     <Folder Include="Models\V18\Definitions\MemberDefinitions\" />
   </ItemGroup>
 

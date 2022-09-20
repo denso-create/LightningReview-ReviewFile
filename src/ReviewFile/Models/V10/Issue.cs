@@ -37,6 +37,17 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// </summary>
         public string LID { get=>ID; set=>ID=value; }
 
+        /// <inheritdoc />
+        [XmlIgnore]
+        public IDocument Document { get; set; }
+
+        /// <inheritdoc />
+        public string DocumentID => Document.GID;
+
+        /// <inheritdoc />
+        [XmlIgnore]
+        public IOutlineNode OutlineNode { get; set; }
+
         /// <summary>
         /// タイプ
         /// </summary>
@@ -82,15 +93,21 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// <summary>
         /// 現在差戻し中かどうか
         /// </summary>
-        [XmlElement]
-        public string IsSendingBack { get; set; }
+        [XmlElement("IsSendingBack")]
+        public string IsSendingBackString { get; set; }
+
+        /// <inheritdoc />
+        public bool IsSendingBack => bool.TryParse(IsSendingBackString, out var result) ? result : false;
 
         /// <summary>
         /// 過去に一度でも差し戻しがあったか
         /// </summary>
-        [XmlElement]
-        public string HasBeenSentBack { get; set; }
-        
+        [XmlElement("HasBeenSentBack")]
+        public string HasBeenSentBackString { get; set; }
+
+        /// <inheritdoc />
+        public bool HasBeenSentBack => bool.TryParse(HasBeenSentBackString, out var result) ? result : false;
+
         /// <summary>
         /// 検出工程
         /// </summary>

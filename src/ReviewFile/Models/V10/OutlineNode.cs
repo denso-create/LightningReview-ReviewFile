@@ -33,7 +33,13 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// <summary>
         /// 子ノードの一覧
         /// </summary>
-        public IEnumerable<IOutlineNode> Children => throw new NotImplementedException();
+        public IEnumerable<IOutlineNode> Children => ChildNodes;
+
+        /// <summary>
+        /// 子ノードの一覧
+        /// </summary>
+        [XmlElement("OutlineNode")]
+        public List<OutlineNode> ChildNodes { get; set; }
 
         #endregion
     }

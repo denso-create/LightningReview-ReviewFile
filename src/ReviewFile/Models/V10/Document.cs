@@ -56,7 +56,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         /// <summary>
         /// このドキュメントに関連づくアウトラインの一覧
         /// </summary>
-        public IEnumerable<IOutlineNode> OutlineNodes => throw new NotImplementedException();
+        IEnumerable<IOutlineNode> IDocument.OutlineNodes => OutlineNodes;
+
+        /// <summary>
+        /// このドキュメントに関連づくアウトラインの一覧
+        /// </summary>
+        [XmlArray("OutlineTree")]
+        [XmlArrayItem("OutlineNode")]
+        public List<OutlineNode> OutlineNodes { get; set; }
 
         #endregion
     }

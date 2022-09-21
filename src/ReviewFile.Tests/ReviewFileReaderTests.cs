@@ -57,7 +57,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <summary>
         /// bool値に対応するXML属性が"False"文字列の場合を確認するテストデータ
         /// </summary>
-        private readonly string BoolIsFalseName = "BoolIsFalse.revx";
+        private readonly string BoolTypePropertyShouldBeFalseName = "BoolTypePropertyShouldBeFalse.revx";
 
         /// <summary>
         /// Stream内のReviewFile要素が存在しないテストデータ
@@ -474,9 +474,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataRow("V18")]
         [DataRow("V20")]
         [DataTestMethod]
-        public void ReviewTest_BoolIsFalse(string version)
+        public void ReviewTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
 
             // XMLの文字列が"False"のときに正しくパースされるか検証する。
             Assert.AreEqual(false, review.UseCorrectionPolicyStatus);
@@ -735,9 +735,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataRow("V18")]
         [DataRow("V20")]
         [DataTestMethod]
-        public void IssueTest_BoolIsFalse(string version)
+        public void IssueTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var issues = review.Issues;
             Assert.IsNotNull(issues, "Review.Issuesがnullです");
 
@@ -810,9 +810,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataRow("V18")]
         [DataRow("V20")]
         [DataTestMethod]
-        public void IssueCustomFieldDefinitionTest_BoolIsFalse(string version)
+        public void IssueCustomFieldDefinitionTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var customFieldDefinitions = review.IssueCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.IssueCustomFieldDefinitionsがnullです");
 
@@ -856,9 +856,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
-        public void MemberCustomFieldDefinitionTest_BoolIsFalse(string version)
+        public void MemberCustomFieldDefinitionTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var customFieldDefinitions = review.MemberCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.MemberCustomFieldDefinitionsがnullです");
 
@@ -902,9 +902,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
-        public void MemberCustomRoleDefinitionTest_BoolIsFalse(string version)
+        public void MemberCustomRoleDefinitionTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var customRoleDefinitions = review.MemberCustomRoleDefinitions;
             Assert.IsNotNull(customRoleDefinitions, "Review.MemberCustomRoleDefinitionsがnullです");
 
@@ -968,9 +968,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
-        public void ReviewCustomFieldDefinitionTest_BoolIsFalse(string version)
+        public void ReviewCustomFieldDefinitionTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var customFieldDefinitions = review.ReviewCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.ReviewCustomFieldDefinitionsがnullです");
 
@@ -1074,9 +1074,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         [DataRow("V18")]
         [DataRow("V20")]
         [DataTestMethod]
-        public void ReviewMemberTest_BoolIsFalse(string version)
+        public void ReviewMemberTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var members = review.Members;
             Assert.IsNotNull(members, "Review.Membersがnullです");
 
@@ -1265,9 +1265,9 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
         /// <param name="version">バージョン</param>
         [DataRow("V20")]
         [DataTestMethod]
-        public void IStatusItemTest_BoolIsFalse(string version)
+        public void IStatusItemTest_BoolTypePropertyShouldBeFalse(string version)
         {
-            var review = ReadReviewFile(version, BoolIsFalseName);
+            var review = ReadReviewFile(version, BoolTypePropertyShouldBeFalseName);
             var statusItems = review.ReviewStatusItems;
             Assert.IsNotNull(statusItems, "Review.StatusItemsがnullです");
 

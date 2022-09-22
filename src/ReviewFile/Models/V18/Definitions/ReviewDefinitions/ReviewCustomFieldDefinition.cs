@@ -8,14 +8,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
     /// </summary>
     public class ReviewCustomFieldDefinition : EntityBase, IReviewCustomFieldDefinition
     {
-	    #region 定数定義
+        #region 定数定義
 
         /// <summary>
         /// Groupプロパティの初期値
         /// </summary>
-	    private const string c_DefaultGroup = "基本設定";
+        private const string c_DefaultGroup = "基本設定";
 
-	    #endregion
+        #endregion
 
         #region プロパティ
 

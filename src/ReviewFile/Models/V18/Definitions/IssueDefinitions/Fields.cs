@@ -6,8 +6,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
     /// <summary>
     /// 指摘のフィールドの定義一覧
     /// </summary>
-    [XmlRoot]
-	public class Fields : EntityBase
+    [XmlRoot] 
+    public class Fields : EntityBase
     {
         /// <summary>
         /// 指摘のフィールドの定義一覧

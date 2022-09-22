@@ -8,16 +8,16 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
     /// </summary>
     public class ReviewStatusItem : EntityBase, IStatusItem
     {
-	    #region 定数定義
+        #region 定数定義
 
         /// <summary>
         /// Colorプロパティの初期値
         /// </summary>
-	    private const string c_DefaultColor = "なし";
+        private const string c_DefaultColor = "なし";
 
-	    #endregion
+        #endregion
 
-	    #region プロパティ
+        #region プロパティ
 
         /// <summary>
         /// 名前

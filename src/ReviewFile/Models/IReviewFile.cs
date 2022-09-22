@@ -14,11 +14,13 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// スキーマバージョン値を取得します。
         /// </summary>
+        /// <value>スキーマバージョン値。</value>
         string SchemaVersion { get; }
 
         /// <summary>
         /// レビューを取得します。
         /// </summary>
+        /// <value>レビュー。</value>
         IReview Review { get; }
 
         #endregion

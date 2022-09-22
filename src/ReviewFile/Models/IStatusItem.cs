@@ -12,33 +12,38 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// ステータスの名前を取得します。
         /// </summary>
+        /// <value>ステータスの名前。</value>
         string Name { get; }
 
         /// <summary>
         /// 設定日を取得します。
         /// </summary>
+        /// <value>設定日。設定日が設定されていない時はnullです。</value>
         DateTime? SelectedOn { get; }
 
         /// <summary>
         /// 設定者を取得します。
         /// </summary>
+        /// <value>設定者。</value>
         string SelectedBy { get; }
 
         /// <summary>
         /// クローズを意味するステータスかを取得します。
         /// </summary>
+        /// <value>クローズを意味するステータスか。</value>
         bool IsClosed { get; }
 
         /// <summary>
         /// このステータスが、現在のステータスとして設定されているかを取得します。
         /// </summary>
+        /// <value>このステータスが、現在のステータスとして設定されているか。</value>
         bool IsSelected { get; }
 
         /// <summary>
         /// ステータスの色を取得します。
         /// </summary>
         /// <value>
-        /// 色の種類の文字列。
+        /// ステータスの色。
         /// 本プロパティの値域を以下に示します。
         /// [値域]
         /// なし

@@ -64,14 +64,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         public string IsSendingBackString { get; set; }
 
         /// <inheritdoc />
-        public bool IsSendingBack => bool.TryParse(IsSendingBackString, out var result) ? result : default;
+        public bool IsSendingBack => bool.TryParse(IsSendingBackString, out var result) ? result : false;
 
         /// <inheritdoc cref="HasBeenSentBack" />
         [XmlElement("HasBeenSentBack")]
         public string HasBeenSentBackString { get; set; }
 
         /// <inheritdoc />
-        public bool HasBeenSentBack => bool.TryParse(HasBeenSentBackString, out var result) ? result : true;
+        public bool HasBeenSentBack => bool.TryParse(HasBeenSentBackString, out var result) ? result : false;
 
         /// <inheritdoc />
         [XmlElement]

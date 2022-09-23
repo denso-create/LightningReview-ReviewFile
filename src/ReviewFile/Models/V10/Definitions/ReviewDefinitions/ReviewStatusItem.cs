@@ -19,28 +19,20 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.ReviewDe
 
         #region プロパティ
 
-        /// <summary>
-        /// 名前
-        /// </summary>
+        /// <inheritdoc />
         public string Name { get; set; }
 
-        /// <summary>
-        /// 設定日
-        /// </summary>
+        /// <inheritdoc />
         public DateTime? SelectedOn => (DateTime?)null;
 
-        /// <summary>
-        /// 設定者
-        /// </summary>
+        /// <inheritdoc />
         public string SelectedBy => string.Empty;
 
         /// <inheritdoc />
 
         public bool IsClosed => false;
 
-        /// <summary>
-        /// このステータスが、現在のステータスとして設定されているか
-        /// </summary>
+        /// <inheritdoc cref="IsSelected" />
         public string IsSelectedString { get; set; }
 
         /// <inheritdoc />

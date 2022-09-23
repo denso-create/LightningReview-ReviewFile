@@ -10,32 +10,23 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
     public class Field : IIssueCustomFieldDefinition
     {
         /// <summary>
-        /// 名前
+        /// フィールド名
         /// </summary>
         [XmlAttribute]
         public string Name { get; set; }
 
-        /// <summary>
-        /// フィールドを使用するか否か
-        /// </summary>
+        /// <inheritdoc cref="Enabled" />
         [XmlElement]
         public string UseThisField { get; set; }
 
         /// <inheritdoc />
         public bool Enabled => bool.TryParse(UseThisField, out var result) ? result : false;
 
-        /// <summary>
-        /// 表示名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string DisplayName { get; set; }
 
-        /// <summary>
-        /// 選択肢のリスト
-        /// </summary>
-        /// <remarks>
-        /// 文字列中の選択肢の出現順はリストの並び順と一致することを保証する
-        /// </remarks>
+        /// <inheritdoc />
         public IEnumerable<string> AllowedValues
         {
             get
@@ -51,9 +42,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
             }
         }
 
-        /// <summary>
-        /// デフォルト値
-        /// </summary>
+        /// <inheritdoc />
         public string DefaultValue
         {
             get

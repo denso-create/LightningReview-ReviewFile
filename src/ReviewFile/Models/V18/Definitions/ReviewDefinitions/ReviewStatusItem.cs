@@ -19,9 +19,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
 
         #region プロパティ
 
-        /// <summary>
-        /// 名前
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Name { get; set; }
 
@@ -31,59 +29,28 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.ReviewDe
         [XmlElement("SelectedOn")]
         public string SelectedOnString { get; set; }
 
-        /// <summary>
-        /// 設定日
-        /// </summary>
+        /// <inheritdoc />
         public DateTime? SelectedOn => DateTime.TryParse(SelectedOnString, out var result) ? result : (DateTime?)null;
 
-        /// <summary>
-        /// 設定者
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string SelectedBy { get; set; } = string.Empty;
 
-        /// <summary>
-        /// クローズを意味するステータスか
-        /// </summary>
+        /// <inheritdoc cref="IsClosed" />
         [XmlElement("IsClosed")]
         public string IsClosedString { get; set; }
 
         /// <inheritdoc />
-
         public bool IsClosed => bool.TryParse(IsClosedString, out var result) ? result : false;
 
-        /// <summary>
-        /// このステータスが、現在のステータスとして設定されているか
-        /// </summary>
+        /// <inheritdoc cref="IsSelected" />
         [XmlElement("IsSelected")]
         public string IsSelectedString { get; set; }
 
         /// <inheritdoc />
         public bool IsSelected => bool.TryParse(IsSelectedString, out var result) ? result : false;
 
-        /// <summary>
-        /// ステータスの色
-        /// </summary>
-        /// <value>
-        /// 色の種類の文字列。
-        /// 本プロパティの値域を以下に示します。
-        /// [値域]
-        /// なし
-        /// 赤
-        /// 橙
-        /// 黄
-        /// 緑
-        /// 青
-        /// 紫
-        /// 灰
-        /// 薄い赤
-        /// 薄い橙
-        /// 薄い黄
-        /// 薄い緑
-        /// 薄い青
-        /// 薄い紫
-        /// 薄い灰
-        /// </value>
+        /// <inheritdoc cref="Color" />
         /// <remarks>
         /// この属性は、対応するレビューファイルの設定値を一度も変更していない場合、初期値が空文字列となる。
         /// 空文字列の場合は、初期値の"なし"に変換したいため、いったん本プロパティでデシリアライズしている。

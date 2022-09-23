@@ -19,25 +19,17 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlAttribute]
         public string GlobalID { get; set; }
 
-        /// <summary>
-        /// グローバルID
-        /// </summary>
+        /// <inheritdoc />
         public string GID { get => GlobalID; set => GlobalID = value; }
 
-        /// <summary>
-        /// ノード名
-        /// </summary>
+        /// <inheritdoc />
         [XmlAttribute]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 子ノードの一覧
-        /// </summary>
+        /// <inheritdoc />
         public IEnumerable<IOutlineNode> Children => ChildNodes;
 
-        /// <summary>
-        /// 子ノードの一覧
-        /// </summary>
+        /// <inheritdoc cref="Children" />
         [XmlElement("OutlineNode")]
         public List<OutlineNode> ChildNodes { get; set; }
 

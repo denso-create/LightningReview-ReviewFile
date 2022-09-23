@@ -16,14 +16,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
     {
         #region プロパティ
 
-        /// <summary>
-        /// ファイルパス
-        /// </summary>
+        /// <inheritdoc />
         public string FilePath { get; set; }
 
-        /// <summary>
-        /// このレビューファイルに関連づく指摘の一覧
-        /// </summary>
+        /// <inheritdoc />
         public IEnumerable<IIssue> Issues
         {
             get
@@ -40,9 +36,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
             }
         }
 
-        /// <summary>
-        /// このレビューファイルに関連づくドキュメントの一覧
-        /// </summary>
+        /// <inheritdoc />
         IEnumerable<IDocument> IReview.Documents => Documents.List.OfType<IDocument>();
 
         /// <inheritdoc />
@@ -50,27 +44,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #region 基本設定
 
-        /// <summary>
-        /// レビュー名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 目的
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Goal { get; set; }
 
-        /// <summary>
-        /// 終了条件
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string EndCondition { get; set; }
 
-        /// <summary>
-        /// 場所
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Place { get; set; }
 
@@ -85,18 +71,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         public Project Project { get; set; }
 
-        /// <summary>
-        /// プロジェクトコード
-        /// </summary>
+        /// <inheritdoc />
         public string ProjectCode
         {
             get => Project.Code;
             set => Project.Code = value;
         }
 
-        /// <summary>
-        /// プロジェクト名
-        /// </summary>
+        /// <inheritdoc />
         public string ProjectName
         {
             get => Project.Name;
@@ -109,25 +91,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public Definition Definition { get; set; }
 
-        /// <summary>
-        /// レビュー種別
-        /// </summary>
+        /// <inheritdoc />
         public string ReviewType => Definition.ReviewDefinition.ReviewType;
 
         /// <inheritdoc />
         public IEnumerable<string> ReviewTypeAllowedValues => Definition.ReviewDefinition.ReviewTypeAllowedValues;
 
-        /// <summary>
-        /// ドメイン
-        /// </summary>
+        /// <inheritdoc />
         public string Domain => Definition.ReviewDefinition.Domain;
 
         /// <inheritdoc />
         public IEnumerable<string> DomainAllowedValues => Definition.ReviewDefinition.DomainAllowedValues;
 
-        /// <summary>
-        /// レビューのステータス
-        /// </summary>
+        /// <inheritdoc />
         public string ReviewStatus => Definition.ReviewDefinition.Status;
 
         /// <inheritdoc />
@@ -139,9 +115,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// <inheritdoc />
         public IEnumerable<IStatusItem> ReviewStatusItems => Definition.ReviewDefinition.StatusItems;
 
-        /// <summary>
-        /// レビュー形式
-        /// </summary>
+        /// <inheritdoc />
         public string ReviewStyle => Definition.ReviewDefinition.ReviewStyle;
 
         /// <inheritdoc />
@@ -157,9 +131,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement("PlannedDate")]
         public string PlannedDateString { get; set; }
 
-        /// <summary>
-        /// 計画実施日
-        /// </summary>
+        /// <inheritdoc />
         public DateTime? PlannedDate => string.IsNullOrEmpty(PlannedDateString) ? (DateTime?)null : DateTime.Parse(PlannedDateString);
 
         /// <summary>
@@ -168,50 +140,34 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement("ActualDate")]
         public string ActualDateString { get; set; }
 
-        /// <summary>
-        /// 実績実施日
-        /// </summary>
+        /// <inheritdoc />
         public DateTime? ActualDate => string.IsNullOrEmpty(ActualDateString) ? (DateTime?)null : DateTime.Parse(ActualDateString);
 
-        /// <summary>
-        /// 計画時間（分単位）
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string PlannedTime { get; set; }
 
-        /// <summary>
-        /// 実績時間(分単位)
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ActualTime { get; set; }
 
-        /// <summary>
-        /// 成果物単位
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Unit { get; set; }
 
-        /// <summary>
-        /// 予定規模
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string PlannedScale { get; set; }
 
-        /// <summary>
-        /// 実績規模
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ActualScale { get; set; }
 
-        /// <summary>
-        /// 目標件数
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string IssueCountOfGoal { get; set; }
 
-        /// <summary>
-        /// 実績件数
-        /// </summary>
+        /// <inheritdoc />
         public string IssueCountOfActual
         {
             get
@@ -236,9 +192,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #region カスタムフィールド
 
-        /// <summary>
-        /// カスタムテキスト1
-        /// </summary>
+        /// <inheritdoc />
         /// <remarks>
         /// カスタムテキスト1以降の定義がないバージョンのレビューファイルを開いた場合は、該当のXML属性が存在しないためnullとなる。
         /// カスタムテキストの値が未設定の状態とXML属性が存在しない状態を一貫させるため、string.Emptyで初期化する。
@@ -246,117 +200,79 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string CustomText1 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト2
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText2 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト3
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText3 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト4
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText4 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト5
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText5 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト6
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText6 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト7
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText7 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト8
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText8 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト9
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText9 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト10
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText10 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト11
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText11 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト12
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText12 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト13
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText13 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト14
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText14 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト15
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText15 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト16
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText16 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト17
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText17 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト18
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText18 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト19
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText19 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト20
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText20 { get; set; } = string.Empty;
 
@@ -364,18 +280,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #region 指摘のプロパティの定義
 
-        /// <summary>
-        /// 修正方針ステータスを使用するか
-        /// </summary>
+        /// <inheritdoc cref="UseCorrectionPolicyStatus" />
         [XmlElement("UseCorrectionPolicyStatus")]
         public string UseCorrectionPolicyStatusString { get; set; }
 
         /// <inheritdoc />
         public bool UseCorrectionPolicyStatus => bool.TryParse(UseCorrectionPolicyStatusString, out var result) ? result : false;
 
-        /// <summary>
-        /// 指摘理由を記録するか
-        /// </summary>
+        /// <inheritdoc cref="UseReason" />
         [XmlElement("UseReason")]
         public string UseReasonString { get; set; }
 
@@ -405,19 +317,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 
         #region カスタムフィールドの定義
 
-        /// <summary>
-        /// レビューのカスタムフィールドの定義
-        /// </summary>
+        /// <inheritdoc />
         /// <remarks>
         /// LR2.0より前のバージョンでは、レビューのカスタムフィールドが存在しないため、ReviewDefinition.CustomFields.ReviewCustomFieldDefinitionsはnullとなる。
         /// そのため、空のリストを生成して返すように実装している。
         /// </remarks>
-        public IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions => 
-	        Definition.ReviewDefinition.CustomFields?.ReviewCustomFieldDefinitions ?? (new List<ReviewCustomFieldDefinition>());
+        public IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions =>
+            Definition.ReviewDefinition.CustomFields?.ReviewCustomFieldDefinitions ?? (new List<ReviewCustomFieldDefinition>());
 
-        /// <summary>
-        /// メンバのカスタムロールの定義
-        /// </summary>
+        /// <inheritdoc />
         /// <remarks>
         /// LR2.0より前のバージョンでは、メンバーの定義が存在しないため、MemberDefinitionはnullとなる。
         /// そのため、空のリストを生成して返すように実装している。
@@ -425,19 +333,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         public IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions =>
             Definition.MemberDefinition?.CustomRoles.MemberCustomRoleDefinitions ?? (new List<MemberCustomRoleDefinition>());
 
-        /// <summary>
-        /// メンバのカスタムフィールドの定義
-        /// </summary>
+        /// <inheritdoc />
         /// <remarks>
         /// LR2.0より前のバージョンでは、メンバーの定義が存在しないため、MemberDefinitionはnullとなる。
         /// そのため、空のリストを生成して返すように実装している。
         /// </remarks>
-        public IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions => 
-	        Definition.MemberDefinition?.CustomFields.MemberCustomFieldDefinitions ?? (new List<MemberCustomFieldDefinition>());
+        public IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions =>
+            Definition.MemberDefinition?.CustomFields.MemberCustomFieldDefinitions ?? (new List<MemberCustomFieldDefinition>());
 
-        /// <summary>
-        /// 指摘のカスタムフィールドの定義
-        /// </summary>
+        /// <inheritdoc />
         public IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions => Definition.IssueDefinition.CustomFieldDefinitions;
 
         #endregion

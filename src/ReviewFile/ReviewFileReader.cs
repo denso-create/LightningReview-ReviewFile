@@ -18,11 +18,7 @@ namespace DensoCreate.LightningReview.ReviewFile
     /// </summary>
     public class ReviewFileReader : IReviewFileReader
     {
-        /// <summary>
-        /// ファイルからロードします。
-        /// </summary>
-        /// <param name="filePath">レビューファイルのパス</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IReview Read(string filePath)
         {
             using (var archive = ZipFile.OpenRead(filePath))
@@ -49,11 +45,7 @@ namespace DensoCreate.LightningReview.ReviewFile
             }
         }
 
-        /// <summary>
-        /// ストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IReview Read(Stream reviewFileStream)
         {
             try
@@ -93,7 +85,7 @@ namespace DensoCreate.LightningReview.ReviewFile
                         // 仮想的なルートノードを除き、ドキュメント直下のアウトラインノードごとに処理する
                         foreach (var childNode in realRootNode.ChildNodes)
                         {
-	                        LinkIssueToDocumentAndOutlineNode(childNode);
+                            LinkIssueToDocumentAndOutlineNode(childNode);
                         }
 
                         // アウトラインノードを再帰的に探索して、
@@ -136,13 +128,13 @@ namespace DensoCreate.LightningReview.ReviewFile
                         // ドキュメント直下のアウトラインノードごとに処理する
                         foreach (var realOutlineNode in realDocument.OutlineNodes)
                         {
-	                        AddOutlineNodeToTable(realOutlineNode, $"/{realDocument.Name}");
+                            AddOutlineNodeToTable(realOutlineNode, $"/{realDocument.Name}");
                         }
 
                         // ドキュメントの持つアウトラインノードを再帰的に探索し、ハッシュテーブルに追加する。
                         void AddOutlineNodeToTable(Models.V10.OutlineNode realOutlineNode, string parentPath)
                         {
-	                        // ハッシュテーブルに同じアウトラインパスを持つアウトラインノードが存在しなければ、追加する
+                            // ハッシュテーブルに同じアウトラインパスを持つアウトラインノードが存在しなければ、追加する
                             var outlineNodeKey = $"{parentPath}/{realOutlineNode.Name}";
                             if (!documentTable.ContainsKey(outlineNodeKey)) outlineNodeTable[outlineNodeKey] = realOutlineNode;
 
@@ -173,32 +165,19 @@ namespace DensoCreate.LightningReview.ReviewFile
             }
         }
 
-        /// <summary>
-        /// 非同期でファイルからロードします。
-        /// </summary>
-        /// <param name="filePath">レビューファイルのパス</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public async Task<IReview> ReadAsync(string filePath)
         {
             return await Task.Run(() => Read(filePath));
         }
 
-        /// <summary>
-        /// 非同期でストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public async Task<IReview> ReadAsync(Stream reviewFileStream)
         {
             return await Task.Run(() => Read(reviewFileStream));
         }
 
-        /// <summary>
-        /// フォルダからロードします。
-        /// </summary>
-        /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFolder = false)
         {
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
@@ -221,12 +200,7 @@ namespace DensoCreate.LightningReview.ReviewFile
             return reviews;
         }
 
-        /// <summary>
-        /// 非同期でフォルダからロードします。
-        /// </summary>
-        /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFolder = false)
         {
             return await Task.Run(() => ReadFolder(folderPath, includeSubFolder));

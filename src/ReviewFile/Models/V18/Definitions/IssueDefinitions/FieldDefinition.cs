@@ -9,9 +9,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
     [XmlRoot]
     public class FieldDefinition : EntityBase, IIssueCustomFieldDefinition
     {
-        /// <summary>
-        /// フィールドを使用するか否か
-        /// </summary>
+        /// <inheritdoc cref="Enabled" />
         [XmlElement]
         public string UseThisField { get; set; }
 
@@ -24,18 +22,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
         [XmlElement]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 表示名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string DisplayName { get; set; }
 
-        /// <summary>
-        /// 選択肢のリスト
-        /// </summary>
-        /// <remarks>
-        /// 文字列中の選択肢の出現順はリストの並び順と一致することを保証する
-        /// </remarks>
+        /// <inheritdoc />
         public IEnumerable<string> AllowedValues
         {
             get
@@ -51,9 +42,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.IssueDef
             }
         }
 
-        /// <summary>
-        /// デフォルト値
-        /// </summary>
+        /// <inheritdoc />
         public string DefaultValue
         {
             get

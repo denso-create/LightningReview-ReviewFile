@@ -8,15 +8,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
     [XmlRoot]
     public class MemberCustomFieldDefinition : EntityBase, IMemberCustomFieldDefinition
     {
-        /// <summary>
-        /// 表示名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string DisplayName { get; set; }
 
-        /// <summary>
-        /// フィールドを使用するか否か
-        /// </summary>
+        /// <inheritdoc cref="Enabled" />
         [XmlElement]
         public string UseThisField { get; set; }
 

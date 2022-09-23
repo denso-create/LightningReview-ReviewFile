@@ -415,7 +415,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", review.IssueCountOfGoal);
             Assert.AreEqual("0", review.IssueCountOfActual);
 
-            // UseCorrectionPolicyStatus, UseReasonはXML上で初期値が空となっているため、明示的にfalseに変えるロジックが必要である。
+            // (V18以降では)UseCorrectionPolicyStatus, UseReasonはXML上で初期値が空となっているため、明示的にfalseに変えるロジックが必要である。
             // よって、本テストメソッドでfalseになることをチェックする。
             Assert.AreEqual(false, review.UseCorrectionPolicyStatus);
             Assert.AreEqual(false, review.UseReason);
@@ -674,7 +674,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.Reason);
             Assert.AreEqual("", issue1.SendingBackReason);
 
-            // IsSendingBack, HasBeenSentBackが一度も変更されていない場合は、XML上で空となっているため、明示的にデフォルト値のfalseに変えるロジックが必要である。
+            // (V18以降では)IsSendingBack, HasBeenSentBackが一度も変更されていない場合は、XML上で空となっているため、明示的にデフォルト値のfalseに変えるロジックが必要である。
             //   よって、本テストメソッドでチェックする。
             Assert.AreEqual(false, issue1.IsSendingBack);
             Assert.AreEqual(false, issue1.HasBeenSentBack);
@@ -764,7 +764,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customFieldDefinitions = review.IssueCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.IssueCustomFieldDefinitionsがnullです");
 
-            // 設定された1つ目の指摘のカスタムフィールド
+            // 設定された1つ目の指摘のカスタムフィールドの定義
             var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
             Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
             Assert.AreEqual("TextA2", customFieldDefinition.DefaultValue);
@@ -786,7 +786,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customFieldDefinitions = review.IssueCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.IssueCustomFieldDefinitionsがnullです");
 
-            // 未設定の1つ目の指摘のカスタムフィールド
+            // 未設定の1つ目の指摘のカスタムフィールドの定義
             // なお、EnabledとDisplayNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
             var customFieldDefinition1 = customFieldDefinitions.FirstOrDefault();
             CollectionAssert.AreEqual(new List<string>(), customFieldDefinition1.AllowedValues.ToArray());
@@ -837,7 +837,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customFieldDefinitions = review.MemberCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.MemberCustomFieldDefinitionsがnullです");
 
-            // 設定された1つ目のメンバーのカスタムフィールド
+            // 設定された1つ目のメンバーのカスタムフィールドの定義
             var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
             Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
             Assert.AreEqual(true, customFieldDefinition.Enabled);
@@ -883,7 +883,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customRoleDefinitions = review.MemberCustomRoleDefinitions;
             Assert.IsNotNull(customRoleDefinitions, "Review.MemberCustomRoleDefinitionsがnullです");
 
-            // 設定された1つ目のメンバーのカスタムロール
+            // 設定された1つ目のメンバーのカスタムロールの定義
             var customRoleDefinition = customRoleDefinitions.FirstOrDefault();
             Assert.AreEqual("カスタムロール1", customRoleDefinition.DisplayName);
             Assert.AreEqual(true, customRoleDefinition.Enabled);
@@ -929,7 +929,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customFieldDefinitions = review.ReviewCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.ReviewCustomFieldDefinitionsがnullです");
 
-            // 設定された1つ目のレビューのカスタムフィールド
+            // 設定された1つ目のレビューのカスタムフィールドの定義
             var customFieldDefinition = customFieldDefinitions.FirstOrDefault();
             Assert.AreEqual("カスタムテキスト1", customFieldDefinition.DisplayName);
             Assert.AreEqual(true, customFieldDefinition.Enabled);
@@ -949,7 +949,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             var customFieldDefinitions = review.ReviewCustomFieldDefinitions;
             Assert.IsNotNull(customFieldDefinitions, "Review.ReviewCustomFieldDefinitionsがnullです");
 
-            // 未設定の1つ目のレビューのカスタムフィールド
+            // 未設定の1つ目のレビューのカスタムフィールドの定義
             // ・EnabledとDisplayNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
             // ・Groupが初期値で一度も変更されていない場合は、XML上で空となっているため、明示的にデフォルト値の"基本設定"に変えるロジックが必要である。
             //   よって、本テストメソッドでチェックする。

@@ -7,7 +7,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
     /// メンバのカスタムフィールドの定義の一覧
     /// </summary>
     [XmlRoot("CustomFields")]
-    public class MemberCustomFields
+    public class MemberCustomFields : EntityBase
     {
 	    /// <summary>
 	    /// メンバのカスタムフィールドの定義の一覧

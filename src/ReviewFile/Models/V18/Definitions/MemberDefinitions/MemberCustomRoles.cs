@@ -7,7 +7,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
     /// メンバのカスタムロールの定義の一覧
     /// </summary>
 	[XmlRoot("CustomRoles")]
-    public class MemberCustomRoles
+    public class MemberCustomRoles : EntityBase
     {
         /// <summary>
         /// メンバのカスタムロールの定義の一覧

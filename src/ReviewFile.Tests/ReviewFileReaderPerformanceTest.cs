@@ -118,9 +118,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             }
 
             stopwatch.Stop();
-            // 実行時間は1ファイルあたり10ms以内であること
-            // 例： 1000ファイル = 10秒
-            var requiredTime = dataCount * 10;
+            // 実行時間は1ファイルあたり12ms以内であること
+            // V1.0.7: 期待値を1ファイルあたり10ms ⇒ 12msに変更
+            // 例： 1000ファイル = 12秒
+            var requiredTime = dataCount * 12;
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < requiredTime,$"{stopwatch.ElapsedMilliseconds}ms > {requiredTime}ms: {version}の{dataCount}レビューの読み込みが要求値の{requiredTime}msを超えて{stopwatch.ElapsedMilliseconds}msとなりました。");
 
             //RemoveDirectory(performanceTestFolder);

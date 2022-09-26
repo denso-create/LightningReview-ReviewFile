@@ -95,7 +95,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
         {
             get
             {
-                // フィールド定義全体から、"CustomText1～20"のフィールド定義のみ取り出して返す
+                // フィールド定義全体から、"CustomText1～10"のフィールド定義のみ取り出して返す
                 return Fields.Where(fieldDefinition => fieldDefinition.Name.StartsWith(c_CustomFieldDefinitionName));
             }
         }

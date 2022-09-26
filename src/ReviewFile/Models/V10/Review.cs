@@ -86,18 +86,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         public Project Project { get; set; }
 
         /// <inheritdoc />
-        public string ProjectCode
-        {
-            get => Project.Code;
-            set => Project.Code = value;
-        }
+        public string ProjectCode => Project.Code;
 
         /// <inheritdoc />
-        public string ProjectName
-        {
-            get => Project.Name;
-            set => Project.Name = value;
-        }
+        public string ProjectName => Project.Name;
 
         /// <summary>
         /// 定義

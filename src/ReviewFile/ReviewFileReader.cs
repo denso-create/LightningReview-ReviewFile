@@ -71,8 +71,8 @@ namespace DensoCreate.LightningReview.ReviewFile
                     var realReview = (Models.V18.Review)reviewFile.Review;
                     realReview.FilePath = string.Empty;
 
-                    /// レビューが持つすべての指摘に、
-                    /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    // レビューが持つすべての指摘に、
+                    // その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
                     SetReferenceFields_V18(realReview);
                 }
                 else
@@ -80,8 +80,8 @@ namespace DensoCreate.LightningReview.ReviewFile
                     var realReview = (Models.V10.Review)reviewFile.Review;
                     realReview.FilePath = string.Empty;
 
-                    /// レビューが持つすべての指摘に、
-                    /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    // レビューが持つすべての指摘に、
+                    // その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
                     SetReferenceFields_V10(realReview);
                 }
 

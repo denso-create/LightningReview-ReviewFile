@@ -14,9 +14,13 @@ Lightning Reviewのレビューファイルのレビューや指摘のデータ�
 * コンパクトで他への依存関係がない軽量な設計になっています。
 * 複数のLightning Reviewバージョンでの分析が可能です。
   * Lightning ReviewはV1.8でレビューファイルのフォーマットが変わりましたが、このライブラリではV1.8でもそれ以前のバージョンでもどちらのファイルも対応しています。
-  * V2.0で追加されたレビューおよび指摘のカスタムフィールドに対応しています。
+  * V2.0で追加された以下のプロパティに対応しています。
+    * レビューのカスタムフィールド1～20
+    * 指摘のカスタムフィールド11～20
+    * メンバのカスタムフィールド1～5、カスタムロール1～5、タグ
+    * ステータスの設定日、設定者、クローズを意味するステータスか、色
 * 1000ファイルのレビューファイルの読み込みに数秒程度で処理可能と非常に高速になっています。
-* 複数のレビューファイルを集計して品質メトリクスを計測するようなユースケースを想定しています。従って、現時点ではレビューファイルの要素のすべてに対応しているわけではありません。主にレビューと指摘に関する情報が参照できます。 現在はDocumentのOutline取得についてはLightning ReviewのV1.8以降のフォーマットのみ対応しています。また指摘画像やレビュー設定の読み込みは対応していません。
+* 複数のレビューファイルを集計して品質メトリクスを計測するようなユースケースを想定しています。従って、現時点ではレビューファイルの要素のすべてに対応しているわけではありません。主にレビューと指摘に関する情報が参照できます。また、指摘画像の読み込みは対応していません。
 
 ### Install
 
@@ -89,6 +93,88 @@ foreach (var issue in review.Issues)
 
 ### 依存パッケージ
 なし
+
+### 取得可能なプロパティ
+
+詳細は[インターフェースの一覧](/src/ReviewFile/Models)を参照してください。  
+以下に、V2.0以降で取得できるプロパティの一覧を示します。
+
+<!-- テーブルデータ -->
+<table>
+  <thead>
+    <tr>
+      <th>インターフェース</th>
+      <th>プロパティ</th>
+      <th>V1.8以前のレビューファイルでの値(既定値)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="7">IReview</td>
+      <td>string CustomText(1～20)</td>
+      <td>空文字(string.Empty)</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IReviewCustomFieldDefinition&gt; ReviewCustomFieldDefinitions</td>
+      <td>空のコレクション</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IMemberCustomRoleDefinition&gt; MemberCustomRoleDefinition</td>
+      <td>空のコレクション</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IMemberCustomFieldDefinition&gt; MemberCustomFieldDefinitions</td>
+      <td>空のコレクション</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IReviewMember&gt; Members</td>
+      <td>`IReviewMember`の`Name`、`Reviewer`、`Reviewee`、`Moderator`を設定したうえで、それ以外は既定値のオブジェクトを返す。</td>
+    </tr>
+    <tr>
+      <td>IStatusItem ReviewStatusItem</td>
+      <td>`IStatusItem`の`Name`と`IsSelected`を設定したうえで、それ以外は既定値のオブジェクトを返す。</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IStatusItem&gt; ReviewStatusItems</td>
+      <td> ステータスの定義ごとに`ReviewStatusItem`と同様のポリシーで設定し、ステータスの一覧を返す。</td>
+    </tr>
+    <tr>
+      <td>IIssue</td>
+      <td>string CustomText(11～20)</td>
+      <td>空文字(string.Empty)</td>
+    </tr>
+    <tr>
+      <td rowspan="3">IReviewMember</td>
+      <td>bool CustomRole(1～5)</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>string CustomText(1～5)</td>
+      <td>空文字(string.Empty)</td>
+    </tr>
+    <tr>
+      <td>string Tag</td>
+      <td>空文字(string.Empty)</td>
+    </tr>
+    <tr>
+      <td rowspan="4">IStatusItem</td>
+      <td>DateTime? SelectedOn</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>string SelectedBy</td>
+      <td>空文字(string.Empty)</td>
+    </tr>
+    <tr>
+      <td>bool IsClosed</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>string Color</td>
+      <td>"なし"</td>
+    </tr>
+  </tbody>
+</table>
 
 ## LightnigReview.ReviewFileToJsonService
 

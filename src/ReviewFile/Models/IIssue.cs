@@ -301,61 +301,91 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// <summary>
         /// カスタムテキスト11の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト11の値。</value>
+        /// <value>
+        /// カスタムテキスト11の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText11 { get; }
 
         /// <summary>
         /// カスタムテキスト12の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト12の値。</value>
+        /// <value>
+        /// カスタムテキスト12の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText12 { get; }
 
         /// <summary>
         /// カスタムテキスト13の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト13の値。</value>
+        /// <value>
+        /// カスタムテキスト13の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText13 { get; }
 
         /// <summary>
         /// カスタムテキスト14の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト14の値。</value>
+        /// <value>
+        /// カスタムテキスト14の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText14 { get; }
 
         /// <summary>
         /// カスタムテキスト15の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト15の値。</value>
+        /// <value>
+        /// カスタムテキスト15の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText15 { get; }
 
         /// <summary>
         /// カスタムテキスト16の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト16の値。</value>
+        /// <value>
+        /// カスタムテキスト16の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText16 { get; }
 
         /// <summary>
         /// カスタムテキスト17の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト17の値。</value>
+        /// <value>
+        /// カスタムテキスト17の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText17 { get; }
 
         /// <summary>
         /// カスタムテキスト18の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト18の値。</value>
+        /// <value>
+        /// カスタムテキスト18の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText18 { get; }
 
         /// <summary>
         /// カスタムテキスト19の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト19の値。</value>
+        /// <value>
+        /// カスタムテキスト19の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText19 { get; }
 
         /// <summary>
         /// カスタムテキスト20の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト20の値。</value>
+        /// <value>
+        /// カスタムテキスト20の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText20 { get; }
 
         #endregion

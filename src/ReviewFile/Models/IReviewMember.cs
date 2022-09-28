@@ -34,67 +34,100 @@
         /// <summary>
         /// カスタムロール1の値を取得します。
         /// </summary>
-        /// <value>カスタムロール1の値。</value>
+        /// <value>
+        /// カスタムロール1の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、falseです。
+        /// </value>
         bool CustomRole1 { get; }
 
         /// <summary>
         /// カスタムロール2の値を取得します。
         /// </summary>
-        /// <value>カスタムロール2の値。</value>
+        /// <value>
+        /// カスタムロール2の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、falseです。
+        /// </value>
         bool CustomRole2 { get; }
 
         /// <summary>
         /// カスタムロール3の値を取得します。
         /// </summary>
-        /// <value>カスタムロール3の値。</value>
+        /// <value>
+        /// カスタムロール3の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、falseです。
+        /// </value>
         bool CustomRole3 { get; }
 
         /// <summary>
         /// カスタムロール4の値を取得します。
         /// </summary>
-        /// <value>カスタムロール4の値。</value>
+        /// <value>
+        /// カスタムロール4の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、falseです。
+        /// </value>
         bool CustomRole4 { get; }
 
         /// <summary>
         /// カスタムロール5の値を取得します。
         /// </summary>
-        /// <value>カスタムロール5の値。</value>
+        /// <value>
+        /// カスタムロール5の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、falseです。
+        /// </value>
         bool CustomRole5 { get; }
 
         /// <summary>
         /// カスタムテキスト1の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト1の値。</value>
+        /// <value>
+        /// カスタムテキスト1の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText1 { get; }
 
         /// <summary>
         /// カスタムテキスト2の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト2の値。</value>
+        /// <value>
+        /// カスタムテキスト2の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText2 { get; }
 
         /// <summary>
         /// カスタムテキスト3の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト3の値。</value>
+        /// <value>
+        /// カスタムテキスト3の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText3 { get; }
 
         /// <summary>
         /// カスタムテキスト4の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト4の値。</value>
+        /// <value>
+        /// カスタムテキスト4の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText4 { get; }
 
         /// <summary>
         /// カスタムテキスト5の値を取得します。
         /// </summary>
-        /// <value>カスタムテキスト5の値。</value>
+        /// <value>
+        /// カスタムテキスト5の値。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string CustomText5 { get; }
 
         /// <summary>
         /// UI非表示な情報をタグとして取得します。
         /// </summary>
-        /// <value>UI非表示な情報。</value>
+        /// <value>
+        /// UI非表示な情報。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、空文字列です。
+        /// </value>
         string Tag { get; }
 
         #endregion

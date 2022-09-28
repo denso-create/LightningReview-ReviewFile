@@ -97,7 +97,10 @@ foreach (var issue in review.Issues)
 ### 取得可能なプロパティ
 
 詳細は[インターフェースの一覧](/src/ReviewFile/Models)を参照してください。  
-以下に、V2.0以降で取得できるプロパティの一覧を示します。
+
+### V1.8以前で取得できないプロパティとその場合に返す値の一覧
+V2.0以降で追加されたプロパティまたはそれに関連するプロパティは、V1.8以前のレビューファイルでは定義されていないため、取得できません。  
+そのため、V1.8以前のレビューファイルでは、以下の一覧に示す値を返します。
 
 <!-- テーブルデータ -->
 <table>
@@ -105,14 +108,14 @@ foreach (var issue in review.Issues)
     <tr>
       <th>インターフェース</th>
       <th>プロパティ</th>
-      <th>V1.8以前のレビューファイルでの値(既定値)</th>
+      <th>V1.8以前のレビューファイルに対して取得した場合の値</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">IReview</td>
       <td>string CustomText(1～20)</td>
-      <td>空文字(string.Empty)</td>
+      <td>空文字(string.Empty) (初期値)</td>
     </tr>
     <tr>
       <td>IEnumerable&lt;IReviewCustomFieldDefinition&gt; ReviewCustomFieldDefinitions</td>
@@ -132,11 +135,11 @@ foreach (var issue in review.Issues)
     </tr>
     <tr>
       <td>IEnumerable&lt;IReviewMember&gt; Members</td>
-      <td>`IReviewMember`の`Name`、`Reviewer`、`Reviewee`、`Moderator`を設定したうえで、それ以外は既定値のオブジェクトを返す。</td>
+      <td>`IReviewMember`の`Name`、`Reviewer`、`Reviewee`、`Moderator`を設定したうえで、それ以外は初期値のオブジェクトを返す。</td>
     </tr>
     <tr>
       <td>IStatusItem ReviewStatusItem</td>
-      <td>`IStatusItem`の`Name`と`IsSelected`を設定したうえで、それ以外は既定値のオブジェクトを返す。</td>
+      <td>`IStatusItem`の`Name`と`IsSelected`を設定したうえで、それ以外は初期値のオブジェクトを返す。</td>
     </tr>
     <tr>
       <td>IEnumerable&lt;IStatusItem&gt; ReviewStatusItems</td>
@@ -145,37 +148,37 @@ foreach (var issue in review.Issues)
     <tr>
       <td>IIssue</td>
       <td>string CustomText(11～20)</td>
-      <td>空文字(string.Empty)</td>
+      <td>空文字(string.Empty) (初期値)</td>
     </tr>
     <tr>
       <td rowspan="3">IReviewMember</td>
       <td>bool CustomRole(1～5)</td>
-      <td>false</td>
+      <td>false (初期値)</td>
     </tr>
     <tr>
       <td>string CustomText(1～5)</td>
-      <td>空文字(string.Empty)</td>
+      <td>空文字(string.Empty) (初期値)</td>
     </tr>
     <tr>
       <td>string Tag</td>
-      <td>空文字(string.Empty)</td>
+      <td>空文字(string.Empty) (初期値)</td>
     </tr>
     <tr>
       <td rowspan="4">IStatusItem</td>
       <td>DateTime? SelectedOn</td>
-      <td>null</td>
+      <td>null (初期値)</td>
     </tr>
     <tr>
       <td>string SelectedBy</td>
-      <td>空文字(string.Empty)</td>
+      <td>空文字(string.Empty) (初期値)</td>
     </tr>
     <tr>
       <td>bool IsClosed</td>
-      <td>false</td>
+      <td>false (初期値)</td>
     </tr>
     <tr>
       <td>string Color</td>
-      <td>"なし"</td>
+      <td>"なし" (初期値)</td>
     </tr>
   </tbody>
 </table>

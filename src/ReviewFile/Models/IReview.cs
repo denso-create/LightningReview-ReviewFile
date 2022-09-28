@@ -430,7 +430,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// </summary>
         /// <value>
         /// レビューのカスタムフィールドの定義。
-        /// レビューのカスタムフィールドが存在しない旧バージョンのレビューファイルでは、要素数0のコレクションです。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、要素数0のコレクションです。
+        /// V2.0以降のフォーマットの場合は、要素数20のコレクションです。
         /// </value>
         IEnumerable<IReviewCustomFieldDefinition> ReviewCustomFieldDefinitions { get; }
 
@@ -439,7 +440,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// </summary>
         /// <value>
         /// メンバのカスタムロールの定義。
-        /// メンバのカスタムロールの定義が存在しない旧バージョンのレビューファイルでは、要素数0のコレクションです。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、要素数0のコレクションです。
+        /// V2.0以降のフォーマットの場合は、要素数5のコレクションです。
         /// </value>
         IEnumerable<IMemberCustomRoleDefinition> MemberCustomRoleDefinitions { get; }
 
@@ -448,14 +450,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// </summary>
         /// <value>
         /// メンバのカスタムフィールドの定義。
-        /// メンバのカスタムフィールドの定義が存在しない旧バージョンのレビューファイルでは、要素数0のコレクションです。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、要素数0のコレクションです。
+        /// V2.0以降のフォーマットの場合は、要素数5のコレクションです。
         /// </value>
         IEnumerable<IMemberCustomFieldDefinition> MemberCustomFieldDefinitions { get; }
 
         /// <summary>
         /// 指摘のカスタムフィールドの定義を取得します。
         /// </summary>
-        /// <value>指摘のカスタムフィールドの定義。</value>
+        /// <value>
+        /// 指摘のカスタムフィールドの定義。
+        /// レビューファイルがV1.8以前のフォーマットの場合は、要素数10のコレクションです。
+        /// V2.0以降のフォーマットの場合は、要素数20のコレクションです。
+        /// </value>
         IEnumerable<IIssueCustomFieldDefinition> IssueCustomFieldDefinitions { get; }
 
         #endregion

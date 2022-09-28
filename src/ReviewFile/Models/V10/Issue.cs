@@ -22,7 +22,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         public string GlobalID { get; set; }
 
         /// <inheritdoc />
-        public string GID { get => GlobalID; set => GlobalID = value; }
+        public string GID => GlobalID;
 
         /// <summary>
         /// ローカルID（V10定義）
@@ -31,7 +31,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         public string ID { get; set; }
 
         /// <inheritdoc />
-        public string LID { get => ID; set => ID = value; }
+        public string LID => ID;
 
         /// <inheritdoc />
         [XmlIgnore]

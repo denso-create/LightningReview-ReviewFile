@@ -47,7 +47,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
         /// 分類のデフォルト値
         /// </summary>
         public string CategoryDefaultValue => Fields
-	        .FirstOrDefault(fieldDefinition => fieldDefinition.Name == c_CategoryDefinitionName).DefaultValue;
+            .FirstOrDefault(fieldDefinition => fieldDefinition.Name == c_CategoryDefinitionName).DefaultValue;
 
         /// <summary>
         /// 分類の選択肢一覧
@@ -56,7 +56,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
         /// 選択肢の出現順はリストの並び順と一致することを保証する
         /// </remarks>
         public IEnumerable<string> CategoryAllowedValues => Fields
-	        .FirstOrDefault(fieldDefinition => fieldDefinition.Name == c_CategoryDefinitionName).AllowedValues;
+            .FirstOrDefault(fieldDefinition => fieldDefinition.Name == c_CategoryDefinitionName).AllowedValues;
 
         /// <summary>
         /// 検出工程のデフォルト値
@@ -91,7 +91,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10.Definitions.IssueDef
         /// <summary>
         /// カスタムフィールドの定義一覧
         /// </summary>
-	    public IEnumerable<IIssueCustomFieldDefinition> CustomFieldDefinitions
+        public IEnumerable<IIssueCustomFieldDefinition> CustomFieldDefinitions
         {
             get
             {

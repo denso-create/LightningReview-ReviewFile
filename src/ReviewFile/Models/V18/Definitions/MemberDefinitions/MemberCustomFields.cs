@@ -9,11 +9,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18.Definitions.MemberDe
     [XmlRoot("CustomFields")]
     public class MemberCustomFields : EntityBase
     {
-	    /// <summary>
-	    /// メンバのカスタムフィールドの定義の一覧
-	    /// </summary>
-	    [XmlArray("List")]
-	    [XmlArrayItem("MemberCustomFieldDefinition")]
-	    public List<MemberCustomFieldDefinition> MemberCustomFieldDefinitions { get; set; }
+        /// <summary>
+        /// メンバのカスタムフィールドの定義の一覧
+        /// </summary>
+        [XmlArray("List")]
+        [XmlArrayItem("MemberCustomFieldDefinition")]
+        public List<MemberCustomFieldDefinition> MemberCustomFieldDefinitions { get; set; }
     }
 }

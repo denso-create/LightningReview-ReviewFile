@@ -71,90 +71,18 @@ namespace DensoCreate.LightningReview.ReviewFile
                     var realReview = (Models.V18.Review)reviewFile.Review;
                     realReview.FilePath = string.Empty;
 
-                    // すべての指摘に、その指摘が紐づいているIDocumentとIOutlineNodeの参照をセットする
-                    foreach (var realDocument in realReview.Documents.List)
-                    {
-                        // ドキュメント直下の指摘に対して、ドキュメントへの参照をセットする
-                        // このとき、アウトラインノードへの参照はnullとなる
-                        var realRootNode = realDocument.OutlineTree.VirtualRoot;
-                        foreach (var realIssue in realRootNode.Issues.List)
-                        {
-                            realIssue.Document = realDocument;
-                        }
-
-                        // 仮想的なルートノードを除き、ドキュメント直下のアウトラインノードごとに処理する
-                        foreach (var childNode in realRootNode.ChildNodes)
-                        {
-                            LinkIssueToDocumentAndOutlineNode(childNode);
-                        }
-
-                        // アウトラインノードを再帰的に探索して、
-                        // アウトラインノードが持つ指摘にドキュメントとそのアウトラインノードの参照をセットする
-                        void LinkIssueToDocumentAndOutlineNode(Models.V18.OutlineNode realOutlineNode)
-                        {
-                            // IDocumentとIOutlineNodeを指摘に紐づける
-                            foreach (var realIssue in realOutlineNode.Issues.List)
-                            {
-                                realIssue.Document = realDocument;
-                                realIssue.OutlineNode = realOutlineNode;
-                            }
-
-                            // すべての子ノードに対して再帰呼び出しする
-                            foreach (var realChildNode in realOutlineNode.ChildNodes)
-                            {
-                                LinkIssueToDocumentAndOutlineNode(realChildNode);
-                            }
-                        }
-                    }
+                    /// レビューが持つすべての指摘に、
+                    /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    SetReferenceFields_V18(realReview);
                 }
                 else
                 {
                     var realReview = (Models.V10.Review)reviewFile.Review;
                     realReview.FilePath = string.Empty;
 
-                    // V10のモデルでは、各Issueの持つOutlinePathの情報からしか紐づいているドキュメントを特定できない。
-                    // そのため、OutlinePath中のドキュメントの名前と一致する最初のドキュメントを紐づける方針とする
-
-                    // あらかじめDocumentとOutlineNodeのハッシュテーブルを作成し、O(1)でアクセスできるようにする。
-                    // 指摘が持つOutlinePath中の名前と一致する"最初の"DocumentおよびOutlineNodeを紐づける制約のため、
-                    // すでにハッシュテーブルに存在するキーのDocumentおよびOutlineNodeは追加しない。
-                    var documentTable = new Dictionary<string, Models.V10.Document>();
-                    var outlineNodeTable = new Dictionary<string, Models.V10.OutlineNode>();
-                    foreach (var realDocument in realReview.DocumentEntities)
-                    {
-                        // ハッシュテーブルに同名のドキュメントが存在しなければ、追加する
-                        if (!documentTable.ContainsKey(realDocument.Name)) documentTable[realDocument.Name] = realDocument;
-
-                        // ドキュメント直下のアウトラインノードごとに処理する
-                        foreach (var realOutlineNode in realDocument.OutlineNodes)
-                        {
-                            AddOutlineNodeToTable(realOutlineNode, $"/{realDocument.Name}");
-                        }
-
-                        // ドキュメントの持つアウトラインノードを再帰的に探索し、ハッシュテーブルに追加する。
-                        void AddOutlineNodeToTable(Models.V10.OutlineNode realOutlineNode, string parentPath)
-                        {
-                            // ハッシュテーブルに同じアウトラインパスを持つアウトラインノードが存在しなければ、追加する
-                            var outlineNodeKey = $"{parentPath}/{realOutlineNode.Name}";
-                            if (!documentTable.ContainsKey(outlineNodeKey)) outlineNodeTable[outlineNodeKey] = realOutlineNode;
-
-                            // 子ノードに対して再帰呼び出しする。
-                            foreach (var realChildNode in realOutlineNode.ChildNodes)
-                            {
-                                AddOutlineNodeToTable(realChildNode, outlineNodeKey);
-                            }
-                        }
-                    }
-
-                    // すべての指摘について、指摘が所属するドキュメントの名前とアウトラインパスに対応する
-                    // ドキュメントとアウトラインノードへの参照をセットする
-                    foreach (var issue in realReview.Issues)
-                    {
-                        var realIssue = (Models.V10.Issue)issue;
-                        realIssue.Document = documentTable[realIssue.RootOutlineName];
-                        // ドキュメント直下にある指摘の場合はnullとなる
-                        realIssue.OutlineNode = outlineNodeTable.TryGetValue(realIssue.OutlinePath, out var outlineNode) ? outlineNode : null;
-                    }
+                    /// レビューが持つすべての指摘に、
+                    /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    SetReferenceFields_V10(realReview);
                 }
 
                 return reviewFile.Review;
@@ -162,6 +90,103 @@ namespace DensoCreate.LightningReview.ReviewFile
             catch (Exception ex)
             {
                 throw new ReviewFileFormatException(ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// レビューが持つすべての指摘に、
+        /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+        /// </summary>
+        /// <remarks>
+        /// V10のモデルでは、各Issueの持つOutlinePathの情報からしか紐づいているドキュメントを特定できない。
+        /// そのため、OutlinePath中のドキュメントの名前と一致する最初のドキュメントを紐づける方針とする
+        /// </remarks>
+        /// <param name="realReview">V10のレビューモデル</param>
+        private void SetReferenceFields_V10(Models.V10.Review realReview)
+        {
+            // あらかじめDocumentとOutlineNodeのハッシュテーブルを作成し、O(1)でアクセスできるようにする。
+            // 指摘が持つOutlinePath中の名前と一致する"最初の"DocumentおよびOutlineNodeを紐づける制約のため、
+            // すでにハッシュテーブルに存在するキーのDocumentおよびOutlineNodeは追加しない。
+            var documentTable = new Dictionary<string, Models.V10.Document>();
+            var outlineNodeTable = new Dictionary<string, Models.V10.OutlineNode>();
+            foreach (var realDocument in realReview.DocumentEntities)
+            {
+                // ハッシュテーブルに同名のドキュメントが存在しなければ、追加する
+                if (!documentTable.ContainsKey(realDocument.Name)) documentTable[realDocument.Name] = realDocument;
+
+                // ドキュメント直下のアウトラインノードごとに処理する
+                foreach (var realOutlineNode in realDocument.OutlineNodes)
+                {
+                    AddOutlineNodeToTable(realOutlineNode, $"/{realDocument.Name}");
+                }
+
+                // ドキュメントの持つアウトラインノードを再帰的に探索し、ハッシュテーブルに追加する。
+                void AddOutlineNodeToTable(Models.V10.OutlineNode realOutlineNode, string parentPath)
+                {
+                    // ハッシュテーブルに同じアウトラインパスを持つアウトラインノードが存在しなければ、追加する
+                    var outlineNodeKey = $"{parentPath}/{realOutlineNode.Name}";
+                    if (!documentTable.ContainsKey(outlineNodeKey)) outlineNodeTable[outlineNodeKey] = realOutlineNode;
+
+                    // 子ノードに対して再帰呼び出しする。
+                    foreach (var realChildNode in realOutlineNode.ChildNodes)
+                    {
+                        AddOutlineNodeToTable(realChildNode, outlineNodeKey);
+                    }
+                }
+            }
+
+            // すべての指摘について、指摘が所属するドキュメントの名前とアウトラインパスに対応する
+            // ドキュメントとアウトラインノードへの参照をセットする
+            foreach (var issue in realReview.Issues)
+            {
+                var realIssue = (Models.V10.Issue)issue;
+                realIssue.Document = documentTable[realIssue.RootOutlineName];
+                // ドキュメント直下にある指摘の場合はnullとなる
+                realIssue.OutlineNode = outlineNodeTable.TryGetValue(realIssue.OutlinePath, out var outlineNode) ? outlineNode : null;
+            }
+        }
+
+        /// <summary>
+        /// レビューが持つすべての指摘に、
+        /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+        /// </summary>
+        /// <param name="realReview">V18のレビューモデル</param>
+        private void SetReferenceFields_V18(Models.V18.Review realReview)
+        {
+            // すべての指摘に、その指摘が紐づいているIDocumentとIOutlineNodeの参照をセットする
+            foreach (var realDocument in realReview.Documents.List)
+            {
+                // ドキュメント直下の指摘に対して、ドキュメントへの参照をセットする
+                // このとき、アウトラインノードへの参照はnullとなる
+                var realRootNode = realDocument.OutlineTree.VirtualRoot;
+                foreach (var realIssue in realRootNode.Issues.List)
+                {
+                    realIssue.Document = realDocument;
+                }
+
+                // 仮想的なルートノードを除き、ドキュメント直下のアウトラインノードごとに処理する
+                foreach (var childNode in realRootNode.ChildNodes)
+                {
+                    LinkIssueToDocumentAndOutlineNode(childNode);
+                }
+
+                // アウトラインノードを再帰的に探索して、
+                // アウトラインノードが持つ指摘にドキュメントとそのアウトラインノードの参照をセットする
+                void LinkIssueToDocumentAndOutlineNode(Models.V18.OutlineNode realOutlineNode)
+                {
+                    // IDocumentとIOutlineNodeを指摘に紐づける
+                    foreach (var realIssue in realOutlineNode.Issues.List)
+                    {
+                        realIssue.Document = realDocument;
+                        realIssue.OutlineNode = realOutlineNode;
+                    }
+
+                    // すべての子ノードに対して再帰呼び出しする
+                    foreach (var realChildNode in realOutlineNode.ChildNodes)
+                    {
+                        LinkIssueToDocumentAndOutlineNode(realChildNode);
+                    }
+                }
             }
         }
 

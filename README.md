@@ -110,7 +110,7 @@ foreach (var issue in review.Issues)
   </thead>
   <tbody>
     <tr>
-      <td rowspan="7">IReview</td>
+      <td rowspan="8">IReview</td>
       <td>string CustomText(1～20)</td>
       <td>空文字(string.Empty)</td>
     </tr>
@@ -125,6 +125,10 @@ foreach (var issue in review.Issues)
     <tr>
       <td>IEnumerable&lt;IMemberCustomFieldDefinition&gt; MemberCustomFieldDefinitions</td>
       <td>空のコレクション</td>
+    </tr>
+    <tr>
+      <td>IEnumerable&lt;IIssueCustomFieldDefinition&gt; IssueCustomFieldDefinitions</td>
+      <td>指摘のカスタムフィールド1～10の定義のコレクション</td>
     </tr>
     <tr>
       <td>IEnumerable&lt;IReviewMember&gt; Members</td>

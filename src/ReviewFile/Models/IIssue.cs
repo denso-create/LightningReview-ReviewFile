@@ -144,9 +144,10 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// 重大度を取得します。
         /// </summary>
         /// <value>
-        /// 重大度。
+        /// 重大度。重大度が未設定の時は空文字列です。
         /// 本プロパティの値域を以下に示します。
         /// [値域]
+        /// (未設定)
         /// 低
         /// 中
         /// 高

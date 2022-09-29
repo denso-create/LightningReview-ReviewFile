@@ -14,17 +14,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
     public class Issue : IIssue
     {
         #region プロパティ
-        
+
         /// <summary>
         /// グローバルID（V10定義）
         /// </summary>
         [XmlAttribute]
         public string GlobalID { get; set; }
 
-        /// <summary>
-        /// グローバルID
-        /// </summary>
-        public string GID { get => GlobalID; set => GlobalID = value; }
+        /// <inheritdoc />
+        public string GID => GlobalID;
 
         /// <summary>
         /// ローカルID（V10定義）
@@ -32,120 +30,103 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlAttribute]
         public string ID { get; set; }
 
-        /// <summary>
-        /// ローカルID
-        /// </summary>
-        public string LID { get=>ID; set=>ID=value; }
+        /// <inheritdoc />
+        public string LID => ID;
 
-        /// <summary>
-        /// タイプ
-        /// </summary>
+        /// <inheritdoc />
+        [XmlIgnore]
+        public IDocument Document { get; set; }
+
+        /// <inheritdoc />
+        public string DocumentID => Document.GID;
+
+        /// <inheritdoc />
+        [XmlIgnore]
+        public IOutlineNode OutlineNode { get; set; }
+
+        /// <inheritdoc />
         [XmlElement]
         public string Type { get; set; }
 
-        /// <summary>
-        /// 修正方針
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CorrectionPolicy { get; set; }
 
-        /// <summary>
-        /// 分類
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Category { get; set; }
 
-        /// <summary>
-        /// 説明
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Description { get; set; }
 
-        /// <summary>
-        /// 指摘理由
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Reason { get; set; }
 
-        /// <summary>
-        /// 差し戻し理由
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string SendingBackReason { get; set; }
 
-        /// <summary>
-        /// 指摘のステータス
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Status { get; set; }
 
-        /// <summary>
-        /// 現在差戻し中かどうか
-        /// </summary>
-        [XmlElement]
-        public string IsSendingBack { get; set; }
+        /// <inheritdoc cref="IsSendingBack" />
+        [XmlElement("IsSendingBack")]
+        public string IsSendingBackString { get; set; }
 
-        /// <summary>
-        /// 過去に一度でも差し戻しがあったか
-        /// </summary>
-        [XmlElement]
-        public string HasBeenSentBack { get; set; }
-        
-        /// <summary>
-        /// 検出工程
-        /// </summary>
+        /// <inheritdoc />
+        public bool IsSendingBack => bool.TryParse(IsSendingBackString, out var result) ? result : false;
+
+        /// <inheritdoc cref="HasBeenSentBack" />
+        [XmlElement("HasBeenSentBack")]
+        public string HasBeenSentBackString { get; set; }
+
+        /// <inheritdoc />
+        public bool HasBeenSentBack => bool.TryParse(HasBeenSentBackString, out var result) ? result : false;
+
+        /// <inheritdoc />
         [XmlElement]
         public string DetectionActivity { get; set; }
 
-        /// <summary>
-        /// 原因工程
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string InjectionActivity { get; set; }
 
-        /// <summary>
-        /// 優先度
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Priority { get; set; }
 
-        /// <summary>
-        /// 重大度
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Importance { get; set; }
 
-        /// <summary>
-        /// 関連付けられているアウトラインノードの名前
-        /// </summary>
-        public string OutlineName {
+        /// <inheritdoc />
+        public string OutlineName
+        {
             get
             {
                 // アウトラインパスの末尾のアウトライン名を取得
-                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
+                return OutlinePath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
             }
         }
 
-        /// <summary>
-        /// ルートレベルのアウトラインノードの名前
-        /// </summary>
-        public string RootOutlineName {
+        /// <inheritdoc />
+        public string RootOutlineName
+        {
             get
             {
                 // アウトラインパスの先頭のアウトライン名を取得
-                return OutlinePath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).First();
+                return OutlinePath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).First();
             }
         }
 
-        /// <summary>
-        /// アウトラインノードのパス
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string OutlinePath { get; set; }
 
-        /// <summary>
-        /// 報告者
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ReportedBy { get; set; }
 
@@ -155,20 +136,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement("DateReported")]
         public string DateReportedString { get; set; }
 
-        /// <summary>
-        /// 報告日
-        /// </summary>
-        public DateTime? DateReported => string.IsNullOrEmpty(DateReportedString) ? (DateTime?) null : DateTime.Parse(DateReportedString);
+        /// <inheritdoc />
+        public DateTime? DateReported => string.IsNullOrEmpty(DateReportedString) ? (DateTime?)null : DateTime.Parse(DateReportedString);
 
-        /// <summary>
-        /// 対策要否
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string NeedToFix { get; set; }
 
-        /// <summary>
-        /// 修正者
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string AssignedTo { get; set; }
 
@@ -178,10 +153,8 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement("DueDate")]
         public string DueDateString { get; set; }
 
-        /// <summary>
-        /// 期日
-        /// </summary>
-        public DateTime? DueDate =>string.IsNullOrEmpty(DueDateString) ? (DateTime?)null : DateTime.Parse(DueDateString);
+        /// <inheritdoc />
+        public DateTime? DueDate => string.IsNullOrEmpty(DueDateString) ? (DateTime?)null : DateTime.Parse(DueDateString);
 
         /// <summary>
         /// 修正日の文字列
@@ -189,20 +162,14 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement("DateFixed")]
         public string DateFixedString { get; set; }
 
-        /// <summary>
-        /// 修正日
-        /// </summary>
-        public DateTime? DateFixed => string.IsNullOrEmpty(DateFixedString) ? (DateTime?) null : DateTime.Parse(DateFixedString);
+        /// <inheritdoc />
+        public DateTime? DateFixed => string.IsNullOrEmpty(DateFixedString) ? (DateTime?)null : DateTime.Parse(DateFixedString);
 
-        /// <summary>
-        /// 対策
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Resolution { get; set; }
 
-        /// <summary>
-        /// 確認者
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ConfirmedBy { get; set; }
 
@@ -212,131 +179,87 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement("DateConfirmed")]
         public string DateConfirmedString { get; set; }
 
-        /// <summary>
-        /// 確認日
-        /// </summary>
-        public DateTime? DateConfirmed => string.IsNullOrEmpty(DateConfirmedString) ? (DateTime?) null : DateTime.Parse(DateConfirmedString);
+        /// <inheritdoc />
+        public DateTime? DateConfirmed => string.IsNullOrEmpty(DateConfirmedString) ? (DateTime?)null : DateTime.Parse(DateConfirmedString);
 
-        /// <summary>
-        /// コメント
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Comment { get; set; }
 
         #region カスタムフィールド
 
-        /// <summary>
-        /// カスタムテキスト1
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText1 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト2
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText2 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト3
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText3 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト4
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText4 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト5
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText5 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト6
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText6 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト7
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText7 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト8
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText8 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト9
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText9 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト10
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string CustomText10 { get; set; }
 
-        /// <summary>
-        /// カスタムテキスト11
-        /// </summary>
+        /// <inheritdoc />
         /// <remarks>
-        /// カスタムテキスト11以降の定義がないバージョンのレビューファイルを開いた場合は、該当のXML属性が存在しないためnullとなる。
+        /// V10ではカスタムテキスト11以降の定義が存在せず、nullとなる。
         /// カスタムテキストの値が未設定の状態とXML属性が存在しない状態を一貫させるため、string.Emptyで初期化する。
         /// </remarks>
         public string CustomText11 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト12
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText12 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト13
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText13 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト14
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText14 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト15
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText15 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト16
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText16 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト17
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText17 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト18
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText18 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト19
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText19 { get; set; } = string.Empty;
 
-        /// <summary>
-        /// カスタムテキスト20
-        /// </summary>
+        /// <inheritdoc />
         public string CustomText20 { get; set; } = string.Empty;
 
         #endregion

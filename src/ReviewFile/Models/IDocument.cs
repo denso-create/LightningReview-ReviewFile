@@ -5,40 +5,46 @@ using System.Text;
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// ドキュメントのインタフェース
+    /// ドキュメントのインタフェースです。
     /// </summary>
     public interface IDocument
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// グローバルID
+        /// グローバルIDを取得します。
         /// </summary>
-        string GID { get; set; }
+        /// <value>グローバルID。</value>
+        string GID { get; }
 
         /// <summary>
-        /// ローカルID
+        /// ローカルIDを取得します。
         /// </summary>
-        string LID { get; set; }
+        /// <value>ローカルID。</value>
+        string LID { get; }
 
         /// <summary>
-        /// ドキュメント名
+        /// ドキュメント名を取得します。
         /// </summary>
-        string Name { get; set; }
+        /// <value>ドキュメント名。</value>
+        string Name { get; }
 
         /// <summary>
-        /// ドキュメントの絶対パス
+        /// ドキュメントの絶対パスを取得します。
         /// </summary>
-        string AbsolutePath { get; set; }
+        /// <value>ドキュメントの絶対パス。</value>
+        string AbsolutePath { get; }
 
         /// <summary>
-        /// 関連づいているアプリケーション
+        /// 関連づいているアプリケーションを取得します。
         /// </summary>
-        string ApplicationType { get; set; }
+        /// <value>関連づいているアプリケーション。</value>
+        string ApplicationType { get; }
 
         /// <summary>
-        /// このドキュメントに関連づくアウトラインの一覧
+        /// このドキュメントに関連づくアウトラインの一覧を取得します。
         /// </summary>
+        /// <value>アウトラインの一覧。関連づくアウトラインがない時は、要素数0のコレクションです。</value>
         IEnumerable<IOutlineNode> OutlineNodes { get; }
 
         #endregion

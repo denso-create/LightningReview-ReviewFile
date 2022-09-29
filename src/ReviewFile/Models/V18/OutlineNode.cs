@@ -10,13 +10,11 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
     /// アウトラインノード
     /// </summary>
     [XmlRoot]
-    public class OutlineNode : EntityBase,IOutlineNode
+    public class OutlineNode : EntityBase, IOutlineNode
     {
         #region プロパティ
 
-        /// <summary>
-        /// ノード名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Name { get; set; }
 
@@ -31,7 +29,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         [XmlArray("Children")]
         [XmlArrayItem("OutlineNode")]
-        public List<OutlineNode> ChildNodes{ get; set; } = new List<OutlineNode>();
+        public List<OutlineNode> ChildNodes { get; set; } = new List<OutlineNode>();
 
         /// <summary>
         /// 子ノードまでのすべての指摘
@@ -53,9 +51,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
             }
         }
 
-        /// <summary>
-        /// 子ノードの一覧
-        /// </summary>
+        /// <inheritdoc />
         public IEnumerable<IOutlineNode> Children => ChildNodes.OfType<IOutlineNode>();
 
         #endregion

@@ -13,21 +13,15 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
     {
         #region プロパティ
 
-        /// <summary>
-        /// スキーマバージョン値
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string SchemaVersion { get; set; }
 
-        /// <summary>
-        /// レビュー
-        /// </summary>
+        /// <inheritdoc cref="IReviewFile.Review" />
         [XmlElement]
         public Review Review { get; set; }
 
-        /// <summary>
-        /// レビュー
-        /// </summary>
+        /// <inheritdoc />
         IReview IReviewFile.Review => Review;
 
         #endregion

@@ -13,13 +13,20 @@
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
     <PackageId>LightningReview.ReviewFileToJsonService</PackageId>
-    <PackageVersion>1.0.6</PackageVersion>
-    <Version>1.0.6</Version>
+    <PackageVersion>1.0.7</PackageVersion>
+    <Version>1.0.7</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>LR2.0で追加されたプロパティに対応するように変更しました。</PackageReleaseNotes>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
+    <PackageReleaseNotes>・以下のプロパティの型をstring型からbool型に変更したため、プロパティに対応するJSONのエントリの出力形式が変わります。
+　・IsSendingBack
+　・HasBeenSentBack
+　出力例:
+　・以前のバージョン:
+             "IsSendingBack" : "True",
+     ・変更後
+             "IsSendingBack" : true,</PackageReleaseNotes>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <FileVersion>1.0.7.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

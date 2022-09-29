@@ -18,11 +18,7 @@ namespace DensoCreate.LightningReview.ReviewFile
     /// </summary>
     public class ReviewFileReader : IReviewFileReader
     {
-        /// <summary>
-        /// ファイルからロードします。
-        /// </summary>
-        /// <param name="filePath">レビューファイルのパス</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IReview Read(string filePath)
         {
             using (var archive = ZipFile.OpenRead(filePath))
@@ -34,18 +30,22 @@ namespace DensoCreate.LightningReview.ReviewFile
                     var review = Read(zipEntryStream);
 
                     // Streamを引数にしたReadメソッドではファイルパスが設定されていないため、ここで設定する
-                    review.FilePath = filePath;
+                    switch (review)
+                    {
+                        case Models.V18.Review realReview:
+                            realReview.FilePath = filePath;
+                            break;
+                        case Models.V10.Review realReview:
+                            realReview.FilePath = filePath;
+                            break;
+                    }
 
                     return review;
                 }
             }
         }
 
-        /// <summary>
-        /// ストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IReview Read(Stream reviewFileStream)
         {
             try
@@ -63,8 +63,27 @@ namespace DensoCreate.LightningReview.ReviewFile
                     : new XmlSerializer(typeof(Models.V10.ReviewFile));
                 var reviewFile = (IReviewFile)serializer.Deserialize(xDoc.CreateReader());
 
-                // Streamを指定しており、この時点ではファイルパスが特定できないため空文字とする
-                reviewFile.Review.FilePath = string.Empty;
+                // Streamを指定しており、この時点ではファイルパスが特定できないためファイルパスを空文字とする必要がある
+                // 以降の処理で、具象のReviewクラスごとにFilePathにstring.Emptyをいれる
+
+                if (schemeVersion >= 1.7)
+                {
+                    var realReview = (Models.V18.Review)reviewFile.Review;
+                    realReview.FilePath = string.Empty;
+
+                    // レビューが持つすべての指摘に、
+                    // その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    SetReferenceFields_V18(realReview);
+                }
+                else
+                {
+                    var realReview = (Models.V10.Review)reviewFile.Review;
+                    realReview.FilePath = string.Empty;
+
+                    // レビューが持つすべての指摘に、
+                    // その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+                    SetReferenceFields_V10(realReview);
+                }
 
                 return reviewFile.Review;
             }
@@ -75,31 +94,115 @@ namespace DensoCreate.LightningReview.ReviewFile
         }
 
         /// <summary>
-        /// 非同期でファイルからロードします。
+        /// レビューが持つすべての指摘に、
+        /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
         /// </summary>
-        /// <param name="filePath">レビューファイルのパス</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <remarks>
+        /// V10のモデルでは、各Issueの持つOutlinePathの情報からしか紐づいているドキュメントを特定できない。
+        /// そのため、OutlinePath中のドキュメントの名前と一致する最初のドキュメントを紐づける方針とする
+        /// </remarks>
+        /// <param name="realReview">V10のレビューモデル</param>
+        private void SetReferenceFields_V10(Models.V10.Review realReview)
+        {
+            // あらかじめDocumentとOutlineNodeのハッシュテーブルを作成し、O(1)でアクセスできるようにする。
+            // 指摘が持つOutlinePath中の名前と一致する"最初の"DocumentおよびOutlineNodeを紐づける制約のため、
+            // すでにハッシュテーブルに存在するキーのDocumentおよびOutlineNodeは追加しない。
+            var documentTable = new Dictionary<string, Models.V10.Document>();
+            var outlineNodeTable = new Dictionary<string, Models.V10.OutlineNode>();
+            foreach (var realDocument in realReview.DocumentEntities)
+            {
+                // ハッシュテーブルに同名のドキュメントが存在しなければ、追加する
+                if (!documentTable.ContainsKey(realDocument.Name)) documentTable[realDocument.Name] = realDocument;
+
+                // ドキュメント直下のアウトラインノードごとに処理する
+                foreach (var realOutlineNode in realDocument.OutlineNodes)
+                {
+                    AddOutlineNodeToTable(realOutlineNode, $"/{realDocument.Name}");
+                }
+
+                // ドキュメントの持つアウトラインノードを再帰的に探索し、ハッシュテーブルに追加する。
+                void AddOutlineNodeToTable(Models.V10.OutlineNode realOutlineNode, string parentPath)
+                {
+                    // ハッシュテーブルに同じアウトラインパスを持つアウトラインノードが存在しなければ、追加する
+                    var outlineNodeKey = $"{parentPath}/{realOutlineNode.Name}";
+                    if (!documentTable.ContainsKey(outlineNodeKey)) outlineNodeTable[outlineNodeKey] = realOutlineNode;
+
+                    // 子ノードに対して再帰呼び出しする。
+                    foreach (var realChildNode in realOutlineNode.ChildNodes)
+                    {
+                        AddOutlineNodeToTable(realChildNode, outlineNodeKey);
+                    }
+                }
+            }
+
+            // すべての指摘について、指摘が所属するドキュメントの名前とアウトラインパスに対応する
+            // ドキュメントとアウトラインノードへの参照をセットする
+            foreach (var issue in realReview.Issues)
+            {
+                var realIssue = (Models.V10.Issue)issue;
+                realIssue.Document = documentTable[realIssue.RootOutlineName];
+                // ドキュメント直下にある指摘の場合はnullとなる
+                realIssue.OutlineNode = outlineNodeTable.TryGetValue(realIssue.OutlinePath, out var outlineNode) ? outlineNode : null;
+            }
+        }
+
+        /// <summary>
+        /// レビューが持つすべての指摘に、
+        /// その指摘が関連づくドキュメントとアウトラインノードの参照をセットする
+        /// </summary>
+        /// <param name="realReview">V18のレビューモデル</param>
+        private void SetReferenceFields_V18(Models.V18.Review realReview)
+        {
+            // すべての指摘に、その指摘が紐づいているIDocumentとIOutlineNodeの参照をセットする
+            foreach (var realDocument in realReview.Documents.List)
+            {
+                // ドキュメント直下の指摘に対して、ドキュメントへの参照をセットする
+                // このとき、アウトラインノードへの参照はnullとなる
+                var realRootNode = realDocument.OutlineTree.VirtualRoot;
+                foreach (var realIssue in realRootNode.Issues.List)
+                {
+                    realIssue.Document = realDocument;
+                }
+
+                // 仮想的なルートノードを除き、ドキュメント直下のアウトラインノードごとに処理する
+                foreach (var childNode in realRootNode.ChildNodes)
+                {
+                    LinkIssueToDocumentAndOutlineNode(childNode);
+                }
+
+                // アウトラインノードを再帰的に探索して、
+                // アウトラインノードが持つ指摘にドキュメントとそのアウトラインノードの参照をセットする
+                void LinkIssueToDocumentAndOutlineNode(Models.V18.OutlineNode realOutlineNode)
+                {
+                    // IDocumentとIOutlineNodeを指摘に紐づける
+                    foreach (var realIssue in realOutlineNode.Issues.List)
+                    {
+                        realIssue.Document = realDocument;
+                        realIssue.OutlineNode = realOutlineNode;
+                    }
+
+                    // すべての子ノードに対して再帰呼び出しする
+                    foreach (var realChildNode in realOutlineNode.ChildNodes)
+                    {
+                        LinkIssueToDocumentAndOutlineNode(realChildNode);
+                    }
+                }
+            }
+        }
+
+        /// <inheritdoc />
         public async Task<IReview> ReadAsync(string filePath)
         {
             return await Task.Run(() => Read(filePath));
         }
 
-        /// <summary>
-        /// 非同期でストリームからロードします。
-        /// </summary>
-        /// <param name="reviewFileStream">レビューファイルのストリーム</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public async Task<IReview> ReadAsync(Stream reviewFileStream)
         {
             return await Task.Run(() => Read(reviewFileStream));
         }
 
-        /// <summary>
-        /// フォルダからロードします。
-        /// </summary>
-        /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public IEnumerable<IReview> ReadFolder(string folderPath, bool includeSubFolder = false)
         {
             // 指定したフォルダ以下（サブフォルダ以下も含めて）に存在するすべてのレビューファイルを取得する
@@ -122,12 +225,7 @@ namespace DensoCreate.LightningReview.ReviewFile
             return reviews;
         }
 
-        /// <summary>
-        /// 非同期でフォルダからロードします。
-        /// </summary>
-        /// <param name="folderPath">フォルダのパス</param>
-        /// <param name="includeSubFolder">サブフォルダも対象にするか</param>
-        /// <returns>ロードしたレビューモデル</returns>
+        /// <inheritdoc />
         public async Task<IEnumerable<IReview>> ReadFolderAsync(string folderPath, bool includeSubFolder = false)
         {
             return await Task.Run(() => ReadFolder(folderPath, includeSubFolder));

@@ -5,20 +5,22 @@ using System.Text;
 namespace DensoCreate.LightningReview.ReviewFile.Models
 {
     /// <summary>
-    /// レビューファイルのインタフェース
+    /// レビューファイルのインタフェースです。
     /// </summary>
     public interface IReviewFile
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// スキーマバージョン値
+        /// スキーマバージョン値を取得します。
         /// </summary>
-        string SchemaVersion { get; set; }
+        /// <value>スキーマバージョン値。</value>
+        string SchemaVersion { get; }
 
         /// <summary>
-        /// レビュー
+        /// レビューを取得します。
         /// </summary>
+        /// <value>レビュー。</value>
         IReview Review { get; }
 
         #endregion

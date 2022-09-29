@@ -19,9 +19,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlAttribute]
         public string GlobalID { get; set; }
 
-        /// <summary>
-        /// グローバルID
-        /// </summary>
+        /// <inheritdoc />
         public string GID { get => GlobalID; set => GlobalID = value; }
 
         /// <summary>
@@ -30,33 +28,28 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlAttribute]
         public string ID { get; set; }
 
-        /// <summary>
-        /// ローカルID
-        /// </summary>
+        /// <inheritdoc />
         public string LID { get => ID; set => ID = value; }
 
-        /// <summary>
-        /// ドキュメント名
-        /// </summary>
+        /// <inheritdoc />
         [XmlAttribute]
         public string Name { get; set; }
 
-        /// <summary>
-        /// ドキュメントの絶対パス
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string AbsolutePath { get; set; }
 
-        /// <summary>
-        /// 関連づいているアプリケーション
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ApplicationType { get; set; }
-        
-        /// <summary>
-        /// このドキュメントに関連づくアウトラインの一覧
-        /// </summary>
-        public IEnumerable<IOutlineNode> OutlineNodes => throw new NotImplementedException();
+
+        /// <inheritdoc />
+        IEnumerable<IOutlineNode> IDocument.OutlineNodes => OutlineNodes;
+
+        /// <inheritdoc cref="IDocument.OutlineNodes"/>
+        [XmlArray("OutlineTree")]
+        [XmlArrayItem("OutlineNode")]
+        public List<OutlineNode> OutlineNodes { get; set; }
 
         #endregion
     }

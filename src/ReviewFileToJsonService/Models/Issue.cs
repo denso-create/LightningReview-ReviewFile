@@ -82,12 +82,12 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService
         /// <summary>
         /// 現在差戻し中かどうか
         /// </summary>
-        public string IsSendingBack { get; set; }
+        public bool IsSendingBack { get; set; }
 
         /// <summary>
         /// 過去に一度でも差し戻しがあったか
         /// </summary>
-        public string HasBeenSentBack { get; set; }
+        public bool HasBeenSentBack { get; set; }
         
         /// <summary>
         /// 検出工程

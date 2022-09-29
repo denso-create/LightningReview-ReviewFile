@@ -10,31 +10,23 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
     /// ドキュメント
     /// </summary>
     [XmlRoot]
-    public class Document : EntityBase,IDocument
+    public class Document : EntityBase, IDocument
     {
         #region プロパティ
-        
-        /// <summary>
-        /// ローカルID
-        /// </summary>
+
+        /// <inheritdoc />
         [XmlElement]
         public string LID { get; set; }
 
-        /// <summary>
-        /// ドキュメント名
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string Name { get; set; }
 
-        /// <summary>
-        /// ドキュメントの絶対パス
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string AbsolutePath { get; set; }
 
-        /// <summary>
-        /// 関連づいているアプリケーション
-        /// </summary>
+        /// <inheritdoc />
         [XmlElement]
         public string ApplicationType { get; set; }
 
@@ -49,9 +41,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// </summary>
         public IEnumerable<IIssue> AllIssues => OutlineTree.VirtualRoot.AllIssues;
 
-        /// <summary>
-        /// このドキュメントに関連づくアウトラインの一覧
-        /// </summary>
+        /// <inheritdoc />
         public IEnumerable<IOutlineNode> OutlineNodes => OutlineTree.VirtualRoot.Children.OfType<IOutlineNode>();
 
         #endregion

@@ -59,5 +59,9 @@
     <Folder Include="Models\V10\Definitions\IssueDefinitions\" />
     <Folder Include="Models\V18\Definitions\MemberDefinitions\" />
   </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="5.0.1" />
+  </ItemGroup>
 
 </Project>

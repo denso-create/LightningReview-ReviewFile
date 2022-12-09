@@ -389,6 +389,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         /// </value>
         string CustomText20 { get; }
 
+        /// <summary>
+        /// メタデータの一覧を取得します。
+        /// </summary>
+        /// <value>メタデータの一覧。メタデータがない時は、要素数0のコレクションです。</value>
+        IEnumerable<IMetaData> MetaDatas { get; }
+
+        #endregion
+
+        #region 公開サービス
+
+        /// <summary>
+        /// 指定したキーのメタデータを取得します。
+        /// </summary>
+        /// <param name="key">キー。</param>
+        /// <param name="defaultValue">値が取得できなかった場合の値。</param>
+        /// <returns>取得する値。</returns>
+        T GetMetaData<T>(string key, T defaultValue = default);
+
         #endregion
     }
 }

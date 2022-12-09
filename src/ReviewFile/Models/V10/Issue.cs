@@ -264,6 +264,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
 
         #endregion
 
+        /// <inheritdoc />
+        public IEnumerable<IMetaData> MetaDatas => new List<IMetaData>();
+
+        #endregion
+
+        #region 公開サービス
+
+        /// <inheritdoc />
+        public T GetMetaData<T>(string key, T defaultValue = default)
+        {
+            return defaultValue;
+        }
+
         #endregion
     }
 }

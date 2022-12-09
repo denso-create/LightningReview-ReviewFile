@@ -33,6 +33,19 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V10
         [XmlElement("OutlineNode")]
         public List<OutlineNode> ChildNodes { get; set; }
 
+        /// <inheritdoc />
+        public IEnumerable<IMetaData> MetaDatas => new List<IMetaData>();
+
+        #endregion
+
+        #region 公開サービス
+
+        /// <inheritdoc />
+        public T GetMetaData<T>(string key, T defaultValue = default)
+        {
+            return defaultValue;
+        }
+
         #endregion
     }
 }

@@ -515,6 +515,20 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(@"C:\Git\LightningReview-RevxFile\src\ReviewFile.Tests\TestData\ドキュメントモデル確認用テストデータ.xlsx", doc1.AbsolutePath);
 
             Assert.AreEqual(2, doc1.OutlineNodes.Count());
+
+            // 
+            if (version != "V10")
+            {
+                // 1つめのドキュメントのメタデータ
+                // メタデータは2つあるか
+                Assert.AreEqual(2,doc1.MetaDatas.Count());
+
+                // 1つめのメタデータのフィールド
+                Assert.AreEqual("TestKey1",doc1.MetaDatas.First().Key);
+                Assert.AreEqual("TestValue1",doc1.MetaDatas.First().GetValue<string>());
+                Assert.AreEqual(false,doc1.MetaDatas.First().Encrypted);
+            }
+            
         }
 
         /// <summary>

@@ -40,6 +40,13 @@ jobs:
       with:
         dotnet-version: 3.1.x
 
+    # SonarScannerの利用で必要のためjavaをいれる
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17' # Set up Java 17, because SonarCloud requires it
+        distribution: 'adopt'
+
     # SonarScannerをインストールする
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner

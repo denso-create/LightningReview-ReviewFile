@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using DensoCreate.LightningReview.ReviewFile.Models.V18.Utilities;
 
 namespace DensoCreate.LightningReview.ReviewFile.Models.V18
 {
@@ -10,6 +11,20 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
     /// </summary>
     public abstract class EntityBase
     {
+        #region フィールド
+
+        /// <summary>
+        /// メタデータの値の文字列
+        /// </summary>
+        private string m_MetaDataString = string.Empty;
+
+        /// <summary>
+        /// メタデータのディクショナリ
+        /// </summary>
+        private IDictionary<string, MetaData> m_MetaDataDictionary = new Dictionary<string, MetaData>();
+
+        #endregion
+
         #region 構築
 
         /// <summary>
@@ -63,6 +78,49 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         /// 最終更新日時
         /// </summary>
         public DateTime? LastUpdatedDateTime => string.IsNullOrEmpty(LastUpdatedDateTimeString) ? (DateTime?) null : DateTime.Parse(LastUpdatedDateTimeString);
+
+        /// <summary>
+        /// メタデータの一覧を取得します。
+        /// </summary>
+        /// <value>メタデータの一覧。メタデータがない時は、要素数0のコレクションです。</value>
+        public IEnumerable<IMetaData> MetaDatas => m_MetaDataDictionary.Values;
+
+        /// <summary>
+        /// メタデータの値の文字列
+        /// </summary>
+        [XmlElement]
+        public string MetaDataString
+        {
+            get => m_MetaDataString;
+            set
+            {
+                m_MetaDataString = value;
+                m_MetaDataDictionary = JsonConvertMetaDataUtility.Deserialize(m_MetaDataString);
+            }
+        }
+
+        #endregion
+
+        #region 公開サービス
+
+        /// <summary>
+        /// 指定したキーのメタデータを取得します。
+        /// </summary>
+        /// <param name="key">キー。</param>
+        /// <param name="defaultValue">値が取得できなかった場合の値。</param>
+        /// <returns>取得する値。</returns>
+        public T GetMetaData<T>(string key, T defaultValue = default)
+        {
+            if (m_MetaDataDictionary.ContainsKey(key))
+            {
+                // キーが存在すれば、その値を返す
+                var metaData = m_MetaDataDictionary[key];
+                return metaData.GetValue(defaultValue);
+            }
+
+            // キーが存在しない場合は、デフォルト値を返す
+            return defaultValue;
+        }
 
         #endregion
     }

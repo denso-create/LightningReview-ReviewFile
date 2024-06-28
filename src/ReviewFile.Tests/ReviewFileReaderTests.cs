@@ -269,7 +269,7 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
                     Assert.AreEqual(DateTime.Parse("2022/09/19 13:55:29"), review.LastUpdatedDateTime);
                     break;
                 case "V20":
-                    Assert.AreEqual(DateTime.Parse("2022/09/15 18:34:12"), review.LastUpdatedDateTime);
+                    Assert.AreEqual(DateTime.Parse("2024/06/27 10:43:04"), review.LastUpdatedDateTime);
                     break;
                 default:
                     Assert.Fail("想定していないテストパスです。");
@@ -515,6 +515,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual(@"C:\Git\LightningReview-RevxFile\src\ReviewFile.Tests\TestData\ドキュメントモデル確認用テストデータ.xlsx", doc1.AbsolutePath);
 
             Assert.AreEqual(2, doc1.OutlineNodes.Count());
+
+            // メタデータはV18とV20のテストデータでのみ設定されている
+            // そのため、versionがV18とV20のテストデータのみ値を検証する
+            if (version != "V10")
+            {
+                // 1つめのドキュメントのメタデータ
+                // メタデータは2つあるか
+                Assert.AreEqual(2,doc1.MetaDatas.Count());
+
+                // 1つめのメタデータのフィールド
+                var meta1 = doc1.MetaDatas.ToList()[0];
+                Assert.AreEqual("TestKey1",meta1.Key);
+                Assert.AreEqual("TestValue1",meta1.GetValue<string>());
+                Assert.AreEqual(false,meta1.Encrypted);
+
+                // 指定したキーのメタデータを取得する
+                Assert.AreEqual("TestValue1",doc1.GetMetaData<string>("TestKey1"));
+            }
         }
 
         /// <summary>
@@ -540,6 +558,18 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", doc1.ApplicationType);
             Assert.AreEqual("", doc1.AbsolutePath);
             Assert.AreEqual(0, doc1.OutlineNodes.Count());
+
+            // 1つめのドキュメントのメタデータ
+            // ・versionがV10の場合
+            //      ・メタデータに対応するXML属性が存在しない場合は、初期値の空のリストが返ることを検証する。
+            // ・versionがV18とV20の場合
+            //      ・メタデータに対応するXML属性が存在する場合は、取得した未設定の値として空のリストが返ることを検証する。
+            CollectionAssert.AreEqual(new List<IMetaData>(), doc1.MetaDatas.ToArray());
+
+            // 指定したキーのメタデータを取得する
+            // ・versionがV10の場合は stringの初期値が返ることを検証する。
+            // ・versionがV18とV20の場合は取得した未設定の値としてstringの初期値が返ることを検証する。
+            Assert.AreEqual(default(string),doc1.GetMetaData<string>("TestKey1"));
         }
 
         #endregion
@@ -645,6 +675,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
                 Assert.AreEqual("TextS2", issue1.CustomText19);
                 Assert.AreEqual("TextT2", issue1.CustomText20);
             }
+
+            // メタデータはV18とV20のテストデータでのみ設定されている
+            // そのため、versionがV18とV20のテストデータのみ値を検証する
+            if (version != "V10")
+            {
+                // 1つめの指摘のメタデータ
+                // メタデータは2つあるか
+                Assert.AreEqual(2,issue1.MetaDatas.Count());
+
+                // 1つめのメタデータのフィールド
+                var meta1 = issue1.MetaDatas.ToList()[0];
+                Assert.AreEqual("TestKey1",meta1.Key);
+                Assert.AreEqual("TestValue1",meta1.GetValue<string>());
+                Assert.AreEqual(false,meta1.Encrypted);
+
+                // 指定したキーのメタデータを取得する
+                Assert.AreEqual("TestValue1",issue1.GetMetaData<string>("TestKey1"));
+            }
         }
 
         /// <summary>
@@ -719,6 +767,18 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             Assert.AreEqual("", issue1.CustomText18);
             Assert.AreEqual("", issue1.CustomText19);
             Assert.AreEqual("", issue1.CustomText20);
+
+            // 指摘のメタデータ
+            // ・versionがV10の場合
+            //      ・メタデータに対応するXML属性が存在しない場合は、初期値の空のリストが返ることを検証する。
+            // ・versionがV18とV20の場合
+            //      ・メタデータに対応するXML属性が存在する場合は、取得した未設定の値として空のリストが返ることを検証する。
+            CollectionAssert.AreEqual(new List<IMetaData>(), issue1.MetaDatas.ToArray());
+
+            // 指定したキーのメタデータを取得する
+            // ・versionがV10の場合は stringの初期値が返ることを検証する。
+            // ・versionがV18とV20の場合は取得した未設定の値としてstringの初期値が返ることを検証する。
+            Assert.AreEqual(default(string),issue1.GetMetaData<string>("TestKey1"));
         }
 
         /// <summary>
@@ -1151,6 +1211,24 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             }
             Assert.AreEqual("outline1-1", childNode.Name);
             Assert.AreEqual(0, childNode.Children.Count());
+
+            // メタデータはV18とV20のテストデータでのみ設定されている
+            // そのため、versionがV18とV20のテストデータのみ値を検証する
+            if (version != "V10")
+            {
+                // 1つめのアウトラインノードのメタデータ
+                // メタデータは2つあるか
+                Assert.AreEqual(2,outlineNode.MetaDatas.Count());
+
+                // 1つめのメタデータのフィールド
+                var meta1 = outlineNode.MetaDatas.ToList()[0];
+                Assert.AreEqual("TestKey1",meta1.Key);
+                Assert.AreEqual("TestValue1",meta1.GetValue<string>());
+                Assert.AreEqual(false,meta1.Encrypted);
+
+                // 指定したキーのメタデータを取得する
+                Assert.AreEqual("TestValue1",outlineNode.GetMetaData<string>("TestKey1"));
+            }
         }
 
         /// <summary>
@@ -1173,6 +1251,18 @@ namespace DensoCreate.LightningReview.ReviewFile.Tests
             // なお、GIDとNameはXML上で値が空になることがないため、本テストではチェックの対象外としている。
             var outlineNode = outlineNodes.FirstOrDefault();
             Assert.AreEqual(0, outlineNode.Children.Count());
+
+            // 1つ目のアウトラインノードのメタデータ
+            // ・versionがV10の場合
+            //      ・メタデータに対応するXML属性が存在しない場合は、初期値の空のリストが返ることを検証する。
+            // ・versionがV18とV20の場合
+            //      ・メタデータに対応するXML属性が存在する場合は、取得した未設定の値として空のリストが返ることを検証する。
+            CollectionAssert.AreEqual(new List<IMetaData>(), outlineNode.MetaDatas.ToArray());
+
+            // 指定したキーのメタデータを取得する
+            // ・versionがV10の場合は stringの初期値が返ることを検証する。
+            // ・versionがV18とV20の場合は取得した未設定の値としてstringの初期値が返ることを検証する。
+            Assert.AreEqual(default(string),outlineNode.GetMetaData<string>("TestKey1"));
         }
 
         #endregion

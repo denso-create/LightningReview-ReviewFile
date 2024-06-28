@@ -4,50 +4,26 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.ReviewFile</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFile</RootNamespace>
-    <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。
-</Description>
+    <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。</Description>
     <Copyright>DENSO CREATE INC. All rights reserved.</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
-    <PackageVersion>1.0.7</PackageVersion>
-    <Version>1.0.7</Version>
+    <PackageVersion>1.0.9</PackageVersion>
+    <Version>1.0.9</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
-    <PackageReleaseNotes>・以下の情報を新たに取得できるようになりました。
-    ・レビュー(IReviewインターフェイス)
-        ・メンバ情報の一覧
-        ・レビュー種別の選択肢一覧
-        ・ドメインの選択肢一覧
-        ・レビューのステータスの選択肢の名前一覧
-        ・現在設定されているレビューのステータス(IStatusItem型)
-        ・レビューのステータスの選択肢一覧(IEnumerable&lt;IStatusItem&gt;型)
-        ・レビュー形式の選択肢一覧
-        ・修正方針ステータスを使用するか
-        ・指摘理由を記録するか
-        ・分類のデフォルト値
-        ・分類の選択肢一覧
-        ・検出工程のデフォルト値
-        ・検出工程の選択肢一覧
-        ・原因工程のデフォルト値
-        ・原因工程の選択肢一覧
-        ・レビューのカスタムフィールドの定義
-        ・メンバのカスタムロールの定義
-        ・メンバのカスタムフィールドの定義
-        ・指摘のカスタムフィールドの定義
+    <PackageReleaseNotes>・以下の要素のメタデータを新たに取得できるようになりました。
+    ・ドキュメント(IDocumentインターフェイス)
+    ・アウトラインノード(IOutlineNodeインターフェイス)
     ・指摘(IIssueインターフェイス)
-        ・対象ドキュメント
-        ・対象ドキュメントのID
-        ・関連づいているアウトラインノード
-・IIssue インターフェイスの以下のプロパティの型をstring型からbool型に変更しました。
-    ・IsSendingBack
-    ・HasBeenSentBack</PackageReleaseNotes>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    </PackageReleaseNotes>
+    <AssemblyVersion>1.0.9.40627</AssemblyVersion>
+    <FileVersion>1.0.9.40627</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -58,6 +34,10 @@
   <ItemGroup>
     <Folder Include="Models\V10\Definitions\IssueDefinitions\" />
     <Folder Include="Models\V18\Definitions\MemberDefinitions\" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="5.0.1" />
   </ItemGroup>
 
 </Project>

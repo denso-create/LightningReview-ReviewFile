@@ -36,9 +36,9 @@ jobs:
     # dotnet CLIを利用するためにdotNet環境を入れる
     # dotnet-versionにはSDKバージョンを指定する
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 8.0.x
 
     # SonarScannerの利用で必要のためjavaをいれる
     - name: Set up JDK 17

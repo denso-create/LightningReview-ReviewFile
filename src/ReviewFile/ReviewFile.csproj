@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>LightningReview.ReviewFile</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFile</RootNamespace>
     <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。</Description>

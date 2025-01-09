@@ -17,14 +17,8 @@
     <Version>1.0.9</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>・以下のプロパティの型をstring型からbool型に変更したため、プロパティに対応するJSONのエントリの出力形式が変わります。
-　・IsSendingBack
-　・HasBeenSentBack
-　出力例:
-　・以前のバージョン:
-             "IsSendingBack" : "True",
-     ・変更後
-             "IsSendingBack" : true,</PackageReleaseNotes>
+    <PackageReleaseNotes>・.NET8に対応しました。
+    </PackageReleaseNotes>
     <AssemblyVersion>1.0.9.0</AssemblyVersion>
     <FileVersion>1.0.9.0</FileVersion>
   </PropertyGroup>

@@ -6,6 +6,8 @@
     <AssemblyName>ReviewFileToJson</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFileToJson</RootNamespace>
     <Version>1.0.9</Version>
+    <PackageReleaseNotes>・.NET8に対応しました。
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

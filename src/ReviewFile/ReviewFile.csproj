@@ -22,7 +22,6 @@
     ・アウトラインノード(IOutlineNodeインターフェイス)
     ・指摘(IIssueインターフェイス)
 
-
     ・.NET8に対応しました。
     </PackageReleaseNotes>
     <AssemblyVersion>1.0.9.40627</AssemblyVersion>

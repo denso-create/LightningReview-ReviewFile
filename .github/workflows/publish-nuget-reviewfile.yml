@@ -1,4 +1,4 @@
-name: Publish-Nuget
+name: Publish-Nuget-ReviewFile
 
 # ワークフローが動作する条件を指定する
 # 下記設定はmainブランチに対してワークフローのBuildが完了したことをトリガとする
@@ -35,7 +35,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    
+
     # 依存関係を復元する
     - name: Restore dependencies
       run: dotnet restore
@@ -54,15 +54,6 @@ jobs:
       uses: brandedoutcast/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: src/ReviewFile/ReviewFile.csproj
-        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
-        TAG_FORMAT: '*'
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-    # ReviewFileToJsonServiceを公開する
-    - name: Publish to ReviewFileToJsonService
-      uses: brandedoutcast/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: src/ReviewFileToJsonService/ReviewFileToJsonService.csproj
         VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}

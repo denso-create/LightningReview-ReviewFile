@@ -10,8 +10,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
-    <PackageVersion>1.0.9</PackageVersion>
-    <Version>1.0.9</Version>
+    <PackageVersion>1.0.10</PackageVersion>
+    <Version>1.0.10</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
@@ -24,8 +24,8 @@
 
     ・.NET8に対応しました。
     </PackageReleaseNotes>
-    <AssemblyVersion>1.0.9.40627</AssemblyVersion>
-    <FileVersion>1.0.9.40627</FileVersion>
+    <AssemblyVersion>1.0.10.50113</AssemblyVersion>
+    <FileVersion>1.0.10.50113</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

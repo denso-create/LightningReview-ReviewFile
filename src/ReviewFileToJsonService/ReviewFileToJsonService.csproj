@@ -13,8 +13,8 @@
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
     <PackageId>LightningReview.ReviewFileToJsonService</PackageId>
-    <PackageVersion>1.0.9</PackageVersion>
-    <Version>1.0.9</Version>
+    <PackageVersion>1.0.10</PackageVersion>
+    <Version>1.0.10</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>・.NET8に対応しました。

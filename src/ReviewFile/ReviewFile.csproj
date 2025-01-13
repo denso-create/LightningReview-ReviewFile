@@ -22,8 +22,8 @@
     ・アウトラインノード(IOutlineNodeインターフェイス)
     ・指摘(IIssueインターフェイス)
     </PackageReleaseNotes>
-    <AssemblyVersion>1.0.10.50113</AssemblyVersion>
-    <FileVersion>1.0.10.50113</FileVersion>
+    <AssemblyVersion>1.0.11.50113</AssemblyVersion>
+    <FileVersion>1.0.11.50113</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

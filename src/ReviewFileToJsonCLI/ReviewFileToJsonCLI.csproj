@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>ReviewFileToJson</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFileToJson</RootNamespace>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <PackageReleaseNotes>・.NET8に対応しました。
     </PackageReleaseNotes>
   </PropertyGroup>

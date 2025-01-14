@@ -45,24 +45,14 @@ jobs:
     - name: Build
       run: dotnet build ${{env.SolutionPath}} --no-restore
 
-    # ReviewFileを公開する
-    # PROJECT_FILE_PATH:公開するプロジェクトのパス
-    # VERSION_REGEX:公開する際のバージョン（下記は正規表現でcsproj内のPackageVersionタグを取得している）
-    # TAG_FORMAT:gitのタグのフォーマット
-    # NUGET_KEY:Nugetへの認証に必要なトークンを指定する
-    - name: Publish to ReviewFile
-      uses: brandedoutcast/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: src/ReviewFile/ReviewFile.csproj
-        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
-        TAG_FORMAT: '*'
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # ReviewFileをパッケージ化する
+    - name: Package ReviewFile
+      run: dotnet pack -c Release -o . src/ReviewFile/ReviewFile.csproj
 
-    # ReviewFileToJsonServiceを公開する
+    # ReviewFileToJsonServiceをパッケージ化する
+    - name: Package ReviewFileToJsonService
+      run: dotnet pack -c Release -o . src/ReviewFileToJsonService/ReviewFileToJsonService.csproj
+
+    # パッケージ化されたReviewFileおよびReviewFileToJsonServiceを公開する
     - name: Publish to ReviewFileToJsonService
-      uses: brandedoutcast/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: src/ReviewFileToJsonService/ReviewFileToJsonService.csproj
-        VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
-        TAG_FORMAT: '*'
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push *.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json

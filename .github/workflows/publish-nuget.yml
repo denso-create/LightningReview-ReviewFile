@@ -43,7 +43,7 @@ jobs:
 
     # ビルドを実行する
     - name: Build
-      run: dotnet build ${{env.SolutionPath}} --no-restore
+      run: dotnet build ${{env.SolutionPath}} --no-restore --configuration Release
 
     # ReviewFileをパッケージ化する
     - name: Package ReviewFile

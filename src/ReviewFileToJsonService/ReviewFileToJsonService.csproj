@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.ReviewFileToJsonService</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFileToJsonService</RootNamespace>
     <Authors>DENSO CREATE INC.</Authors>
@@ -13,14 +13,13 @@
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
     <PackageId>LightningReview.ReviewFileToJsonService</PackageId>
-    <PackageVersion>1.0.10</PackageVersion>
-    <Version>1.0.10</Version>
+    <PackageVersion>1.0.11</PackageVersion>
+    <Version>1.0.11</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>・.NET8に対応しました。
-    </PackageReleaseNotes>
-    <AssemblyVersion>1.0.9.0</AssemblyVersion>
-    <FileVersion>1.0.9.0</FileVersion>
+    
+    <AssemblyVersion>1.0.11.50113</AssemblyVersion>
+    <FileVersion>1.0.11.50113</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

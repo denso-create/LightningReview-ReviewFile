@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>LightningReview.ReviewFile</AssemblyName>
     <RootNamespace>DensoCreate.LightningReview.ReviewFile</RootNamespace>
     <Description>デンソークリエイトのレビュー支援ツール Lightning Review(https://www.lightning-review.com/)のレビューファイルを読み込み可能な軽量ライブラリです。</Description>
@@ -10,8 +10,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
-    <PackageVersion>1.0.10</PackageVersion>
-    <Version>1.0.10</Version>
+    <PackageVersion>1.0.11</PackageVersion>
+    <Version>1.0.11</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
@@ -21,11 +21,9 @@
     ・ドキュメント(IDocumentインターフェイス)
     ・アウトラインノード(IOutlineNodeインターフェイス)
     ・指摘(IIssueインターフェイス)
-
-    ・.NET8に対応しました。
     </PackageReleaseNotes>
-    <AssemblyVersion>1.0.10.50113</AssemblyVersion>
-    <FileVersion>1.0.10.50113</FileVersion>
+    <AssemblyVersion>1.0.11.50113</AssemblyVersion>
+    <FileVersion>1.0.11.50113</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

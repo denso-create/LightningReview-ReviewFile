@@ -55,4 +55,4 @@ jobs:
 
     # パッケージ化されたReviewFileおよびReviewFileToJsonServiceを公開する
     - name: Publish ReviewFile and ReviewFileToJsonService
-      run: dotnet nuget push *.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push *.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate

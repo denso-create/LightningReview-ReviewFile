@@ -43,7 +43,7 @@ jobs:
 
     # ビルドを実行する
     - name: Build
-      run: dotnet build ${{env.SolutionPath}} --no-restore
+      run: dotnet build ${{env.SolutionPath}} --no-restore --configuration Release
 
     # ReviewFileをパッケージ化する
     - name: Package ReviewFile
@@ -54,5 +54,5 @@ jobs:
       run: dotnet pack -c Release -o . src/ReviewFileToJsonService/ReviewFileToJsonService.csproj
 
     # パッケージ化されたReviewFileおよびReviewFileToJsonServiceを公開する
-    - name: Publish to ReviewFileToJsonService
+    - name: Publish ReviewFile and ReviewFileToJsonService
       run: dotnet nuget push *.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json

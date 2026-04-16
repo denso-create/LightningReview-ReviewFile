@@ -11,19 +11,17 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>LightningReview.ReviewFile</PackageId>
     <PackageVersion>1.0.11</PackageVersion>
-    <Version>1.0.11</Version>
+    <Version>1.0.12</Version>
     <Authors>DENSO CREATE INC.</Authors>
     <Company>DENSO CREATE INC.</Company>
     <RepositoryUrl>https://github.com/denso-create/LightningReview-ReviewFile</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageProjectUrl>https://github.com/denso-create/LightningReview-ReviewFile</PackageProjectUrl>
-    <PackageReleaseNotes>・以下の要素のメタデータを新たに取得できるようになりました。
-    ・ドキュメント(IDocumentインターフェイス)
-    ・アウトラインノード(IOutlineNodeインターフェイス)
-    ・指摘(IIssueインターフェイス)
-    </PackageReleaseNotes>
-    <AssemblyVersion>1.0.11.50113</AssemblyVersion>
-    <FileVersion>1.0.11.50113</FileVersion>
+    <PackageReleaseNotes>・以下の要素を新たに取得できるようになりました。
+    ・差し戻し(IIssueインターフェイス)
+</PackageReleaseNotes>
+    <AssemblyVersion>1.0.12.60417</AssemblyVersion>
+    <FileVersion>1.0.12.60417</FileVersion>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

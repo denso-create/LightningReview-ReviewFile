@@ -75,6 +75,11 @@ namespace DensoCreate.LightningReview.ReviewFileToJsonService
         public string SendingBackReason{ get; set; }
 
         /// <summary>
+        /// 差し戻し指摘一覧
+        /// </summary>
+        public IList<ISendingBackIssue> SendingBackIssues { get; set; } = new List<ISendingBackIssue>();
+
+        /// <summary>
         /// 指摘のステータス
         /// </summary>
         public string Status { get; set; }

@@ -55,6 +55,25 @@ namespace DensoCreate.LightningReview.ReviewFile.Models.V18
         [XmlElement]
         public string SendingBackReason { get; set; }
 
+        /// <summary>
+        /// XML シリアライズ用の差し戻し指摘コンテナ
+        /// </summary>
+        [XmlElement("SendingBackIssues")]
+        public SendingBackIssuesList SendingBackIssuesContainer { get; set; } = new SendingBackIssuesList();
+
+        /// <inheritdoc />
+        [XmlIgnore]
+        public IList<ISendingBackIssue> SendingBackIssues =>
+            SendingBackIssuesContainer?.List?
+                .Select(i => (ISendingBackIssue)new SendingBackIssue
+                {
+                    CorrectionPolicy = i.CorrectionPolicy,
+                    Description = i.Description,
+                    Reason = i.Reason,
+                    Resolution = i.Resolution
+                })
+                .ToList() ?? new List<ISendingBackIssue>();
+
         /// <inheritdoc />
         [XmlElement]
         public string Status { get; set; }

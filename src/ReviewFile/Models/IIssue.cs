@@ -85,6 +85,12 @@ namespace DensoCreate.LightningReview.ReviewFile.Models
         string SendingBackReason { get; }
 
         /// <summary>
+        /// 差し戻し指摘一覧を取得します。
+        /// </summary>
+        /// <value>差し戻し指摘一覧。</value>
+        IList<ISendingBackIssue> SendingBackIssues { get; }
+
+        /// <summary>
         /// 指摘のステータスを取得します。
         /// </summary>
         /// <value>
